@@ -6,7 +6,6 @@ from .tile_class import Tile
 noise_offset_x = random.uniform(-10000, 10000)
 noise_offset_y = random.uniform(-10000, 10000)
 
-
 def generate_chunk(
     chunk_x: int,
     chunk_y: int,

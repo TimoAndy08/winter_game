@@ -1,201 +1,131 @@
 # fmt off
-import pygame as pg
 import random
 import os
 import math
 import ast
 import json
 
+import pygame as pg
+
 from .crafting_system import recipe
 from .world_generation import generate_chunk
 from .tile_class import Tile
-from .tile_class import tile_attributes
 from .room_generation import generate_room
 from .light import lights
-from .serialize import serialize_chunks
-from .serialize import deserialize_chunks
-from .options import options
+from .serialize import serialize_chunks, deserialize_chunks
+from .tile_info import RECIPES, TOOL_EFFICIENCY, TOOL_REQUIRED, MULTI_TILES, STORAGE, FOOD, TILE_ATTRIBUTES
+from .menu_rendering import render_menu
 
 pg.init()
-SCREEN_SIZE = (pg.display.Info().current_w + 64, pg.display.Info().current_h + 40)
-DAY_LENGTH = 86400  # 24 minutes
+SCREEN_SIZE = (pg.display.Info().current_w, pg.display.Info().current_h)
+FPS = 60
+DAY_LENGTH = 60 * 24 * FPS
 UI_SCALE = 2
 INVENTORY_SIZE = 12
+MENU_FONT = pg.font.SysFont("Lucida Console", 50)
+UI_FONT = pg.font.SysFont("Lucida Console", 10 * UI_SCALE)
+BIG_UI_FONT = pg.font.SysFont("Lucida Console", 20 * UI_SCALE)
+WINDOW = pg.display.set_mode((0, 0), pg.FULLSCREEN)
+IMAGES = {}
+SPRITES_FOLDER = "src/sprites"
+for filename in os.listdir(SPRITES_FOLDER):
+    IMAGES[filename.split(".")[0]] = pg.image.load(os.path.join(SPRITES_FOLDER, filename)).convert_alpha()
+CLOCK = pg.time.Clock()
 
-def font(size):
-    return pg.font.SysFont("Lucida Console", size)
-
-def main() -> int:
-    window = pg.display.set_mode((0, 0), pg.FULLSCREEN)
-    clock = pg.time.Clock()
+def main() -> None:
     run = True
     zoom = 1
-    recipes = {
-        "player": [
-            (("workbench", 1), [("wood", 4), ("flint", 2)]),
-            (("stick", 4), [("wood", 2)]),
-        ],
-        "workbench": [
-            (("flint axe", 1), [("stick", 3), ("flint", 4)]),
-            (("flint pickaxe", 1), [("stick", 3), ("flint", 4), ("pebble", 1)]),
-            (("flint shovel", 1), [("stick", 2), ("flint", 3)]),
-            (("flint sword", 1), [("stick", 2), ("flint", 4), ("ice", 1)]),
-            (("campfire", 1), [("wood", 5), ("flint", 2), ("stick", 6), ("pebble", 1)]),
-            (("bowl", 4), [("wood", 3), ("stick", 2)]),
-            (("wood pulp", 2), [("wood", 3), ("water", 2)]),
-            (("flint hammer", 1), [("stick", 4), ("rock", 2), ("flint", 3)]),
-            (("manual press", 1), [("workbench", 1), ("flint hammer", 1)]),
-            (("sawbench", 1), [("workbench", 1), ("flint axe", 2)]),
-        ],
-        "campfire": [
-            (("roasted mushroom", 1), [("mushroom", 1), ("stick", 1)]),
-            (("water", 2), [("ice", 1), ("bowl", 2)]),
-            (("mushroom stew", 2), [("mushroom", 3), ("carrot", 1), ("water", 2)]),
-            (("stone", 1), [("rock", 1)]),
-            (("brick", 1), [("clay", 1)]),
-            (("roasted rabbit meat", 1), [("rabbit meat", 1)])
-        ],
-        "manual press": [
-            (("blue dye", 2), [("bluebell", 2), ("water", 1), ("bowl", 1)]),
-            (("paper", 2), [("wood pulp", 3)]),
-            (("blueprint", 1), [("paper", 3), ("blue dye", 2)]),
-        ],
-        "sawbench": [
-            (("stick", 7), [("wood", 3)]),
-            (("small crate", 1), [("wood", 6), ("stick", 4)]),
-            (("small barrel", 1), [("wood", 6), ("stick", 4)]),
-            (("stone brick", 2), [("stone", 3)]),
-            (("wooden cabin", 1), [("wood", 16), ("brick", 6)]),
-            (("wooden bed", 1), [("wood", 10), ("blue dye", 3), ("rabbit fur", 2)]),
-        ],
-    }
-    tool_required = {
-        "player": "sword",
-        "sapling": "shovel",
-        "treeling": "axe",
-        "tree": "axe",
-        "wood": "axe",
-        "spore": "shovel",
-        "mushroom": "axe",
-        "pebble": "pickaxe",
-        "flint": "pickaxe",
-        "ice": "pickaxe",
-        "stick": "axe",
-        "campfire": "axe",
-        "carroot": "shovel",
-        "carrot": "shovel",
-        "rock": "pickaxe",
-        "clay": "shovel",
-        "stone": "pickaxe",
-        "stone brick": "pickaxe",
-        "brick": "pickaxe",
-        "rabbit adult": "sword",
-        "sawbench": "axe",
-        "wood pulp": "shovel",
-        "manual press": "pickaxe",
-        "bluebell": "shovel",
-        "small crate": "axe",
-        "wooden cabin": "axe"
-    }
-    tool_efficiency = {"flint": 1}
-    multi_tiles = {"sawbench": (2, 1), "manual press": (2, 1), "wooden cabin": (4, 3), "wooden bed": (1, 2)}
-    storage = {"small crate": (9, 48), "small barrel": (1, 512)}
-    food = {"mushroom": 1, "carrot": 2, "roasted mushroom": 3, "mushroom stew": 6, "rabbit meat": 1, "roasted rabbit meat": 4}
     inventory_number = 0
     recipe_number = 0
-    save_file = ""
-    option_placement = "main_menu"
+    save_file_name = ""
+    menu_placement = "main_menu"
     last_mined_location = [0, 0, 0, 0]
-    images = {}
-    sprites_folder = "src/sprites"
-    controls = [119, 97, 115, 100, 101, 122, 120]
+    controls = [pg.K_w, pg.K_a, pg.K_s, pg.K_d, pg.K_e, pg.K_z, pg.K_x]
     control_names = ["Move up ", "Move left ", "Move down ", "Move right", "Inventory ", "Zoom in", "Zoom out"]
     velocity = [0, 0]
     machine_ui = "game"
-    for filename in os.listdir(sprites_folder):
-        images[filename.split(".")[0]] = pg.image.load(os.path.join(sprites_folder, filename)).convert_alpha()
+    control_adjusted = 0
 
     while run:
-        window.fill((206, 229, 242))
-        if option_placement != "main_game":
+        WINDOW.fill((206, 229, 242))
+        if menu_placement != "main_game":
             for event in pg.event.get():
-                position = pg.mouse.get_pos()[1]
+                position = pg.mouse.get_pos()
                 if event.type == pg.QUIT:
                     run = False
                 elif event.type == pg.MOUSEBUTTONDOWN:
-                    option = options(position, option_placement, save_file, event)
-                    if isinstance(option[1], str):
-                        option_placement = option[1]
-                    else:
-                        control_adjusted = (control_adjusted + option[1]) % len(controls)
-                    if option[0] == "create":
-                        option_placement = "main_game"
-                        chunks = {(): {}}
-                        tile_location = [0, 0, 0, 0]
-                        real_location = [0, 0, 0, 0]
-                        room_location = ()
-                        generate_chunk(0, 0, chunks[room_location])
-                        chunks[room_location][(0, 0)] = {(0, 0): Tile("player", 20, 0, {})}
-                        tick = 0
-                    elif option[0] == "load":
-                        option_placement = "main_game"
-                        with open(f"src/saves/{save_file}.txt", "r", encoding="utf-8") as file:
-                            file_content = file.read().split(";")
-                        chunks = deserialize_chunks(file_content[0])
-                        tile_location = ast.literal_eval(file_content[1])
-                        tick = int(file_content[2])
-                        room_location = ast.literal_eval(file_content[3])
-                        real_location = [*tile_location,]
-                    elif option[0] == "save":
-                        option_placement = "main_menu"
-                        with open(f"src/saves/{save_file}.txt", "w", encoding="utf-8") as file:
-                            chunks_json = json.dumps(serialize_chunks(chunks))
-                            file.write(f"{chunks_json};{tile_location};{tick};{room_location}")
-                        save_file = ""
-                    elif option[0] == "control":
-                        control_adjusted = 0
-                    elif option[0] == "exit":
-                        run = False
+                    if menu_placement == "load_save":
+                        if 100 <= position[1] <= 150:
+                            menu_placement = "save_selection"
+                        elif 200 <= position[1] <= 250:
+                            menu_placement = "save_creation"
+                    elif menu_placement.split("_")[0] == "save" and len(save_file_name) > 0:
+                        if 200 <= position[1] <= 250:
+                            if menu_placement == "save_creation":
+                                menu_placement = "main_game"
+                                chunks = {(): {}}
+                                tile_location = [0, 0, 0, 0]
+                                real_location = [0, 0, 0, 0]
+                                room_location = ()
+                                generate_chunk(0, 0, chunks[room_location])
+                                chunks[room_location][(0, 0)] = {(0, 0): Tile("player", 20, 0, {})}
+                                tick = 0
+                            elif menu_placement == "save_selection":
+                                menu_placement = "main_game"
+                                with open(f"src/saves/{save_file_name}.txt", "r", encoding="utf-8") as file:
+                                    file_content = file.read().split(";")
+                                chunks = deserialize_chunks(file_content[0])
+                                tile_location = ast.literal_eval(file_content[1])
+                                tick = int(file_content[2])
+                                room_location = ast.literal_eval(file_content[3])
+                                real_location = [*tile_location,]
+                    elif menu_placement.split("_")[0] == "options":
+                        if menu_placement == "options_game":
+                            if 0 <= position[1] <= 50:
+                                menu_placement = "main_game"
+                            elif 100 <= position[1] <= 150:
+                                menu_placement = "main_menu"
+                                with open(f"src/saves/{save_file_name}.txt", "w", encoding="utf-8") as file:
+                                    chunks_json = json.dumps(serialize_chunks(chunks))
+                                    file.write(f"{chunks_json};{tile_location};{tick};{room_location}")
+                                save_file_name = ""
+                        elif menu_placement == "options_main":
+                            if 0 <= position[1] <= 50:
+                                menu_placement = "main_menu"                  
+                        if 200 <= position[1] <= 250:
+                            menu_placement = "controls_options"
+                    elif menu_placement == "main_menu":
+                        if 0 <= position[1] <= 50:
+                            menu_placement = "load_save"
+                        elif 100 <= position[1] <= 150:
+                            menu_placement = "options_main"
+                        elif 200 <= position[1] <= 250:
+                            run = False
+                    elif menu_placement == "controls_options":
+                        if 0 <= position[1] <= 50:
+                            if len(save_file_name) == 0:
+                                menu_placement = "options_main"
+                            else:
+                                menu_placement = "options_game"
+                        if event.button == 4:
+                            control_adjusted = (control_adjusted - 1) % len(controls)
+                        elif event.button == 5:
+                            control_adjusted = (control_adjusted + 1) % len(controls)
                 elif event.type == pg.KEYDOWN:
                     key = pg.key.get_pressed()
-                    if option_placement.split("_")[0] == "save":
+                    if menu_placement.split("_")[0] == "save":
                         for letters in range(48, 123):
                             if key[letters]:
-                                save_file += chr(letters)
+                                save_file_name += chr(letters)
                         if key[pg.K_SPACE]:
-                            save_file += " "
+                            save_file_name += " "
                         elif key[pg.K_BACKSPACE]:
-                            save_file = save_file[:-1]
-                    elif option_placement == "controls_options":
+                            save_file_name = save_file_name[:-1]
+                    elif menu_placement == "controls_options":
                         for keys in range(0, len(key)):
                             if key[keys]:
                                 controls[control_adjusted] = keys
-
-            if option_placement == "load_save":
-                window.blit(font(50).render("Load save?", False, (19, 17, 18)), (0, 0))
-                window.blit(font(50).render("Yes", False, (19, 17, 18)), (0, 100))
-                window.blit(font(50).render("No", False, (19, 17, 18)), (0, 200))
-            elif option_placement.split("_")[0] == "save":
-                if option_placement == "save_creation":
-                    window.blit(font(50).render("Name your new save?", False, (19, 17, 18)), (0, 0))
-                if option_placement == "save_selection":
-                    window.blit(font(50).render("Which save to load?", False, (19, 17, 18)), (0, 0))
-                window.blit(font(50).render(save_file, False, (19, 17, 18)), (0, 100))
-                window.blit(font(50).render("Proceed", False, (19, 17, 18)), (0, 200))
-            elif option_placement.split("_")[0] == "options":
-                if option_placement == "options_game":
-                    window.blit(font(50).render("Return to game", False, (19, 17, 18)), (0, 0))
-                    window.blit(font(50).render("Save and Quit", False, (19, 17, 18)), (0, 100))
-                elif option_placement == "options_main":
-                    window.blit(font(50).render("Back to menu", False, (19, 17, 18)), (0, 0))
-                window.blit(font(50).render("Controls options", False, (19, 17, 18)), (0, 200))
-            elif option_placement == "main_menu":
-                window.blit(font(50).render("Play", False, (19, 17, 18)), (0, 0))
-                window.blit(font(50).render("Options", False, (19, 17, 18)), (0, 100))
-                window.blit(font(50).render("Quit Game", False, (19, 17, 18)), (0, 200))
-            elif option_placement == "controls_options":
-                window.blit(font(50).render("Proceed", False, (19, 17, 18)), (0, 0))
-                window.blit(font(50).render(f"{control_names[control_adjusted]}: {chr(controls[control_adjusted])}", False, (19, 17, 18)), (0, 100))
+            render_menu(WINDOW, MENU_FONT, menu_placement, save_file_name, control_names, control_adjusted, controls)
         else:
             old_location = [*tile_location,]
             inventory = chunks[room_location][(tile_location[0], tile_location[1])][(tile_location[2], tile_location[3])].inventory
@@ -233,7 +163,7 @@ def main() -> int:
                     run = False
                 elif event.type == pg.MOUSEBUTTONDOWN:
                     position = [*pg.mouse.get_pos(),]
-                    if abs(position[0] - SCREEN_SIZE[0] / 2 + 32) // (64 * zoom) <= 4 and abs(position[1] - SCREEN_SIZE[1] / 2 + 32) // (64 * zoom) <= 4 or "store" in tile_attributes.get(machine_ui, ()):
+                    if abs(position[0] - SCREEN_SIZE[0] / 2 + 32) // (64 * zoom) <= 4 and abs(position[1] - SCREEN_SIZE[1] / 2 + 32) // (64 * zoom) <= 4 or "store" in TILE_ATTRIBUTES.get(machine_ui, ()):
                         world_x = tile_location[0] * 16 + tile_location[2] + (position[0] - SCREEN_SIZE[0] / 2 + 32) // (64 * zoom)
                         world_y = tile_location[1] * 16 + tile_location[3] + (position[1] - SCREEN_SIZE[1] / 2 + 32) // (64 * zoom)
                         grid_position = [(world_x // 16, world_y // 16), (world_x % 16, world_y % 16)]
@@ -249,24 +179,24 @@ def main() -> int:
                                     if len(inventory) > inventory_number:
                                         can_place = True
                                         inventory_key = list(inventory.keys())[inventory_number]
-                                        if "eat" in tile_attributes.get(inventory_key, ()):
+                                        if "eat" in TILE_ATTRIBUTES.get(inventory_key, ()):
                                             if health < max_health:
-                                                chunks[room_location][(tile_location[0], tile_location[1])][(tile_location[2], tile_location[3])].health = min(health + food[inventory_key], max_health)
+                                                chunks[room_location][(tile_location[0], tile_location[1])][(tile_location[2], tile_location[3])].health = min(health + FOOD[inventory_key], max_health)
                                                 can_place = False
                                                 inventory[inventory_key] -= 1
                                                 if inventory[inventory_key] == 0:
                                                     del inventory[inventory_key]
-                                        if "multi" in tile_attributes.get(inventory_key, ()):
-                                            for x in range(0, multi_tiles[inventory_key][0]):
-                                                for y in range(0, multi_tiles[inventory_key][1]):
+                                        if "multi" in TILE_ATTRIBUTES.get(inventory_key, ()):
+                                            for x in range(0, MULTI_TILES[inventory_key][0]):
+                                                for y in range(0, MULTI_TILES[inventory_key][1]):
                                                     if ((grid_position[1][0] + x) % 16, (grid_position[1][1] + y) % 16) in chunks[room_location][(grid_position[0][0] + (grid_position[1][0] + x) // 16, grid_position[0][1] + (grid_position[1][1] + y) // 16)]:
                                                         can_place = False
                                         if can_place:
                                             inventory[inventory_key] -= 1
-                                            if "multi" in tile_attributes.get(inventory_key, ()):
-                                                for x in range(0, multi_tiles[inventory_key][0]):
+                                            if "multi" in TILE_ATTRIBUTES.get(inventory_key, ()):
+                                                for x in range(0, MULTI_TILES[inventory_key][0]):
                                                     chunks[room_location][(grid_position[0][0] + (grid_position[1][0] + x) // 16, grid_position[0][1])][((grid_position[1][0] + x) % 16, grid_position[1][1])] = Tile("left", 1, 1, {})
-                                                    for y in range(1, multi_tiles[inventory_key][1]):
+                                                    for y in range(1, MULTI_TILES[inventory_key][1]):
                                                         chunks[room_location][(grid_position[0][0] + (grid_position[1][0] + x) // 16, grid_position[0][1] + (grid_position[1][1] + y) // 16)][((grid_position[1][0] + x) % 16, (grid_position[1][1] + y) % 16)] = Tile("up", 1, 1, {})
                                             chunks[room_location][grid_position[0]][grid_position[1]] = Tile(inventory_key, 4, 0, {})
                                             if inventory[inventory_key] == 0:
@@ -299,22 +229,22 @@ def main() -> int:
                                     room_location = ()
                                     machine_ui = "game"
                                 elif "sleep" in chunks[room_location][grid_position[0]][grid_position[1]].attributes:
-                                    if 48600 <= tick % 86400 < 81000:
-                                        tick = 80999 + (tick // 86400) * 86400
-                            elif "store" in tile_attributes.get(machine_ui, ()):
+                                    if 9 / 16 <= (tick / DAY_LENGTH) % 1 < 15 / 16:
+                                        tick = (tick // DAY_LENGTH + 9 / 16) * DAY_LENGTH
+                            elif "store" in TILE_ATTRIBUTES.get(machine_ui, ()):
                                 position[0] -= SCREEN_SIZE[0] // 2
                                 if position[1] >= SCREEN_SIZE[1] - 32 * UI_SCALE and abs(position[0]) <= 16 * INVENTORY_SIZE * UI_SCALE:
                                     slot_number = (position[0] - 16 * UI_SCALE * (INVENTORY_SIZE % 2)) // (32 * UI_SCALE) + INVENTORY_SIZE // 2 + INVENTORY_SIZE % 2
                                     if slot_number < len(inventory):
                                         item = list(inventory.items())[slot_number]
                                         machine_item = machine_inventory.get(item[0], 0)
-                                        if not (machine_item == 0 and len(machine_inventory) == storage[machine_ui][0]):
-                                            if machine_item + item[1] <= storage[machine_ui][1]:
+                                        if not (machine_item == 0 and len(machine_inventory) == STORAGE[machine_ui][0]):
+                                            if machine_item + item[1] <= STORAGE[machine_ui][1]:
                                                 chunks[room_location][last_opened_location[0]][last_opened_location[1]].inventory[item[0]] = machine_item + item[1]
                                                 del chunks[room_location][(tile_location[0], tile_location[1])][(tile_location[2], tile_location[3])].inventory[item[0]]
                                             else:
-                                                chunks[room_location][last_opened_location[0]][last_opened_location[1]].inventory[item[0]] = storage[machine_ui][1]
-                                                chunks[room_location][(tile_location[0], tile_location[1])][(tile_location[2], tile_location[3])].inventory[item[0]] = machine_item + item[1] - storage[machine_ui][1]
+                                                chunks[room_location][last_opened_location[0]][last_opened_location[1]].inventory[item[0]] = STORAGE[machine_ui][1]
+                                                chunks[room_location][(tile_location[0], tile_location[1])][(tile_location[2], tile_location[3])].inventory[item[0]] = machine_item + item[1] - STORAGE[machine_ui][1]
                                 elif SCREEN_SIZE[1] - 144 * UI_SCALE <= position[1] <= SCREEN_SIZE[1] - 80 * UI_SCALE and abs(position[0]) <= 112 * UI_SCALE:
                                     slot_number = (position[0] + 112 * UI_SCALE) // (32 * UI_SCALE) + (position[1] - SCREEN_SIZE[1] + 144 * UI_SCALE) // (32 * UI_SCALE) * 7
                                     if slot_number < len(machine_inventory):
@@ -327,17 +257,17 @@ def main() -> int:
                                             else:
                                                 chunks[room_location][(tile_location[0], tile_location[1])][(tile_location[2], tile_location[3])].inventory[item[0]] = 64
                                                 chunks[room_location][last_opened_location[0]][last_opened_location[1]].inventory[item[0]] = inventory_item + item[1] - 64
-                            elif "craft" in tile_attributes.get(machine_ui, ()):
-                                inventory = recipe(recipes[machine_ui][recipe_number][0], recipes[machine_ui][recipe_number][1], inventory, (INVENTORY_SIZE, 64))
+                            elif "craft" in TILE_ATTRIBUTES.get(machine_ui, ()):
+                                inventory = recipe(RECIPES[machine_ui][recipe_number][0], RECIPES[machine_ui][recipe_number][1], inventory, (INVENTORY_SIZE, 64))
                         elif event.button == 3:
                             if grid_position[1] in chunks[room_location][grid_position[0]]:
                                 damage = 1 - chunks[room_location][grid_position[0]][grid_position[1]].resistance
                                 if len(inventory) > inventory_number:
                                     inventory_key = list(inventory.keys())[inventory_number]
                                     inventory_words = inventory_key.split()
-                                    if len(inventory_words) == 2 and chunks[room_location][grid_position[0]][grid_position[1]].kind in tool_required:
-                                        if tool_required[chunks[room_location][grid_position[0]][grid_position[1]].kind] == inventory_words[1]:
-                                            damage += tool_efficiency[inventory_words[0]]
+                                    if len(inventory_words) == 2 and chunks[room_location][grid_position[0]][grid_position[1]].kind in TOOL_REQUIRED:
+                                        if TOOL_REQUIRED[chunks[room_location][grid_position[0]][grid_position[1]].kind] == inventory_words[1]:
+                                            damage += TOOL_EFFICIENCY[inventory_words[0]]
                                 chunks[room_location][grid_position[0]][grid_position[1]].health -= max(damage, 0)
                                 last_mined_location = [grid_position[0][0], grid_position[0][1], grid_position[1][0], grid_position[1][1]]
                                 if chunks[room_location][grid_position[0]][grid_position[1]].health <= 0:
@@ -374,11 +304,10 @@ def main() -> int:
                                         tile_location = [0, 0, i % 16, i // 16]
                                         real_location = [0, 0, i % 16, i // 16]
                                         room_location = ()
-                    if event.button >= 6:
-                        if "craft" in tile_attributes.get(machine_ui, ()):
-                            recipe_number = (recipe_number + (event.button == 6) - (event.button == 7)) % len(recipes[machine_ui])
-                        else:
-                            inventory_number = (inventory_number + (event.button == 6) - (event.button == 7)) % INVENTORY_SIZE
+                    if event.button == 4 or event.button == 5:
+                        inventory_number = (inventory_number + (event.button == 4) - (event.button == 5)) % INVENTORY_SIZE
+                        if "craft" in TILE_ATTRIBUTES.get(machine_ui, ()):
+                            recipe_number = (recipe_number + (event.button == 4) - (event.button == 5)) % len(RECIPES[machine_ui])
                 elif event.type == pg.KEYDOWN:
                     key = pg.key.get_pressed()
                     if key[controls[4]]:
@@ -391,7 +320,7 @@ def main() -> int:
                         zoom += (key[controls[5]] - key[controls[6]]) / 4
                         zoom = min(max(zoom, 0.5), 2)
                     elif key[pg.K_TAB]:
-                        option_placement = "options_game"
+                        menu_placement = "options_game"
 
             delete_tiles = []
             create_tiles = []
@@ -437,18 +366,18 @@ def main() -> int:
                                 tile = (x, y)
                                 if tile in chunks[room_location][chunk] and "point" not in chunks[room_location][chunk][tile].attributes:
                                     placement = camera[0] + (x * 64 + chunk[0] * 1024) * zoom, camera[1] + (y * 64 + chunk[1] * 1024 - 32) * zoom
-                                    size = multi_tiles.get(chunks[room_location][chunk][tile].kind, (1, 1))
+                                    size = MULTI_TILES.get(chunks[room_location][chunk][tile].kind, (1, 1))
                                     if -64 * zoom * size[0] <= placement[0] <= SCREEN_SIZE[0] and -64 * zoom * size[1] <= placement[1] <= SCREEN_SIZE[1]:
-                                        window.blit(pg.transform.scale(images[chunks[room_location][chunk][tile].kind], (64 * zoom * size[0], (32 + 64 * size[1]) * zoom)), placement)
+                                        WINDOW.blit(pg.transform.scale(IMAGES[chunks[room_location][chunk][tile].kind], (64 * zoom * size[0], (32 + 64 * size[1]) * zoom)), placement)
 
             if len(inventory) > inventory_number and machine_ui == "game":
                 placement = (camera[0] + (tile_location[2] * 64 + tile_location[0] * 1024 - 4) * zoom, camera[1] + (tile_location[3] * 64 + tile_location[1] * 1024 - 8) * zoom)
-                window.blit(pg.transform.scale(images[list(inventory.keys())[inventory_number]], (32 * zoom, 48 * zoom)), placement)
+                WINDOW.blit(pg.transform.scale(IMAGES[list(inventory.keys())[inventory_number]], (32 * zoom, 48 * zoom)), placement)
 
             dark_overlay = pg.Surface(SCREEN_SIZE)
             dark_overlay.fill((19, 17, 18))
-            dark_overlay.set_alpha(int((1 - math.cos((tick - 21600) / DAY_LENGTH * 2 * math.pi)) * 95))
-            window.blit(dark_overlay, (0, 0))
+            dark_overlay.set_alpha(int((1 - math.cos(((tick / DAY_LENGTH * 2) - 1 / 2) * math.pi)) * 95))
+            WINDOW.blit(dark_overlay, (0, 0))
 
             for x in range(-3, 4):
                 for y in range(-3, 4):
@@ -458,56 +387,56 @@ def main() -> int:
                             current_tile = chunks[room_location][chunk][tile]
                             if "light" in current_tile.attributes:
                                 scaled_glow = pg.transform.scale(lights[current_tile.kind][0], (int(lights[current_tile.kind][1] * zoom), int(lights[current_tile.kind][1] * zoom)))
-                                night_factor = 1 - math.cos((tick - 21600) / DAY_LENGTH * 2 * math.pi)
+                                night_factor = 1 - math.cos(((tick / DAY_LENGTH * 2) - 1 / 2) * math.pi)
                                 scaled_glow.set_alpha(int(night_factor * 180))
-                                window.blit(scaled_glow, (camera[0] + (tile[0] * 64 + chunk[0] * 1024 + 32) * zoom - int(lights[current_tile.kind][1] * zoom / 2), camera[1] + (tile[1] * 64 + chunk[1] * 1024 + 32) * zoom - int(lights[current_tile.kind][1] * zoom / 2)))
+                                WINDOW.blit(scaled_glow, (camera[0] + (tile[0] * 64 + chunk[0] * 1024 + 32) * zoom - int(lights[current_tile.kind][1] * zoom / 2), camera[1] + (tile[1] * 64 + chunk[1] * 1024 + 32) * zoom - int(lights[current_tile.kind][1] * zoom / 2)))
 
             if (last_mined_location[2], last_mined_location[3]) in chunks[room_location][(last_mined_location[0], last_mined_location[1])]:
                 placement = (camera[0] + (last_mined_location[2] * 64 + last_mined_location[0] * 1024) * zoom, camera[1] + (last_mined_location[3] * 64 + last_mined_location[1] * 1024 + 60) * zoom)
                 last_mined_tile = chunks[room_location][(last_mined_location[0], last_mined_location[1])][(last_mined_location[2], last_mined_location[3])]
-                window.blit(pg.transform.scale(images["tiny_bar"], (64 * zoom, 16 * zoom)), placement)
-                pg.draw.rect(window, (181, 102, 60), pg.Rect(placement[0] + 4 * zoom, placement[1] + 4 * zoom, last_mined_tile.health * 44 * zoom / last_mined_tile.max_health, 8 * zoom))
+                WINDOW.blit(pg.transform.scale(IMAGES["tiny_bar"], (64 * zoom, 16 * zoom)), placement)
+                pg.draw.rect(WINDOW, (181, 102, 60), pg.Rect(placement[0] + 4 * zoom, placement[1] + 4 * zoom, last_mined_tile.health * 44 * zoom / last_mined_tile.max_health, 8 * zoom))
 
             health = chunks[room_location][(tile_location[0], tile_location[1])][(tile_location[2], tile_location[3])].health
             max_health = chunks[room_location][(tile_location[0], tile_location[1])][(tile_location[2], tile_location[3])].max_health
-            window.blit(pg.transform.scale(images["health_bar"], (128 * UI_SCALE, 32 * UI_SCALE)), (SCREEN_SIZE[0] - 128 * UI_SCALE, 0))
-            window.blit(pg.transform.scale(images["health_end"], (16 * UI_SCALE, 16 * UI_SCALE)), (SCREEN_SIZE[0] + (health * 64 / max_health - 96) * UI_SCALE, 8 * UI_SCALE))
-            pg.draw.rect(window, (181, 102, 60), pg.Rect(SCREEN_SIZE[0] - 96 * UI_SCALE, 8 * UI_SCALE, health * 64 * UI_SCALE / max_health, 16 * UI_SCALE))
-            window.blit(font(10 * UI_SCALE).render(f"{health} / {max_health}", False, (206, 229, 242)), (SCREEN_SIZE[0] - 80 * UI_SCALE, 12 * UI_SCALE))
+            WINDOW.blit(pg.transform.scale(IMAGES["health_bar"], (128 * UI_SCALE, 32 * UI_SCALE)), (SCREEN_SIZE[0] - 128 * UI_SCALE, 0))
+            WINDOW.blit(pg.transform.scale(IMAGES["health_end"], (16 * UI_SCALE, 16 * UI_SCALE)), (SCREEN_SIZE[0] + (health * 64 / max_health - 96) * UI_SCALE, 8 * UI_SCALE))
+            pg.draw.rect(WINDOW, (181, 102, 60), pg.Rect(SCREEN_SIZE[0] - 96 * UI_SCALE, 8 * UI_SCALE, health * 64 * UI_SCALE / max_health, 16 * UI_SCALE))
+            WINDOW.blit(UI_FONT.render(f"{health} / {max_health}", False, (206, 229, 242)), (SCREEN_SIZE[0] - 80 * UI_SCALE, 12 * UI_SCALE))
 
             for i in range(0, INVENTORY_SIZE):
                 if i == inventory_number:
-                    window.blit(pg.transform.scale(images["inventory_slot_2"], (32 * UI_SCALE, 32 * UI_SCALE)), (SCREEN_SIZE[0] // 2 + (32 * i - 16 * INVENTORY_SIZE) * UI_SCALE, SCREEN_SIZE[1] - 32 * UI_SCALE))
+                    WINDOW.blit(pg.transform.scale(IMAGES["inventory_slot_2"], (32 * UI_SCALE, 32 * UI_SCALE)), (SCREEN_SIZE[0] // 2 + (32 * i - 16 * INVENTORY_SIZE) * UI_SCALE, SCREEN_SIZE[1] - 32 * UI_SCALE))
                 else:
-                    window.blit(pg.transform.scale(images["inventory_slot"], (32 * UI_SCALE, 32 * UI_SCALE)), (SCREEN_SIZE[0] // 2 + (32 * i - 16 * INVENTORY_SIZE) * UI_SCALE, SCREEN_SIZE[1] - 32 * UI_SCALE))
+                    WINDOW.blit(pg.transform.scale(IMAGES["inventory_slot"], (32 * UI_SCALE, 32 * UI_SCALE)), (SCREEN_SIZE[0] // 2 + (32 * i - 16 * INVENTORY_SIZE) * UI_SCALE, SCREEN_SIZE[1] - 32 * UI_SCALE))
             t = 0
             for item in inventory:
-                window.blit(pg.transform.scale(images[item], (16 * UI_SCALE, 24 * UI_SCALE)), (SCREEN_SIZE[0] // 2 + (32 * t - 16 * INVENTORY_SIZE + 8) * UI_SCALE, SCREEN_SIZE[1] - 28 * UI_SCALE))
-                window.blit(font(10 * UI_SCALE).render(str(inventory[item]), False, (19, 17, 18)), (SCREEN_SIZE[0] // 2 + (32 * t - 16 * INVENTORY_SIZE + 4) * UI_SCALE, SCREEN_SIZE[1] - 24 * UI_SCALE))
+                WINDOW.blit(pg.transform.scale(IMAGES[item], (16 * UI_SCALE, 24 * UI_SCALE)), (SCREEN_SIZE[0] // 2 + (32 * t - 16 * INVENTORY_SIZE + 8) * UI_SCALE, SCREEN_SIZE[1] - 28 * UI_SCALE))
+                WINDOW.blit(UI_FONT.render(str(inventory[item]), False, (19, 17, 18)), (SCREEN_SIZE[0] // 2 + (32 * t - 16 * INVENTORY_SIZE + 4) * UI_SCALE, SCREEN_SIZE[1] - 24 * UI_SCALE))
                 t += 1
-            if "open" in tile_attributes.get(machine_ui, ()):
-                window.blit(pg.transform.scale(images["big_inventory_slot"], (320 * UI_SCALE, 128 * UI_SCALE)), (SCREEN_SIZE[0] // 2 - 160 * UI_SCALE, SCREEN_SIZE[1] - 160 * UI_SCALE))
-                window.blit(pg.transform.scale(images["inventory_slot_3"], (32 * UI_SCALE, 32 * UI_SCALE)), (SCREEN_SIZE[0] // 2 + 88 * UI_SCALE, SCREEN_SIZE[1] - 80 * UI_SCALE))
-                window.blit(pg.transform.scale(images[machine_ui], (16 * UI_SCALE, 24 * UI_SCALE)), (SCREEN_SIZE[0] // 2 + 96 * UI_SCALE, SCREEN_SIZE[1] - 76 * UI_SCALE))
-                if "craft" in tile_attributes.get(machine_ui, ()):
-                    current_recipes = recipes[machine_ui]
-                    window.blit(pg.transform.scale(images["big_inventory_slot_2"], (96 * UI_SCALE, 96 * UI_SCALE)), (SCREEN_SIZE[0] // 2 - 128 * UI_SCALE, SCREEN_SIZE[1] - 144 * UI_SCALE))
-                    window.blit(pg.transform.scale(images[current_recipes[recipe_number][0][0]], (48 * UI_SCALE, 72 * UI_SCALE)), (SCREEN_SIZE[0] // 2 - 104 * UI_SCALE, SCREEN_SIZE[1] - 132 * UI_SCALE))
-                    window.blit(font(20 * UI_SCALE).render(str(current_recipes[recipe_number][0][1]), False, (19, 17, 18)), (SCREEN_SIZE[0] // 2 - 112 * UI_SCALE, SCREEN_SIZE[1] - 80 * UI_SCALE))
+            if "open" in TILE_ATTRIBUTES.get(machine_ui, ()):
+                WINDOW.blit(pg.transform.scale(IMAGES["big_inventory_slot"], (320 * UI_SCALE, 128 * UI_SCALE)), (SCREEN_SIZE[0] // 2 - 160 * UI_SCALE, SCREEN_SIZE[1] - 160 * UI_SCALE))
+                WINDOW.blit(pg.transform.scale(IMAGES["inventory_slot_3"], (32 * UI_SCALE, 32 * UI_SCALE)), (SCREEN_SIZE[0] // 2 + 88 * UI_SCALE, SCREEN_SIZE[1] - 80 * UI_SCALE))
+                WINDOW.blit(pg.transform.scale(IMAGES[machine_ui], (16 * UI_SCALE, 24 * UI_SCALE)), (SCREEN_SIZE[0] // 2 + 96 * UI_SCALE, SCREEN_SIZE[1] - 76 * UI_SCALE))
+                if "craft" in TILE_ATTRIBUTES.get(machine_ui, ()):
+                    current_recipes = RECIPES[machine_ui]
+                    WINDOW.blit(pg.transform.scale(IMAGES["big_inventory_slot_2"], (96 * UI_SCALE, 96 * UI_SCALE)), (SCREEN_SIZE[0] // 2 - 128 * UI_SCALE, SCREEN_SIZE[1] - 144 * UI_SCALE))
+                    WINDOW.blit(pg.transform.scale(IMAGES[current_recipes[recipe_number][0][0]], (48 * UI_SCALE, 72 * UI_SCALE)), (SCREEN_SIZE[0] // 2 - 104 * UI_SCALE, SCREEN_SIZE[1] - 132 * UI_SCALE))
+                    WINDOW.blit(BIG_UI_FONT.render(str(current_recipes[recipe_number][0][1]), False, (19, 17, 18)), (SCREEN_SIZE[0] // 2 - 112 * UI_SCALE, SCREEN_SIZE[1] - 80 * UI_SCALE))
                     for inputs in range(0, len(current_recipes[recipe_number][1])):
-                        window.blit(pg.transform.scale(images["inventory_slot"], (32 * UI_SCALE, 32 * UI_SCALE)), (SCREEN_SIZE[0] // 2 + (40 * (inputs % 4) - 32) * UI_SCALE, SCREEN_SIZE[1] + (32 * (inputs // 4) - 144) * UI_SCALE))
-                        window.blit(pg.transform.scale(images[current_recipes[recipe_number][1][inputs][0]], (16 * UI_SCALE, 24 * UI_SCALE)), (SCREEN_SIZE[0] // 2 + (40 * (inputs % 4) - 24) * UI_SCALE, SCREEN_SIZE[1] + (32 * (inputs // 4) - 140) * UI_SCALE))
-                        window.blit(font(10 * UI_SCALE).render(str(current_recipes[recipe_number][1][inputs][1]), False, (19, 17, 18)), (SCREEN_SIZE[0] // 2 + (40 * (inputs % 4) - 24) * UI_SCALE, SCREEN_SIZE[1] + (32 * (inputs // 4) - 112) * UI_SCALE))
-                elif "store" in tile_attributes.get(machine_ui, ()):
-                    for item in range(0, storage[machine_ui][0]):
-                        window.blit(pg.transform.scale(images["inventory_slot"], (32 * UI_SCALE, 32 * UI_SCALE)), (SCREEN_SIZE[0] // 2 + (32 * (item % 7) - 112) * UI_SCALE, SCREEN_SIZE[1] + (32 * (item // 7) - 144) * UI_SCALE))
+                        WINDOW.blit(pg.transform.scale(IMAGES["inventory_slot"], (32 * UI_SCALE, 32 * UI_SCALE)), (SCREEN_SIZE[0] // 2 + (40 * (inputs % 4) - 32) * UI_SCALE, SCREEN_SIZE[1] + (32 * (inputs // 4) - 144) * UI_SCALE))
+                        WINDOW.blit(pg.transform.scale(IMAGES[current_recipes[recipe_number][1][inputs][0]], (16 * UI_SCALE, 24 * UI_SCALE)), (SCREEN_SIZE[0] // 2 + (40 * (inputs % 4) - 24) * UI_SCALE, SCREEN_SIZE[1] + (32 * (inputs // 4) - 140) * UI_SCALE))
+                        WINDOW.blit(UI_FONT.render(str(current_recipes[recipe_number][1][inputs][1]), False, (19, 17, 18)), (SCREEN_SIZE[0] // 2 + (40 * (inputs % 4) - 24) * UI_SCALE, SCREEN_SIZE[1] + (32 * (inputs // 4) - 112) * UI_SCALE))
+                elif "store" in TILE_ATTRIBUTES.get(machine_ui, ()):
+                    for item in range(0, STORAGE[machine_ui][0]):
+                        WINDOW.blit(pg.transform.scale(IMAGES["inventory_slot"], (32 * UI_SCALE, 32 * UI_SCALE)), (SCREEN_SIZE[0] // 2 + (32 * (item % 7) - 112) * UI_SCALE, SCREEN_SIZE[1] + (32 * (item // 7) - 144) * UI_SCALE))
                     machine_inventory = chunks[room_location][last_opened_location[0]][last_opened_location[1]].inventory
                     t = 0
                     for item in machine_inventory:
-                        window.blit(pg.transform.scale(images[item], (16 * UI_SCALE, 24 * UI_SCALE)), (SCREEN_SIZE[0] // 2 + (32 * (t % 7) - 104) * UI_SCALE, SCREEN_SIZE[1] + (32 * (t // 7) - 140) * UI_SCALE))
-                        window.blit(font(10 * UI_SCALE).render(str(machine_inventory[item]), False, (19, 17, 18)), (SCREEN_SIZE[0] // 2 + (32 * (t % 7) - 104) * UI_SCALE, SCREEN_SIZE[1] + (32 * (t // 7) - 140) * UI_SCALE))
+                        WINDOW.blit(pg.transform.scale(IMAGES[item], (16 * UI_SCALE, 24 * UI_SCALE)), (SCREEN_SIZE[0] // 2 + (32 * (t % 7) - 104) * UI_SCALE, SCREEN_SIZE[1] + (32 * (t // 7) - 140) * UI_SCALE))
+                        WINDOW.blit(UI_FONT.render(str(machine_inventory[item]), False, (19, 17, 18)), (SCREEN_SIZE[0] // 2 + (32 * (t % 7) - 104) * UI_SCALE, SCREEN_SIZE[1] + (32 * (t // 7) - 140) * UI_SCALE))
                         t += 1
             tick += 1
         pg.display.update()
-        clock.tick(60)
+        CLOCK.tick(60)
     pg.quit()
