@@ -1,0 +1,30 @@
+[project]
+name = "winter-game"
+version = "0.1.0"
+description = "Add your description here"
+authors = [
+    { name = "TimoAndy08", email = "timsor08@gmail.com" }
+]
+dependencies = [
+    "noise>=1.2.2",
+    "pygame>=2.6.1",
+]
+readme = "README.md"
+requires-python = ">= 3.12"
+
+[project.scripts]
+main = "winter_game:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.rye]
+managed = true
+dev-dependencies = []
+
+[tool.hatch.metadata]
+allow-direct-references = true
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/winter_game"]
