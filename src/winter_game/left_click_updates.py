@@ -62,7 +62,7 @@ def left_click(
                                 )
                             ][
                                 ((grid_position[1][0] + x) % 16, grid_position[1][1])
-                            ] = Tile("left", 1, 1, {})
+                            ] = Tile("left", 1, {})
                             for y in range(1, MULTI_TILES[inventory_key][1]):
                                 chunks[location["room"]][
                                     (
@@ -76,9 +76,9 @@ def left_click(
                                         (grid_position[1][0] + x) % 16,
                                         (grid_position[1][1] + y) % 16,
                                     )
-                                ] = Tile("up", 1, 1, {})
+                                ] = Tile("up", 1, {})
                     chunks[location["room"]][grid_position[0]][grid_position[1]] = Tile(
-                        inventory_key, 4, 0, {}
+                        inventory_key, 4, {}
                     )
                     if inventory[inventory_key] == 0:
                         del inventory[inventory_key]
@@ -114,7 +114,7 @@ def left_click(
                 ):
                     chunks[location["room"]] = generate_room("wood", (-5, -4), (8, 6))
                     chunks[location["room"]][(0, 0)][(0, 1)] = Tile(
-                        "wooden door", 1, 1, {}
+                        "wooden door", 1, {}
                     )
                     chunks[location["room"]][(0, 0)][(0, 0)] = chunks[(0, 0, 0, 0)][
                         (location["tile"][0], location["tile"][1])

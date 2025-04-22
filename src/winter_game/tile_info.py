@@ -9,6 +9,7 @@ TILE_ATTRIBUTES = {
     "carroot": ("no_pickup"),
     "rabbit child": ("grow", "move", "no_pickup"),
     "rabbit adult": ("move", "no_pickup"),
+    "rabbit hole": ("unbreak",),
     "roasted mushroom": ("eat",),
     "mushroom stew": ("eat",),
     "workbench": ("open", "craft"),
@@ -18,15 +19,15 @@ TILE_ATTRIBUTES = {
     "small crate": ("open", "store"),
     "small barrel": ("open", "store"),
     "wooden cabin": ("enter", "multi"),
-    "wooden door": ("exit",),
+    "wooden door": ("exit", "unbreak"),
     "wooden bed": ("sleep", "multi"),
     "rabbit meat": ("eat",),
     "roasted rabbit meat": ("eat",),
-    "left": ("point",),
-    "up": ("point",),
-    "junk": ("no_pickup",),
-    "corpse": ("no_pickup",),
-    "obelisk": ("multi",),
+    "left": ("point", "unbreak"),
+    "up": ("point", "unbreak"),
+    "junk": ("no_pickup", "unbreak"),
+    "corpse": ("no_pickup", "unbreak"),
+    "obelisk": ("multi", "unbreak"),
 }
 RECIPES = {
     "player": [
@@ -34,10 +35,10 @@ RECIPES = {
         (("stick", 4), [("wood", 2)]),
     ],
     "workbench": [
+        (("flint sword", 1), [("stick", 2), ("flint", 4), ("ice", 1)]),
         (("flint axe", 1), [("stick", 3), ("flint", 4)]),
         (("flint pickaxe", 1), [("stick", 3), ("flint", 4), ("pebble", 1)]),
         (("flint shovel", 1), [("stick", 2), ("flint", 3)]),
-        (("flint sword", 1), [("stick", 2), ("flint", 4), ("ice", 1)]),
         (("campfire", 1), [("wood", 5), ("flint", 2), ("stick", 6), ("pebble", 1)]),
         (("bowl", 4), [("wood", 3), ("stick", 2)]),
         (("wood pulp", 2), [("wood", 3), ("water", 2)]),
@@ -87,6 +88,7 @@ TOOL_REQUIRED = {
     "stone": "pickaxe",
     "stone brick": "pickaxe",
     "brick": "pickaxe",
+    "rabbit child": "sword",
     "rabbit adult": "sword",
     "sawbench": "axe",
     "wood pulp": "shovel",
@@ -95,7 +97,7 @@ TOOL_REQUIRED = {
     "small crate": "axe",
     "wooden cabin": "axe",
 }
-TOOL_EFFICIENCY = {"flint": 1}
+TOOL_EFFICIENCY = {"flint": 1, "rock": 2}
 MULTI_TILES = {
     "sawbench": (2, 1),
     "manual press": (2, 1),
@@ -113,11 +115,11 @@ FOOD = {
     "roasted rabbit meat": 4,
 }
 GROW_TILES = {
-    "sapling": ("treeling", 9, 0, {"wood": 2, "sapling": 1}),
-    "treeling": ("tree", 15, 1, {"wood": 4, "sapling": 2}),
-    "spore": ("mushroom", 10, 0, {"spore": 2, "mushroom": 1}),
-    "carrot": ("carroot", 8, 0, {"carrot": 2}),
-    "rabbit child": ("rabbit adult", 8, 1, {"rabbit fur": 1, "rabbit meat": 2}),
+    "sapling": ("treeling", 9, {"wood": 2, "sapling": 1}),
+    "treeling": ("tree", 15, {"wood": 4, "sapling": 2}),
+    "spore": ("mushroom", 10, {"spore": 2, "mushroom": 1}),
+    "carrot": ("carroot", 8, {"carrot": 2}),
+    "rabbit child": ("rabbit adult", 8, {"rabbit fur": 1, "rabbit meat": 2}),
 }
 GROW_CHANCE = {
     "sapling": 5000,
@@ -126,3 +128,4 @@ GROW_CHANCE = {
     "carrot": 10000,
     "rabbit child": 12500,
 }
+TILE_RESISTANCE = {"clay": 1, "rock": 1, "ice": 1, "tree": 1, "rabbit adult": 1}

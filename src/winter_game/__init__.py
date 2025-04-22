@@ -65,7 +65,7 @@ def main() -> None:
                                 location["real"] = [0, 0, 0, 2]
                                 location["room"] = (0, 0, 0, 0)
                                 generate_chunk(0, 0, chunks[location["room"]])
-                                chunks[location["room"]][(0, 0)] = {(0, 0): Tile("obelisk", 1, 1, {}), (0, 1): Tile("up", 1, 1, {}), (0, 2): Tile("player", 20, 0, {})}
+                                chunks[location["room"]][(0, 0)] = {(0, 0): Tile("obelisk", 1, {}), (0, 1): Tile("up", 1, {}), (0, 2): Tile("player", 20, {"wooden cabin": 1})}
                                 tick = 0
                             elif menu_placement == "save_selection":
                                 menu_placement = "main_game"
@@ -180,6 +180,10 @@ def main() -> None:
                         menu_placement = "options_game"
 
             chunks = update_tiles(chunks, location["tile"], location["room"])
+
+            if location["room"] != (0, 0, 0, 0):
+                WINDOW.fill((19, 17, 18))
+
             health = chunks[location["room"]][(location["tile"][0], location["tile"][1])][(location["tile"][2], location["tile"][3])].health
             max_health = chunks[location["room"]][(location["tile"][0], location["tile"][1])][(location["tile"][2], location["tile"][3])].max_health
             camera = [SCREEN_SIZE[0] / 2 - ((location["tile"][2] * 64 + location["tile"][0] * 1024 + 32) * zoom), SCREEN_SIZE[1] / 2 - ((location["tile"][3] * 64 + location["tile"][1] * 1024 + 32) * zoom)]

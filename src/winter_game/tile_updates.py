@@ -31,10 +31,9 @@ def update_tiles(chunks, tile_location, room_location):
                                     Tile(
                                         "rabbit adult",
                                         10,
-                                        1,
                                         {"rabbit meat": 2, "rabbit fur": 1},
                                     ),
-                                    Tile("rabbit child", 6, 1, {}),
+                                    Tile("rabbit child", 6, {}),
                                 )
                             )
                             if animal.kind in current_tile.inventory:

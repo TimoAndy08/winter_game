@@ -1,6 +1,5 @@
-from .tile_info import TOOL_REQUIRED, TOOL_EFFICIENCY
+from .tile_info import TOOL_REQUIRED, TOOL_EFFICIENCY, TILE_RESISTANCE
 from .tile_class import Tile
-
 
 def right_click(
     chunks,
@@ -12,10 +11,8 @@ def right_click(
     location,
     machine_ui,
 ):
-    if grid_position[1] in chunks[location["room"]][grid_position[0]]:
-        damage = (
-            1 - chunks[location["room"]][grid_position[0]][grid_position[1]].resistance
-        )
+    if grid_position[1] in chunks[location["room"]][grid_position[0]] and "unbreak" not in chunks[location["room"]][grid_position[0]][grid_position[1]].attributes:
+        damage = 1 - TILE_RESISTANCE.get(chunks[location["room"]][grid_position[0]][grid_position[1]].kind, 0)
         if len(inventory) > inventory_number:
             inventory_key = list(inventory.keys())[inventory_number]
             inventory_words = inventory_key.split()
@@ -104,23 +101,17 @@ def right_click(
                     del chunks[(*grid_position[0], *grid_position[1])]
                 del chunks[location["room"]][grid_position[0]][grid_position[1]]
                 if len(junk_inventory) > 0:
-                    chunks[location["room"]][grid_position[0]][grid_position[1]] = Tile(
-                        "junk", 1, 0, junk_inventory
-                    )
+                    chunks[location["room"]][grid_position[0]][grid_position[1]] = Tile("junk", 1, junk_inventory)
                 machine_ui = "game"
             else:
-                chunks[location["room"]][grid_position[0]][grid_position[1]] = Tile(
-                    "corpse", 1, 0, inventory
-                )
+                chunks[location["room"]][grid_position[0]][grid_position[1]] = Tile("corpse", 1, inventory)
                 i = 0
                 while (i % 16, i // 16) in chunks[(0, 0, 0, 0)][(0, 0)]:
                     i += 1
                     if i == 256:
                         i = 0
                         break
-                chunks[(0, 0, 0, 0)][(0, 0)][(i % 16, i // 16)] = Tile(
-                    "player", max_health, 0, {}
-                )
+                chunks[(0, 0, 0, 0)][(0, 0)][(i % 16, i // 16)] = Tile("player", max_health, {})
                 location["tile"] = [0, 0, i % 16, i // 16]
                 location["real"] = [0, 0, i % 16, i // 16]
                 location["room"] = (0, 0, 0, 0)
