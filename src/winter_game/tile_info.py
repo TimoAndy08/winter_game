@@ -24,8 +24,9 @@ TILE_ATTRIBUTES = {
     "roasted rabbit meat": ("eat",),
     "left": ("point",),
     "up": ("point",),
-    "junk": ("no_pickup"),
-    "corpse": ("no_pickup"),
+    "junk": ("no_pickup",),
+    "corpse": ("no_pickup",),
+    "obelisk": ("multi",),
 }
 RECIPES = {
     "player": [
@@ -50,7 +51,7 @@ RECIPES = {
         (("mushroom stew", 2), [("mushroom", 3), ("carrot", 1), ("water", 2)]),
         (("stone", 1), [("rock", 1)]),
         (("brick", 1), [("clay", 1)]),
-        (("roasted rabbit meat", 1), [("rabbit meat", 1)])
+        (("roasted rabbit meat", 1), [("rabbit meat", 1)]),
     ],
     "manual press": [
         (("blue dye", 2), [("bluebell", 2), ("water", 1), ("bowl", 1)]),
@@ -92,12 +93,25 @@ TOOL_REQUIRED = {
     "manual press": "pickaxe",
     "bluebell": "shovel",
     "small crate": "axe",
-    "wooden cabin": "axe"
+    "wooden cabin": "axe",
 }
 TOOL_EFFICIENCY = {"flint": 1}
-MULTI_TILES = {"sawbench": (2, 1), "manual press": (2, 1), "wooden cabin": (4, 3), "wooden bed": (1, 2)}
+MULTI_TILES = {
+    "sawbench": (2, 1),
+    "manual press": (2, 1),
+    "wooden cabin": (4, 3),
+    "wooden bed": (1, 2),
+    "obelisk": (1, 2),
+}
 STORAGE = {"small crate": (9, 48), "small barrel": (1, 512)}
-FOOD = {"mushroom": 1, "carrot": 2, "roasted mushroom": 3, "mushroom stew": 6, "rabbit meat": 1, "roasted rabbit meat": 4}
+FOOD = {
+    "mushroom": 1,
+    "carrot": 2,
+    "roasted mushroom": 3,
+    "mushroom stew": 6,
+    "rabbit meat": 1,
+    "roasted rabbit meat": 4,
+}
 GROW_TILES = {
     "sapling": ("treeling", 9, 0, {"wood": 2, "sapling": 1}),
     "treeling": ("tree", 15, 1, {"wood": 4, "sapling": 2}),

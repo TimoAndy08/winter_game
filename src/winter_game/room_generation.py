@@ -1,5 +1,6 @@
 from .tile_class import Tile
 
+
 def generate_room(material: str, location: tuple[int, int], size: tuple[int, int]):
     room = {}
     for x in range(location[0], location[0] + size[0]):

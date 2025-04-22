@@ -1,6 +1,7 @@
 import random
 from .tile_info import TILE_ATTRIBUTES, GROW_CHANCE, GROW_TILES
 
+
 class Tile:
     def __init__(
         self, kind: str, health: int, resistance: int, inventory: dict[str, int]
