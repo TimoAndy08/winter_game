@@ -9,6 +9,7 @@ UI_SCALE = 2
 UI_FONT = pg.font.SysFont("Lucida Console", 10 * UI_SCALE)
 BIG_UI_FONT = pg.font.SysFont("Lucida Console", 20 * UI_SCALE)
 
+
 def render_ui(
     camera,
     chunks,
@@ -24,14 +25,18 @@ def render_ui(
     max_health,
     machine_inventory,
 ):
-    if (location["mined"][2], location["mined"][3]) in chunks[(location["mined"][0], location["mined"][1])]:
+    if (location["mined"][2], location["mined"][3]) in chunks[
+        (location["mined"][0], location["mined"][1])
+    ]:
         placement = (
             camera[0]
             + (location["mined"][2] * 64 + location["mined"][0] * 1024) * zoom,
             camera[1]
             + (location["mined"][3] * 64 + location["mined"][1] * 1024 + 60) * zoom,
         )
-        last_mined_tile = chunks[(location["mined"][0], location["mined"][1])][(location["mined"][2], location["mined"][3])]
+        last_mined_tile = chunks[(location["mined"][0], location["mined"][1])][
+            (location["mined"][2], location["mined"][3])
+        ]
         WINDOW.blit(
             pg.transform.scale(IMAGES["tiny_bar"], (64 * zoom, 16 * zoom)), placement
         )

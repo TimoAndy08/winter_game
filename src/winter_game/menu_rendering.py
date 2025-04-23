@@ -4,6 +4,7 @@ pg.font.init()
 
 MENU_FONT = pg.font.SysFont("Lucida Console", 50)
 
+
 def render_menu(
     window,
     menu_placement,

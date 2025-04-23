@@ -1,8 +1,10 @@
 import json
 from .tile_class import Tile
 
+
 def parse_tuple_key(s):
     return tuple(int(float(x)) for x in s.strip(" ()").split(",") if x)
+
 
 def serialize_chunks(chunks):
     result = {}
@@ -16,6 +18,7 @@ def serialize_chunks(chunks):
                 tile_key = f"{chr(97 + int(tile_pos[0]))}{chr(97 + int(tile_pos[1]))}"
                 result[room_key][chunk_key][tile_key] = tile.to_dict()
     return result
+
 
 def deserialize_chunks(serialized_chunks):
     raw = json.loads(serialized_chunks)

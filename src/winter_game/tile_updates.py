@@ -26,7 +26,15 @@ def update_tiles(chunks, tile_location, room_location):
                             delete_tiles.append((chunk, tile))
                     elif current_tile.kind == "rabbit hole":
                         if random.randint(0, 10000) == 0:
-                            animal = random.choice((Tile("rabbit adult", {"rabbit meat": 2, "rabbit fur": 1}), Tile("rabbit child", {})))
+                            animal = random.choice(
+                                (
+                                    Tile(
+                                        "rabbit adult",
+                                        {"rabbit meat": 2, "rabbit fur": 1},
+                                    ),
+                                    Tile("rabbit child", {}),
+                                )
+                            )
                             if animal.kind in current_tile.inventory:
                                 x = 0
                                 y = 0

@@ -36,16 +36,13 @@ def render_tiles(
                         tile = (x, y)
                         if (
                             tile in chunks[chunk]
-                            and "point"
-                            not in chunks[chunk][tile].attributes
+                            and "point" not in chunks[chunk][tile].attributes
                         ):
                             placement = (
                                 camera[0] + (x * 64 + chunk[0] * 1024) * zoom,
                                 camera[1] + (y * 64 + chunk[1] * 1024 - 32) * zoom,
                             )
-                            size = MULTI_TILES.get(
-                                chunks[chunk][tile].kind, (1, 1)
-                            )
+                            size = MULTI_TILES.get(chunks[chunk][tile].kind, (1, 1))
                             if (
                                 -64 * zoom * size[0] <= placement[0] <= SCREEN_SIZE[0]
                                 and -64 * zoom * size[1]
@@ -65,8 +62,10 @@ def render_tiles(
 
     if len(inventory) > inventory_number:
         placement = (
-            camera[0] + (location["tile"][2] * 64 + location["tile"][0] * 1024 - 4) * zoom,
-            camera[1] + (location["tile"][3] * 64 + location["tile"][1] * 1024 - 8) * zoom,
+            camera[0]
+            + (location["tile"][2] * 64 + location["tile"][0] * 1024 - 4) * zoom,
+            camera[1]
+            + (location["tile"][3] * 64 + location["tile"][1] * 1024 - 8) * zoom,
         )
         WINDOW.blit(
             pg.transform.scale(

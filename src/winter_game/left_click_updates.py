@@ -4,6 +4,7 @@ from .room_generation import generate_room
 from .crafting_system import recipe
 from .ui_rendering import UI_SCALE
 
+
 def left_click(
     machine_ui,
     grid_position,
@@ -27,9 +28,11 @@ def left_click(
                 inventory_key = list(inventory.keys())[inventory_number]
                 if "eat" in TILE_ATTRIBUTES.get(inventory_key, ()):
                     if health < max_health:
-                        chunks[location["room"]][(location["tile"][0], location["tile"][1])][
-                            (location["tile"][2], location["tile"][3])
-                        ].health = min(health + FOOD[inventory_key], max_health)
+                        chunks[location["room"]][
+                            (location["tile"][0], location["tile"][1])
+                        ][(location["tile"][2], location["tile"][3])].health = min(
+                            health + FOOD[inventory_key], max_health
+                        )
                         can_place = False
                         inventory[inventory_key] -= 1
                         if inventory[inventory_key] == 0:
@@ -76,17 +79,28 @@ def left_click(
                                         (grid_position[1][1] + y) % 16,
                                     )
                                 ] = Tile("up", {})
-                    chunks[location["room"]][grid_position[0]][grid_position[1]] = Tile(inventory_key, {})
+                    chunks[location["room"]][grid_position[0]][grid_position[1]] = Tile(
+                        inventory_key, {}
+                    )
                     if inventory[inventory_key] == 0:
                         del inventory[inventory_key]
         elif (
             "open"
             in chunks[location["room"]][grid_position[0]][grid_position[1]].attributes
         ):
-            machine_ui = chunks[location["room"]][grid_position[0]][grid_position[1]].kind
+            machine_ui = chunks[location["room"]][grid_position[0]][
+                grid_position[1]
+            ].kind
             location["opened"] = (grid_position[0], grid_position[1])
-            if "store" in chunks[location["room"]][grid_position[0]][grid_position[1]].attributes:
-                machine_inventory = chunks[location["room"]][grid_position[0]][grid_position[1]].inventory
+            if (
+                "store"
+                in chunks[location["room"]][grid_position[0]][
+                    grid_position[1]
+                ].attributes
+            ):
+                machine_inventory = chunks[location["room"]][grid_position[0]][
+                    grid_position[1]
+                ].inventory
         elif "enter" in chunks[location["room"]][grid_position[0]][
             grid_position[1]
         ].attributes and location["room"] == (0, 0, 0, 0):
@@ -114,19 +128,24 @@ def left_click(
                     chunks[location["room"]][(0, 0)][(0, 0)] = chunks[(0, 0, 0, 0)][
                         (location["tile"][0], location["tile"][1])
                     ][(location["tile"][2], location["tile"][3])]
-                    del chunks[(0, 0, 0, 0)][(location["tile"][0], location["tile"][1])][
-                        (location["tile"][2], location["tile"][3])
-                    ]
+                    del chunks[(0, 0, 0, 0)][
+                        (location["tile"][0], location["tile"][1])
+                    ][(location["tile"][2], location["tile"][3])]
                     location["tile"] = [0, 0, 0, 0]
         elif (
             "exit"
             in chunks[location["room"]][grid_position[0]][grid_position[1]].attributes
         ):
             chunks[(0, 0, 0, 0)][
-                (location["room"][0] + (location["room"][2] - 1) // 16, location["room"][1])
-            ][((location["room"][2] - 1) % 16, location["room"][3])] = chunks[location["room"]][
-                (location["tile"][0], location["tile"][1])
-            ][(location["tile"][2], location["tile"][3])]
+                (
+                    location["room"][0] + (location["room"][2] - 1) // 16,
+                    location["room"][1],
+                )
+            ][((location["room"][2] - 1) % 16, location["room"][3])] = chunks[
+                location["room"]
+            ][(location["tile"][0], location["tile"][1])][
+                (location["tile"][2], location["tile"][3])
+            ]
             del chunks[location["room"]][(location["tile"][0], location["tile"][1])][
                 (location["tile"][2], location["tile"][3])
             ]
@@ -176,18 +195,18 @@ def left_click(
                         chunks[location["room"]][location["opened"][0]][
                             location["opened"][1]
                         ].inventory[item[0]] = machine_item + item[1]
-                        del chunks[location["room"]][(location["tile"][0], location["tile"][1])][
-                            (location["tile"][2], location["tile"][3])
-                        ].inventory[item[0]]
+                        del chunks[location["room"]][
+                            (location["tile"][0], location["tile"][1])
+                        ][(location["tile"][2], location["tile"][3])].inventory[item[0]]
                     else:
                         chunks[location["room"]][location["opened"][0]][
                             location["opened"][1]
                         ].inventory[item[0]] = STORAGE[machine_ui][1]
-                        chunks[location["room"]][(location["tile"][0], location["tile"][1])][
-                            (location["tile"][2], location["tile"][3])
-                        ].inventory[item[0]] = (
-                            machine_item + item[1] - STORAGE[machine_ui][1]
-                        )
+                        chunks[location["room"]][
+                            (location["tile"][0], location["tile"][1])
+                        ][(location["tile"][2], location["tile"][3])].inventory[
+                            item[0]
+                        ] = machine_item + item[1] - STORAGE[machine_ui][1]
         elif (
             SCREEN_SIZE[1] - 144 * UI_SCALE
             <= position[1]
@@ -202,16 +221,20 @@ def left_click(
                 inventory_item = inventory.get(item[0], 0)
                 if not (inventory_item == 0 and len(inventory) == INVENTORY_SIZE):
                     if inventory_item + item[1] <= 64:
-                        chunks[location["room"]][(location["tile"][0], location["tile"][1])][
-                            (location["tile"][2], location["tile"][3])
-                        ].inventory[item[0]] = inventory_item + item[1]
+                        chunks[location["room"]][
+                            (location["tile"][0], location["tile"][1])
+                        ][(location["tile"][2], location["tile"][3])].inventory[
+                            item[0]
+                        ] = inventory_item + item[1]
                         del chunks[location["room"]][location["opened"][0]][
                             location["opened"][1]
                         ].inventory[item[0]]
                     else:
-                        chunks[location["room"]][(location["tile"][0], location["tile"][1])][
-                            (location["tile"][2], location["tile"][3])
-                        ].inventory[item[0]] = 64
+                        chunks[location["room"]][
+                            (location["tile"][0], location["tile"][1])
+                        ][(location["tile"][2], location["tile"][3])].inventory[
+                            item[0]
+                        ] = 64
                         chunks[location["room"]][location["opened"][0]][
                             location["opened"][1]
                         ].inventory[item[0]] = inventory_item + item[1] - 64
