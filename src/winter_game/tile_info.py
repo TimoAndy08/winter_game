@@ -28,6 +28,7 @@ TILE_ATTRIBUTES = {
     "junk": ("no_pickup",),
     "corpse": ("no_pickup",),
     "obelisk": ("multi", "unbreak"),
+    "big rock": ("multi", "no_pickup"),
 }
 RECIPES = {
     "player": [
@@ -83,6 +84,7 @@ TOOL_REQUIRED = {
     "carroot": "shovel",
     "carrot": "shovel",
     "rock": "pickaxe",
+    "big rock": "pickaxe",
     "clay": "shovel",
     "stone": "pickaxe",
     "stone brick": "pickaxe",
@@ -103,6 +105,7 @@ MULTI_TILES = {
     "wooden cabin": (4, 3),
     "wooden bed": (1, 2),
     "obelisk": (1, 2),
+    "big rock": (2, 2),
 }
 STORAGE = {"small crate": (9, 48), "small barrel": (1, 512)}
 FOOD = {
@@ -127,4 +130,4 @@ GROW_CHANCE = {
     "carrot": 10000,
     "rabbit child": 12500,
 }
-TILE_RESISTANCE = {"clay": 1, "rock": 1, "ice": 1, "tree": 1, "rabbit adult": 1}
+TILE_RESISTANCE = {"clay": 1, "rock": 1, "ice": 1, "tree": 1, "rabbit adult": 1, "big rock": 2,}

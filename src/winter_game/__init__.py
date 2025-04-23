@@ -9,7 +9,7 @@ from .serialize import serialize_chunks, deserialize_chunks
 from .tile_info import RECIPES, TILE_ATTRIBUTES
 from .menu_rendering import render_menu
 from .tile_rendering import render_tiles
-from .UI_rendering import render_UI
+from .ui_rendering import render_ui
 from .tile_updates import update_tiles
 from .player_move import move_player
 from .left_click_updates import left_click
@@ -19,18 +19,14 @@ pg.init()
 SCREEN_SIZE = (pg.display.Info().current_w, pg.display.Info().current_h)
 FPS = 60
 DAY_LENGTH = 60 * 24 * FPS
-UI_SCALE = 2
 INVENTORY_SIZE = 12
-MENU_FONT = pg.font.SysFont("Lucida Console", 50)
-UI_FONT = pg.font.SysFont("Lucida Console", 10 * UI_SCALE)
-BIG_UI_FONT = pg.font.SysFont("Lucida Console", 20 * UI_SCALE)
-WINDOW = pg.display.set_mode((0, 0), pg.FULLSCREEN)
-CLOCK = pg.time.Clock()
 CONTROL_NAMES = ["Move up ", "Move left ", "Move down ", "Move right", "Inventory ", "Zoom in", "Zoom out"]
 TILE_SIZE = 64
 CHUNK_SIZE = 16 * TILE_SIZE
 
 def main() -> None:
+    window = pg.display.set_mode((0, 0), pg.FULLSCREEN)
+    clock = pg.time.Clock()
     location = {"mined": [0, 0, 0, 2], "opened": ((0, 0), (0, 0))}
     run = True
     zoom = 1
@@ -44,7 +40,7 @@ def main() -> None:
     control_adjusted = 0
     machine_inventory = {}
     while run:
-        WINDOW.fill((206, 229, 242))
+        window.fill((206, 229, 242))
         if menu_placement != "main_game":
             for event in pg.event.get():
                 position = pg.mouse.get_pos()
@@ -122,7 +118,7 @@ def main() -> None:
                         for keys in range(0, len(key)):
                             if key[keys]:
                                 controls[control_adjusted] = keys
-            render_menu(WINDOW, MENU_FONT, menu_placement, save_file_name, CONTROL_NAMES, control_adjusted, controls)
+            render_menu(window, menu_placement, save_file_name, CONTROL_NAMES, control_adjusted, controls)
         else:
             location["old"] = [*location["tile"],]
             inventory = chunks[location["room"]][(location["tile"][0], location["tile"][1])][(location["tile"][2], location["tile"][3])].inventory
@@ -158,7 +154,7 @@ def main() -> None:
                                 elif chunks[location["room"]][grid_position[0]][grid_position[1]].kind == "up":
                                     grid_position = [(grid_position[0][0], grid_position[0][1] - (grid_position[1][1] == 0)), (grid_position[1][0], (grid_position[1][1] - 1) % 16)]
                         if event.button == 1:
-                            machine_ui, chunks, location, machine_inventory = left_click(machine_ui, grid_position, chunks, inventory_number, health, max_health, DAY_LENGTH, position, SCREEN_SIZE, UI_SCALE, INVENTORY_SIZE, recipe_number, location, inventory, machine_inventory)
+                            machine_ui, chunks, location, machine_inventory = left_click(machine_ui, grid_position, chunks, inventory_number, health, max_health, DAY_LENGTH, position, SCREEN_SIZE, INVENTORY_SIZE, recipe_number, location, inventory, machine_inventory)
                         elif event.button == 3:
                             chunks, location, machine_ui = right_click(chunks, grid_position, inventory, inventory_number, INVENTORY_SIZE, max_health, location, machine_ui)
                     if event.button == 4 or event.button == 5:
@@ -184,11 +180,11 @@ def main() -> None:
             max_health = chunks[location["room"]][(location["tile"][0], location["tile"][1])][(location["tile"][2], location["tile"][3])].max_health
 
             if location["room"] != (0, 0, 0, 0):
-                WINDOW.fill((19, 17, 18))
+                window.fill((19, 17, 18))
             camera = [SCREEN_SIZE[0] / 2 - ((location["tile"][2] * TILE_SIZE + location["tile"][0] * CHUNK_SIZE + 32) * zoom), SCREEN_SIZE[1] / 2 - ((location["tile"][3] * TILE_SIZE + location["tile"][1] * CHUNK_SIZE + 32) * zoom)]
             render_tiles(chunks[location["room"]], location, camera, zoom, SCREEN_SIZE, inventory, inventory_number, tick, DAY_LENGTH)
-            render_UI(camera, chunks[location["room"]], zoom, location, UI_SCALE, SCREEN_SIZE, UI_FONT, BIG_UI_FONT, INVENTORY_SIZE, inventory_number, inventory, machine_ui, recipe_number, health, max_health, machine_inventory)
+            render_ui(camera, chunks[location["room"]], zoom, location, SCREEN_SIZE, INVENTORY_SIZE, inventory_number, inventory, machine_ui, recipe_number, health, max_health, machine_inventory)
             tick += 1
         pg.display.update()
-        CLOCK.tick(FPS)
+        clock.tick(FPS)
     pg.quit()

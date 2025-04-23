@@ -2,7 +2,7 @@ from .tile_info import TILE_ATTRIBUTES, MULTI_TILES, FOOD, STORAGE, RECIPES
 from .tile_class import Tile
 from .room_generation import generate_room
 from .crafting_system import recipe
-
+from .ui_rendering import UI_SCALE
 
 def left_click(
     machine_ui,
@@ -14,7 +14,6 @@ def left_click(
     DAY_LENGTH,
     position,
     SCREEN_SIZE,
-    UI_SCALE,
     INVENTORY_SIZE,
     recipe_number,
     location,

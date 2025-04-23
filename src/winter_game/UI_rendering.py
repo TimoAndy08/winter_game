@@ -3,16 +3,18 @@ import pygame as pg
 from .tile_rendering import WINDOW, IMAGES
 from .tile_info import TILE_ATTRIBUTES, RECIPES, STORAGE
 
+pg.font.init()
 
-def render_UI(
+UI_SCALE = 2
+UI_FONT = pg.font.SysFont("Lucida Console", 10 * UI_SCALE)
+BIG_UI_FONT = pg.font.SysFont("Lucida Console", 20 * UI_SCALE)
+
+def render_ui(
     camera,
     chunks,
     zoom,
     location,
-    UI_SCALE,
     SCREEN_SIZE,
-    UI_FONT,
-    BIG_UI_FONT,
     INVENTORY_SIZE,
     inventory_number,
     inventory,
