@@ -37,9 +37,9 @@ RECIPES = {
     "workbench": [
         (("flint sword", 1), [("stick", 2), ("flint", 4), ("ice", 1)]),
         (("flint axe", 1), [("stick", 3), ("flint", 4)]),
-        (("flint pickaxe", 1), [("stick", 3), ("flint", 4), ("pebble", 1)]),
+        (("flint pickaxe", 1), [("stick", 3), ("flint", 4)]),
         (("flint shovel", 1), [("stick", 2), ("flint", 3)]),
-        (("campfire", 1), [("wood", 5), ("flint", 2), ("stick", 6), ("pebble", 1)]),
+        (("campfire", 1), [("wood", 5), ("flint", 2), ("stick", 6)]),
         (("bowl", 4), [("wood", 3), ("stick", 2)]),
         (("wood pulp", 2), [("wood", 3), ("water", 2)]),
         (("flint hammer", 1), [("stick", 4), ("rock", 2), ("flint", 3)]),
@@ -51,7 +51,7 @@ RECIPES = {
         (("water", 2), [("ice", 1), ("bowl", 2)]),
         (("mushroom stew", 2), [("mushroom", 3), ("carrot", 1), ("water", 2)]),
         (("stone", 1), [("rock", 1)]),
-        (("brick", 1), [("clay", 1)]),
+        (("brick", 2), [("clay", 1)]),
         (("roasted rabbit meat", 1), [("rabbit meat", 1)]),
     ],
     "manual press": [
@@ -76,7 +76,6 @@ TOOL_REQUIRED = {
     "wood": "axe",
     "spore": "shovel",
     "mushroom": "axe",
-    "pebble": "pickaxe",
     "flint": "pickaxe",
     "ice": "pickaxe",
     "stick": "axe",

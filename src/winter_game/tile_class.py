@@ -2,9 +2,7 @@ import random
 from .tile_info import TILE_ATTRIBUTES, GROW_CHANCE, GROW_TILES
 
 class Tile:
-    def __init__(
-        self, kind: str, health: int, inventory: dict[str, int]
-    ):
+    def __init__(self, kind: str, health: int, inventory: dict[str, int]):
         self.kind = kind
         self.attributes = TILE_ATTRIBUTES.get(kind, ())
         self.health = health
@@ -18,16 +16,12 @@ class Tile:
         return self
 
     def to_dict(self):
-        return {
-            "k": self.kind,
-            "h": self.health,
-            "i": self.inventory,
-        }
+        if len(self.inventory) == 0:
+            return [self.kind, self.health]
+        return [self.kind, self.health, self.inventory]
 
     @staticmethod
     def from_dict(data):
-        return Tile(
-            kind=data["k"],
-            health=data["h"],
-            inventory=data.get("i", {}),
-        )
+        if len(data) > 2:
+            return Tile(data[0], data[1], data[2])
+        return Tile(data[0], data[1], {})

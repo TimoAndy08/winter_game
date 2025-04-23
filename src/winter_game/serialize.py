@@ -1,6 +1,8 @@
 import json
 from .tile_class import Tile
 
+def parse_tuple_key(s):
+    return tuple(int(float(x)) for x in s.strip(" ()").split(",") if x)
 
 def serialize_chunks(chunks):
     result = {}
@@ -8,28 +10,23 @@ def serialize_chunks(chunks):
         room_key = str(tuple(int(x) for x in room_pos))
         result[room_key] = {}
         for chunk_pos, tile_dict in chunk_dict.items():
-            chunk_key = str(chunk_pos)
+            chunk_key = str(tuple(int(x) for x in chunk_pos))
             result[room_key][chunk_key] = {}
             for tile_pos, tile in tile_dict.items():
-                tile_key = str(tile_pos)
+                tile_key = f"{chr(65 + tile_pos[0])}{chr(97 + tile_pos[1])}"
                 result[room_key][chunk_key][tile_key] = tile.to_dict()
     return result
-
 
 def deserialize_chunks(serialized_chunks):
     raw = json.loads(serialized_chunks)
     chunks = {}
     for room_key, chunk_dict in raw.items():
-        room_pos = tuple(int(float(x)) for x in room_key.strip(" ()").split(",") if x)
+        room_pos = parse_tuple_key(room_key)
         chunks[room_pos] = {}
         for chunk_key, tile_dict in chunk_dict.items():
-            chunk_pos = tuple(
-                int(float(x)) for x in chunk_key.strip(" ()").split(",") if x
-            )
+            chunk_pos = parse_tuple_key(chunk_key)
             chunks[room_pos][chunk_pos] = {}
             for tile_key, tile_data in tile_dict.items():
-                tile_pos = tuple(
-                    int(float(x)) for x in tile_key.strip(" ()").split(",") if x
-                )
+                tile_pos = (ord(tile_key[0]) - 65, ord(tile_key[1]) - 97)
                 chunks[room_pos][chunk_pos][tile_pos] = Tile.from_dict(tile_data)
     return chunks
