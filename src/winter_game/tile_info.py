@@ -117,11 +117,11 @@ FOOD = {
     "roasted rabbit meat": 4,
 }
 GROW_TILES = {
-    "sapling": ("treeling", 9, {"wood": 2, "sapling": 1}),
-    "treeling": ("tree", 15, {"wood": 4, "sapling": 2}),
-    "spore": ("mushroom", 10, {"spore": 2, "mushroom": 1}),
-    "carrot": ("carroot", 8, {"carrot": 2}),
-    "rabbit child": ("rabbit adult", 8, {"rabbit fur": 1, "rabbit meat": 2}),
+    "sapling": ("treeling", {"wood": 2, "sapling": 1}),
+    "treeling": ("tree", {"wood": 4, "sapling": 2}),
+    "spore": ("mushroom", {"spore": 2, "mushroom": 1}),
+    "carrot": ("carroot", {"carrot": 2}),
+    "rabbit child": ("rabbit adult", {"rabbit fur": 1, "rabbit meat": 2}),
 }
 GROW_CHANCE = {
     "sapling": 5000,
@@ -130,4 +130,5 @@ GROW_CHANCE = {
     "carrot": 10000,
     "rabbit child": 12500,
 }
-TILE_RESISTANCE = {"clay": 1, "rock": 1, "ice": 1, "tree": 1, "rabbit adult": 1, "big rock": 2,}
+TILE_RESISTANCE = {"clay": 1, "rock": 1, "ice": 1, "tree": 1, "rabbit adult": 1, "sawbench": 1, "manual press": 1, "wooden cabin": 1, "stone": 1, "stone brick": 1, "brick": 1, "big rock": 2}
+TILE_HEALTH = {"big rock": 45, "blue dye": 6, "bluebell": 10, "blueprint": 8, "bowl": 6, "brick": 12, "campfire": 8, "carroot": 8, "carrot": 4, "clay": 12, "corpse": 1, "flint axe": 6, "flint hammer": 10, "flint pickaxe": 6, "flint shovel": 6, "flint sword": 6, "flint": 16, "ice": 12, "junk": 1, "left": 1, "manual press": 12, "mushroom stew": 6, "mushroom": 10, "obelisk": 1, "paper": 8, "player": 20, "rabbit adult": 10, "rabbit child": 6, "rabbit fur": 8, "rabbit hole": 1, "rabbit meat": 6, "roasted mushroom": 8, "roasted rabbit meat": 10, "rock": 20, "sapling": 4, "sawbench": 12, "small barrel": 10, "small crate": 10, "spore": 4, "stick": 4, "stone brick": 16, "stone": 16, "tree": 15, "treeling": 9, "up": 1, "water": 8, "wood pulp": 6, "wood": 4, "wooden bed": 12, "wooden cabin": 42, "wooden door": 1, "workbench": 5}

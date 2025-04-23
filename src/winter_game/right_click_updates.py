@@ -101,11 +101,11 @@ def right_click(
                     del chunks[(*grid_position[0], *grid_position[1])]
                 del chunks[location["room"]][grid_position[0]][grid_position[1]]
                 if len(junk_inventory) > 0:
-                    chunks[location["room"]][grid_position[0]][grid_position[1]] = Tile("junk", 1, junk_inventory)
+                    chunks[location["room"]][grid_position[0]][grid_position[1]] = Tile("junk", junk_inventory)
                 machine_ui = "game"
             else:
-                chunks[location["room"]][grid_position[0]][grid_position[1]] = Tile("corpse", 1, inventory)
-                chunks[(0, 0, 0, 0)][(0, 0)][(0, 2)] = Tile("player", max_health, {})
+                chunks[location["room"]][grid_position[0]][grid_position[1]] = Tile("corpse", inventory)
+                chunks[(0, 0, 0, 0)][(0, 0)][(0, 2)] = Tile("player", {})
                 location["tile"] = [0, 0, 0, 2]
                 location["real"] = [0, 0, 0, 2]
                 location["room"] = (0, 0, 0, 0)
