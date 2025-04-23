@@ -25,8 +25,8 @@ TILE_ATTRIBUTES = {
     "roasted rabbit meat": ("eat",),
     "left": ("point", "unbreak"),
     "up": ("point", "unbreak"),
-    "junk": ("no_pickup", "unbreak"),
-    "corpse": ("no_pickup", "unbreak"),
+    "junk": ("no_pickup",),
+    "corpse": ("no_pickup",),
     "obelisk": ("multi", "unbreak"),
 }
 RECIPES = {

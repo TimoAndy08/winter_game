@@ -30,21 +30,21 @@ def render_tiles(
     for chunk_x in range(-3, 4):
         for chunk_y in range(-3, 4):
             chunk = (chunk_x + location["tile"][0], chunk_y + location["tile"][1])
-            if chunk in chunks[location["room"]]:
+            if chunk in chunks:
                 for y in range(0, 16):
                     for x in range(0, 16):
                         tile = (x, y)
                         if (
-                            tile in chunks[location["room"]][chunk]
+                            tile in chunks[chunk]
                             and "point"
-                            not in chunks[location["room"]][chunk][tile].attributes
+                            not in chunks[chunk][tile].attributes
                         ):
                             placement = (
                                 camera[0] + (x * 64 + chunk[0] * 1024) * zoom,
                                 camera[1] + (y * 64 + chunk[1] * 1024 - 32) * zoom,
                             )
                             size = MULTI_TILES.get(
-                                chunks[location["room"]][chunk][tile].kind, (1, 1)
+                                chunks[chunk][tile].kind, (1, 1)
                             )
                             if (
                                 -64 * zoom * size[0] <= placement[0] <= SCREEN_SIZE[0]
@@ -54,7 +54,7 @@ def render_tiles(
                             ):
                                 WINDOW.blit(
                                     pg.transform.scale(
-                                        IMAGES[chunks[location["room"]][chunk][tile].kind],
+                                        IMAGES[chunks[chunk][tile].kind],
                                         (
                                             64 * zoom * size[0],
                                             (32 + 64 * size[1]) * zoom,
@@ -84,10 +84,10 @@ def render_tiles(
 
     for x in range(-3, 4):
         for y in range(-3, 4):
-            if chunk in chunks[location["room"]]:
+            if chunk in chunks:
                 chunk = (x + location["tile"][0], y + location["tile"][1])
-                for tile in chunks[location["room"]][chunk]:
-                    current_tile = chunks[location["room"]][chunk][tile]
+                for tile in chunks[chunk]:
+                    current_tile = chunks[chunk][tile]
                     if "light" in current_tile.attributes:
                         scaled_glow = pg.transform.scale(
                             lights[current_tile.kind][0],

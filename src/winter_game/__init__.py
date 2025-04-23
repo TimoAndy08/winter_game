@@ -27,21 +27,21 @@ BIG_UI_FONT = pg.font.SysFont("Lucida Console", 20 * UI_SCALE)
 WINDOW = pg.display.set_mode((0, 0), pg.FULLSCREEN)
 CLOCK = pg.time.Clock()
 CONTROL_NAMES = ["Move up ", "Move left ", "Move down ", "Move right", "Inventory ", "Zoom in", "Zoom out"]
+TILE_SIZE = 64
+CHUNK_SIZE = 16 * TILE_SIZE
 
 def main() -> None:
-    location = {}
+    location = {"mined": [0, 0, 0, 2], "opened": ((0, 0), (0, 0))}
     run = True
     zoom = 1
     inventory_number = 0
     recipe_number = 0
     save_file_name = ""
     menu_placement = "main_menu"
-    location["mined"] = [0, 0, 0, 0]
     controls = [pg.K_w, pg.K_a, pg.K_s, pg.K_d, pg.K_e, pg.K_z, pg.K_x]
     velocity = [0, 0]
     machine_ui = "game"
     control_adjusted = 0
-    location["opened"] = ((0, 0), (0, 0))
     machine_inventory = {}
     while run:
         WINDOW.fill((206, 229, 242))
@@ -65,7 +65,7 @@ def main() -> None:
                                 location["real"] = [0, 0, 0, 2]
                                 location["room"] = (0, 0, 0, 0)
                                 generate_chunk(0, 0, chunks[location["room"]])
-                                chunks[location["room"]][(0, 0)] = {(0, 0): Tile("obelisk", 1, {}), (0, 1): Tile("up", 1, {}), (0, 2): Tile("player", 20, {"wooden cabin": 1})}
+                                chunks[location["room"]][(0, 0)] = {(0, 0): Tile("obelisk", 1, {}), (0, 1): Tile("up", 1, {}), (0, 2): Tile("player", 20, {})}
                                 tick = 0
                             elif menu_placement == "save_selection":
                                 menu_placement = "main_game"
@@ -180,16 +180,15 @@ def main() -> None:
                         menu_placement = "options_game"
 
             chunks = update_tiles(chunks, location["tile"], location["room"])
+            health = chunks[location["room"]][(location["tile"][0], location["tile"][1])][(location["tile"][2], location["tile"][3])].health
+            max_health = chunks[location["room"]][(location["tile"][0], location["tile"][1])][(location["tile"][2], location["tile"][3])].max_health
 
             if location["room"] != (0, 0, 0, 0):
                 WINDOW.fill((19, 17, 18))
-
-            health = chunks[location["room"]][(location["tile"][0], location["tile"][1])][(location["tile"][2], location["tile"][3])].health
-            max_health = chunks[location["room"]][(location["tile"][0], location["tile"][1])][(location["tile"][2], location["tile"][3])].max_health
-            camera = [SCREEN_SIZE[0] / 2 - ((location["tile"][2] * 64 + location["tile"][0] * 1024 + 32) * zoom), SCREEN_SIZE[1] / 2 - ((location["tile"][3] * 64 + location["tile"][1] * 1024 + 32) * zoom)]
-            render_tiles(chunks, location, camera, zoom, SCREEN_SIZE, inventory, inventory_number, tick, DAY_LENGTH)
-            render_UI(camera, chunks, zoom, location, UI_SCALE, SCREEN_SIZE, UI_FONT, BIG_UI_FONT, INVENTORY_SIZE, inventory_number, inventory, machine_ui, recipe_number, health, max_health, machine_inventory)
+            camera = [SCREEN_SIZE[0] / 2 - ((location["tile"][2] * TILE_SIZE + location["tile"][0] * CHUNK_SIZE + 32) * zoom), SCREEN_SIZE[1] / 2 - ((location["tile"][3] * TILE_SIZE + location["tile"][1] * CHUNK_SIZE + 32) * zoom)]
+            render_tiles(chunks[location["room"]], location, camera, zoom, SCREEN_SIZE, inventory, inventory_number, tick, DAY_LENGTH)
+            render_UI(camera, chunks[location["room"]], zoom, location, UI_SCALE, SCREEN_SIZE, UI_FONT, BIG_UI_FONT, INVENTORY_SIZE, inventory_number, inventory, machine_ui, recipe_number, health, max_health, machine_inventory)
             tick += 1
         pg.display.update()
-        CLOCK.tick(60)
+        CLOCK.tick(FPS)
     pg.quit()

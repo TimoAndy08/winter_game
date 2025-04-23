@@ -105,14 +105,8 @@ def right_click(
                 machine_ui = "game"
             else:
                 chunks[location["room"]][grid_position[0]][grid_position[1]] = Tile("corpse", 1, inventory)
-                i = 0
-                while (i % 16, i // 16) in chunks[(0, 0, 0, 0)][(0, 0)]:
-                    i += 1
-                    if i == 256:
-                        i = 0
-                        break
-                chunks[(0, 0, 0, 0)][(0, 0)][(i % 16, i // 16)] = Tile("player", max_health, {})
-                location["tile"] = [0, 0, i % 16, i // 16]
-                location["real"] = [0, 0, i % 16, i // 16]
+                chunks[(0, 0, 0, 0)][(0, 0)][(0, 2)] = Tile("player", max_health, {})
+                location["tile"] = [0, 0, 0, 2]
+                location["real"] = [0, 0, 0, 2]
                 location["room"] = (0, 0, 0, 0)
     return (chunks, location, machine_ui)

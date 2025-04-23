@@ -22,18 +22,14 @@ def render_UI(
     max_health,
     machine_inventory,
 ):
-    if (location["mined"][2], location["mined"][3]) in chunks[location["room"]][
-        (location["mined"][0], location["mined"][1])
-    ]:
+    if (location["mined"][2], location["mined"][3]) in chunks[(location["mined"][0], location["mined"][1])]:
         placement = (
             camera[0]
             + (location["mined"][2] * 64 + location["mined"][0] * 1024) * zoom,
             camera[1]
             + (location["mined"][3] * 64 + location["mined"][1] * 1024 + 60) * zoom,
         )
-        last_mined_tile = chunks[location["room"]][
-            (location["mined"][0], location["mined"][1])
-        ][(location["mined"][2], location["mined"][3])]
+        last_mined_tile = chunks[(location["mined"][0], location["mined"][1])][(location["mined"][2], location["mined"][3])]
         WINDOW.blit(
             pg.transform.scale(IMAGES["tiny_bar"], (64 * zoom, 16 * zoom)), placement
         )
