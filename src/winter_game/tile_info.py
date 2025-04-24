@@ -18,7 +18,7 @@ TILE_ATTRIBUTES = {
     "manual press": ("open", "craft", "multi"),
     "small crate": ("open", "store"),
     "small barrel": ("open", "store"),
-    "wooden cabin": ("enter", "multi"),
+    "wooden cabin": ("enter", "multi", "wood"),
     "wooden door": ("exit", "unbreak"),
     "wooden bed": ("sleep", "multi"),
     "rabbit meat": ("eat",),

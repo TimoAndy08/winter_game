@@ -1,4 +1,5 @@
 import random
+from ast import literal_eval
 from .tile_info import TILE_ATTRIBUTES, GROW_CHANCE, GROW_TILES, TILE_HEALTH
 
 
@@ -18,11 +19,12 @@ class Tile:
 
     def to_dict(self):
         if len(self.inventory) == 0:
-            return [self.kind]
-        return [self.kind, self.inventory]
+            return f"{self.kind}"
+        return f"{self.kind}_{self.inventory}"
 
     @staticmethod
     def from_dict(data):
-        if len(data) > 1:
-            return Tile(data[0], data[1])
-        return Tile(data[0], {})
+        data_parts = data.split("_")
+        if len(data_parts) > 1:
+            return Tile(data_parts[0], literal_eval(data_parts[1]))
+        return Tile(data_parts[0], {})

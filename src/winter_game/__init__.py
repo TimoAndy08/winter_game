@@ -1,4 +1,4 @@
-import ast
+from ast import literal_eval
 import json
 
 import pygame as pg
@@ -68,9 +68,9 @@ def main() -> None:
                                 with open(f"src/saves/{save_file_name}.txt", "r", encoding="utf-8") as file:
                                     file_content = file.read().split(";")
                                 chunks = deserialize_chunks(file_content[0])
-                                location["tile"] = ast.literal_eval(file_content[1])
+                                location["tile"] = literal_eval(file_content[1])
                                 tick = int(file_content[2])
-                                location["room"] = ast.literal_eval(file_content[3])
+                                location["room"] = literal_eval(file_content[3])
                                 location["real"] = [*location["tile"],]
                     elif menu_placement.split("_")[0] == "options":
                         if menu_placement == "options_game":
@@ -158,9 +158,10 @@ def main() -> None:
                         elif event.button == 3:
                             chunks, location, machine_ui = right_click(chunks, grid_position, inventory, inventory_number, INVENTORY_SIZE, max_health, location, machine_ui)
                     if event.button == 4 or event.button == 5:
-                        inventory_number = (inventory_number + (event.button == 5) - (event.button == 4)) % INVENTORY_SIZE
                         if "craft" in TILE_ATTRIBUTES.get(machine_ui, ()):
                             recipe_number = (recipe_number + (event.button == 5) - (event.button == 4)) % len(RECIPES[machine_ui])
+                        else:
+                            inventory_number = (inventory_number + (event.button == 5) - (event.button == 4)) % INVENTORY_SIZE
                 elif event.type == pg.KEYDOWN:
                     key = pg.key.get_pressed()
                     if key[controls[4]]:
