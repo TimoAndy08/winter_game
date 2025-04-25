@@ -18,7 +18,7 @@ TILE_ATTRIBUTES = {
     "manual press": ("open", "craft", "multi"),
     "small crate": ("open", "store"),
     "small barrel": ("open", "store"),
-    "wooden cabin": ("enter", "multi", "wood"),
+    "wooden cabin": ("enter", "multi"),
     "wooden door": ("exit", "unbreak"),
     "wooden bed": ("sleep", "multi"),
     "rabbit meat": ("eat",),
@@ -198,3 +198,4 @@ TILE_HEALTH = {
     "wooden door": 1,
     "workbench": 5,
 }
+UNBREAK_TILES = {"wooden cabin": "wood"}

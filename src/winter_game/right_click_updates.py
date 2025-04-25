@@ -1,14 +1,12 @@
 from .tile_info import TOOL_REQUIRED, TOOL_EFFICIENCY, TILE_RESISTANCE
 from .tile_class import Tile
-
+from .ui_rendering import INVENTORY_SIZE
 
 def right_click(
     chunks,
     grid_position,
     inventory,
     inventory_number,
-    INVENTORY_SIZE,
-    max_health,
     location,
     machine_ui,
 ):

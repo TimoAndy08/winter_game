@@ -6,26 +6,16 @@ import pygame as pg
 from .world_generation import generate_chunk
 from .tile_class import Tile
 from .serialize import serialize_chunks, deserialize_chunks
-from .tile_info import RECIPES, TILE_ATTRIBUTES
 from .menu_rendering import render_menu
-from .tile_rendering import render_tiles
+from .tile_rendering import render_tiles, FPS
 from .ui_rendering import render_ui
 from .tile_updates import update_tiles
 from .player_move import move_player
-from .left_click_updates import left_click
-from .right_click_updates import right_click
+from .mouse_update import button_press
 
 pg.init()
-SCREEN_SIZE = (pg.display.Info().current_w, pg.display.Info().current_h)
-FPS = 60
-DAY_LENGTH = 60 * 24 * FPS
-INVENTORY_SIZE = 12
-CONTROL_NAMES = ["Move up ", "Move left ", "Move down ", "Move right", "Inventory ", "Zoom in", "Zoom out"]
-TILE_SIZE = 64
-CHUNK_SIZE = 16 * TILE_SIZE
 
 def main() -> None:
-    window = pg.display.set_mode((0, 0), pg.FULLSCREEN)
     clock = pg.time.Clock()
     location = {"mined": [0, 0, 0, 2], "opened": ((0, 0), (0, 0))}
     run = True
@@ -40,7 +30,6 @@ def main() -> None:
     control_adjusted = 0
     machine_inventory = {}
     while run:
-        window.fill((206, 229, 242))
         if menu_placement != "main_game":
             for event in pg.event.get():
                 position = pg.mouse.get_pos()
@@ -118,7 +107,7 @@ def main() -> None:
                         for keys in range(0, len(key)):
                             if key[keys]:
                                 controls[control_adjusted] = keys
-            render_menu(window, menu_placement, save_file_name, CONTROL_NAMES, control_adjusted, controls)
+            render_menu(menu_placement, save_file_name, control_adjusted, controls)
         else:
             location["old"] = [*location["tile"],]
             inventory = chunks[location["room"]][(location["tile"][0], location["tile"][1])][(location["tile"][2], location["tile"][3])].inventory
@@ -143,25 +132,7 @@ def main() -> None:
                     run = False
                 elif event.type == pg.MOUSEBUTTONDOWN:
                     position = [*pg.mouse.get_pos(),]
-                    if abs(position[0] - SCREEN_SIZE[0] / 2 + 32) // (64 * zoom) <= 4 and abs(position[1] - SCREEN_SIZE[1] / 2 + 32) // (64 * zoom) <= 4 or "store" in TILE_ATTRIBUTES.get(machine_ui, ()):
-                        world_x = location["tile"][0] * 16 + location["tile"][2] + (position[0] - SCREEN_SIZE[0] / 2 + 32) // (64 * zoom)
-                        world_y = location["tile"][1] * 16 + location["tile"][3] + (position[1] - SCREEN_SIZE[1] / 2 + 32) // (64 * zoom)
-                        grid_position = [(world_x // 16, world_y // 16), (world_x % 16, world_y % 16)]
-                        if grid_position[1] in chunks[location["room"]][grid_position[0]]:
-                            while "point" in chunks[location["room"]][grid_position[0]][grid_position[1]].attributes:
-                                if chunks[location["room"]][grid_position[0]][grid_position[1]].kind == "left":
-                                    grid_position = [(grid_position[0][0] - (grid_position[1][0] == 0), grid_position[0][1]), ((grid_position[1][0] - 1) % 16, grid_position[1][1])]
-                                elif chunks[location["room"]][grid_position[0]][grid_position[1]].kind == "up":
-                                    grid_position = [(grid_position[0][0], grid_position[0][1] - (grid_position[1][1] == 0)), (grid_position[1][0], (grid_position[1][1] - 1) % 16)]
-                        if event.button == 1:
-                            machine_ui, chunks, location, machine_inventory, tick = left_click(machine_ui, grid_position, chunks, inventory_number, health, max_health, DAY_LENGTH, position, SCREEN_SIZE, INVENTORY_SIZE, recipe_number, location, inventory, machine_inventory, tick)
-                        elif event.button == 3:
-                            chunks, location, machine_ui = right_click(chunks, grid_position, inventory, inventory_number, INVENTORY_SIZE, max_health, location, machine_ui)
-                    if event.button == 4 or event.button == 5:
-                        if "craft" in TILE_ATTRIBUTES.get(machine_ui, ()):
-                            recipe_number = (recipe_number + (event.button == 5) - (event.button == 4)) % len(RECIPES[machine_ui])
-                        else:
-                            inventory_number = (inventory_number + (event.button == 5) - (event.button == 4)) % INVENTORY_SIZE
+                    chunks, location, machine_ui, machine_inventory, tick, recipe_number, inventory_number = button_press(event.button, position, zoom, chunks, location, machine_ui, inventory, health, max_health, machine_inventory, tick, inventory_number, recipe_number)
                 elif event.type == pg.KEYDOWN:
                     key = pg.key.get_pressed()
                     if key[controls[4]]:
@@ -179,12 +150,8 @@ def main() -> None:
             chunks = update_tiles(chunks, location["tile"], location["room"])
             health = chunks[location["room"]][(location["tile"][0], location["tile"][1])][(location["tile"][2], location["tile"][3])].health
             max_health = chunks[location["room"]][(location["tile"][0], location["tile"][1])][(location["tile"][2], location["tile"][3])].max_health
-
-            if location["room"] != (0, 0, 0, 0):
-                window.fill((19, 17, 18))
-            camera = [SCREEN_SIZE[0] / 2 - ((location["tile"][2] * TILE_SIZE + location["tile"][0] * CHUNK_SIZE + 32) * zoom), SCREEN_SIZE[1] / 2 - ((location["tile"][3] * TILE_SIZE + location["tile"][1] * CHUNK_SIZE + 32) * zoom)]
-            render_tiles(chunks[location["room"]], location, camera, zoom, SCREEN_SIZE, inventory, inventory_number, tick, DAY_LENGTH)
-            render_ui(camera, chunks[location["room"]], zoom, location, SCREEN_SIZE, INVENTORY_SIZE, inventory_number, inventory, machine_ui, recipe_number, health, max_health, machine_inventory)
+            render_tiles(chunks[location["room"]], location, zoom, inventory, inventory_number, tick)
+            render_ui(inventory_number, inventory, machine_ui, recipe_number, health, max_health, machine_inventory)
             tick += 1
         pg.display.update()
         clock.tick(FPS)

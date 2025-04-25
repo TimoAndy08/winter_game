@@ -9,4 +9,4 @@ def create_light_surface(intensity: int, color: tuple[int, int, int]):
     return light_surface
 
 
-lights = {"campfire": (create_light_surface(170, (181, 102, 60)), 832)}
+LIGHTS = {"campfire": (create_light_surface(170, (181, 102, 60)), 832)}

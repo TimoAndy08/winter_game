@@ -1,18 +1,19 @@
 import pygame as pg
 
+from .tile_rendering import window
+
 pg.font.init()
 
 MENU_FONT = pg.font.SysFont("Lucida Console", 50)
-
+CONTROL_NAMES = ["Move up ", "Move left ", "Move down ", "Move right", "Inventory ", "Zoom in", "Zoom out"]
 
 def render_menu(
-    window,
     menu_placement,
     save_file_name,
-    control_names,
     control_adjusted,
     controls,
 ):
+    window.fill((206, 229, 242))
     if menu_placement == "load_save":
         window.blit(MENU_FONT.render("Load save?", False, (19, 17, 18)), (0, 0))
         window.blit(MENU_FONT.render("Yes", False, (19, 17, 18)), (0, 100))
@@ -45,7 +46,7 @@ def render_menu(
         window.blit(MENU_FONT.render("Proceed", False, (19, 17, 18)), (0, 0))
         window.blit(
             MENU_FONT.render(
-                f"{control_names[control_adjusted]}: {chr(controls[control_adjusted])}",
+                f"{CONTROL_NAMES[control_adjusted]}: {chr(controls[control_adjusted])}",
                 False,
                 (19, 17, 18),
             ),
