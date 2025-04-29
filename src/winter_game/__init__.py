@@ -1,5 +1,5 @@
 from ast import literal_eval
-import json
+from json import dumps
 
 import pygame as pg
 
@@ -68,7 +68,7 @@ def main() -> None:
                             elif 100 <= position[1] <= 150:
                                 menu_placement = "main_menu"
                                 with open(f"src/saves/{save_file_name}.txt", "w", encoding="utf-8") as file:
-                                    chunks_json = json.dumps(serialize_chunks(chunks))
+                                    chunks_json = dumps(serialize_chunks(chunks))
                                     file.write(f"{chunks_json};{location["tile"]};{tick};{location["room"]}")
                                 save_file_name = ""
                         elif menu_placement == "options_main":

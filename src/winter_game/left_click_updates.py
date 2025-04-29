@@ -1,4 +1,4 @@
-from .tile_info import TILE_ATTRIBUTES, MULTI_TILES, FOOD, STORAGE, RECIPES
+from .tile_info import TILE_ATTRIBUTES, MULTI_TILES, FOOD, STORAGE, RECIPES, UNBREAK_TILES
 from .tile_class import Tile
 from .room_generation import generate_room
 from .crafting_system import recipe
@@ -6,18 +6,18 @@ from .ui_rendering import UI_SCALE, INVENTORY_SIZE
 from .tile_rendering import DAY_LENGTH, SCREEN_SIZE
 
 def left_click(
-    machine_ui,
-    grid_position,
+    machine_ui: str,
+    grid_position: list[int, int],
     chunks,
-    inventory_number,
-    health,
-    max_health,
+    inventory_number: int,
+    health: int,
+    max_health: int,
     position,
-    recipe_number,
-    location,
-    inventory,
-    machine_inventory,
-    tick,
+    recipe_number: int,
+    location: dict[str],
+    inventory: dict[str, int],
+    machine_inventory: dict[str, int],
+    tick: int,
 ):
     if machine_ui == "game":
         if grid_position[1] not in chunks[location["room"]][grid_position[0]]:
@@ -48,6 +48,8 @@ def left_click(
                                 )
                             ]:
                                 can_place = False
+                if inventory_key in UNBREAK_TILES[chunks[(0, 0, 0, 0)][(location["room"][0], location["room"][1])][(location["room"][2], location["room"][3])].kind]:
+                    can_place = False
                 if can_place:
                     inventory[inventory_key] -= 1
                     if "multi" in TILE_ATTRIBUTES.get(inventory_key, ()):
@@ -104,19 +106,16 @@ def left_click(
                 ]
                 location["tile"] = [0, 0, 0, 0]
             else:
-                if (
-                    chunks[(0, 0, 0, 0)][grid_position[0]][grid_position[1]].kind
-                    == "wooden cabin"
-                ):
+                if (chunks[(0, 0, 0, 0)][grid_position[0]][grid_position[1]].kind == "wooden cabin"):
                     chunks[location["room"]] = generate_room("wood", (-5, -4), (8, 6))
                     chunks[location["room"]][(0, 0)][(0, 1)] = Tile("wooden door", {})
-                    chunks[location["room"]][(0, 0)][(0, 0)] = chunks[(0, 0, 0, 0)][
-                        (location["tile"][0], location["tile"][1])
-                    ][(location["tile"][2], location["tile"][3])]
-                    del chunks[(0, 0, 0, 0)][(location["tile"][0], location["tile"][1])][
-                        (location["tile"][2], location["tile"][3])
-                    ]
-                    location["tile"] = [0, 0, 0, 0]
+                elif (chunks[(0, 0, 0, 0)][grid_position[0]][grid_position[1]].kind == "mushroom hut"):
+                    chunks[location["room"]] = generate_room("mushroom block", (-3, -2), (5, 4))
+                    chunks[location["room"]][(0, 0)][(0, 1)] = Tile("wooden door", {})
+                    chunks[location["room"]][(-1, -1)][(14, 15)] = Tile("mushroom shaper", {})
+                chunks[location["room"]][(0, 0)][(0, 0)] = chunks[(0, 0, 0, 0)][(location["tile"][0], location["tile"][1])][(location["tile"][2], location["tile"][3])]
+                del chunks[(0, 0, 0, 0)][(location["tile"][0], location["tile"][1])][(location["tile"][2], location["tile"][3])]
+                location["tile"] = [0, 0, 0, 0]
         elif (
             "exit"
             in chunks[location["room"]][grid_position[0]][grid_position[1]].attributes

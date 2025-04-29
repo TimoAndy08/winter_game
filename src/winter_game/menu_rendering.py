@@ -8,10 +8,10 @@ MENU_FONT = pg.font.SysFont("Lucida Console", 50)
 CONTROL_NAMES = ["Move up ", "Move left ", "Move down ", "Move right", "Inventory ", "Zoom in", "Zoom out"]
 
 def render_menu(
-    menu_placement,
-    save_file_name,
-    control_adjusted,
-    controls,
+    menu_placement: str,
+    save_file_name: str,
+    control_adjusted: int,
+    controls: list,
 ):
     window.fill((206, 229, 242))
     if menu_placement == "load_save":

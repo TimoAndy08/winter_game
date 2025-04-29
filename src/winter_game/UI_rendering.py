@@ -115,7 +115,7 @@ def render_ui(inventory_number, inventory, machine_ui, recipe_number, health, ma
                 (SCREEN_SIZE[0] // 2 - 112 * UI_SCALE, SCREEN_SIZE[1] - 80 * UI_SCALE),
             )
             for inputs in range(0, len(current_recipes[recipe_number][1])):
-                position = ((SCREEN_SIZE[0] // 2 + (40 * (inputs % 4) - 32)) * UI_SCALE, SCREEN_SIZE[1] + (32 * (inputs // 4) - 144) * UI_SCALE)
+                position = (SCREEN_SIZE[0] // 2 + ((40 * (inputs % 4) - 32)) * UI_SCALE, SCREEN_SIZE[1] + (32 * (inputs // 4) - 144) * UI_SCALE)
                 window.blit(pg.transform.scale(IMAGES["inventory_slot"], SLOT_SIZE), position)
                 window.blit(pg.transform.scale(IMAGES[current_recipes[recipe_number][1][inputs][0]], TILE_SIZE), (position[0] + 8 * UI_SCALE, position[1] + 4 * UI_SCALE),)
                 window.blit(UI_FONT.render(str(current_recipes[recipe_number][1][inputs][1]), False, (19, 17, 18)), (position[0] + 8 * UI_SCALE, position[1] + 32 * UI_SCALE))

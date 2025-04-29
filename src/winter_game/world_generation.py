@@ -1,11 +1,11 @@
 from noise import pnoise2
-import random
+from random import uniform
 
 from .tile_class import Tile
 from .tile_info import MULTI_TILES
 
-NOISE_OFFSET_X = random.uniform(-10000, 10000)
-NOISE_OFFSET_Y = random.uniform(-10000, 10000)
+NOISE_OFFSET_X = uniform(-10000, 10000)
+NOISE_OFFSET_Y = uniform(-10000, 10000)
 
 def generate_chunk(
     chunk_x: int,
@@ -43,6 +43,8 @@ def generate_chunk(
                         tile[tile_pos] = Tile("big rock", {"rock": 6})
                     elif 0.1 > elevation_value > -0.2 and -0.35 > moisture_value:
                         tile[tile_pos] = Tile("rock", {})
+                    elif 0.03 > elevation_value > -0.03 and moisture_value > 0.47:
+                        tile[tile_pos] = Tile("mushroom hut", {})
                     elif 0.1 > elevation_value > -0.1 and moisture_value > 0.45:
                         tile[tile_pos] = Tile("mushroom", {"spore": 2})
                     elif 0.15 > elevation_value > -0.15 and moisture_value > 0.4:

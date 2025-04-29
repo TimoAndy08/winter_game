@@ -1,4 +1,4 @@
-import random
+from random import randint, choice
 
 from .tile_class import Tile
 
@@ -25,8 +25,8 @@ def update_tiles(chunks, tile_location, room_location):
                         ]:
                             delete_tiles.append((chunk, tile))
                     elif current_tile.kind == "rabbit hole":
-                        if random.randint(0, 10000) == 0:
-                            animal = random.choice(
+                        if randint(0, 10000) == 0:
+                            animal = choice(
                                 (
                                     Tile(
                                         "rabbit adult",
@@ -47,8 +47,8 @@ def update_tiles(chunks, tile_location, room_location):
                                         chunk[1] + (tile[1] + y) // 16,
                                     )
                                 ]:
-                                    x = random.randint(-1, 1)
-                                    y = random.randint(-1, 1)
+                                    x = randint(-1, 1)
+                                    y = randint(-1, 1)
                                 current_tile.inventory[animal.kind] -= 1
                                 if current_tile.inventory[animal.kind] <= 0:
                                     del current_tile.inventory[animal.kind]

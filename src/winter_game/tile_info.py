@@ -23,12 +23,15 @@ TILE_ATTRIBUTES = {
     "wooden bed": ("sleep", "multi"),
     "rabbit meat": ("eat",),
     "roasted rabbit meat": ("eat",),
+    "big rock": ("multi", "no_pickup"),
+    "mushroom hut": ("multi", "enter"),
+    "mushroom shaper": ("open", "craft"),
+    # Special tiles
     "left": ("point", "unbreak"),
     "up": ("point", "unbreak"),
     "junk": ("no_pickup",),
     "corpse": ("no_pickup",),
     "obelisk": ("multi", "unbreak"),
-    "big rock": ("multi", "no_pickup"),
 }
 RECIPES = {
     "player": [
@@ -68,6 +71,9 @@ RECIPES = {
         (("wooden cabin", 1), [("wood", 16), ("brick", 6)]),
         (("wooden bed", 1), [("wood", 10), ("blue dye", 3), ("rabbit fur", 2)]),
     ],
+    "mushroom shaper": [
+        (("mushroom block", 1), [("mushroom", 2), ("wood", 1)]),
+    ]
 }
 TOOL_REQUIRED = {
     "player": "sword",
@@ -97,6 +103,9 @@ TOOL_REQUIRED = {
     "bluebell": "shovel",
     "small crate": "axe",
     "wooden cabin": "axe",
+    "mushroom hut": "axe",
+    "mushroom block": "axe",
+    "mushroom shaper": "axe",
 }
 TOOL_EFFICIENCY = {"flint": 1, "rock": 2}
 MULTI_TILES = {
@@ -106,6 +115,7 @@ MULTI_TILES = {
     "wooden bed": (1, 2),
     "obelisk": (1, 2),
     "big rock": (2, 2),
+    "mushroom hut": (3, 2),
 }
 STORAGE = {"small crate": (9, 48), "small barrel": (1, 512)}
 FOOD = {
@@ -143,6 +153,9 @@ TILE_RESISTANCE = {
     "stone brick": 1,
     "brick": 1,
     "big rock": 2,
+    "mushroom hut": 2,
+    "mushroom block": 1,
+    "mushroom shaper": 2,
 }
 TILE_HEALTH = {
     "big rock": 45,
@@ -166,6 +179,9 @@ TILE_HEALTH = {
     "junk": 1,
     "left": 1,
     "manual press": 12,
+    "mushroom block": 5,
+    "mushroom hut": 30,
+    "mushroom shaper": 13,
     "mushroom stew": 6,
     "mushroom": 10,
     "obelisk": 1,
@@ -198,4 +214,4 @@ TILE_HEALTH = {
     "wooden door": 1,
     "workbench": 5,
 }
-UNBREAK_TILES = {"wooden cabin": "wood"}
+UNBREAK_TILES = {"obelisk": "obelisk", "wooden cabin": "wood", "mushroom hut": "mushroom block"}

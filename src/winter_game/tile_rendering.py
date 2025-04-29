@@ -1,4 +1,4 @@
-import math
+from math import pi, cos
 import os
 
 import pygame as pg
@@ -83,7 +83,7 @@ def render_tiles(
     dark_overlay = pg.Surface(SCREEN_SIZE)
     dark_overlay.fill((19, 17, 18))
     dark_overlay.set_alpha(
-        int((1 - math.cos(((tick / DAY_LENGTH * 2) - 1 / 2) * math.pi)) * 95)
+        int((1 - cos(((tick / DAY_LENGTH * 2) - 1 / 2) * pi)) * 95)
     )
     window.blit(dark_overlay, (0, 0))
 
@@ -101,8 +101,8 @@ def render_tiles(
                                 int(LIGHTS[current_tile.kind][1] * zoom),
                             ),
                         )
-                        night_factor = 1 - math.cos(
-                            ((tick / DAY_LENGTH * 2) - 1 / 2) * math.pi
+                        night_factor = 1 - cos(
+                            ((tick / DAY_LENGTH * 2) - 1 / 2) * pi
                         )
                         scaled_glow.set_alpha(int(night_factor * 180))
                         window.blit(

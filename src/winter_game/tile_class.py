@@ -1,5 +1,6 @@
-import random
+from random import randint
 from ast import literal_eval
+
 from .tile_info import TILE_ATTRIBUTES, GROW_CHANCE, GROW_TILES, TILE_HEALTH
 
 
@@ -12,7 +13,7 @@ class Tile:
         self.inventory = inventory
 
     def grow(self):
-        if random.randint(0, GROW_CHANCE[self.kind]) == 0:
+        if randint(0, GROW_CHANCE[self.kind]) == 0:
             grow_tile = GROW_TILES[self.kind]
             return Tile(grow_tile[0], grow_tile[1])
         return self

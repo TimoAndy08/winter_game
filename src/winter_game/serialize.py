@@ -1,4 +1,4 @@
-import json
+from json import loads
 from .tile_class import Tile
 from .tile_info import UNBREAK_TILES
 
@@ -21,7 +21,7 @@ def serialize_chunks(chunks):
 
 
 def deserialize_chunks(serialized_chunks):
-    raw = json.loads(serialized_chunks)
+    raw = loads(serialized_chunks)
     chunks = {}
     for room_key, chunk_dict in raw.items():
         room_pos = parse_tuple_key(room_key)
