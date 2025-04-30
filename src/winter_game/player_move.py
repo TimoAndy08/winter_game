@@ -1,12 +1,12 @@
 def move_player(key, controls, velocity, location):
     if key[controls[0]]:
-        velocity[1] -= 0.3 / (1 + abs(velocity[1]))
+        velocity[1] -= 0.1 / (1 + abs(velocity[1]))
     if key[controls[1]]:
-        velocity[0] -= 0.3 / (1 + abs(velocity[1]))
+        velocity[0] -= 0.1 / (1 + abs(velocity[1]))
     if key[controls[2]]:
-        velocity[1] += 0.3 / (1 + abs(velocity[1]))
+        velocity[1] += 0.1 / (1 + abs(velocity[1]))
     if key[controls[3]]:
-        velocity[0] += 0.3 / (1 + abs(velocity[1]))
+        velocity[0] += 0.1 / (1 + abs(velocity[1]))
     location["real"][2] += velocity[0] / 2
     location["real"][3] += velocity[1] / 2
     velocity[0] *= 0.65

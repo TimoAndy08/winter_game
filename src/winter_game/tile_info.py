@@ -214,4 +214,6 @@ TILE_HEALTH = {
     "wooden door": 1,
     "workbench": 5,
 }
-UNBREAK_TILES = {"obelisk": "obelisk", "wooden cabin": "wood", "mushroom hut": "mushroom block"}
+UNBREAK_TILES = {"obelisk": "void", "wooden cabin": "wood", "mushroom hut": "mushroom block"}
+FLOOR = ["void"]
+FLOOR_HEALTH = {"void": 1}

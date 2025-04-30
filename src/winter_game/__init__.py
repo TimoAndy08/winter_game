@@ -49,8 +49,8 @@ def main() -> None:
                                 location["tile"] = [0, 0, 0, 2]
                                 location["real"] = [0, 0, 0, 2]
                                 location["room"] = (0, 0, 0, 0)
-                                generate_chunk(0, 0, chunks[location["room"]])
-                                chunks[location["room"]][(0, 0)] = {(0, 0): Tile("obelisk"), (0, 1): Tile("up"), (0, 2): Tile("player")}
+                                noise_offset = generate_chunk(0, 0, chunks[location["room"]])
+                                chunks[location["room"]][(0, 0)] = {(0, 0): Tile("obelisk"), (0, 1): Tile("up"), (0, 2): Tile("player", {"wooden cabin": 1}, floor = "void")}
                                 tick = 0
                             elif menu_placement == "save_selection":
                                 menu_placement = "main_game"
@@ -117,15 +117,32 @@ def main() -> None:
             if location["room"] == (0, 0, 0, 0):
                 for x in range(-4, 5):
                     for y in range(-4, 5):
-                        generate_chunk(location["tile"][0] + x, location["tile"][1] + y, chunks[location["room"]])
-            if not (location["tile"][2], location["tile"][3]) in chunks[location["room"]][(location["tile"][0], location["tile"][1])]:
-                chunks[location["room"]][(location["tile"][0], location["tile"][1])][(location["tile"][2], location["tile"][3])] = chunks[location["room"]][(location["old"][0], location["old"][1])][(location["old"][2], location["old"][3])]
-                del chunks[location["room"]][location["old"][0], location["old"][1]][location["old"][2], location["old"][3]]
-            else:
-                if chunks[location["room"]][(location["tile"][0], location["tile"][1])][(location["tile"][2], location["tile"][3])].kind != "player":
-                    location["real"] = [*location["old"],]
-                location["tile"] = [*location["old"],]
+                        generate_chunk(location["tile"][0] + x, location["tile"][1] + y, chunks[location["room"]], noise_offset)
+            room = location["room"]
+            tile_chunk_coords = (location["tile"][0], location["tile"][1])
+            tile_coords = (location["tile"][2], location["tile"][3])
+            old_chunk_coords = (location["old"][0], location["old"][1])
+            old_tile_coords = (location["old"][2], location["old"][3])
+
+            chunk = chunks[room][tile_chunk_coords]
+            old_chunk = chunks[room][old_chunk_coords]
+            old_tile = old_chunk[old_tile_coords]
+
+            if tile_coords not in chunk:
+                chunk[tile_coords] = Tile("player", inventory)
+            elif chunk[tile_coords].kind == None:
+                existing_floor = chunk[tile_coords].floor
+                chunk[tile_coords] = Tile("player", inventory, existing_floor)
+            elif chunk[tile_coords].kind != "player":
+                location["real"] = [*location["old"]]
+                location["tile"] = [*location["old"]]
                 velocity = [0, 0]
+
+            if location["old"] != location["tile"]:
+                if isinstance(old_tile.floor, str):
+                    old_chunk[old_tile_coords] = Tile(floor = old_tile.floor)
+                else:
+                    del old_chunk[old_tile_coords]
 
             for event in pg.event.get():
                 if event.type == pg.QUIT:

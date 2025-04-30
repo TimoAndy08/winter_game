@@ -40,10 +40,7 @@ def render_tiles(
                 for y in range(0, 16):
                     for x in range(0, 16):
                         tile = (x, y)
-                        if (
-                            tile in chunks[chunk]
-                            and "point" not in chunks[chunk][tile].attributes
-                        ):
+                        if tile in chunks[chunk] and "point" not in chunks[chunk][tile].attributes:
                             placement = (
                                 camera[0] + (x * 64 + chunk[0] * 1024) * zoom,
                                 camera[1] + (y * 64 + chunk[1] * 1024 - 32) * zoom,
@@ -55,17 +52,25 @@ def render_tiles(
                                 <= placement[1]
                                 <= SCREEN_SIZE[1]
                             ):
-                                window.blit(
-                                    pg.transform.scale(
-                                        IMAGES[chunks[chunk][tile].kind],
-                                        (
-                                            64 * zoom * size[0],
-                                            (32 + 64 * size[1]) * zoom,
+                                if isinstance(chunks[chunk][tile].floor, str):
+                                    window.blit(
+                                        pg.transform.scale(
+                                            IMAGES[chunks[chunk][tile].floor],
+                                            (64 * zoom, 64 * zoom),
                                         ),
-                                    ),
-                                    placement,
-                                )
-
+                                        (placement[0], placement[1] + 32 * zoom),
+                                    )
+                                if isinstance(chunks[chunk][tile].kind, str):
+                                    window.blit(
+                                        pg.transform.scale(
+                                            IMAGES[chunks[chunk][tile].kind],
+                                            (
+                                                64 * zoom * size[0],
+                                                (32 + 64 * size[1]) * zoom,
+                                            ),
+                                        ),
+                                        placement,
+                                    )
     if len(inventory) > inventory_number:
         placement = (
             camera[0]
@@ -117,9 +122,7 @@ def render_tiles(
                             ),
                         )
     
-    if (location["mined"][2], location["mined"][3]) in chunks[
-        (location["mined"][0], location["mined"][1])
-    ]:
+    if (location["mined"][2], location["mined"][3]) in chunks[(location["mined"][0], location["mined"][1])] and isinstance(chunks[(location["mined"][0], location["mined"][1])][(location["mined"][2], location["mined"][3])].kind, str):
         placement = (
             camera[0]
             + (location["mined"][2] * 64 + location["mined"][0] * 1024) * zoom,

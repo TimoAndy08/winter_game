@@ -14,6 +14,7 @@ def right_click(
         grid_position[1] in chunks[location["room"]][grid_position[0]]
         and "unbreak"
         not in chunks[location["room"]][grid_position[0]][grid_position[1]].attributes
+        and isinstance(chunks[location["room"]][grid_position[0]][grid_position[1]].kind, str)
     ):
         damage = 1 - TILE_RESISTANCE.get(
             chunks[location["room"]][grid_position[0]][grid_position[1]].kind, 0
@@ -128,7 +129,7 @@ def right_click(
                 chunks[location["room"]][grid_position[0]][grid_position[1]] = Tile(
                     "corpse", inventory
                 )
-                chunks[(0, 0, 0, 0)][(0, 0)][(0, 2)] = Tile("player")
+                chunks[(0, 0, 0, 0)][(0, 0)][(0, 2)] = Tile("player", floor = "void")
                 location["tile"] = [0, 0, 0, 2]
                 location["real"] = [0, 0, 0, 2]
                 location["room"] = (0, 0, 0, 0)

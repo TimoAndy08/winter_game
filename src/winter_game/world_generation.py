@@ -4,14 +4,14 @@ from random import uniform
 from .tile_class import Tile
 from .tile_info import MULTI_TILES
 
-NOISE_OFFSET_X = uniform(-10000, 10000)
-NOISE_OFFSET_Y = uniform(-10000, 10000)
-
 def generate_chunk(
     chunk_x: int,
     chunk_y: int,
     chunks: dict[tuple[int, int], dict[tuple[int, int], Tile]],
+    noise_offset: tuple[float, float] = None
 ):
+    if noise_offset == None:
+        noise_offset = (uniform(-10000, 10000), uniform(-10000, 10000))
     if (chunk_x, chunk_y) not in chunks:
         chunks[(chunk_x, chunk_y)] = {}
         for tile_x in range(0, 16):
@@ -22,15 +22,15 @@ def generate_chunk(
                     world_x = chunk_x * 16 + tile_x
                     world_y = chunk_y * 16 + tile_y
                     elevation_value = pnoise2(
-                        (world_x + NOISE_OFFSET_X) * 0.1,
-                        (world_y + NOISE_OFFSET_Y) * 0.1,
+                        (world_x + noise_offset[0]) * 0.1,
+                        (world_y + noise_offset[1]) * 0.1,
                         3,
                         0.5,
                         2,
                     )
                     moisture_value = pnoise2(
-                        (world_x + NOISE_OFFSET_X) * 0.03,
-                        (world_y + NOISE_OFFSET_Y) * 0.03,
+                        (world_x + noise_offset[0]) * 0.03,
+                        (world_y + noise_offset[1]) * 0.03,
                         3,
                         0.5,
                         3,
@@ -81,3 +81,4 @@ def generate_chunk(
                                     tile[(tile_x + x, tile_y + y)] = Tile("up")
                         else:
                             del tile[tile_pos]
+    return noise_offset
