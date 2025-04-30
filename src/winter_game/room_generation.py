@@ -13,6 +13,6 @@ def generate_room(material: str, location: tuple[int, int], size: tuple[int, int
             ):
                 if (x // 16, y // 16) not in room:
                     room[x // 16, y // 16] = {}
-                room[(x // 16, y // 16)][(x % 16, y % 16)] = Tile(material, {})
+                room[(x // 16, y // 16)][(x % 16, y % 16)] = Tile(material)
                 room[(x // 16, y // 16)][(x % 16, y % 16)].attributes = ("unbreak",)
     return room

@@ -62,7 +62,7 @@ def left_click(
                                 )
                             ][
                                 ((grid_position[1][0] + x) % 16, grid_position[1][1])
-                            ] = Tile("left", {})
+                            ] = Tile("left")
                             for y in range(1, MULTI_TILES[inventory_key][1]):
                                 chunks[location["room"]][
                                     (
@@ -76,8 +76,8 @@ def left_click(
                                         (grid_position[1][0] + x) % 16,
                                         (grid_position[1][1] + y) % 16,
                                     )
-                                ] = Tile("up", {})
-                    chunks[location["room"]][grid_position[0]][grid_position[1]] = Tile(inventory_key, {})
+                                ] = Tile("up")
+                    chunks[location["room"]][grid_position[0]][grid_position[1]] = Tile(inventory_key)
                     if inventory[inventory_key] == 0:
                         del inventory[inventory_key]
         elif (
@@ -108,11 +108,11 @@ def left_click(
             else:
                 if (chunks[(0, 0, 0, 0)][grid_position[0]][grid_position[1]].kind == "wooden cabin"):
                     chunks[location["room"]] = generate_room("wood", (-5, -4), (8, 6))
-                    chunks[location["room"]][(0, 0)][(0, 1)] = Tile("wooden door", {})
+                    chunks[location["room"]][(0, 0)][(0, 1)] = Tile("wooden door")
                 elif (chunks[(0, 0, 0, 0)][grid_position[0]][grid_position[1]].kind == "mushroom hut"):
                     chunks[location["room"]] = generate_room("mushroom block", (-3, -2), (5, 4))
-                    chunks[location["room"]][(0, 0)][(0, 1)] = Tile("wooden door", {})
-                    chunks[location["room"]][(-1, -1)][(14, 15)] = Tile("mushroom shaper", {})
+                    chunks[location["room"]][(0, 0)][(0, 1)] = Tile("wooden door")
+                    chunks[location["room"]][(-1, -1)][(14, 15)] = Tile("mushroom shaper")
                 chunks[location["room"]][(0, 0)][(0, 0)] = chunks[(0, 0, 0, 0)][(location["tile"][0], location["tile"][1])][(location["tile"][2], location["tile"][3])]
                 del chunks[(0, 0, 0, 0)][(location["tile"][0], location["tile"][1])][(location["tile"][2], location["tile"][3])]
                 location["tile"] = [0, 0, 0, 0]

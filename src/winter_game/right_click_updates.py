@@ -128,7 +128,7 @@ def right_click(
                 chunks[location["room"]][grid_position[0]][grid_position[1]] = Tile(
                     "corpse", inventory
                 )
-                chunks[(0, 0, 0, 0)][(0, 0)][(0, 2)] = Tile("player", {})
+                chunks[(0, 0, 0, 0)][(0, 0)][(0, 2)] = Tile("player")
                 location["tile"] = [0, 0, 0, 2]
                 location["real"] = [0, 0, 0, 2]
                 location["room"] = (0, 0, 0, 0)

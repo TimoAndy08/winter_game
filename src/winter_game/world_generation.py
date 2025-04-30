@@ -36,37 +36,48 @@ def generate_chunk(
                         3,
                     )
                     if moisture_value > 0 and -0.25 > elevation_value:
-                        tile[tile_pos] = Tile("ice", {})
+                        tile[tile_pos] = Tile("ice")
                     elif moisture_value > -0.15 and -0.2 > elevation_value:
                         tile[tile_pos] = Tile("flint", {"flint": 1})
                     elif 0.1 > elevation_value > -0.1 and -0.40 > moisture_value and tile_x < 15 and tile_y < 15:
                         tile[tile_pos] = Tile("big rock", {"rock": 6})
                     elif 0.1 > elevation_value > -0.2 and -0.35 > moisture_value:
-                        tile[tile_pos] = Tile("rock", {})
+                        tile[tile_pos] = Tile("rock")
                     elif 0.03 > elevation_value > -0.03 and moisture_value > 0.47:
-                        tile[tile_pos] = Tile("mushroom hut", {})
+                        tile[tile_pos] = Tile("mushroom hut")
                     elif 0.1 > elevation_value > -0.1 and moisture_value > 0.45:
                         tile[tile_pos] = Tile("mushroom", {"spore": 2})
                     elif 0.15 > elevation_value > -0.15 and moisture_value > 0.4:
-                        tile[tile_pos] = Tile("spore", {})
+                        tile[tile_pos] = Tile("spore")
                     elif elevation_value > 0.3 and 0.3 > moisture_value > 0.2:
                         tile[tile_pos] = Tile("tree", {"wood": 4, "sapling": 2})
                     elif elevation_value > 0.25 and 0.35 > moisture_value > 0.15:
                         tile[tile_pos] = Tile("treeling", {"wood": 2, "sapling": 1})
                     elif elevation_value > 0.15 and 0.4 > moisture_value > 0.1:
-                        tile[tile_pos] = Tile("sapling", {})
+                        tile[tile_pos] = Tile("sapling")
                     elif -0.02 > elevation_value > -0.03 and 0.28 > moisture_value > 0.27:
                         tile[tile_pos] = Tile("rabbit hole", {"rabbit adult": 2, "rabbit child": 2})
                     elif 0 > elevation_value > -0.05 and 0.3 > moisture_value > 0.25:
-                        tile[tile_pos] = Tile("carrot", {})
+                        tile[tile_pos] = Tile("carrot")
                     elif -0.15 > elevation_value and 0.3 > moisture_value > 0.2:
-                        tile[tile_pos] = Tile("clay", {})
+                        tile[tile_pos] = Tile("clay")
                     elif 0.1 > elevation_value > 0.05 and 0.4 > moisture_value > 0.35:
-                        tile[tile_pos] = Tile("bluebell", {})
+                        tile[tile_pos] = Tile("bluebell")
                     if tile_pos in tile:
                         tile_size = MULTI_TILES.get(tile[tile_pos].kind, (1, 1))
+                        tile_x -= tile_size[0] - 1
+                        tile_y -= tile_size[1] - 1
+                        can_place = True
                         for x in range(0, tile_size[0]):
-                            if x != 0:
-                                tile[(tile_x + x, tile_y)] = Tile("left", {})
-                            for y in range(1, tile_size[1]):
-                                tile[(tile_x + x, tile_y + y)] = Tile("up", {})
+                            for y in range(0, tile_size[1]):
+                                if (tile_x + x, tile_y + y) in tile and "unbreak" in tile[(tile_x + x, tile_y + y)].attributes:
+                                    can_place = False
+                        if can_place:
+                            tile[((tile_x, tile_y))] = tile[tile_pos]
+                            for x in range(0, tile_size[0]):
+                                if x != 0:
+                                    tile[(tile_x + x, tile_y)] = Tile("left")
+                                for y in range(1, tile_size[1]):
+                                    tile[(tile_x + x, tile_y + y)] = Tile("up")
+                        else:
+                            del tile[tile_pos]
