@@ -1,6 +1,6 @@
 from json import loads
+from ast import literal_eval
 from .tile_class import Tile
-from .tile_info import UNBREAK_TILES
 
 def parse_tuple_key(s):
     return tuple(int(float(x)) for x in s.strip(" ()").split(",") if x)
@@ -31,7 +31,6 @@ def deserialize_chunks(serialized_chunks):
             chunks[room_pos][chunk_pos] = {}
             for tile_key, tile_data in tile_dict.items():
                 tile_pos = (ord(tile_key[0]) - 97, ord(tile_key[1]) - 97)
+                tile_data = literal_eval(tile_data)
                 chunks[room_pos][chunk_pos][tile_pos] = Tile.from_dict(tile_data)
-                if chunks[room_pos][chunk_pos][tile_pos].kind in UNBREAK_TILES[chunks[(0, 0, 0, 0)][(room_pos[0], room_pos[1])][(room_pos[2], room_pos[3])].kind]:
-                    chunks[room_pos][chunk_pos][tile_pos].attributes = "unbreak"
     return chunks

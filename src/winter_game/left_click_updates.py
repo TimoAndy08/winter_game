@@ -1,4 +1,5 @@
-from .tile_info import TILE_ATTRIBUTES, MULTI_TILES, FOOD, STORAGE, RECIPES, UNBREAK_TILES, FLOOR
+from .tile_info import TILE_ATTRIBUTES, MULTI_TILES, FOOD, STORAGE, FLOOR
+from .recipes_info import RECIPES
 from .tile_class import Tile
 from .room_generation import generate_room
 from .crafting_system import recipe
@@ -30,8 +31,6 @@ def left_click(
             if len(inventory) > inventory_number:
                 can_place = True
                 inventory_key = list(inventory.keys())[inventory_number]
-                if inventory_key in UNBREAK_TILES[chunks[(0, 0, 0, 0)][(location["room"][0], location["room"][1])][(location["room"][2], location["room"][3])].kind]:
-                    can_place = False
                 if inventory_key not in FLOOR:
                     if is_not_tile or is_empty_kind:
                         if "eat" in TILE_ATTRIBUTES.get(inventory_key, ()):
@@ -95,7 +94,7 @@ def left_click(
             location["real"] = [0, 0, 0, 0]
             location["mined"] = ((0, 0), (0, 0))
             if location["room"] in chunks:
-                chunks[location["room"]][0, 0][0, 0] = Tile("player", inventory, chunks[location["room"]][0, 0][0, 0].floor, health, max_health, chunks[location["room"]][0, 0][0, 0].floor_health, chunks[location["room"]][0, 0][0, 0].floor_break)
+                chunks[location["room"]][0, 0][0, 0] = Tile("player", inventory, chunks[location["room"]][0, 0][0, 0].floor, health, max_health, chunks[location["room"]][0, 0][0, 0].floor_health, chunks[location["room"]][0, 0][0, 0].floor_unbreak)
                 chunks[0, 0, 0, 0][location["tile"][0], location["tile"][1]][location["tile"][2], location["tile"][3]] = Tile(floor = chunks[0, 0, 0, 0][location["tile"][0], location["tile"][1]][location["tile"][2], location["tile"][3]].floor)
                 location["tile"] = [0, 0, 0, 0]
             else:
@@ -106,12 +105,12 @@ def left_click(
                     chunks[location["room"]] = generate_room("mushroom block", (-3, -2), (5, 4))
                     chunks[location["room"]][0, 0][0, 1] = Tile("wooden door")
                     chunks[location["room"]][-1, -1][14, 15] = Tile("mushroom shaper")
-                chunks[location["room"]][0, 0][0, 0] = Tile("player", inventory, chunks[location["room"]][0, 0][0, 0].floor, health, max_health, chunks[location["room"]][0, 0][0, 0].floor_health, chunks[location["room"]][0, 0][0, 0].floor_break)
+                chunks[location["room"]][0, 0][0, 0] = Tile("player", inventory, chunks[location["room"]][0, 0][0, 0].floor, health, max_health, chunks[location["room"]][0, 0][0, 0].floor_health, chunks[location["room"]][0, 0][0, 0].floor_unbreak)
                 chunks[0, 0, 0, 0][(location["tile"][0], location["tile"][1])][(location["tile"][2], location["tile"][3])] = Tile(floor = chunks[0, 0, 0, 0][location["tile"][0], location["tile"][1]][location["tile"][2], location["tile"][3]].floor)
                 location["tile"] = [0, 0, 0, 0]
         elif "exit" in chunks[location["room"]][grid_position[0]][grid_position[1]].attributes:
             chunks[0, 0, 0, 0][0, 0][0, 2] = Tile("player", inventory, "void", health, max_health)
-            chunks[location["room"]][location["tile"][0], location["tile"][1]][location["tile"][2], location["tile"][3]] = Tile(floor = player_tile.floor, floor_health = player_tile.floor_health, floor_break = player_tile.floor_break)
+            chunks[location["room"]][location["tile"][0], location["tile"][1]][location["tile"][2], location["tile"][3]] = Tile(floor = player_tile.floor, floor_health = player_tile.floor_health, floor_unbreak = player_tile.floor_unbreak)
             location["real"] = [0, 0, 0, 2]
             location["tile"] = [*location["real"],]
             location["mined"] = ((0, 0), (0, 2))

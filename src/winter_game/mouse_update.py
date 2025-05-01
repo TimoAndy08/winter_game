@@ -1,5 +1,6 @@
 from .tile_rendering import SCREEN_SIZE
-from .tile_info import TILE_ATTRIBUTES, RECIPES
+from .tile_info import TILE_ATTRIBUTES
+from .recipes_info import RECIPES
 from .ui_rendering import INVENTORY_SIZE
 from .right_click_updates import right_click
 from .left_click_updates import left_click

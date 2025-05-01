@@ -129,10 +129,10 @@ def main() -> None:
             old_tile = old_chunk[old_tile_coords]
 
             if tile_coords not in chunk:
-                chunk[tile_coords] = Tile("player", inventory)
+                chunk[tile_coords] = Tile("player", inventory, health = health, max_health = max_health)
             elif chunk[tile_coords].kind == None:
                 exist_tile = chunk[tile_coords]
-                chunk[tile_coords] = Tile("player", inventory, exist_tile.floor, floor_health = exist_tile.floor_health, floor_break = exist_tile.floor_break)
+                chunk[tile_coords] = Tile("player", inventory, exist_tile.floor, health, max_health, exist_tile.floor_health, exist_tile.floor_unbreak)
             elif chunk[tile_coords].kind != "player":
                 location["real"] = [*location["old"]]
                 location["tile"] = [*location["old"]]
@@ -140,7 +140,7 @@ def main() -> None:
 
             if location["old"] != location["tile"]:
                 if isinstance(old_tile.floor, str):
-                    old_chunk[old_tile_coords] = Tile(floor = old_tile.floor, floor_health = old_tile.floor_health, floor_break = old_tile.floor_break)
+                    old_chunk[old_tile_coords] = Tile(floor = old_tile.floor, floor_health = old_tile.floor_health, floor_unbreak = old_tile.floor_unbreak)
                 else:
                     del old_chunk[old_tile_coords]
 
