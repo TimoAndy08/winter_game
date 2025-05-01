@@ -1,7 +1,7 @@
 import pygame as pg
 
 from .tile_rendering import window, IMAGES, SCREEN_SIZE
-from .tile_info import TILE_ATTRIBUTES, RECIPES, STORAGE
+from .tile_info import TILE_ATTRIBUTES, RECIPES, STORAGE, FLOOR
 
 pg.font.init()
 
@@ -10,6 +10,7 @@ UI_FONT = pg.font.SysFont("Lucida Console", 10 * UI_SCALE)
 BIG_UI_FONT = pg.font.SysFont("Lucida Console", 20 * UI_SCALE)
 SLOT_SIZE = (32 * UI_SCALE, 32 * UI_SCALE)
 TILE_SIZE = (16 * UI_SCALE, 24 * UI_SCALE)
+FLOOR_SIZE = (16 * UI_SCALE, 16 * UI_SCALE)
 HALF_SIZE = SCREEN_SIZE[0] // 2
 INVENTORY_SIZE = 12
 
@@ -61,13 +62,22 @@ def render_ui(inventory_number, inventory, machine_ui, recipe_number, health, ma
             )
     t = 0
     for item in inventory:
-        window.blit(
-            pg.transform.scale(IMAGES[item], TILE_SIZE),
-            (
-                SCREEN_SIZE[0] // 2 + (32 * t - 16 * INVENTORY_SIZE + 8) * UI_SCALE,
-                SCREEN_SIZE[1] - 28 * UI_SCALE,
-            ),
-        )
+        if item not in FLOOR:
+            window.blit(
+                pg.transform.scale(IMAGES[item], TILE_SIZE),
+                (
+                    SCREEN_SIZE[0] // 2 + (32 * t - 16 * INVENTORY_SIZE + 8) * UI_SCALE,
+                    SCREEN_SIZE[1] - 28 * UI_SCALE,
+                ),
+            )
+        else:
+            window.blit(
+                pg.transform.scale(IMAGES[item], FLOOR_SIZE),
+                (
+                    SCREEN_SIZE[0] // 2 + (32 * t - 16 * INVENTORY_SIZE + 8) * UI_SCALE,
+                    SCREEN_SIZE[1] - 20 * UI_SCALE,
+                ),
+            )
         window.blit(
             UI_FONT.render(str(inventory[item]), False, (19, 17, 18)),
             (
@@ -101,13 +111,22 @@ def render_ui(inventory_number, inventory, machine_ui, recipe_number, health, ma
                 ),
                 (SCREEN_SIZE[0] // 2 - 128 * UI_SCALE, SCREEN_SIZE[1] - 144 * UI_SCALE),
             )
-            window.blit(
-                pg.transform.scale(
-                    IMAGES[current_recipes[recipe_number][0][0]],
-                    (48 * UI_SCALE, 72 * UI_SCALE),
-                ),
-                (SCREEN_SIZE[0] // 2 - 104 * UI_SCALE, SCREEN_SIZE[1] - 132 * UI_SCALE),
-            )
+            if current_recipes[recipe_number][0][0] not in FLOOR:
+                window.blit(
+                    pg.transform.scale(
+                        IMAGES[current_recipes[recipe_number][0][0]],
+                        (48 * UI_SCALE, 72 * UI_SCALE),
+                    ),
+                    (SCREEN_SIZE[0] // 2 - 104 * UI_SCALE, SCREEN_SIZE[1] - 132 * UI_SCALE),
+                )
+            else:
+                window.blit(
+                    pg.transform.scale(
+                        IMAGES[current_recipes[recipe_number][0][0]],
+                        (48 * UI_SCALE, 48 * UI_SCALE),
+                    ),
+                    (SCREEN_SIZE[0] // 2 - 104 * UI_SCALE, SCREEN_SIZE[1] - 108 * UI_SCALE),
+                )
             window.blit(
                 BIG_UI_FONT.render(
                     str(current_recipes[recipe_number][0][1]), False, (19, 17, 18)
@@ -117,7 +136,10 @@ def render_ui(inventory_number, inventory, machine_ui, recipe_number, health, ma
             for inputs in range(0, len(current_recipes[recipe_number][1])):
                 position = (SCREEN_SIZE[0] // 2 + ((40 * (inputs % 4) - 32)) * UI_SCALE, SCREEN_SIZE[1] + (32 * (inputs // 4) - 144) * UI_SCALE)
                 window.blit(pg.transform.scale(IMAGES["inventory_slot"], SLOT_SIZE), position)
-                window.blit(pg.transform.scale(IMAGES[current_recipes[recipe_number][1][inputs][0]], TILE_SIZE), (position[0] + 8 * UI_SCALE, position[1] + 4 * UI_SCALE),)
+                if current_recipes[recipe_number][1][inputs][0] not in FLOOR:
+                    window.blit(pg.transform.scale(IMAGES[current_recipes[recipe_number][1][inputs][0]], TILE_SIZE), (position[0] + 8 * UI_SCALE, position[1] + 4 * UI_SCALE),)
+                else:
+                    window.blit(pg.transform.scale(IMAGES[current_recipes[recipe_number][1][inputs][0]], FLOOR_SIZE), (position[0] + 8 * UI_SCALE, position[1] + 12 * UI_SCALE),)
                 window.blit(UI_FONT.render(str(current_recipes[recipe_number][1][inputs][1]), False, (19, 17, 18)), (position[0] + 8 * UI_SCALE, position[1] + 32 * UI_SCALE))
         elif "store" in TILE_ATTRIBUTES.get(machine_ui, ()):
             for item in range(0, STORAGE[machine_ui][0]):
@@ -125,6 +147,9 @@ def render_ui(inventory_number, inventory, machine_ui, recipe_number, health, ma
             t = 0
             for item in machine_inventory:
                 position = (SCREEN_SIZE[0] // 2 + (32 * (t % 7) - 104) * UI_SCALE, SCREEN_SIZE[1] + (32 * (t // 7) - 140) * UI_SCALE)
-                window.blit(pg.transform.scale(IMAGES[item], TILE_SIZE), position)
+                if item not in FLOOR:
+                    window.blit(pg.transform.scale(IMAGES[item], TILE_SIZE), position)
+                else:
+                    window.blit(pg.transform.scale(IMAGES[item], FLOOR_SIZE), (position[0], position[1] + 8 * UI_SCALE))
                 window.blit(UI_FONT.render(str(machine_inventory[item]), False, (19, 17, 18)), position)
                 t += 1

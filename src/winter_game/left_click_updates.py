@@ -21,12 +21,11 @@ def left_click(
 ):
     if machine_ui == "game":
         is_not_tile = (grid_position[1] not in chunks[location["room"]][grid_position[0]])
+        player_tile = chunks[location["room"]][location["tile"][0], location["tile"][1]][location["tile"][2], location["tile"][3]]
         if not is_not_tile:
             is_empty_kind = not isinstance(chunks[location["room"]][grid_position[0]][grid_position[1]].kind, str)
-            is_empty_floor = not isinstance(chunks[location["room"]][grid_position[0]][grid_position[1]].floor, str)
         else:
             is_empty_kind = False
-            is_empty_floor = False
         if is_not_tile or is_empty_kind:
             if len(inventory) > inventory_number:
                 can_place = True
@@ -91,44 +90,31 @@ def left_click(
             location["opened"] = (grid_position[0], grid_position[1])
             if "store" in chunks[location["room"]][grid_position[0]][grid_position[1]].attributes:
                 machine_inventory = chunks[location["room"]][grid_position[0]][grid_position[1]].inventory
-        elif "enter" in chunks[location["room"]][grid_position[0]][
-            grid_position[1]
-        ].attributes and location["room"] == (0, 0, 0, 0):
-            location["room"] = (
-                *grid_position[0],
-                *grid_position[1],
-            )
+        elif "enter" in chunks[location["room"]][grid_position[0]][grid_position[1]].attributes and location["room"] == (0, 0, 0, 0):
+            location["room"] = (*grid_position[0], *grid_position[1],)
             location["real"] = [0, 0, 0, 0]
-            location["mined"] = [0, 0, 0, 0]
+            location["mined"] = ((0, 0), (0, 0))
             if location["room"] in chunks:
-                chunks[location["room"]][(0, 0)][(0, 0)] = chunks[(0, 0, 0, 0)][
-                    (location["tile"][0], location["tile"][1])
-                ][(location["tile"][2], location["tile"][3])]
-                del chunks[(0, 0, 0, 0)][(location["tile"][0], location["tile"][1])][
-                    (location["tile"][2], location["tile"][3])
-                ]
+                chunks[location["room"]][0, 0][0, 0] = Tile("player", inventory, chunks[location["room"]][0, 0][0, 0].floor, health, max_health, chunks[location["room"]][0, 0][0, 0].floor_health, chunks[location["room"]][0, 0][0, 0].floor_break)
+                chunks[0, 0, 0, 0][location["tile"][0], location["tile"][1]][location["tile"][2], location["tile"][3]] = Tile(floor = chunks[0, 0, 0, 0][location["tile"][0], location["tile"][1]][location["tile"][2], location["tile"][3]].floor)
                 location["tile"] = [0, 0, 0, 0]
             else:
-                if (chunks[(0, 0, 0, 0)][grid_position[0]][grid_position[1]].kind == "wooden cabin"):
-                    chunks[location["room"]] = generate_room("wood", (-5, -4), (8, 6))
-                    chunks[location["room"]][(0, 0)][(0, 1)] = Tile("wooden door")
-                elif (chunks[(0, 0, 0, 0)][grid_position[0]][grid_position[1]].kind == "mushroom hut"):
+                if chunks[0, 0, 0, 0][grid_position[0]][grid_position[1]].kind == "wooden cabin":
+                    chunks[location["room"]] = generate_room("wood", (-5, -4), (8, 6), "wood floor")
+                    chunks[location["room"]][0, 0][0, 1] = Tile("wooden door")
+                elif chunks[0, 0, 0, 0][grid_position[0]][grid_position[1]].kind == "mushroom hut":
                     chunks[location["room"]] = generate_room("mushroom block", (-3, -2), (5, 4))
-                    chunks[location["room"]][(0, 0)][(0, 1)] = Tile("wooden door")
-                    chunks[location["room"]][(-1, -1)][(14, 15)] = Tile("mushroom shaper")
-                chunks[location["room"]][(0, 0)][(0, 0)] = chunks[(0, 0, 0, 0)][(location["tile"][0], location["tile"][1])][(location["tile"][2], location["tile"][3])]
-                del chunks[(0, 0, 0, 0)][(location["tile"][0], location["tile"][1])][(location["tile"][2], location["tile"][3])]
+                    chunks[location["room"]][0, 0][0, 1] = Tile("wooden door")
+                    chunks[location["room"]][-1, -1][14, 15] = Tile("mushroom shaper")
+                chunks[location["room"]][0, 0][0, 0] = Tile("player", inventory, chunks[location["room"]][0, 0][0, 0].floor, health, max_health, chunks[location["room"]][0, 0][0, 0].floor_health, chunks[location["room"]][0, 0][0, 0].floor_break)
+                chunks[0, 0, 0, 0][(location["tile"][0], location["tile"][1])][(location["tile"][2], location["tile"][3])] = Tile(floor = chunks[0, 0, 0, 0][location["tile"][0], location["tile"][1]][location["tile"][2], location["tile"][3]].floor)
                 location["tile"] = [0, 0, 0, 0]
-        elif (
-            "exit"
-            in chunks[location["room"]][grid_position[0]][grid_position[1]].attributes
-        ):
-            chunks[(0, 0, 0, 0)][0, 0][0, 2] = Tile("player", inventory, "void", health, max_health)
-            del chunks[location["room"]][location["tile"][0], location["tile"][1]][location["tile"][2], location["tile"][3]]
-            i = -1
+        elif "exit" in chunks[location["room"]][grid_position[0]][grid_position[1]].attributes:
+            chunks[0, 0, 0, 0][0, 0][0, 2] = Tile("player", inventory, "void", health, max_health)
+            chunks[location["room"]][location["tile"][0], location["tile"][1]][location["tile"][2], location["tile"][3]] = Tile(floor = player_tile.floor, floor_health = player_tile.floor_health, floor_break = player_tile.floor_break)
             location["real"] = [0, 0, 0, 2]
             location["tile"] = [*location["real"],]
-            location["mined"] = [*location["real"],]
+            location["mined"] = ((0, 0), (0, 2))
             location["room"] = (0, 0, 0, 0)
             machine_ui = "game"
         elif (
@@ -137,11 +123,6 @@ def left_click(
         ):
             if 9 / 16 <= (tick / DAY_LENGTH) % 1 < 15 / 16:
                 tick = (tick // DAY_LENGTH + 9 / 16) * DAY_LENGTH
-        elif is_empty_floor:
-            inventory[inventory_key] -= 1
-            chunks[location["room"]][grid_position[0]][grid_position[1]] = Tile(chunks[location["room"]][grid_position[0]][grid_position[1]].kind, floor = inventory_key)
-            if inventory[inventory_key] == 0:
-                del inventory[inventory_key]
     elif "store" in TILE_ATTRIBUTES.get(machine_ui, ()):
         position[0] -= SCREEN_SIZE[0] // 2
         machine_inventory = chunks[location["room"]][location["opened"][0]][

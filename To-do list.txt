@@ -1,7 +1,7 @@
 To-implement:
 
 - Fix item duplication glitch
-- Implement floors into the mining
+- Fix multi-tile and floor cooperation
 - Make certain tiles not being able to be placed on certain floors
 - Dungeons
 - Rabbits

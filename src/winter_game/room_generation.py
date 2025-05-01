@@ -1,18 +1,18 @@
 from .tile_class import Tile
 
 
-def generate_room(material: str, location: tuple[int, int], size: tuple[int, int]):
+def generate_room(material: str, location: tuple[int, int], size: tuple[int, int], floor: str = None):
     room = {}
     for x in range(location[0], location[0] + size[0]):
         for y in range(location[1], location[1] + size[1]):
-            if (
-                x == location[0]
-                or y == location[1]
-                or x == location[0] + size[0] - 1
-                or y == location[1] + size[1] - 1
-            ):
-                if (x // 16, y // 16) not in room:
-                    room[x // 16, y // 16] = {}
-                room[(x // 16, y // 16)][(x % 16, y % 16)] = Tile(material)
-                room[(x // 16, y // 16)][(x % 16, y % 16)].attributes = ("unbreak",)
+            left = (x == location[0])
+            top = (y == location[1])
+            right = (x == location[0] + size[0] - 1)
+            bottom = (y == location[0] + size[1])
+            if (x // 16, y // 16) not in room:
+                room[x // 16, y // 16] = {}
+            if left or top or right or bottom:
+                room[x // 16, y // 16][x % 16, y % 16] = Tile(material, floor = floor, attributes = ("unbreak",), floor_break = False)
+            else:
+                room[x // 16, y // 16][x % 16, y % 16] = Tile(floor = floor, floor_break = False)
     return room

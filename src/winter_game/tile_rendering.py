@@ -122,26 +122,34 @@ def render_tiles(
                             ),
                         )
     
-    if (location["mined"][2], location["mined"][3]) in chunks[(location["mined"][0], location["mined"][1])] and isinstance(chunks[(location["mined"][0], location["mined"][1])][(location["mined"][2], location["mined"][3])].kind, str):
+    if location["mined"][1] in chunks[location["mined"][0]]:
         placement = (
             camera[0]
-            + (location["mined"][2] * 64 + location["mined"][0] * 1024) * zoom,
+            + (location["mined"][1][0] * 64 + location["mined"][0][0] * 1024) * zoom,
             camera[1]
-            + (location["mined"][3] * 64 + location["mined"][1] * 1024 + 60) * zoom,
+            + (location["mined"][1][1] * 64 + location["mined"][0][1] * 1024 + 60) * zoom,
         )
-        last_mined_tile = chunks[(location["mined"][0], location["mined"][1])][
-            (location["mined"][2], location["mined"][3])
-        ]
-        window.blit(
-            pg.transform.scale(IMAGES["tiny_bar"], (64 * zoom, 16 * zoom)), placement
-        )
-        pg.draw.rect(
-            window,
-            (181, 102, 60),
-            pg.Rect(
-                placement[0] + 4 * zoom,
-                placement[1] + 4 * zoom,
-                last_mined_tile.health * 44 * zoom / last_mined_tile.max_health,
-                8 * zoom,
-            ),
-        )
+        last_mined_tile = chunks[location["mined"][0]][location["mined"][1]]
+        window.blit(pg.transform.scale(IMAGES["tiny_bar"], (64 * zoom, 16 * zoom)), placement)
+        if isinstance(chunks[location["mined"][0]][location["mined"][1]].kind, str):
+            pg.draw.rect(
+                window,
+                (181, 102, 60),
+                pg.Rect(
+                    placement[0] + 4 * zoom,
+                    placement[1] + 4 * zoom,
+                    last_mined_tile.health * 44 * zoom / last_mined_tile.max_health,
+                    8 * zoom,
+                ),
+            )
+        elif isinstance(chunks[location["mined"][0]][location["mined"][1]].floor, str):
+            pg.draw.rect(
+                window,
+                (181, 102, 60),
+                pg.Rect(
+                    placement[0] + 4 * zoom,
+                    placement[1] + 4 * zoom,
+                    last_mined_tile.floor_health * 44 * zoom / last_mined_tile.max_floor_health,
+                    8 * zoom,
+                ),
+            )

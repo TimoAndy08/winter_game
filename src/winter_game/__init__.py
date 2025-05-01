@@ -17,7 +17,7 @@ pg.init()
 
 def main() -> None:
     clock = pg.time.Clock()
-    location = {"mined": [0, 0, 0, 2], "opened": ((0, 0), (0, 0))}
+    location = {"mined": ((0, 0), (0, 2)), "opened": ((0, 0), (0, 0))}
     run = True
     zoom = 1
     inventory_number = 0
@@ -50,7 +50,7 @@ def main() -> None:
                                 location["real"] = [0, 0, 0, 2]
                                 location["room"] = (0, 0, 0, 0)
                                 noise_offset = generate_chunk(0, 0, chunks[location["room"]])
-                                chunks[location["room"]][(0, 0)] = {(0, 0): Tile("obelisk"), (0, 1): Tile("up"), (0, 2): Tile("player", {"wooden cabin": 1}, floor = "void")}
+                                chunks[location["room"]][(0, 0)] = {(0, 0): Tile("obelisk"), (0, 1): Tile("up"), (0, 2): Tile("player", {"wooden cabin": 1, "wood floor": 1}, floor = "void")}
                                 tick = 0
                             elif menu_placement == "save_selection":
                                 menu_placement = "main_game"
@@ -131,8 +131,8 @@ def main() -> None:
             if tile_coords not in chunk:
                 chunk[tile_coords] = Tile("player", inventory)
             elif chunk[tile_coords].kind == None:
-                existing_floor = chunk[tile_coords].floor
-                chunk[tile_coords] = Tile("player", inventory, existing_floor)
+                exist_tile = chunk[tile_coords]
+                chunk[tile_coords] = Tile("player", inventory, exist_tile.floor, floor_health = exist_tile.floor_health, floor_break = exist_tile.floor_break)
             elif chunk[tile_coords].kind != "player":
                 location["real"] = [*location["old"]]
                 location["tile"] = [*location["old"]]
@@ -140,7 +140,7 @@ def main() -> None:
 
             if location["old"] != location["tile"]:
                 if isinstance(old_tile.floor, str):
-                    old_chunk[old_tile_coords] = Tile(floor = old_tile.floor)
+                    old_chunk[old_tile_coords] = Tile(floor = old_tile.floor, floor_health = old_tile.floor_health, floor_break = old_tile.floor_break)
                 else:
                     del old_chunk[old_tile_coords]
 

@@ -143,7 +143,6 @@ GROW_CHANCE = {
 TILE_RESISTANCE = {
     "clay": 1,
     "rock": 1,
-    "ice": 1,
     "tree": 1,
     "rabbit adult": 1,
     "sawbench": 1,
@@ -215,5 +214,7 @@ TILE_HEALTH = {
     "workbench": 5,
 }
 UNBREAK_TILES = {"obelisk": "void", "wooden cabin": "wood", "mushroom hut": "mushroom block"}
-FLOOR = ["void"]
-FLOOR_HEALTH = {"void": 1}
+FLOOR = ["void", "ice", "wood floor"]
+FLOOR_HEALTH = {"void": 1, "ice": 12, "wood floor": 6}
+FLOOR_BREAK = {"void": False}
+FLOOR_RESISTANCE = {"ice": 1}
