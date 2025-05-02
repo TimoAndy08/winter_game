@@ -1,4 +1,4 @@
-from .tile_info import TILE_ATTRIBUTES, MULTI_TILES, FOOD, STORAGE, FLOOR
+from .tile_info import TILE_ATTRIBUTES, MULTI_TILES, FOOD, STORAGE, FLOOR, FLOOR_TYPE
 from .recipes_info import RECIPES
 from .tile_class import Tile
 from .room_generation import generate_room
@@ -24,27 +24,36 @@ def left_click(
         is_not_tile = (grid_position[1] not in chunks[location["room"]][grid_position[0]])
         player_tile = chunks[location["room"]][location["tile"][0], location["tile"][1]][location["tile"][2], location["tile"][3]]
         if not is_not_tile:
-            is_empty_kind = not isinstance(chunks[location["room"]][grid_position[0]][grid_position[1]].kind, str)
+            is_kind = isinstance(chunks[location["room"]][grid_position[0]][grid_position[1]].kind, str)
         else:
-            is_empty_kind = False
-        if is_not_tile or is_empty_kind:
+            is_kind = True
+        if is_not_tile or not is_kind:
             if len(inventory) > inventory_number:
                 can_place = True
                 inventory_key = list(inventory.keys())[inventory_number]
                 if inventory_key not in FLOOR:
-                    if is_not_tile or is_empty_kind:
+                    if is_not_tile or not is_kind:
                         if "eat" in TILE_ATTRIBUTES.get(inventory_key, ()):
                             if health < max_health:
-                                chunks[location["room"]][(location["tile"][0], location["tile"][1])][
-                                    (location["tile"][2], location["tile"][3])
-                                ].health = min(health + FOOD[inventory_key], max_health)
+                                chunks[location["room"]][location["tile"][0], location["tile"][1]][location["tile"][2], location["tile"][3]].health = min(health + FOOD[inventory_key], max_health)
                                 can_place = False
                                 inventory[inventory_key] -= 1
-                        if "multi" in TILE_ATTRIBUTES.get(inventory_key, ()):
-                            for x in range(0, MULTI_TILES[inventory_key][0]):
-                                for y in range(0, MULTI_TILES[inventory_key][1]):
-                                    if ((grid_position[1][0] + x) % 16, (grid_position[1][1] + y) % 16) in chunks[location["room"]][(grid_position[0][0] + (grid_position[1][0] + x) // 16, grid_position[0][1] + (grid_position[1][1] + y) // 16)] and isinstance(chunks[location["room"]][(grid_position[0][0] + (grid_position[1][0] + x) // 16, grid_position[0][1] + (grid_position[1][1] + y) // 16)][((grid_position[1][0] + x) % 16, (grid_position[1][1] + y) % 16)].kind, str):
+                        tile_size = MULTI_TILES.get(inventory_key, (1, 1))
+                        for x in range(0, tile_size[0]):
+                            for y in range(0, tile_size[1]):
+                                tile_coord = (int((grid_position[1][0] + x) % 16), int((grid_position[1][1] + y) % 16))
+                                chunk_coord = (grid_position[0][0] + (grid_position[1][0] + x) // 16, grid_position[0][1] + (grid_position[1][1] + y) // 16)
+                                if tile_coord in chunks[location["room"]][chunk_coord]:
+                                    current_tile = chunks[location["room"]][chunk_coord][tile_coord]
+                                    tile_floor_type = FLOOR_TYPE.get(current_tile.floor, "empty")
+                                    if tile_floor_type == "block":
                                         can_place = False
+                                    elif "grow" in TILE_ATTRIBUTES.get(inventory_key, ()) and tile_floor_type != "soil":
+                                        can_place = False
+                                    elif isinstance(current_tile.kind, str):
+                                        can_place = False
+                                elif "grow" in TILE_ATTRIBUTES.get(inventory_key, ()):
+                                    can_place = False
                         if can_place:
                             inventory[inventory_key] -= 1
                             if "multi" in TILE_ATTRIBUTES.get(inventory_key, ()):

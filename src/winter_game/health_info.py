@@ -56,7 +56,8 @@ TILE_HEALTH = {
     "workbench": 5,
 }
 FLOOR_HEALTH = {
+    "dirt": 5,
     "ice": 12,
     "void": 1,
-    "wood floor": 6
+    "wood floor": 6,
 }

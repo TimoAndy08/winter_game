@@ -3,7 +3,7 @@ import os
 
 import pygame as pg
 
-from .tile_info import MULTI_TILES
+from .tile_info import MULTI_TILES, FLOOR
 from .light import LIGHTS
 
 pg.init()
@@ -33,6 +33,13 @@ def render_tiles(
     else:
         window.fill((19, 17, 18))
     camera = [SCREEN_SIZE[0] / 2 - ((location["tile"][2] * TILE_SIZE + location["tile"][0] * CHUNK_SIZE + 32) * zoom), SCREEN_SIZE[1] / 2 - ((location["tile"][3] * TILE_SIZE + location["tile"][1] * CHUNK_SIZE + 32) * zoom)]
+    scaled_image = {}
+    for image in IMAGES:
+        if image in FLOOR:
+            scaled_image[image] = pg.transform.scale(IMAGES[image], (64 * zoom, 64 * zoom))
+        else:
+            size = MULTI_TILES.get(image, (1, 1))
+            scaled_image[image] = pg.transform.scale(IMAGES[image], (64 * size[0] * zoom, (size[1] * 64 + 32) * zoom))
     for chunk_x in range(-3, 4):
         for chunk_y in range(-3, 4):
             chunk = (chunk_x + location["tile"][0], chunk_y + location["tile"][1])
@@ -41,36 +48,13 @@ def render_tiles(
                     for x in range(0, 16):
                         tile = (x, y)
                         if tile in chunks[chunk] and "point" not in chunks[chunk][tile].attributes:
-                            placement = (
-                                camera[0] + (x * 64 + chunk[0] * 1024) * zoom,
-                                camera[1] + (y * 64 + chunk[1] * 1024 - 32) * zoom,
-                            )
-                            size = MULTI_TILES.get(chunks[chunk][tile].kind, (1, 1))
-                            if (
-                                -64 * zoom * size[0] <= placement[0] <= SCREEN_SIZE[0]
-                                and -64 * zoom * size[1]
-                                <= placement[1]
-                                <= SCREEN_SIZE[1]
-                            ):
+                            current_tile = chunks[chunk][tile]
+                            placement = (camera[0] + (x * 64 + chunk[0] * 1024) * zoom, camera[1] + (y * 64 + chunk[1] * 1024 - 32) * zoom,)
+                            if -64 * zoom * size[0] <= placement[0] <= SCREEN_SIZE[0] and -64 * zoom * size[1] <= placement[1] <= SCREEN_SIZE[1]:
                                 if isinstance(chunks[chunk][tile].floor, str):
-                                    window.blit(
-                                        pg.transform.scale(
-                                            IMAGES[chunks[chunk][tile].floor],
-                                            (64 * zoom, 64 * zoom),
-                                        ),
-                                        (placement[0], placement[1] + 32 * zoom),
-                                    )
+                                    window.blit(scaled_image[current_tile.floor], (placement[0], placement[1] + 32 * zoom))
                                 if isinstance(chunks[chunk][tile].kind, str):
-                                    window.blit(
-                                        pg.transform.scale(
-                                            IMAGES[chunks[chunk][tile].kind],
-                                            (
-                                                64 * zoom * size[0],
-                                                (32 + 64 * size[1]) * zoom,
-                                            ),
-                                        ),
-                                        placement,
-                                    )
+                                    window.blit(scaled_image[current_tile.kind], placement)
     if len(inventory) > inventory_number:
         placement = (
             camera[0]

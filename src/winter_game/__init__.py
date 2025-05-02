@@ -50,7 +50,7 @@ def main() -> None:
                                 location["real"] = [0, 0, 0, 2]
                                 location["room"] = (0, 0, 0, 0)
                                 noise_offset = generate_chunk(0, 0, chunks[location["room"]])
-                                chunks[location["room"]][(0, 0)] = {(0, 0): Tile("obelisk"), (0, 1): Tile("up"), (0, 2): Tile("player", {"wooden cabin": 1, "wood floor": 1}, floor = "void")}
+                                chunks[location["room"]][(0, 0)] = {(0, 0): Tile("obelisk"), (0, 1): Tile("up"), (0, 2): Tile("player", floor = "void")}
                                 tick = 0
                             elif menu_placement == "save_selection":
                                 menu_placement = "main_game"

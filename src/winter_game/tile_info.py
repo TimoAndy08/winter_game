@@ -1,9 +1,9 @@
 TILE_ATTRIBUTES = {
     "player": ("open", "craft"),
-    "sapling": ("grow"),
+    "sapling": ("grow",),
     "treeling": ("grow", "no_pickup"),
     "tree": ("no_pickup"),
-    "spore": ("grow"),
+    "spore": ("grow",),
     "mushroom": ("eat"),
     "carrot": ("grow", "eat"),
     "carroot": ("no_pickup"),
@@ -63,6 +63,7 @@ TOOL_REQUIRED = {
     "mushroom hut": "axe",
     "mushroom block": "axe",
     "mushroom shaper": "axe",
+    "dirt": "shovel",
 }
 TOOL_EFFICIENCY = {"flint": 1, "rock": 2}
 MULTI_TILES = {
@@ -114,6 +115,7 @@ TILE_RESISTANCE = {
     "mushroom shaper": 2,
 }
 UNBREAK = ("rabbit hole", "wooden door", "left", "up", "obelisk")
-FLOOR = ("void", "ice", "wood floor")
+FLOOR = ("void", "ice", "wood floor", "dirt")
 FLOOR_UNBREAK = ("void",)
 FLOOR_RESISTANCE = {"ice": 1}
+FLOOR_TYPE = {"void": "block", "ice": "block", "dirt": "soil"}
