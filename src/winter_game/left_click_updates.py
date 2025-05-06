@@ -29,15 +29,14 @@ def left_click(
             is_kind = True
         if is_not_tile or not is_kind:
             if len(inventory) > inventory_number:
-                can_place = True
                 inventory_key = list(inventory.keys())[inventory_number]
                 if inventory_key not in FLOOR:
                     if is_not_tile or not is_kind:
                         if "eat" in TILE_ATTRIBUTES.get(inventory_key, ()):
                             if health < max_health:
                                 chunks[location["room"]][location["tile"][0], location["tile"][1]][location["tile"][2], location["tile"][3]].health = min(health + FOOD[inventory_key], max_health)
-                                can_place = False
                                 inventory[inventory_key] -= 1
+                                return (machine_ui, chunks, location, machine_inventory, tick)
                         tile_size = MULTI_TILES.get(inventory_key, (1, 1))
                         for x in range(0, tile_size[0]):
                             for y in range(0, tile_size[1]):
@@ -46,54 +45,46 @@ def left_click(
                                 if tile_coord in chunks[location["room"]][chunk_coord]:
                                     current_tile = chunks[location["room"]][chunk_coord][tile_coord]
                                     tile_floor_type = FLOOR_TYPE.get(current_tile.floor, "empty")
-                                    if tile_floor_type == "block":
-                                        can_place = False
-                                    elif "grow" in TILE_ATTRIBUTES.get(inventory_key, ()) and tile_floor_type != "soil":
-                                        can_place = False
-                                    elif isinstance(current_tile.kind, str):
-                                        can_place = False
+                                    if tile_floor_type == "block" or "grow" in TILE_ATTRIBUTES.get(inventory_key, ()) and tile_floor_type != "soil" or isinstance(current_tile.kind, str):
+                                        return (machine_ui, chunks, location, machine_inventory, tick)
                                 elif "grow" in TILE_ATTRIBUTES.get(inventory_key, ()):
-                                    can_place = False
-                        if can_place:
-                            inventory[inventory_key] -= 1
-                            if "multi" in TILE_ATTRIBUTES.get(inventory_key, ()):
-                                for x in range(0, MULTI_TILES[inventory_key][0]):
+                                    return (machine_ui, chunks, location, machine_inventory, tick)
+                        inventory[inventory_key] -= 1
+                        if "multi" in TILE_ATTRIBUTES.get(inventory_key, ()):
+                            for x in range(0, MULTI_TILES[inventory_key][0]):
+                                chunks[location["room"]][
+                                    (
+                                        grid_position[0][0]
+                                        + (grid_position[1][0] + x) // 16,
+                                        grid_position[0][1],
+                                    )
+                                ][
+                                    ((grid_position[1][0] + x) % 16, grid_position[1][1])
+                                ] = Tile("left")
+                                for y in range(1, MULTI_TILES[inventory_key][1]):
                                     chunks[location["room"]][
                                         (
                                             grid_position[0][0]
                                             + (grid_position[1][0] + x) // 16,
-                                            grid_position[0][1],
+                                            grid_position[0][1]
+                                            + (grid_position[1][1] + y) // 16,
                                         )
                                     ][
-                                        ((grid_position[1][0] + x) % 16, grid_position[1][1])
-                                    ] = Tile("left")
-                                    for y in range(1, MULTI_TILES[inventory_key][1]):
-                                        chunks[location["room"]][
-                                            (
-                                                grid_position[0][0]
-                                                + (grid_position[1][0] + x) // 16,
-                                                grid_position[0][1]
-                                                + (grid_position[1][1] + y) // 16,
-                                            )
-                                        ][
-                                            (
-                                                (grid_position[1][0] + x) % 16,
-                                                (grid_position[1][1] + y) % 16,
-                                            )
-                                        ] = Tile("up")
-                            if is_not_tile:
-                                chunks[location["room"]][grid_position[0]][grid_position[1]] = Tile(inventory_key)
-                            else:
-                                chunks[location["room"]][grid_position[0]][grid_position[1]] = Tile(inventory_key, floor = chunks[location["room"]][grid_position[0]][grid_position[1]].floor)
+                                        (
+                                            (grid_position[1][0] + x) % 16,
+                                            (grid_position[1][1] + y) % 16,
+                                        )
+                                    ] = Tile("up")
+                        if is_not_tile:
+                            chunks[location["room"]][grid_position[0]][grid_position[1]] = Tile(inventory_key)
+                        else:
+                            chunks[location["room"]][grid_position[0]][grid_position[1]] = Tile(inventory_key, floor = chunks[location["room"]][grid_position[0]][grid_position[1]].floor)
                 elif is_not_tile:
                     inventory[inventory_key] -= 1
                     chunks[location["room"]][grid_position[0]][grid_position[1]] = Tile(floor = inventory_key)
                 if inventory[inventory_key] == 0:
                     del inventory[inventory_key]
-        elif (
-            "open"
-            in chunks[location["room"]][grid_position[0]][grid_position[1]].attributes
-        ):
+        elif "open" in chunks[location["room"]][grid_position[0]][grid_position[1]].attributes:
             machine_ui = chunks[location["room"]][grid_position[0]][grid_position[1]].kind
             location["opened"] = (grid_position[0], grid_position[1])
             if "store" in chunks[location["room"]][grid_position[0]][grid_position[1]].attributes:

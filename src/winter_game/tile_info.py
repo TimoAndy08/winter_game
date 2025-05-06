@@ -1,5 +1,4 @@
 TILE_ATTRIBUTES = {
-    "player": ("open", "craft"),
     "sapling": ("grow",),
     "treeling": ("grow", "no_pickup"),
     "tree": ("no_pickup"),
@@ -26,11 +25,12 @@ TILE_ATTRIBUTES = {
     "mushroom hut": ("multi", "enter"),
     "mushroom shaper": ("open", "craft"),
     # Special tiles
-    "left": ("point",),
-    "up": ("point",),
+    "left": ("point", "no_pickup"),
+    "up": ("point", "no_pickup"),
+    "player": ("open", "craft", "no_pickup"),
     "junk": ("no_pickup",),
     "corpse": ("no_pickup",),
-    "obelisk": ("multi",),
+    "obelisk": ("multi", "no_pickup"),
 }
 TOOL_REQUIRED = {
     "player": "sword",
@@ -98,7 +98,7 @@ GROW_CHANCE = {
     "carrot": 10000,
     "rabbit child": 12500,
 }
-TILE_RESISTANCE = {
+RESISTANCE = {
     "clay": 1,
     "rock": 1,
     "tree": 1,
@@ -113,9 +113,9 @@ TILE_RESISTANCE = {
     "mushroom hut": 2,
     "mushroom block": 1,
     "mushroom shaper": 2,
+    "ice": 1,
 }
 UNBREAK = ("rabbit hole", "wooden door", "left", "up", "obelisk")
 FLOOR = ("void", "ice", "wood floor", "dirt")
 FLOOR_UNBREAK = ("void",)
-FLOOR_RESISTANCE = {"ice": 1}
 FLOOR_TYPE = {"void": "block", "ice": "block", "dirt": "soil"}

@@ -1,6 +1,15 @@
-from .tile_info import TOOL_REQUIRED, TOOL_EFFICIENCY, TILE_RESISTANCE, FLOOR_RESISTANCE
+from .tile_info import TOOL_REQUIRED, TOOL_EFFICIENCY, RESISTANCE
 from .tile_class import Tile
 from .ui_rendering import INVENTORY_SIZE
+
+def calculate_damage(mining_type, inventory, inventory_number):
+    damage = 1 - RESISTANCE.get(mining_type, 0)
+    if len(inventory) > inventory_number:
+        inventory_words = list(inventory.keys())[inventory_number].split()
+        if len(inventory_words) == 2 and mining_type in TOOL_REQUIRED:
+            if TOOL_REQUIRED[mining_type] == inventory_words[1]:
+                damage += TOOL_EFFICIENCY[inventory_words[0]]
+    return max(damage, 0)
 
 def right_click(
     chunks,
@@ -10,27 +19,22 @@ def right_click(
     location: dict,
     machine_ui: str,
 ):
+    machine_ui = "game"
     if grid_position[1] not in chunks[location["room"]][grid_position[0]]:
         return (chunks, location, machine_ui)
     mining_tile = chunks[location["room"]][grid_position[0]][grid_position[1]]
+    mining_kind = mining_tile.kind
     delete_mining_tile = False
     player_tile = chunks[location["room"]][location["tile"][0], location["tile"][1]][location["tile"][2], location["tile"][3]]
     location["mined"] = (grid_position[0], grid_position[1])
-    if mining_tile.unbreak == False and isinstance(mining_tile.kind, str):
-        damage = 1 - TILE_RESISTANCE.get(mining_tile.kind, 0)
-        if len(inventory) > inventory_number:
-            inventory_words = list(inventory.keys())[inventory_number].split()
-            if len(inventory_words) == 2 and mining_tile.kind in TOOL_REQUIRED:
-                if TOOL_REQUIRED[mining_tile.kind] == inventory_words[1]:
-                    damage += TOOL_EFFICIENCY[inventory_words[0]]
-        mining_tile.health -= max(damage, 0)
+    if mining_tile.unbreak == False and isinstance(mining_kind, str):
+        mining_tile.health -= calculate_damage(mining_kind, inventory, inventory_number)
         if mining_tile.health <= 0:
-            if mining_tile.kind != "player":
+            if mining_kind != "player":
                 junk_inventory = {}
                 if "no_pickup" not in mining_tile.attributes:
-                    inventory[mining_tile.kind] = inventory.get(mining_tile.kind, 0) + 1
-                for item, amount in chunks[location["room"]][grid_position[0]][
-                    grid_position[1]].inventory.items():
+                    inventory[mining_kind] = inventory.get(mining_kind, 0) + 1
+                for item, amount in mining_tile.inventory.items():
                     if item in player_tile.inventory:
                         player_tile.inventory[item] += amount
                         if inventory[item] > 64:
@@ -49,7 +53,6 @@ def right_click(
                     delete_mining_tile = True
                 if len(junk_inventory) > 0:
                     mining_tile = Tile("junk", junk_inventory, mining_tile.floor, floor_unbreak = mining_tile.floor_unbreak)
-                machine_ui = "game"
             else:
                 chunks[location["room"]][grid_position[0]][grid_position[1]] = Tile("corpse", inventory, mining_tile.floor, floor_unbreak = mining_tile.floor_unbreak)
                 chunks[(0, 0, 0, 0)][(0, 0)][(0, 2)] = Tile("player", floor = "void")
@@ -58,13 +61,7 @@ def right_click(
                 location["room"] = (0, 0, 0, 0)
                 return (chunks, location, machine_ui)
     elif mining_tile.floor_unbreak == False and isinstance(mining_tile.floor, str):
-        damage = 1 - FLOOR_RESISTANCE.get(mining_tile.floor, 0)
-        if len(inventory) > inventory_number:
-            inventory_words = list(inventory.keys())[inventory_number].split()
-            if len(inventory_words) == 2 and mining_tile.floor in TOOL_REQUIRED:
-                if TOOL_REQUIRED[mining_tile.floor] == inventory_words[1]:
-                    damage += TOOL_EFFICIENCY[inventory_words[0]]
-        mining_tile.floor_health -= max(damage, 0)
+        mining_tile.floor_health -= calculate_damage(mining_tile.floor, inventory, inventory_number)
         broke = False
         if mining_tile.floor_health <= 0:
             if mining_tile.floor in inventory:
