@@ -175,7 +175,7 @@ def main() -> None:
             max_health = chunks[location["room"]][(location["tile"][0], location["tile"][1])][(location["tile"][2], location["tile"][3])].max_health
             if update:
                 render_tiles(chunks[location["room"]], location, zoom, inventory, inventory_number, tick)
-                render_ui(inventory_number, inventory, machine_ui, recipe_number, health, max_health, machine_inventory)
+            render_ui(inventory_number, inventory, machine_ui, recipe_number, health, max_health, machine_inventory)
             tick += 1
         pg.display.update()
         clock.tick(FPS)

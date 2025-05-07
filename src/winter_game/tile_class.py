@@ -5,10 +5,13 @@ from .tile_info import TILE_ATTRIBUTES, GROW_CHANCE, GROW_TILES, FLOOR_UNBREAK, 
 from .health_info import TILE_HEALTH, FLOOR_HEALTH
 
 class Tile:
-    def __init__(self, kind: str = None, inventory: dict[str, int] = {}, floor: str = None, health: int = None, max_health: int = None, floor_health: int = None, floor_unbreak: bool = None, attributes: tuple = None, unbreak: bool = None):
+    def __init__(self, kind: str = None, inventory: dict[str, int] = None, floor: str = None, health: int = None, max_health: int = None, floor_health: int = None, floor_unbreak: bool = None, attributes: tuple = None, unbreak: bool = None):
         self.kind = kind
-        self.inventory = inventory
         self.floor = floor
+        if inventory == None:
+            self.inventory = {}
+        else:
+            self.inventory = inventory
         if floor_unbreak == None:
             self.floor_unbreak = (floor in FLOOR_UNBREAK)
         else:

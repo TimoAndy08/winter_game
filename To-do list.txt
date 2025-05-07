@@ -1,8 +1,5 @@
 To-implement:
 
-- Fix item duplication glitch
-- Fix multi-tile and floor cooperation
-- Make certain tiles not being able to be placed on certain floors
 - Dungeons
 - Rabbits
 - Copper
