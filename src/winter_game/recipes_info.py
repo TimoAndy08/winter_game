@@ -37,6 +37,11 @@ RECIPES = {
         (("stone brick", 2), (("stone", 3),)),
         (("wooden cabin", 1), (("wood", 16), ("brick", 6))),
         (("wooden bed", 1), (("wood", 10), ("blue dye", 3), ("rabbit fur", 2))),
+        (("handle", 1), (("stick", 4), ("bluebell", 1))),
+        (("rock sword", 1), (("handle", 1), ("rock", 4), ("ice", 1))),
+        (("rock axe", 1), (("handle", 2), ("rock", 4))),
+        (("rock pickaxe", 1), (("handle", 2), ("rock", 4))),
+        (("rock shovel", 1), (("handle", 1), ("rock", 3))),
     ),
     "mushroom shaper": (
         (("mushroom block", 1), (("mushroom", 2), ("wood", 1))),

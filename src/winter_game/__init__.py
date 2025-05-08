@@ -30,7 +30,6 @@ def main() -> None:
     control_adjusted = 0
     machine_inventory = {}
     while run:
-        update = False
         if menu_placement != "main_game":
             for event in pg.event.get():
                 position = pg.mouse.get_pos()
@@ -95,7 +94,6 @@ def main() -> None:
                         elif event.button == 5:
                             control_adjusted = (control_adjusted + 1) % len(controls)
                 elif event.type == pg.KEYDOWN:
-                    update = True
                     key = pg.key.get_pressed()
                     if menu_placement.split("_")[0] == "save":
                         for letters in range(48, 123):
@@ -115,8 +113,6 @@ def main() -> None:
             inventory = chunks[location["room"]][(location["tile"][0], location["tile"][1])][(location["tile"][2], location["tile"][3])].inventory
             key = pg.key.get_pressed()
             location, velocity = move_player(key, controls, velocity, location)
-            if location["old"] != location["tile"]:
-                update = True
 
             if location["room"] == (0, 0, 0, 0):
                 for x in range(-4, 5):
@@ -152,11 +148,9 @@ def main() -> None:
                 if event.type == pg.QUIT:
                     run = False
                 elif event.type == pg.MOUSEBUTTONDOWN:
-                    update = True
                     position = [*pg.mouse.get_pos(),]
                     chunks, location, machine_ui, machine_inventory, tick, recipe_number, inventory_number = button_press(event.button, position, zoom, chunks, location, machine_ui, inventory, health, max_health, machine_inventory, tick, inventory_number, recipe_number)
                 elif event.type == pg.KEYDOWN:
-                    update = True
                     key = pg.key.get_pressed()
                     if key[controls[4]]:
                         if machine_ui == "game": 
@@ -173,8 +167,7 @@ def main() -> None:
             chunks = update_tiles(chunks, location["tile"], location["room"])
             health = chunks[location["room"]][(location["tile"][0], location["tile"][1])][(location["tile"][2], location["tile"][3])].health
             max_health = chunks[location["room"]][(location["tile"][0], location["tile"][1])][(location["tile"][2], location["tile"][3])].max_health
-            if update:
-                render_tiles(chunks[location["room"]], location, zoom, inventory, inventory_number, tick)
+            render_tiles(chunks[location["room"]], location, zoom, inventory, inventory_number, tick)
             render_ui(inventory_number, inventory, machine_ui, recipe_number, health, max_health, machine_inventory)
             tick += 1
         pg.display.update()
