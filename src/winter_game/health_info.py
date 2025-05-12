@@ -9,6 +9,8 @@ TILE_HEALTH = {
     "carroot": 8,
     "carrot": 4,
     "clay": 12,
+    "coal ore": 20,
+    "coal": 8,
     "corpse": 1,
     "flint axe": 6,
     "flint hammer": 10,

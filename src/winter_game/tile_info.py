@@ -24,6 +24,7 @@ TILE_ATTRIBUTES = {
     "big rock": ("multi", "no_pickup"),
     "mushroom hut": ("multi", "enter"),
     "mushroom shaper": ("open", "craft"),
+    "coal ore": ("no_pickup"),
     # Special tiles
     "left": ("point", "no_pickup"),
     "up": ("point", "no_pickup"),
@@ -64,6 +65,8 @@ TOOL_REQUIRED = {
     "mushroom block": "axe",
     "mushroom shaper": "axe",
     "dirt": "shovel",
+    "coal ore": "pickaxe",
+    "coal": "pickaxe",
 }
 TOOL_EFFICIENCY = {"flint": 1, "rock": 2}
 MULTI_TILES = {
@@ -114,6 +117,8 @@ RESISTANCE = {
     "mushroom block": 1,
     "mushroom shaper": 2,
     "ice": 1,
+    "coal ore": 2,
+    "coal": 1,
 }
 UNBREAK = ("rabbit hole", "wooden door", "left", "up", "obelisk")
 FLOOR = ("void", "ice", "wood floor", "dirt")
