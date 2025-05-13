@@ -49,36 +49,26 @@ def left_click(
                                         return (machine_ui, chunks, location, machine_inventory, tick)
                                 elif "grow" in TILE_ATTRIBUTES.get(inventory_key, ()):
                                     return (machine_ui, chunks, location, machine_inventory, tick)
+                        if location["room"] != (0, 0, 0, 0) and is_not_tile:
+                            return (machine_ui, chunks, location, machine_inventory, tick)
                         inventory[inventory_key] -= 1
                         if "multi" in TILE_ATTRIBUTES.get(inventory_key, ()):
-                            for x in range(0, MULTI_TILES[inventory_key][0]):
-                                chunks[location["room"]][
-                                    (
-                                        grid_position[0][0]
-                                        + (grid_position[1][0] + x) // 16,
-                                        grid_position[0][1],
-                                    )
-                                ][
-                                    ((grid_position[1][0] + x) % 16, grid_position[1][1])
-                                ] = Tile("left")
-                                for y in range(1, MULTI_TILES[inventory_key][1]):
-                                    chunks[location["room"]][
-                                        (
-                                            grid_position[0][0]
-                                            + (grid_position[1][0] + x) // 16,
-                                            grid_position[0][1]
-                                            + (grid_position[1][1] + y) // 16,
-                                        )
-                                    ][
-                                        (
-                                            (grid_position[1][0] + x) % 16,
-                                            (grid_position[1][1] + y) % 16,
-                                        )
-                                    ] = Tile("up")
+                            width, height = MULTI_TILES[inventory_key]
+                            for x in range(width):
+                                for y in range(height):
+                                    chunk_pos = (grid_position[0][0] + (grid_position[1][0] + x) // 16, grid_position[0][1] + (grid_position[1][1] + y) // 16)
+                                    tile_pos = ((grid_position[1][0] + x) % 16, (grid_position[1][1] + y) % 16)
+                                    tile_type = "left" if y == 0 else "up"
+                                    old_tile = chunks[location["room"]][chunk_pos].get(tile_pos)
+                                    if old_tile:
+                                        chunks[location["room"]][chunk_pos][tile_pos].kind = Tile(tile_type, floor = old_tile.floor, floor_health = old_tile.floor_health, floor_unbreak = old_tile.floor_unbreak)
+                                    else:
+                                        chunks[location["room"]][chunk_pos][tile_pos] = Tile(tile_type)
                         if is_not_tile:
                             chunks[location["room"]][grid_position[0]][grid_position[1]] = Tile(inventory_key)
                         else:
-                            chunks[location["room"]][grid_position[0]][grid_position[1]] = Tile(inventory_key, floor = chunks[location["room"]][grid_position[0]][grid_position[1]].floor)
+                            old_tile = chunks[location["room"]][grid_position[0]][grid_position[1]]
+                            chunks[location["room"]][grid_position[0]][grid_position[1]] = Tile(inventory_key, floor = old_tile.floor, floor_health = old_tile.floor_health, floor_unbreak = old_tile.floor_unbreak)
                 elif is_not_tile:
                     inventory[inventory_key] -= 1
                     chunks[location["room"]][grid_position[0]][grid_position[1]] = Tile(floor = inventory_key)
@@ -102,7 +92,7 @@ def left_click(
                     chunks[location["room"]] = generate_room("wood", (-5, -4), (8, 6), "wood floor")
                     chunks[location["room"]][0, 0][0, 1] = Tile("wooden door")
                 elif chunks[0, 0, 0, 0][grid_position[0]][grid_position[1]].kind == "mushroom hut":
-                    chunks[location["room"]] = generate_room("mushroom block", (-3, -2), (5, 4))
+                    chunks[location["room"]] = generate_room("mushroom block", (-3, -2), (5, 4), "mushroom floor")
                     chunks[location["room"]][0, 0][0, 1] = Tile("wooden door")
                     chunks[location["room"]][-1, -1][14, 15] = Tile("mushroom shaper")
                 chunks[location["room"]][0, 0][0, 0] = Tile("player", inventory, chunks[location["room"]][0, 0][0, 0].floor, health, max_health, chunks[location["room"]][0, 0][0, 0].floor_health, chunks[location["room"]][0, 0][0, 0].floor_unbreak)

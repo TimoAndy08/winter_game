@@ -121,6 +121,6 @@ RESISTANCE = {
     "coal": 1,
 }
 UNBREAK = ("rabbit hole", "wooden door", "left", "up", "obelisk")
-FLOOR = ("void", "ice", "wood floor", "dirt")
+FLOOR = ("void", "ice", "wood floor", "dirt", "mushroom floor")
 FLOOR_UNBREAK = ("void",)
 FLOOR_TYPE = {"void": "block", "ice": "block", "dirt": "soil"}

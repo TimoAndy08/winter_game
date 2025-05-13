@@ -40,8 +40,8 @@ def render_tiles(
         else:
             size = MULTI_TILES.get(image, (1, 1))
             scaled_image[image] = pg.transform.scale(IMAGES[image], (64 * size[0] * zoom, (size[1] * 64 + 32) * zoom))
-    for chunk_x in range(-3, 4):
-        for chunk_y in range(-3, 4):
+    for chunk_y in range(-3, 4):
+        for chunk_x in range(-3, 4):
             chunk = (chunk_x + location["tile"][0], chunk_y + location["tile"][1])
             if chunk in chunks:
                 for y in range(0, 16):

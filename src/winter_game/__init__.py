@@ -63,6 +63,7 @@ def main() -> None:
                                 tick = int(file_content[2])
                                 location["room"] = literal_eval(file_content[3])
                                 location["real"] = [*location["tile"],]
+                                noise_offset = literal_eval(file_content[4])
                     elif menu_placement.split("_")[0] == "options":
                         if menu_placement == "options_game":
                             if 0 <= position[1] <= 50:
@@ -71,7 +72,7 @@ def main() -> None:
                                 menu_placement = "main_menu"
                                 with open(f"src/saves/{save_file_name}.txt", "w", encoding="utf-8") as file:
                                     chunks_json = dumps(serialize_chunks(chunks))
-                                    file.write(f"{chunks_json};{location["tile"]};{tick};{location["room"]}")
+                                    file.write(f"{chunks_json};{location["tile"]};{tick};{location["room"]};{noise_offset}")
                                 save_file_name = ""
                         elif menu_placement == "options_main":
                             if 0 <= position[1] <= 50:
@@ -111,6 +112,9 @@ def main() -> None:
                                 controls[control_adjusted] = keys
             render_menu(menu_placement, save_file_name, control_adjusted, controls)
         else:
+            health = chunks[location["room"]][(location["tile"][0], location["tile"][1])][(location["tile"][2], location["tile"][3])].health
+            max_health = chunks[location["room"]][(location["tile"][0], location["tile"][1])][(location["tile"][2], location["tile"][3])].max_health
+
             location["old"] = [*location["tile"],]
             inventory = chunks[location["room"]][(location["tile"][0], location["tile"][1])][(location["tile"][2], location["tile"][3])].inventory
             key = pg.key.get_pressed()
@@ -157,7 +161,7 @@ def main() -> None:
                     if key[controls[4]]:
                         if machine_ui == "game": 
                             machine_ui = "player"
-                        else: 
+                        else:
                             machine_ui = "game"
                             recipe_number = 0
                     elif key[controls[5]] or key[controls[6]]:
@@ -167,8 +171,6 @@ def main() -> None:
                         menu_placement = "options_game"
 
             chunks = update_tiles(chunks, location["tile"], location["room"])
-            health = chunks[location["room"]][(location["tile"][0], location["tile"][1])][(location["tile"][2], location["tile"][3])].health
-            max_health = chunks[location["room"]][(location["tile"][0], location["tile"][1])][(location["tile"][2], location["tile"][3])].max_health
             render_tiles(chunks[location["room"]], location, zoom, inventory, inventory_number, tick)
             render_ui(inventory_number, inventory, machine_ui, recipe_number, health, max_health, machine_inventory)
             tick += 1

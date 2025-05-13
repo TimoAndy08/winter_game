@@ -45,5 +45,6 @@ RECIPES = {
     ),
     "mushroom shaper": (
         (("mushroom block", 1), (("mushroom", 2), ("wood", 1))),
+        (("mushroom floor", 1), (("mushroom block", 1), ("wood", 1))),
     )
 }
