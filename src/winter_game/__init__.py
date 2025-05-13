@@ -1,5 +1,6 @@
 from ast import literal_eval
 from json import dumps
+from os import listdir, path, remove
 
 import pygame as pg
 
@@ -37,24 +38,12 @@ def main() -> None:
                     run = False
                 elif event.type == pg.MOUSEBUTTONDOWN:
                     if menu_placement == "load_save":
-                        if 100 <= position[1] <= 150:
-                            menu_placement = "save_selection"
-                        elif 200 <= position[1] <= 250:
+                        if 0 <= position[1] <= 50:
                             menu_placement = "save_creation"
-                    elif menu_placement.split("_")[0] == "save" and len(save_file_name) > 0:
-                        if 200 <= position[1] <= 250:
-                            if menu_placement == "save_creation":
-                                menu_placement = "main_game"
-                                chunks = {(0, 0, 0, 0): {}}
-                                location["tile"] = [0, 0, 0, 2]
-                                location["real"] = [0, 0, 0, 2]
-                                location["room"] = (0, 0, 0, 0)
-                                noise_offset = generate_chunk(0, 0, chunks[location["room"]])
-                                chunks[location["room"]][0, 0][0, 0] = Tile("obelisk")
-                                chunks[location["room"]][0, 0][0, 1] = Tile("up")
-                                chunks[location["room"]][0, 0][0, 2] = Tile("player", floor = "void")
-                                tick = 0
-                            elif menu_placement == "save_selection":
+                        elif position[1] <= 50 + 50 * len([f[:-len(".txt")] for f in listdir("src/saves")]):
+                            saves = [f[:-len(".txt")] for f in listdir("src/saves")]
+                            save_file_name = saves[(position[1] // 50) - 1]
+                            if position[0] >= 120:
                                 menu_placement = "main_game"
                                 with open(f"src/saves/{save_file_name}.txt", "r", encoding="utf-8") as file:
                                     file_content = file.read().split(";")
@@ -64,6 +53,22 @@ def main() -> None:
                                 location["room"] = literal_eval(file_content[3])
                                 location["real"] = [*location["tile"],]
                                 noise_offset = literal_eval(file_content[4])
+                            elif position[0] <= 90:
+                                file_path = path.join("src/saves", save_file_name + ".txt")
+                                if path.exists(file_path):
+                                    remove(file_path)
+                    elif menu_placement == "save_creation" and len(save_file_name) > 0:
+                        if 200 <= position[1] <= 250:
+                            menu_placement = "main_game"
+                            chunks = {(0, 0, 0, 0): {}}
+                            location["tile"] = [0, 0, 0, 2]
+                            location["real"] = [0, 0, 0, 2]
+                            location["room"] = (0, 0, 0, 0)
+                            noise_offset = generate_chunk(0, 0, chunks[location["room"]])
+                            chunks[location["room"]][0, 0][0, 0] = Tile("obelisk")
+                            chunks[location["room"]][0, 0][0, 1] = Tile("up")
+                            chunks[location["room"]][0, 0][0, 2] = Tile("player", floor = "void")
+                            tick = 0
                     elif menu_placement.split("_")[0] == "options":
                         if menu_placement == "options_game":
                             if 0 <= position[1] <= 50:
@@ -98,7 +103,7 @@ def main() -> None:
                             control_adjusted = (control_adjusted + 1) % len(controls)
                 elif event.type == pg.KEYDOWN:
                     key = pg.key.get_pressed()
-                    if menu_placement.split("_")[0] == "save":
+                    if menu_placement == "save_creation":
                         for letters in range(48, 123):
                             if key[letters]:
                                 save_file_name += chr(letters)

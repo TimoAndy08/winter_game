@@ -1,5 +1,4 @@
 from random import randint
-from ast import literal_eval
 
 from .tile_info import TILE_ATTRIBUTES, GROW_CHANCE, GROW_TILES, FLOOR_UNBREAK, UNBREAK
 from .health_info import TILE_HEALTH, FLOOR_HEALTH

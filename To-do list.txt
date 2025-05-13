@@ -1,8 +1,10 @@
-To-implement:
-
-- Dungeons
+To-implement before others can playtest:
 - Rabbits
+
+To-implement after others can playtest:
+- Dungeons
 - Copper
 - Furnace
 - Blueprint system
-- List the saves and make it possible to delete them
+- Sewing machine
+- Cloth armor

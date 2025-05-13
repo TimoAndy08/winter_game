@@ -1,5 +1,5 @@
 from math import pi, cos
-import os
+from os import listdir, path
 
 import pygame as pg
 
@@ -16,9 +16,10 @@ IMAGES = {}
 FPS = 60
 DAY_LENGTH = 60 * 24 * FPS
 SPRITES_FOLDER = "src/sprites"
-for filename in os.listdir(SPRITES_FOLDER):
+
+for filename in listdir(SPRITES_FOLDER):
     IMAGES[filename.split(".")[0]] = pg.image.load(
-        os.path.join(SPRITES_FOLDER, filename)).convert_alpha()
+        path.join(SPRITES_FOLDER, filename)).convert_alpha()
 
 def render_tiles(
     chunks,
