@@ -17,10 +17,11 @@ def render_menu(
 ):
     window.fill((206, 229, 242))
     if menu_placement == "load_save":
-        window.blit(MENU_FONT.render("[Create new world]", False, (19, 17, 18)), (0, 0))
+        window.blit(MENU_FONT.render("Back to menu", False, (19, 17, 18)), (0, 0))
+        window.blit(MENU_FONT.render("Create new world", False, (19, 17, 18)), (0, 50))
         saves = [f[:-len(".txt")] for f in listdir("src/saves")]
         for i in range(0, len(saves)):
-            window.blit(MENU_FONT.render(f"[x] [{saves[i]}]", False, (19, 17, 18)), (0, 50 + i * 50))
+            window.blit(MENU_FONT.render(f"[x] [{saves[i]}]", False, (19, 17, 18)), (0, 100 + i * 50))
     elif menu_placement == "save_creation":
         window.blit(MENU_FONT.render("Name your new save?", False, (19, 17, 18)), (0, 0))
         window.blit(MENU_FONT.render(save_file_name, False, (19, 17, 18)), (0, 100))

@@ -38,11 +38,13 @@ def main() -> None:
                     run = False
                 elif event.type == pg.MOUSEBUTTONDOWN:
                     if menu_placement == "load_save":
-                        if 0 <= position[1] <= 50:
+                        if position[1] <= 50:
+                            menu_placement = "main_menu"
+                        elif position[1] <= 100:
                             menu_placement = "save_creation"
-                        elif position[1] <= 50 + 50 * len([f[:-len(".txt")] for f in listdir("src/saves")]):
+                        elif position[1] <= 100 + 50 * len([f[:-len(".txt")] for f in listdir("src/saves")]):
                             saves = [f[:-len(".txt")] for f in listdir("src/saves")]
-                            save_file_name = saves[(position[1] // 50) - 1]
+                            save_file_name = saves[(position[1] // 50) - 2]
                             if position[0] >= 120:
                                 menu_placement = "main_game"
                                 with open(f"src/saves/{save_file_name}.txt", "r", encoding="utf-8") as file:
