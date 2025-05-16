@@ -29,34 +29,43 @@ def update_tiles(chunks, tile_location, room_location):
                             if randint(0, 10000) == 0:
                                 animal = choice((Tile("rabbit adult", {"rabbit meat": 2, "rabbit fur": 1},), Tile("rabbit child")))
                                 if animal.kind in current_tile.inventory:
-                                    x = 0
-                                    y = 0
-                                    while ((tile[0] + x) % 16, (tile[1] + y) % 16) in chunks[room_location][chunk[0] + (tile[0] + x) // 16, chunk[1] + (tile[1] + y) // 16] or chunks[room_location][chunk[0] + (tile[0] + x) // 16, chunk[1] + (tile[1] + y) // 16][(tile[0] + x) % 16, (tile[1] + y) % 16] == None:
-                                        x = randint(-1, 1)
-                                        y = randint(-1, 1)
-                                    current_tile.inventory[animal.kind] -= 1
-                                    if current_tile.inventory[animal.kind] <= 0:
-                                        del current_tile.inventory[animal.kind]
-                                    create_tiles.append(
-                                        (
+                                    empty_places = []
+                                    for x in range(-1, 1):
+                                        for y in range(-1, 1):
+                                            tile_pos = ((tile[0] + x) % 16, (tile[1] + y) % 16)
+                                            chunk_pos = (chunk[0] + (tile[0] + x) // 16, chunk[1] + (tile[1] + y) // 16)
+                                            if tile_pos not in chunks[room_location][chunk_pos] or chunks[room_location][chunk_pos][tile_pos].kind == None:
+                                                empty_places.append((x, y))
+                                    if len(empty_places) >= 1:
+                                        x, y = choice(empty_places)
+                                        current_tile.inventory[animal.kind] -= 1
+                                        if current_tile.inventory[animal.kind] <= 0:
+                                            del current_tile.inventory[animal.kind]
+                                        create_tiles.append(
                                             (
-                                                chunk[0] + (tile[0] + x) // 16,
-                                                chunk[1] + (tile[1] + y) // 16,
-                                            ),
-                                            ((tile[0] + x) % 16, (tile[1] + y) % 16),
-                                            animal,
+                                                (
+                                                    chunk[0] + (tile[0] + x) // 16,
+                                                    chunk[1] + (tile[1] + y) // 16,
+                                                ),
+                                                ((tile[0] + x) % 16, (tile[1] + y) % 16),
+                                                animal,
+                                            )
                                         )
-                                    )
-    for index in range(0, len(create_tiles)):
-        if create_tiles[index][1] not in chunks[room_location][create_tiles[index][0]]:
-            chunks[room_location][create_tiles[index][0]][create_tiles[index][1]] = create_tiles[index][2]
+    for chunk_pos, tile_pos, tile_data in create_tiles:
+        if tile_pos in chunks[room_location][chunk_pos]:
+            current_tile = chunks[room_location][chunk_pos][tile_pos]
+            floor_info = (current_tile.floor, current_tile.floor_health, current_tile.floor_unbreak)
+            chunks[room_location][chunk_pos][tile_pos] = tile_data
+            chunks[room_location][chunk_pos][tile_pos].floor = floor_info[0]
+            chunks[room_location][chunk_pos][tile_pos].floor_health = floor_info[1]
+            chunks[room_location][chunk_pos][tile_pos].floor_unbreak = floor_info[2]
         else:
-            current_tile = chunks[room_location][create_tiles[index][0]][create_tiles[index][1]][create_tiles[index][2]]
-            chunks[room_location][create_tiles[index][0]][create_tiles[index][1]][create_tiles[index][2]] = Tile(create_tiles[index][2].kind, create_tiles[index][2].inventory, current_tile.floor, floor_health = current_tile.floor_health, floor_unbreak = current_tile.floor_unbreak)
-    for index in range(0, len(delete_tiles)):
-        if chunks[room_location][delete_tiles[index][0]][delete_tiles[index][1]] == None:
-            del chunks[room_location][delete_tiles[index][0]][delete_tiles[index][1]]
+            chunks[room_location][chunk_pos][tile_pos] = tile_data
+    for chunk_pos, tile_pos in delete_tiles:
+        if chunks[room_location][chunk_pos][tile_pos].floor != None:
+            current_tile = chunks[room_location][chunk_pos][tile_pos]
+            floor_info = (current_tile.floor, current_tile.floor_health, current_tile.floor_unbreak)
+            chunks[room_location][chunk_pos][tile_pos] = Tile(floor = floor_info[0], floor_health = floor_info[1], floor_unbreak = floor_info[2])
         else:
-            current_tile = chunks[room_location][delete_tiles[index][0]][delete_tiles[index][1]]
-            chunks[room_location][delete_tiles[index][0]][delete_tiles[index][1]] = Tile(floor = current_tile.floor, floor_health = current_tile.floor_health, floor_unbreak = current_tile.floor_unbreak)
+            del chunks[room_location][chunk_pos][tile_pos]
     return chunks
