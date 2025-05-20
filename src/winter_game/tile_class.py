@@ -40,7 +40,7 @@ class Tile:
     def grow(self):
         if randint(0, GROW_CHANCE[self.kind]) == 0:
             grow_tile = GROW_TILES[self.kind]
-            return Tile(grow_tile[0], grow_tile[1], self.floor)
+            return Tile(grow_tile[0], grow_tile[1], self.floor, floor_health = self.floor_health, floor_unbreak = self.floor_unbreak, spawn = self.spawn)
         return self
 
     def to_dict(self):

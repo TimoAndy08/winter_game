@@ -21,6 +21,7 @@ def main() -> None:
     location = {"mined": ((0, 0), (0, 2)), "opened": ((0, 0), (0, 0))}
     run = True
     zoom = 1
+    target_zoom = 1
     inventory_number = 0
     recipe_number = 0
     save_file_name = ""
@@ -30,6 +31,7 @@ def main() -> None:
     machine_ui = "game"
     control_adjusted = 0
     machine_inventory = {}
+    camera = (0, 0)
     while run:
         if menu_placement != "main_game":
             for event in pg.event.get():
@@ -147,7 +149,7 @@ def main() -> None:
                 exist_tile = chunk[tile_coords]
                 chunk[tile_coords] = Tile("player", inventory, exist_tile.floor, health, max_health, exist_tile.floor_health, exist_tile.floor_unbreak)
             elif chunk[tile_coords].kind != "player":
-                location["real"] = [*location["old"]]
+                location["real"] = [*location["old"],]
                 location["tile"] = [*location["old"]]
                 velocity = [0, 0]
 
@@ -172,13 +174,14 @@ def main() -> None:
                             machine_ui = "game"
                             recipe_number = 0
                     elif key[controls[5]] or key[controls[6]]:
-                        zoom += (key[controls[5]] - key[controls[6]]) / 4
-                        zoom = min(max(zoom, 0.5), 2)
+                        target_zoom += (key[controls[5]] - key[controls[6]]) / 4
+                        target_zoom = min(max(target_zoom, 0.5), 2)
                     elif key[pg.K_TAB]:
                         menu_placement = "options_game"
 
+            zoom = 0.05 * target_zoom + 0.95 * zoom
             chunks = update_tiles(chunks, location["tile"], location["room"])
-            render_tiles(chunks[location["room"]], location, zoom, inventory, inventory_number, tick)
+            camera = render_tiles(chunks[location["room"]], location, zoom, target_zoom, inventory, inventory_number, tick, camera)
             render_ui(inventory_number, inventory, machine_ui, recipe_number, health, max_health, machine_inventory)
             tick += 1
         pg.display.update()

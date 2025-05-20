@@ -52,7 +52,7 @@ def update_tiles(chunks, tile_location, room_location):
                                 empty_place = find_empty_place(tile, chunk, chunks[room_location])
                                 if empty_place != None:
                                     x, y = empty_place
-                                    if abs(chunk[0] * 16 + tile[0] - current_tile.spawn[0]) <= 8 and abs(chunk[1] * 16 + tile[1] - current_tile.spawn[1]) <= 8:
+                                    if abs(chunk[0] * 16 + tile[0] + x - current_tile.spawn[0]) <= 8 and abs(chunk[1] * 16 + tile[1] + y - current_tile.spawn[1]) <= 8:
                                         create_tiles.append(((chunk[0] + (tile[0] + x) // 16, chunk[1] + (tile[1] + y) // 16), ((tile[0] + x) % 16, (tile[1] + y) % 16), Tile(current_tile.kind, current_tile.inventory, health = current_tile.health, max_health = current_tile.max_health, spawn = current_tile.spawn)))
                                         delete_tiles.append((chunk, tile))
     for chunk_pos, tile_pos, tile_data in create_tiles:

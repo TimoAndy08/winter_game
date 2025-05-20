@@ -25,15 +25,18 @@ def render_tiles(
     chunks,
     location,
     zoom,
+    target_zoom,
     inventory,
     inventory_number,
     tick,
+    camera,
 ):
     if location["room"] == (0, 0, 0, 0):
         window.fill((206, 229, 242))
     else:
         window.fill((19, 17, 18))
-    camera = [SCREEN_SIZE[0] / 2 - ((location["tile"][2] * TILE_SIZE + location["tile"][0] * CHUNK_SIZE + 32) * zoom), SCREEN_SIZE[1] / 2 - ((location["tile"][3] * TILE_SIZE + location["tile"][1] * CHUNK_SIZE + 32) * zoom)]
+    interpolation = max(min(abs(1 - target_zoom / zoom) * 0.5 + 0.2, 1.0), 0.0)
+    camera = ((SCREEN_SIZE[0] / 2 - ((location["real"][2] * TILE_SIZE + location["real"][0] * CHUNK_SIZE + 32) * zoom)) * interpolation + camera[0] * (1 - interpolation), (SCREEN_SIZE[1] / 2 - ((location["real"][3] * TILE_SIZE + location["real"][1] * CHUNK_SIZE + 32) * zoom)) * interpolation + camera[1] * (1 - interpolation))
     scaled_image = {}
     for image in IMAGES:
         if image in FLOOR:
@@ -138,3 +141,4 @@ def render_tiles(
                     8 * zoom,
                 ),
             )
+    return camera
