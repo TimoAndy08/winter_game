@@ -22,7 +22,7 @@ RECIPES = {
         (("mushroom stew", 2), (("mushroom", 3), ("carrot", 1), ("water", 2))),
         (("stone", 1), (("rock", 1),)),
         (("brick", 2), (("clay", 1),)),
-        (("roasted rabbit meat", 1), (("rabbit meat", 1))),
+        (("roasted rabbit meat", 1), (("rabbit meat", 1),)),
     ),
     "manual press": (
         (("blue dye", 2), (("bluebell", 2), ("water", 1), ("bowl", 1))),

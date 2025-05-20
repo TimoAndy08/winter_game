@@ -36,8 +36,8 @@ def generate_chunk(
                         3,
                     )
                     if moisture_value > 0 and -0.25 > elevation_value:
-                        Tile(floor = "ice")
-                    if 0 > moisture_value > -0.15 and -0.2 > elevation_value:
+                        tile[tile_pos] = Tile(floor = "ice")
+                    elif 0 > moisture_value > -0.15 and -0.2 > elevation_value:
                         tile[tile_pos] = Tile("flint", {"flint": 1})
                     elif 0.1 > elevation_value > -0.1 and -0.40 > moisture_value and tile_x < 15 and tile_y < 15:
                         tile[tile_pos] = Tile("big rock", {"rock": 6})

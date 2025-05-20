@@ -4,8 +4,8 @@ from .tile_class import Tile
 
 def find_empty_place(tile, chunk, chunks):
     empty_places = []
-    for x in range(-1, 1):
-        for y in range(-1, 1):
+    for x in range(-1, 2):
+        for y in range(-1, 2):
             tile_pos = ((tile[0] + x) % 16, (tile[1] + y) % 16)
             chunk_pos = (chunk[0] + (tile[0] + x) // 16, chunk[1] + (tile[1] + y) // 16)
             if tile_pos not in chunks[chunk_pos] or chunks[chunk_pos][tile_pos].kind == None:
@@ -38,7 +38,7 @@ def update_tiles(chunks, tile_location, room_location):
                                 chunks[room_location][chunk][tile].kind = None
                         elif current_tile.kind == "rabbit hole":
                             if randint(0, 10000) == 0:
-                                animal = choice((Tile("rabbit adult", {"rabbit meat": 2, "rabbit fur": 1},), Tile("rabbit child")))
+                                animal = choice((Tile("rabbit adult", {"rabbit meat": 2, "rabbit fur": 1}, spawn = (chunk[0] * 16 + tile[0], chunk[1] * 16 + tile[1])), Tile("rabbit child", spawn = (chunk[0] * 16 + tile[0], chunk[1] * 16 + tile[1]))))
                                 if animal.kind in current_tile.inventory:
                                     empty_place = find_empty_place(tile, chunk, chunks[room_location])
                                     if empty_place != None:
@@ -52,8 +52,9 @@ def update_tiles(chunks, tile_location, room_location):
                                 empty_place = find_empty_place(tile, chunk, chunks[room_location])
                                 if empty_place != None:
                                     x, y = empty_place
-                                    create_tiles.append(((chunk[0] + (tile[0] + x) // 16, chunk[1] + (tile[1] + y) // 16), ((tile[0] + x) % 16, (tile[1] + y) % 16), Tile(current_tile.kind, current_tile.inventory, health = current_tile.health, max_health = current_tile.max_health)))
-                                    delete_tiles.append((chunk, tile))
+                                    if abs(chunk[0] * 16 + tile[0] - current_tile.spawn[0]) <= 8 and abs(chunk[1] * 16 + tile[1] - current_tile.spawn[1]) <= 8:
+                                        create_tiles.append(((chunk[0] + (tile[0] + x) // 16, chunk[1] + (tile[1] + y) // 16), ((tile[0] + x) % 16, (tile[1] + y) % 16), Tile(current_tile.kind, current_tile.inventory, health = current_tile.health, max_health = current_tile.max_health, spawn = current_tile.spawn)))
+                                        delete_tiles.append((chunk, tile))
     for chunk_pos, tile_pos, tile_data in create_tiles:
         if tile_pos in chunks[room_location][chunk_pos]:
             current_tile = chunks[room_location][chunk_pos][tile_pos]
