@@ -1,14 +1,14 @@
-from .tile_rendering import SCREEN_SIZE
+from .tile_rendering import SCREEN_SIZE, TILE_SIZE
 from .tile_info import TILE_ATTRIBUTES
 from .recipes_info import RECIPES
 from .ui_rendering import INVENTORY_SIZE
 from .right_click_updates import right_click
 from .left_click_updates import left_click
 
-def button_press(button, position, zoom, chunks, location, machine_ui, inventory, health, max_health, machine_inventory, tick, inventory_number, recipe_number):
-    if abs(position[0] - SCREEN_SIZE[0] / 2 + 32) // (64 * zoom) <= 4 and abs(position[1] - SCREEN_SIZE[1] / 2 + 32) // (64 * zoom) <= 4 or "store" in TILE_ATTRIBUTES.get(machine_ui, ()):
-        world_x = location["tile"][0] * 16 + location["tile"][2] + (position[0] - SCREEN_SIZE[0] / 2 + 32) // (64 * zoom)
-        world_y = location["tile"][1] * 16 + location["tile"][3] + (position[1] - SCREEN_SIZE[1] / 2 + 32) // (64 * zoom)
+def button_press(button, position, zoom, chunks, location, machine_ui, inventory, health, max_health, machine_inventory, tick, inventory_number, recipe_number, camera):
+    if abs(position[0] - SCREEN_SIZE[0] / 2 + TILE_SIZE // 2) // (TILE_SIZE * zoom) <= 4 and abs(position[1] - SCREEN_SIZE[1] / 2 + TILE_SIZE // 2) // (TILE_SIZE * zoom) <= 4 or "store" in TILE_ATTRIBUTES.get(machine_ui, ()):
+        world_x = int((position[0] - camera[0]) // (TILE_SIZE * zoom))
+        world_y = int((position[1] - camera[1]) // (TILE_SIZE * zoom))
         grid_position = [(world_x // 16, world_y // 16), (world_x % 16, world_y % 16)]
 
         if grid_position[1] in chunks[location["room"]][grid_position[0]]:

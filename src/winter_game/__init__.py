@@ -164,7 +164,7 @@ def main() -> None:
                     run = False
                 elif event.type == pg.MOUSEBUTTONDOWN:
                     position = [*pg.mouse.get_pos(),]
-                    chunks, location, machine_ui, machine_inventory, tick, recipe_number, inventory_number = button_press(event.button, position, zoom, chunks, location, machine_ui, inventory, health, max_health, machine_inventory, tick, inventory_number, recipe_number)
+                    chunks, location, machine_ui, machine_inventory, tick, recipe_number, inventory_number = button_press(event.button, position, zoom, chunks, location, machine_ui, inventory, health, max_health, machine_inventory, tick, inventory_number, recipe_number, camera)
                 elif event.type == pg.KEYDOWN:
                     key = pg.key.get_pressed()
                     if key[controls[4]]:
