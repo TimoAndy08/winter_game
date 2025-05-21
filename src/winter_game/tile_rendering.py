@@ -56,7 +56,7 @@ def render_tiles(
                         if tile in chunks[chunk] and "point" not in chunks[chunk][tile].attributes:
                             current_tile = chunks[chunk][tile]
                             placement = (camera[0] + (x * TILE_SIZE + chunk[0] * CHUNK_SIZE) * zoom, camera[1] + (y * TILE_SIZE + chunk[1] * CHUNK_SIZE - HALF_SIZE) * zoom,)
-                            if -TILE_SIZE * zoom * size[0] * 3 <= placement[0] <= SCREEN_SIZE[0] and -TILE_SIZE * zoom * size[1] <= placement[1] <= SCREEN_SIZE[1]:
+                            if -TILE_SIZE * zoom * size[0] <= placement[0] <= SCREEN_SIZE[0] and -TILE_SIZE * zoom * size[1] * 3 / 2 <= placement[1] <= SCREEN_SIZE[1]:
                                 if isinstance(chunks[chunk][tile].floor, str):
                                     window.blit(scaled_image[current_tile.floor], (placement[0], placement[1] + HALF_SIZE * zoom))
                                 if isinstance(chunks[chunk][tile].kind, str):
