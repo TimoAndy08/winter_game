@@ -8,13 +8,14 @@ from .world_generation import generate_chunk
 from .tile_class import Tile
 from .serialize import serialize_chunks, deserialize_chunks
 from .menu_rendering import render_menu
-from .tile_rendering import render_tiles, FPS
+from .tile_rendering import render_tiles, FPS, IMAGES, window
 from .ui_rendering import render_ui
 from .tile_updates import update_tiles
 from .player_move import move_player
 from .mouse_update import button_press
 
 pg.init()
+pg.mouse.set_visible(False)
 
 def main() -> None:
     clock = pg.time.Clock()
@@ -33,9 +34,9 @@ def main() -> None:
     machine_inventory = {}
     camera = (0, 0)
     while run:
+        position = pg.mouse.get_pos()
         if menu_placement != "main_game":
             for event in pg.event.get():
-                position = pg.mouse.get_pos()
                 if event.type == pg.QUIT:
                     run = False
                 elif event.type == pg.MOUSEBUTTONDOWN:
@@ -44,23 +45,24 @@ def main() -> None:
                             menu_placement = "main_menu"
                         elif position[1] <= 100:
                             menu_placement = "save_creation"
-                        elif position[1] <= 100 + 50 * len([f[:-len(".txt")] for f in listdir("src/saves")]):
+                        else:
                             saves = [f[:-len(".txt")] for f in listdir("src/saves")]
-                            save_file_name = saves[(position[1] // 50) - 2]
-                            if position[0] >= 120:
-                                menu_placement = "main_game"
-                                with open(f"src/saves/{save_file_name}.txt", "r", encoding="utf-8") as file:
-                                    file_content = file.read().split(";")
-                                chunks = deserialize_chunks(file_content[0])
-                                location["tile"] = literal_eval(file_content[1])
-                                tick = int(file_content[2])
-                                location["room"] = literal_eval(file_content[3])
-                                location["real"] = [*location["tile"],]
-                                noise_offset = literal_eval(file_content[4])
-                            elif position[0] <= 90:
-                                file_path = path.join("src/saves", save_file_name + ".txt")
-                                if path.exists(file_path):
-                                    remove(file_path)
+                            if (position[1] // 50) - 2 < len(saves):
+                                save_file_name = saves[(position[1] // 50) - 2]
+                                if position[0] >= 120:
+                                    menu_placement = "main_game"
+                                    with open(f"src/saves/{save_file_name}.txt", "r", encoding="utf-8") as file:
+                                        file_content = file.read().split(";")
+                                    chunks = deserialize_chunks(file_content[0])
+                                    location["tile"] = literal_eval(file_content[1])
+                                    tick = int(file_content[2])
+                                    location["room"] = literal_eval(file_content[3])
+                                    location["real"] = [*location["tile"],]
+                                    noise_offset = literal_eval(file_content[4])
+                                elif position[0] <= 90:
+                                    file_path = path.join("src/saves", save_file_name + ".txt")
+                                    if path.exists(file_path):
+                                        remove(file_path)
                     elif menu_placement == "save_creation" and len(save_file_name) > 0:
                         if 200 <= position[1] <= 250:
                             menu_placement = "main_game"
@@ -120,6 +122,7 @@ def main() -> None:
                             if key[keys]:
                                 controls[control_adjusted] = keys
             render_menu(menu_placement, save_file_name, control_adjusted, controls)
+            window.blit(pg.transform.scale(IMAGES["cursor"], (32, 32)), (position[0] - 16, position[1] - 16))
         else:
             health = chunks[location["room"]][(location["tile"][0], location["tile"][1])][(location["tile"][2], location["tile"][3])].health
             max_health = chunks[location["room"]][(location["tile"][0], location["tile"][1])][(location["tile"][2], location["tile"][3])].max_health
@@ -163,7 +166,6 @@ def main() -> None:
                 if event.type == pg.QUIT:
                     run = False
                 elif event.type == pg.MOUSEBUTTONDOWN:
-                    position = [*pg.mouse.get_pos(),]
                     chunks, location, machine_ui, machine_inventory, tick, recipe_number, inventory_number = button_press(event.button, position, zoom, chunks, location, machine_ui, inventory, health, max_health, machine_inventory, tick, inventory_number, recipe_number, camera)
                 elif event.type == pg.KEYDOWN:
                     key = pg.key.get_pressed()
@@ -181,9 +183,10 @@ def main() -> None:
 
             zoom = 0.05 * target_zoom + 0.95 * zoom
             chunks = update_tiles(chunks, location["tile"], location["room"])
-            camera = render_tiles(chunks[location["room"]], location, zoom, target_zoom, inventory, inventory_number, tick, camera)
+            camera = render_tiles(chunks[location["room"]], location, zoom, target_zoom, inventory, inventory_number, tick, camera, position)
             render_ui(inventory_number, inventory, machine_ui, recipe_number, health, max_health, machine_inventory)
             tick += 1
+            window.blit(pg.transform.scale(IMAGES["cursor"], (32 * zoom, 32 * zoom)), (position[0] - 16 * zoom, position[1] - 16 * zoom))
         pg.display.update()
         clock.tick(FPS)
     pg.quit()

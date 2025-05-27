@@ -19,8 +19,7 @@ DAY_LENGTH = 60 * 24 * FPS
 SPRITES_FOLDER = "src/sprites"
 
 for filename in listdir(SPRITES_FOLDER):
-    IMAGES[filename.split(".")[0]] = pg.image.load(
-        path.join(SPRITES_FOLDER, filename)).convert_alpha()
+    IMAGES[filename.split(".")[0]] = pg.image.load(path.join(SPRITES_FOLDER, filename)).convert_alpha()
 
 def render_tiles(
     chunks,
@@ -31,6 +30,7 @@ def render_tiles(
     inventory_number,
     tick,
     camera,
+    position,
 ):
     if location["room"] == (0, 0, 0, 0):
         window.fill((206, 229, 242))
@@ -74,6 +74,21 @@ def render_tiles(
             ),
             placement,
         )
+    
+    world_x = int((position[0] - camera[0]) // (TILE_SIZE * zoom))
+    world_y = int((position[1] - camera[1]) // (TILE_SIZE * zoom))
+    grid_position = [(world_x // 16, world_y // 16), (world_x % 16, world_y % 16)]
+    if grid_position[1] not in chunks[grid_position[0]]:
+        if (world_x - location["tile"][0] * 16 - location["tile"][2]) ** 2 + (world_y - location["tile"][1] * 16 - location["tile"][3]) ** 2 <= 20:
+            if -TILE_SIZE * zoom * size[0] <= world_x <= SCREEN_SIZE[0] and -TILE_SIZE * zoom * size[1] * 3 / 2 <= world_y <= SCREEN_SIZE[1] and inventory_number < len(inventory):
+                placement = (camera[0] + world_x * TILE_SIZE * zoom, camera[1] + (world_y * TILE_SIZE - HALF_SIZE) * zoom,)
+                inventory_key = list(inventory.keys())[inventory_number]
+                alpha_image = scaled_image[inventory_key].copy()
+                alpha_image.set_alpha(85)
+                if inventory_key in FLOOR:
+                    window.blit(alpha_image, (placement[0], placement[1] + HALF_SIZE * zoom))
+                else:
+                    window.blit(alpha_image, placement)
 
     dark_overlay = pg.Surface(SCREEN_SIZE)
     dark_overlay.fill((19, 17, 18))
@@ -122,6 +137,10 @@ def render_tiles(
         last_mined_tile = chunks[location["mined"][0]][location["mined"][1]]
         window.blit(pg.transform.scale(IMAGES["tiny_bar"], (TILE_SIZE * zoom, 16 * zoom)), placement)
         if isinstance(chunks[location["mined"][0]][location["mined"][1]].kind, str):
+            if last_mined_tile.health // last_mined_tile.max_health == 0:
+                break_image = IMAGES[f"break_{8 - (last_mined_tile.health * 8 // last_mined_tile.max_health)}"]
+                break_image.set_alpha(127)
+                window.blit(pg.transform.scale(break_image, (TILE_SIZE * zoom, TILE_SIZE * zoom)), (placement[0], placement[1] - TILE_SIZE * zoom))
             pg.draw.rect(
                 window,
                 (181, 102, 60),
@@ -133,6 +152,10 @@ def render_tiles(
                 ),
             )
         elif isinstance(chunks[location["mined"][0]][location["mined"][1]].floor, str):
+            if last_mined_tile.floor_health // last_mined_tile.max_floor_health == 0:
+                break_image = IMAGES[f"break_{8 - (last_mined_tile.floor_health * 8 // last_mined_tile.max_floor_health)}"]
+                break_image.set_alpha(127)
+                window.blit(pg.transform.scale(break_image, (TILE_SIZE * zoom, TILE_SIZE * zoom)), (placement[0], placement[1] - TILE_SIZE * zoom))
             pg.draw.rect(
                 window,
                 (181, 102, 60),
