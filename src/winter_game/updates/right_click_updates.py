@@ -1,6 +1,7 @@
-from ..info.tile_info import TOOL_REQUIRED, TOOL_EFFICIENCY, RESISTANCE
+from ..info.resistance_info import RESISTANCE
+from ..info.tool_info import TOOL_EFFICIENCY, TOOL_REQUIRED
 from ..tile_systems.tile_class import Tile
-from ..render.ui_rendering import INVENTORY_SIZE
+from ..info.render_info import INVENTORY_SIZE
 
 def calculate_damage(mining_type, inventory, inventory_number):
     damage = 1 - RESISTANCE.get(mining_type, 0)
@@ -37,11 +38,11 @@ def right_click(
                 for item, amount in mining_tile.inventory.items():
                     if item in player_tile.inventory:
                         player_tile.inventory[item] += amount
-                        if inventory[item] > 64:
-                            junk_inventory[item] = player_tile.inventory[item] - 64
-                            player_tile.inventory[item] = 64
+                        if inventory[item] > INVENTORY_SIZE[1]:
+                            junk_inventory[item] = player_tile.inventory[item] - INVENTORY_SIZE[1]
+                            player_tile.inventory[item] = INVENTORY_SIZE[1]
                     else:
-                        if len(inventory) < INVENTORY_SIZE:
+                        if len(inventory) < INVENTORY_SIZE[0]:
                             player_tile.inventory[item] = amount
                         else:
                             junk_inventory[item] = amount
@@ -65,9 +66,9 @@ def right_click(
         broke = False
         if mining_tile.floor_health <= 0:
             if mining_tile.floor in inventory:
-                if inventory[mining_tile.floor] < 64:
+                if inventory[mining_tile.floor] < INVENTORY_SIZE[1]:
                     broke = True
-            elif len(inventory) < INVENTORY_SIZE:
+            elif len(inventory) < INVENTORY_SIZE[0]:
                 broke = True
         if broke:
             player_tile.inventory[mining_tile.floor] = player_tile.inventory.get(mining_tile.floor, 0) + 1

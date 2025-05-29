@@ -1,9 +1,9 @@
-from ..render.tile_rendering import TILE_SIZE
-from ..info.tile_info import TILE_ATTRIBUTES
+from ..info.render_info import TILE_SIZE
+from ..info.attribute_info import TILE_ATTRIBUTES
 from ..info.recipes_info import RECIPES
-from ..render.ui_rendering import INVENTORY_SIZE
+from ..info.render_info import INVENTORY_SIZE
 from .right_click_updates import right_click
-from .left_click_updates import left_click
+from .left_click.left_click_update import left_click
 
 def button_press(button, position, zoom, chunks, location, machine_ui, inventory, health, max_health, machine_inventory, tick, inventory_number, recipe_number, camera):
     world_x = int((position[0] - camera[0]) // (TILE_SIZE * zoom))
@@ -26,6 +26,6 @@ def button_press(button, position, zoom, chunks, location, machine_ui, inventory
         if "craft" in TILE_ATTRIBUTES.get(machine_ui, ()):
             recipe_number = (recipe_number + (button == 5) - (button == 4)) % len(RECIPES[machine_ui])
         else:
-            inventory_number = (inventory_number + (button == 5) - (button == 4)) % INVENTORY_SIZE
+            inventory_number = (inventory_number + (button == 5) - (button == 4)) % INVENTORY_SIZE[0]
 
     return chunks, location, machine_ui, machine_inventory, tick, recipe_number, inventory_number

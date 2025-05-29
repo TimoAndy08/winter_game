@@ -2,8 +2,6 @@ from os import listdir
 
 import pygame as pg
 
-from .tile_rendering import window
-
 pg.font.init()
 
 MENU_FONT = pg.font.SysFont("Lucida Console", 50)
@@ -15,6 +13,7 @@ def render_menu(
     save_file_name: str,
     control_adjusted: int,
     controls: list,
+    window,
 ):
     window.fill((206, 229, 242))
     if menu_placement == "load_save":
@@ -48,3 +47,4 @@ def render_menu(
             ),
             (0, 100),
         )
+    return window

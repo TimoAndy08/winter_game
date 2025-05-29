@@ -1,6 +1,8 @@
+from os import path, listdir
+
 import pygame as pg
 
-from .render.tile_rendering import FPS
+from .info.render_info import FPS
 from .updates.update import update
 from .settings_saving import settings_save
 from .render.rendering import render
@@ -12,10 +14,15 @@ pg.mouse.set_visible(False)
 def main() -> None:
     state = Game_State()
     chunks = {(0, 0, 0, 0): {}}
+    window = pg.display.set_mode((0, 0), pg.FULLSCREEN)
+    SPRITES_FOLDER = "src/sprites"
+    IMAGES = {}
+    for filename in listdir(SPRITES_FOLDER):
+        IMAGES[filename.split(".")[0]] = pg.image.load(path.join(SPRITES_FOLDER, filename)).convert_alpha()
     while state.run:
         state.position = pg.mouse.get_pos()
         chunks = update(state, chunks)
-        state.camera = render(state, chunks)
+        state.camera, window = render(state, chunks, window, IMAGES)
         state.clock.tick(FPS)
     pg.quit()
     settings_save(state.controls)

@@ -1,6 +1,7 @@
 from random import randint
 
-from ..info.tile_info import TILE_ATTRIBUTES, GROW_CHANCE, GROW_TILES, FLOOR_UNBREAK, UNBREAK
+from ..info.tile_info import GROW_CHANCE, GROW_TILES, FLOOR_UNBREAK, UNBREAK
+from ..info.attribute_info import TILE_ATTRIBUTES
 from ..info.health_info import TILE_HEALTH, FLOOR_HEALTH
 
 class Tile:
