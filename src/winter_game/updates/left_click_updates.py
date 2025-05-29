@@ -1,10 +1,10 @@
-from .tile_info import TILE_ATTRIBUTES, MULTI_TILES, FOOD, STORAGE, FLOOR, FLOOR_TYPE
-from .recipes_info import RECIPES
-from .tile_class import Tile
-from .room_generation import generate_room
-from .crafting_system import recipe
-from .ui_rendering import UI_SCALE, INVENTORY_SIZE
-from .tile_rendering import DAY_LENGTH, SCREEN_SIZE
+from ..info.tile_info import TILE_ATTRIBUTES, MULTI_TILES, FOOD, STORAGE, FLOOR, FLOOR_TYPE
+from ..info.recipes_info import RECIPES
+from ..tile_systems.tile_class import Tile
+from ..tile_systems.room_generation import generate_room
+from ..tile_systems.crafting_system import recipe
+from ..render.ui_rendering import UI_SCALE, INVENTORY_SIZE
+from ..render.tile_rendering import DAY_LENGTH, SCREEN_SIZE
 
 def left_click(
     machine_ui: str,

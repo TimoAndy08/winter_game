@@ -1,7 +1,7 @@
-from .tile_rendering import TILE_SIZE
-from .tile_info import TILE_ATTRIBUTES
-from .recipes_info import RECIPES
-from .ui_rendering import INVENTORY_SIZE
+from ..render.tile_rendering import TILE_SIZE
+from ..info.tile_info import TILE_ATTRIBUTES
+from ..info.recipes_info import RECIPES
+from ..render.ui_rendering import INVENTORY_SIZE
 from .right_click_updates import right_click
 from .left_click_updates import left_click
 
@@ -28,4 +28,4 @@ def button_press(button, position, zoom, chunks, location, machine_ui, inventory
         else:
             inventory_number = (inventory_number + (button == 5) - (button == 4)) % INVENTORY_SIZE
 
-    return (chunks, location, machine_ui, machine_inventory, tick, recipe_number, inventory_number)
+    return chunks, location, machine_ui, machine_inventory, tick, recipe_number, inventory_number

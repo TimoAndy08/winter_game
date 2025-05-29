@@ -1,7 +1,7 @@
 from random import randint
 
-from .tile_info import TILE_ATTRIBUTES, GROW_CHANCE, GROW_TILES, FLOOR_UNBREAK, UNBREAK
-from .health_info import TILE_HEALTH, FLOOR_HEALTH
+from ..info.tile_info import TILE_ATTRIBUTES, GROW_CHANCE, GROW_TILES, FLOOR_UNBREAK, UNBREAK
+from ..info.health_info import TILE_HEALTH, FLOOR_HEALTH
 
 class Tile:
     def __init__(self, kind: str = None, inventory: dict[str, int] = None, floor: str = None, health: int = None, max_health: int = None, floor_health: int = None, floor_unbreak: bool = None, attributes: tuple = None, unbreak: bool = None, spawn: tuple[int, int] = None):

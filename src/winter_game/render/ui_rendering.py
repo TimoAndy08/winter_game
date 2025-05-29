@@ -1,8 +1,8 @@
 import pygame as pg
 
 from .tile_rendering import window, IMAGES, SCREEN_SIZE
-from .tile_info import TILE_ATTRIBUTES, STORAGE, FLOOR
-from .recipes_info import RECIPES
+from ..info.tile_info import TILE_ATTRIBUTES, STORAGE, FLOOR
+from ..info.recipes_info import RECIPES
 
 pg.font.init()
 

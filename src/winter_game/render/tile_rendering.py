@@ -3,8 +3,8 @@ from os import listdir, path
 
 import pygame as pg
 
-from .tile_info import MULTI_TILES, FLOOR
-from .light import LIGHTS
+from ..info.tile_info import MULTI_TILES, FLOOR
+from .light_rendering import LIGHTS
 
 pg.init()
 window = pg.display.set_mode((0, 0), pg.FULLSCREEN)
@@ -78,17 +78,18 @@ def render_tiles(
     world_x = int((position[0] - camera[0]) // (TILE_SIZE * zoom))
     world_y = int((position[1] - camera[1]) // (TILE_SIZE * zoom))
     grid_position = [(world_x // 16, world_y // 16), (world_x % 16, world_y % 16)]
-    if grid_position[1] not in chunks[grid_position[0]]:
-        if (world_x - location["tile"][0] * 16 - location["tile"][2]) ** 2 + (world_y - location["tile"][1] * 16 - location["tile"][3]) ** 2 <= 20:
-            if -TILE_SIZE * zoom * size[0] <= world_x <= SCREEN_SIZE[0] and -TILE_SIZE * zoom * size[1] * 3 / 2 <= world_y <= SCREEN_SIZE[1] and inventory_number < len(inventory):
-                placement = (camera[0] + world_x * TILE_SIZE * zoom, camera[1] + (world_y * TILE_SIZE - HALF_SIZE) * zoom,)
-                inventory_key = list(inventory.keys())[inventory_number]
-                alpha_image = scaled_image[inventory_key].copy()
-                alpha_image.set_alpha(85)
-                if inventory_key in FLOOR:
-                    window.blit(alpha_image, (placement[0], placement[1] + HALF_SIZE * zoom))
-                else:
-                    window.blit(alpha_image, placement)
+    if grid_position[0] in chunks:
+        if grid_position[1] not in chunks[grid_position[0]]:
+            if (world_x - location["tile"][0] * 16 - location["tile"][2]) ** 2 + (world_y - location["tile"][1] * 16 - location["tile"][3]) ** 2 <= 20:
+                if -TILE_SIZE * zoom * size[0] <= world_x <= SCREEN_SIZE[0] and -TILE_SIZE * zoom * size[1] * 3 / 2 <= world_y <= SCREEN_SIZE[1] and inventory_number < len(inventory):
+                    placement = (camera[0] + world_x * TILE_SIZE * zoom, camera[1] + (world_y * TILE_SIZE - HALF_SIZE) * zoom,)
+                    inventory_key = list(inventory.keys())[inventory_number]
+                    alpha_image = scaled_image[inventory_key].copy()
+                    alpha_image.set_alpha(85)
+                    if inventory_key in FLOOR:
+                        window.blit(alpha_image, (placement[0], placement[1] + HALF_SIZE * zoom))
+                    else:
+                        window.blit(alpha_image, placement)
 
     dark_overlay = pg.Surface(SCREEN_SIZE)
     dark_overlay.fill((19, 17, 18))
@@ -127,43 +128,44 @@ def render_tiles(
                             ),
                         )
     
-    if location["mined"][1] in chunks[location["mined"][0]]:
-        placement = (
-            camera[0]
-            + (location["mined"][1][0] * TILE_SIZE + location["mined"][0][0] * CHUNK_SIZE) * zoom,
-            camera[1]
-            + (location["mined"][1][1] * TILE_SIZE + location["mined"][0][1] * CHUNK_SIZE + 60) * zoom,
-        )
-        last_mined_tile = chunks[location["mined"][0]][location["mined"][1]]
-        window.blit(pg.transform.scale(IMAGES["tiny_bar"], (TILE_SIZE * zoom, 16 * zoom)), placement)
-        if isinstance(chunks[location["mined"][0]][location["mined"][1]].kind, str):
-            if last_mined_tile.health // last_mined_tile.max_health == 0:
-                break_image = IMAGES[f"break_{8 - (last_mined_tile.health * 8 // last_mined_tile.max_health)}"]
-                break_image.set_alpha(127)
-                window.blit(pg.transform.scale(break_image, (TILE_SIZE * zoom, TILE_SIZE * zoom)), (placement[0], placement[1] - TILE_SIZE * zoom))
-            pg.draw.rect(
-                window,
-                (181, 102, 60),
-                pg.Rect(
-                    placement[0] + 4 * zoom,
-                    placement[1] + 4 * zoom,
-                    last_mined_tile.health * 44 * zoom / last_mined_tile.max_health,
-                    8 * zoom,
-                ),
+    if location["mined"][0] in chunks:
+        if location["mined"][1] in chunks[location["mined"][0]]:
+            placement = (
+                camera[0]
+                + (location["mined"][1][0] * TILE_SIZE + location["mined"][0][0] * CHUNK_SIZE) * zoom,
+                camera[1]
+                + (location["mined"][1][1] * TILE_SIZE + location["mined"][0][1] * CHUNK_SIZE + 60) * zoom,
             )
-        elif isinstance(chunks[location["mined"][0]][location["mined"][1]].floor, str):
-            if last_mined_tile.floor_health // last_mined_tile.max_floor_health == 0:
-                break_image = IMAGES[f"break_{8 - (last_mined_tile.floor_health * 8 // last_mined_tile.max_floor_health)}"]
-                break_image.set_alpha(127)
-                window.blit(pg.transform.scale(break_image, (TILE_SIZE * zoom, TILE_SIZE * zoom)), (placement[0], placement[1] - TILE_SIZE * zoom))
-            pg.draw.rect(
-                window,
-                (181, 102, 60),
-                pg.Rect(
-                    placement[0] + 4 * zoom,
-                    placement[1] + 4 * zoom,
-                    last_mined_tile.floor_health * 44 * zoom / last_mined_tile.max_floor_health,
-                    8 * zoom,
-                ),
-            )
+            last_mined_tile = chunks[location["mined"][0]][location["mined"][1]]
+            window.blit(pg.transform.scale(IMAGES["tiny_bar"], (TILE_SIZE * zoom, 16 * zoom)), placement)
+            if isinstance(chunks[location["mined"][0]][location["mined"][1]].kind, str):
+                if last_mined_tile.health // last_mined_tile.max_health == 0:
+                    break_image = IMAGES[f"break_{8 - (last_mined_tile.health * 8 // last_mined_tile.max_health)}"]
+                    break_image.set_alpha(127)
+                    window.blit(pg.transform.scale(break_image, (TILE_SIZE * zoom, TILE_SIZE * zoom)), (placement[0], placement[1] - TILE_SIZE * zoom))
+                pg.draw.rect(
+                    window,
+                    (181, 102, 60),
+                    pg.Rect(
+                        placement[0] + 4 * zoom,
+                        placement[1] + 4 * zoom,
+                        last_mined_tile.health * 44 * zoom / last_mined_tile.max_health,
+                        8 * zoom,
+                    ),
+                )
+            elif isinstance(chunks[location["mined"][0]][location["mined"][1]].floor, str):
+                if last_mined_tile.floor_health // last_mined_tile.max_floor_health == 0:
+                    break_image = IMAGES[f"break_{8 - (last_mined_tile.floor_health * 8 // last_mined_tile.max_floor_health)}"]
+                    break_image.set_alpha(127)
+                    window.blit(pg.transform.scale(break_image, (TILE_SIZE * zoom, TILE_SIZE * zoom)), (placement[0], placement[1] - TILE_SIZE * zoom))
+                pg.draw.rect(
+                    window,
+                    (181, 102, 60),
+                    pg.Rect(
+                        placement[0] + 4 * zoom,
+                        placement[1] + 4 * zoom,
+                        last_mined_tile.floor_health * 44 * zoom / last_mined_tile.max_floor_health,
+                        8 * zoom,
+                    ),
+                )
     return camera

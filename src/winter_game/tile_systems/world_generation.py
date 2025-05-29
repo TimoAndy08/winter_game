@@ -2,7 +2,7 @@ from noise import pnoise2
 from random import uniform
 
 from .tile_class import Tile
-from .tile_info import MULTI_TILES
+from ..info.tile_info import MULTI_TILES
 
 def generate_chunk(
     chunk_x: int,

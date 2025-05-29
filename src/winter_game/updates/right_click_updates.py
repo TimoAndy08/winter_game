@@ -1,6 +1,6 @@
-from .tile_info import TOOL_REQUIRED, TOOL_EFFICIENCY, RESISTANCE
-from .tile_class import Tile
-from .ui_rendering import INVENTORY_SIZE
+from ..info.tile_info import TOOL_REQUIRED, TOOL_EFFICIENCY, RESISTANCE
+from ..tile_systems.tile_class import Tile
+from ..render.ui_rendering import INVENTORY_SIZE
 
 def calculate_damage(mining_type, inventory, inventory_number):
     damage = 1 - RESISTANCE.get(mining_type, 0)
@@ -77,4 +77,4 @@ def right_click(
         del chunks[location["room"]][grid_position[0]][grid_position[1]]
     else:
         chunks[location["room"]][grid_position[0]][grid_position[1]] = mining_tile
-    return (chunks, location, machine_ui)
+    return chunks, location, machine_ui
