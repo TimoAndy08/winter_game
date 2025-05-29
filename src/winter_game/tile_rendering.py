@@ -38,7 +38,7 @@ def render_tiles(
         window.fill((19, 17, 18))
     player_pixel_position = (location["real"][2] * TILE_SIZE + location["real"][0] * CHUNK_SIZE + HALF_SIZE, location["real"][3] * TILE_SIZE + location["real"][1] * CHUNK_SIZE + HALF_SIZE)
     interpolation = max(min(abs(1 - target_zoom / zoom) * 0.5 + 0.2, 1.0), 0.0)
-    camera = ((SCREEN_SIZE[0] / 2 - player_pixel_position[0] * zoom) * interpolation + camera[0] * (1 - interpolation), (SCREEN_SIZE[1] / 2 - player_pixel_position[1] * zoom) * interpolation + camera[1] * (1 - interpolation))
+    camera = ((SCREEN_SIZE[0] * 5 / 8 - player_pixel_position[0] * zoom - position[0] / 4) * interpolation + camera[0] * (1 - interpolation), (SCREEN_SIZE[1] * 5 / 8 - player_pixel_position[1] * zoom - position[1] / 4) * interpolation + camera[1] * (1 - interpolation))
     scaled_image = {}
     for image in IMAGES:
         if image in FLOOR:

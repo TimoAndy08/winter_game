@@ -1,23 +1,24 @@
-from ast import literal_eval
-from json import dumps
-from os import listdir, path, remove
+from os import path
 
 import pygame as pg
 
-from .world_generation import generate_chunk
-from .tile_class import Tile
-from .serialize import serialize_chunks, deserialize_chunks
 from .menu_rendering import render_menu
+from .menu_updates import update_menu
 from .tile_rendering import render_tiles, FPS, IMAGES, window
 from .ui_rendering import render_ui
 from .tile_updates import update_tiles
-from .player_move import move_player
-from .mouse_update import button_press
+from .game_updates import update_game
 
 pg.init()
 pg.mouse.set_visible(False)
 
 def main() -> None:
+    SETTINGS_FILE = "src/settings.txt"
+    if path.exists(SETTINGS_FILE):
+        with open(SETTINGS_FILE, "r", encoding="utf-8") as file:
+            controls = [int(i) for i in file.read().split(";")[0].split(":") if i]
+    else:
+        controls = [pg.K_w, pg.K_a, pg.K_s, pg.K_d, pg.K_e, pg.K_z, pg.K_x]
     clock = pg.time.Clock()
     location = {"mined": ((0, 0), (0, 2)), "opened": ((0, 0), (0, 0))}
     run = True
@@ -26,161 +27,22 @@ def main() -> None:
     inventory_number = 0
     recipe_number = 0
     save_file_name = ""
-    menu_placement = "main_menu"
-    controls = [pg.K_w, pg.K_a, pg.K_s, pg.K_d, pg.K_e, pg.K_z, pg.K_x]
+    menu_placement = "main_menu"    
     velocity = [0, 0]
     machine_ui = "game"
     control_adjusted = 0
     machine_inventory = {}
     camera = (0, 0)
+    chunks = {}
+    tick = 0
     while run:
         position = pg.mouse.get_pos()
         if menu_placement != "main_game":
-            for event in pg.event.get():
-                if event.type == pg.QUIT:
-                    run = False
-                elif event.type == pg.MOUSEBUTTONDOWN:
-                    if menu_placement == "load_save":
-                        if position[1] <= 50:
-                            menu_placement = "main_menu"
-                        elif position[1] <= 100:
-                            menu_placement = "save_creation"
-                        else:
-                            saves = [f[:-len(".txt")] for f in listdir("src/saves")]
-                            if (position[1] // 50) - 2 < len(saves):
-                                save_file_name = saves[(position[1] // 50) - 2]
-                                if position[0] >= 120:
-                                    menu_placement = "main_game"
-                                    with open(f"src/saves/{save_file_name}.txt", "r", encoding="utf-8") as file:
-                                        file_content = file.read().split(";")
-                                    chunks = deserialize_chunks(file_content[0])
-                                    location["tile"] = literal_eval(file_content[1])
-                                    tick = int(file_content[2])
-                                    location["room"] = literal_eval(file_content[3])
-                                    location["real"] = [*location["tile"],]
-                                    noise_offset = literal_eval(file_content[4])
-                                elif position[0] <= 90:
-                                    file_path = path.join("src/saves", save_file_name + ".txt")
-                                    if path.exists(file_path):
-                                        remove(file_path)
-                    elif menu_placement == "save_creation" and len(save_file_name) > 0:
-                        if 200 <= position[1] <= 250:
-                            menu_placement = "main_game"
-                            chunks = {(0, 0, 0, 0): {}}
-                            location["tile"] = [0, 0, 0, 2]
-                            location["real"] = [0, 0, 0, 2]
-                            location["room"] = (0, 0, 0, 0)
-                            noise_offset = generate_chunk(0, 0, chunks[location["room"]])
-                            chunks[location["room"]][0, 0][0, 0] = Tile("obelisk")
-                            chunks[location["room"]][0, 0][0, 1] = Tile("up")
-                            chunks[location["room"]][0, 0][0, 2] = Tile("player", floor = "void")
-                            tick = 0
-                    elif menu_placement.split("_")[0] == "options":
-                        if menu_placement == "options_game":
-                            if 0 <= position[1] <= 50:
-                                menu_placement = "main_game"
-                            elif 100 <= position[1] <= 150:
-                                menu_placement = "main_menu"
-                                with open(f"src/saves/{save_file_name}.txt", "w", encoding="utf-8") as file:
-                                    chunks_json = dumps(serialize_chunks(chunks))
-                                    file.write(f"{chunks_json};{location["tile"]};{tick};{location["room"]};{noise_offset}")
-                                save_file_name = ""
-                        elif menu_placement == "options_main":
-                            if 0 <= position[1] <= 50:
-                                menu_placement = "main_menu"                  
-                        if 200 <= position[1] <= 250:
-                            menu_placement = "controls_options"
-                    elif menu_placement == "main_menu":
-                        if 0 <= position[1] <= 50:
-                            menu_placement = "load_save"
-                        elif 100 <= position[1] <= 150:
-                            menu_placement = "options_main"
-                        elif 200 <= position[1] <= 250:
-                            run = False
-                    elif menu_placement == "controls_options":
-                        if 0 <= position[1] <= 50:
-                            if len(save_file_name) == 0:
-                                menu_placement = "options_main"
-                            else:
-                                menu_placement = "options_game"
-                        if event.button == 4:
-                            control_adjusted = (control_adjusted - 1) % len(controls)
-                        elif event.button == 5:
-                            control_adjusted = (control_adjusted + 1) % len(controls)
-                elif event.type == pg.KEYDOWN:
-                    key = pg.key.get_pressed()
-                    if menu_placement == "save_creation":
-                        for letters in range(48, 123):
-                            if key[letters]:
-                                save_file_name += chr(letters)
-                        if key[pg.K_SPACE]:
-                            save_file_name += " "
-                        elif key[pg.K_BACKSPACE]:
-                            save_file_name = save_file_name[:-1]
-                    elif menu_placement == "controls_options":
-                        for keys in range(0, len(key)):
-                            if key[keys]:
-                                controls[control_adjusted] = keys
+            location, controls, menu_placement, run, noise_offset, chunks, tick, save_file_name = update_menu(position, location, controls, menu_placement, chunks, tick, save_file_name)
             render_menu(menu_placement, save_file_name, control_adjusted, controls)
             window.blit(pg.transform.scale(IMAGES["cursor"], (32, 32)), (position[0] - 16, position[1] - 16))
         else:
-            health = chunks[location["room"]][(location["tile"][0], location["tile"][1])][(location["tile"][2], location["tile"][3])].health
-            max_health = chunks[location["room"]][(location["tile"][0], location["tile"][1])][(location["tile"][2], location["tile"][3])].max_health
-
-            location["old"] = [*location["tile"],]
-            inventory = chunks[location["room"]][(location["tile"][0], location["tile"][1])][(location["tile"][2], location["tile"][3])].inventory
-            key = pg.key.get_pressed()
-            location, velocity = move_player(key, controls, velocity, location)
-
-            if location["room"] == (0, 0, 0, 0):
-                for x in range(-4, 5):
-                    for y in range(-4, 5):
-                        generate_chunk(location["tile"][0] + x, location["tile"][1] + y, chunks[location["room"]], noise_offset)
-            room = location["room"]
-            tile_chunk_coords = (location["tile"][0], location["tile"][1])
-            tile_coords = (location["tile"][2], location["tile"][3])
-            old_chunk_coords = (location["old"][0], location["old"][1])
-            old_tile_coords = (location["old"][2], location["old"][3])
-
-            chunk = chunks[room][tile_chunk_coords]
-            old_chunk = chunks[room][old_chunk_coords]
-            old_tile = old_chunk[old_tile_coords]
-
-            if tile_coords not in chunk:
-                chunk[tile_coords] = Tile("player", inventory, health = health, max_health = max_health)
-            elif chunk[tile_coords].kind == None:
-                exist_tile = chunk[tile_coords]
-                chunk[tile_coords] = Tile("player", inventory, exist_tile.floor, health, max_health, exist_tile.floor_health, exist_tile.floor_unbreak)
-            elif chunk[tile_coords].kind != "player":
-                location["real"] = [*location["old"],]
-                location["tile"] = [*location["old"]]
-                velocity = [0, 0]
-
-            if location["old"] != location["tile"]:
-                if isinstance(old_tile.floor, str):
-                    old_chunk[old_tile_coords] = Tile(floor = old_tile.floor, floor_health = old_tile.floor_health, floor_unbreak = old_tile.floor_unbreak)
-                else:
-                    del old_chunk[old_tile_coords]
-
-            for event in pg.event.get():
-                if event.type == pg.QUIT:
-                    run = False
-                elif event.type == pg.MOUSEBUTTONDOWN:
-                    chunks, location, machine_ui, machine_inventory, tick, recipe_number, inventory_number = button_press(event.button, position, zoom, chunks, location, machine_ui, inventory, health, max_health, machine_inventory, tick, inventory_number, recipe_number, camera)
-                elif event.type == pg.KEYDOWN:
-                    key = pg.key.get_pressed()
-                    if key[controls[4]]:
-                        if machine_ui == "game": 
-                            machine_ui = "player"
-                        else:
-                            machine_ui = "game"
-                            recipe_number = 0
-                    elif key[controls[5]] or key[controls[6]]:
-                        target_zoom += (key[controls[5]] - key[controls[6]]) / 4
-                        target_zoom = min(max(target_zoom, 0.5), 2)
-                    elif key[pg.K_TAB]:
-                        menu_placement = "options_game"
-
+            location, velocity, chunks, menu_placement, target_zoom, run, health, max_health, inventory, machine_ui, machine_inventory, tick, inventory_number, recipe_number = update_game(location, controls, velocity, noise_offset, chunks, menu_placement, zoom, target_zoom, camera, position, machine_ui, machine_inventory, tick, inventory_number, recipe_number)
             zoom = 0.05 * target_zoom + 0.95 * zoom
             chunks = update_tiles(chunks, location["tile"], location["room"])
             camera = render_tiles(chunks[location["room"]], location, zoom, target_zoom, inventory, inventory_number, tick, camera, position)
@@ -190,3 +52,8 @@ def main() -> None:
         pg.display.update()
         clock.tick(FPS)
     pg.quit()
+    control_str = ""
+    for i in controls:
+        control_str += f"{i}:"
+    with open(SETTINGS_FILE, "w", encoding="utf-8") as file:
+        file.write(f"{control_str}")
