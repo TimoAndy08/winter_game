@@ -1,6 +1,6 @@
 from ..info import TILE_ATTRIBUTES, DAY_LENGTH
 from ..tile_systems.tile_class import Tile
-from .left_click import recipe, place, storage, enter_room
+from .left_click import recipe, place, storage, enter_room, machine_storage
 
 def left_click(
     machine_ui: str,
@@ -28,8 +28,7 @@ def left_click(
         elif "open" in chunks[location["room"]][grid_position[0]][grid_position[1]].attributes:
             machine_ui = chunks[location["room"]][grid_position[0]][grid_position[1]].kind
             location["opened"] = (grid_position[0], grid_position[1])
-            if "store" in chunks[location["room"]][grid_position[0]][grid_position[1]].attributes:
-                machine_inventory = chunks[location["room"]][grid_position[0]][grid_position[1]].inventory
+            machine_inventory = chunks[location["room"]][grid_position[0]][grid_position[1]].inventory
         elif "enter" in chunks[location["room"]][grid_position[0]][grid_position[1]].attributes and location["room"] == (0, 0, 0, 0):
             chunks, location = enter_room(location, grid_position, chunks, health, max_health, inventory)
         elif "exit" in chunks[location["room"]][grid_position[0]][grid_position[1]].attributes:
@@ -43,8 +42,10 @@ def left_click(
         elif "sleep" in chunks[location["room"]][grid_position[0]][grid_position[1]].attributes:
             if 9 / 16 <= (tick / DAY_LENGTH) % 1 < 15 / 16:
                 tick = (tick // DAY_LENGTH + 9 / 16) * DAY_LENGTH
+    elif "machine" in TILE_ATTRIBUTES.get(machine_ui, ()):
+        chunks = machine_storage(position, chunks, location, inventory, machine_ui)
     elif "store" in TILE_ATTRIBUTES.get(machine_ui, ()):
         chunks = storage(position, chunks, location, inventory, machine_ui)
     elif "craft" in TILE_ATTRIBUTES.get(machine_ui, ()):
         inventory = recipe(machine_ui, recipe_number, inventory)
-    return (machine_ui, chunks, location, machine_inventory, tick)
+    return machine_ui, chunks, location, machine_inventory, tick

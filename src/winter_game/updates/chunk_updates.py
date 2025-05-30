@@ -14,7 +14,7 @@ def update_tiles(state: Game_State, chunks):
                     current_tile = chunks[chunk][tile]
 
                     if isinstance(current_tile.kind, str):
-                        chunks, create_tiles, delete_tiles = update_tile(current_tile, chunks, chunk, tile, delete_tiles, create_tiles)
+                        chunks, create_tiles, delete_tiles = update_tile(current_tile, chunks, chunk, tile, delete_tiles, create_tiles, state.tick)
 
     chunks = create_tile(chunks, create_tiles)
     chunks = delete_tile(chunks, delete_tiles)

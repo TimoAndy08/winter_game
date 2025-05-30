@@ -11,6 +11,7 @@ TILE_HEALTH = {
     "clay": 12,
     "coal ore": 20,
     "coal": 8,
+    "composter": 8,
     "corpse": 1,
     "flint axe": 6,
     "flint hammer": 10,

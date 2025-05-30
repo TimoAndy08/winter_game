@@ -25,12 +25,12 @@ def render(state: Game_State, chunks, window, images) -> tuple:
             state.inventory_number,
             state.inventory,
             state.machine_ui,
-            state.recipe_number,
+            chunks[state.location["room"]][state.location["opened"][0]][state.location["opened"][1]].recipe,
             state.health,
             state.max_health,
             state.machine_inventory,
             window,
-            images
+            images,
         )
         cursor_size = (int(32 * state.zoom), int(32 * state.zoom))
         cursor_place = (state.position[0] - 16 * state.zoom, state.position[1] - 16 * state.zoom)

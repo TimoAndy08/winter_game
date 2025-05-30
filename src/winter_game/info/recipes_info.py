@@ -42,9 +42,13 @@ RECIPES = {
         (("stone brick", 2), (("stone", 3),)),
         (("wooden cabin", 1), (("wood", 16), ("brick", 6))),
         (("wooden bed", 1), (("wood", 10), ("blue dye", 3), ("rabbit fur", 2))),
+        (("composter", 1), (("small barrel", 1), ("mushroom", 2), ("paper", 2)))
     ),
     "mushroom shaper": (
         (("mushroom block", 1), (("mushroom", 2), ("wood", 1))),
         (("mushroom floor", 1), (("mushroom block", 1), ("wood", 1))),
+    ),
+    "composter": (
+        (("dirt", 1), (("spore", 3), ("sapling", 1))),
     )
 }

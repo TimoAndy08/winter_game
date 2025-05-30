@@ -25,6 +25,7 @@ TILE_ATTRIBUTES = {
     "mushroom hut": ("multi", "enter"),
     "mushroom shaper": ("open", "craft"),
     "coal ore": ("no_pickup"),
+    "composter": ("open", "machine"),
     # Special tiles
     "left": ("point", "no_pickup"),
     "up": ("point", "no_pickup"),

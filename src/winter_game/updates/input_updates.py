@@ -50,17 +50,18 @@ def update_game(state: Game_State, chunks):
         if event.type == pg.QUIT:
             state.run = False
         elif event.type == pg.MOUSEBUTTONDOWN:
-            chunks, state.location, state.machine_ui, state.machine_inventory, state.tick, state.recipe_number, state.inventory_number = button_press(
+            chunks, state.location, state.machine_ui, state.machine_inventory, state.tick, state.inventory_number = button_press(
                 event.button, state.position, state.zoom, chunks, state.location, state.machine_ui, state.inventory, state.health, state.max_health,
-                state.machine_inventory, state.tick, state.inventory_number, state.recipe_number, state.camera)
+                state.machine_inventory, state.tick, state.inventory_number, chunks[state.location["room"]][state.location["opened"][0]][state.location["opened"][1]].recipe, state.camera)
         elif event.type == pg.KEYDOWN:
             keys = pg.key.get_pressed()
             if keys[state.controls[4]]:
                 if state.machine_ui == "game":
                     state.machine_ui = "player"
+                    state.location["opened"] = ((state.location["tile"][0], state.location["tile"][1]), (state.location["tile"][2], state.location["tile"][3]))
                 else:
                     state.machine_ui = "game"
-                    state.recipe_number = 0
+                    state.location["opened"] = ((0, 0), (0, 0))
             elif keys[state.controls[5]] or keys[state.controls[6]]:
                 state.target_zoom += (keys[state.controls[5]] - keys[state.controls[6]]) / 4
                 state.target_zoom = min(max(state.target_zoom, 0.5), 2)

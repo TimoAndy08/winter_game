@@ -16,4 +16,5 @@ RESISTANCE = {
     "ice": 1,
     "coal ore": 2,
     "coal": 1,
+    "composter": 1
 }

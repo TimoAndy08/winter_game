@@ -5,7 +5,7 @@ from .left_click_update import left_click
 def button_press(button, position, zoom, chunks, location, machine_ui, inventory, health, max_health, machine_inventory, tick, inventory_number, recipe_number, camera):
     world_x = int((position[0] - camera[0]) // (TILE_SIZE * zoom))
     world_y = int((position[1] - camera[1]) // (TILE_SIZE * zoom))
-    if (world_x - location["tile"][0] * 16 - location["tile"][2]) ** 2 + (world_y - location["tile"][1] * 16 - location["tile"][3]) ** 2 <= 20 or "store" in TILE_ATTRIBUTES.get(machine_ui, ()):
+    if (world_x - location["tile"][0] * 16 - location["tile"][2]) ** 2 + (world_y - location["tile"][1] * 16 - location["tile"][3]) ** 2 <= 20 or "open" in TILE_ATTRIBUTES.get(machine_ui, ()):
         grid_position = [(world_x // 16, world_y // 16), (world_x % 16, world_y % 16)]
         if grid_position[1] in chunks[location["room"]][grid_position[0]]:
             while "point" in chunks[location["room"]][grid_position[0]][grid_position[1]].attributes:
@@ -20,9 +20,8 @@ def button_press(button, position, zoom, chunks, location, machine_ui, inventory
             chunks, location, machine_ui = right_click(chunks, grid_position, inventory, inventory_number, location, machine_ui)
     
     if button == 4 or button == 5:
-        if "craft" in TILE_ATTRIBUTES.get(machine_ui, ()):
-            recipe_number = (recipe_number + (button == 5) - (button == 4)) % len(RECIPES[machine_ui])
+        if "craft" in TILE_ATTRIBUTES.get(machine_ui, ()) or "machine" in TILE_ATTRIBUTES.get(machine_ui, ()):
+            chunks[location["room"]][location["opened"][0]][location["opened"][1]].recipe = (recipe_number + (button == 5) - (button == 4)) % len(RECIPES[machine_ui])
         else:
             inventory_number = (inventory_number + (button == 5) - (button == 4)) % INVENTORY_SIZE[0]
-
-    return chunks, location, machine_ui, machine_inventory, tick, recipe_number, inventory_number
+    return chunks, location, machine_ui, machine_inventory, tick, inventory_number

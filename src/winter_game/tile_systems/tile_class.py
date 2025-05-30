@@ -3,7 +3,7 @@ from random import randint
 from ..info import GROW_CHANCE, GROW_TILES, FLOOR_UNBREAK, UNBREAK, TILE_ATTRIBUTES, TILE_HEALTH, FLOOR_HEALTH
 
 class Tile:
-    def __init__(self, kind: str = None, inventory: dict[str, int] = None, floor: str = None, health: int = None, max_health: int = None, floor_health: int = None, floor_unbreak: bool = None, attributes: tuple = None, unbreak: bool = None, spawn: tuple[int, int] = None):
+    def __init__(self, kind: str = None, inventory: dict[str, int] = None, floor: str = None, health: int = None, max_health: int = None, floor_health: int = None, floor_unbreak: bool = None, attributes: tuple = None, unbreak: bool = None, spawn: tuple[int, int] = None, recipe: int = 0):
         self.kind = kind
         self.floor = floor
         if inventory == None:
@@ -36,6 +36,7 @@ class Tile:
             self.floor_health = floor_health
         self.max_floor_health = self.floor_health
         self.spawn = spawn
+        self.recipe = recipe
     def grow(self):
         if randint(0, GROW_CHANCE[self.kind]) == 0:
             grow_tile = GROW_TILES[self.kind]
@@ -56,11 +57,13 @@ class Tile:
             saving[4] = 1
         if isinstance(self.spawn, tuple):
             saving[5] = self.spawn
+        if self.recipe > 0:
+            saving[6] = self.recipe
         return str(saving)
 
     @staticmethod
     def from_dict(data):
-        loading = [None, {}, None, False, False, None]
+        loading = [None, {}, None, False, False, None, 0]
         if 0 in data:
             loading[0] = data[0]
         if 1 in data:
@@ -73,4 +76,6 @@ class Tile:
             loading[4] = True
         if 5 in data:
             loading[5] = data[5]
-        return Tile(loading[0], loading[1], loading[2], floor_unbreak = loading[3], unbreak = loading[4], spawn = loading[5])
+        if 6 in data:
+            loading[6] = data[6]
+        return Tile(loading[0], loading[1], loading[2], floor_unbreak = loading[3], unbreak = loading[4], spawn = loading[5], recipe = loading[6])

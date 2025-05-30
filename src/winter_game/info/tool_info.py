@@ -32,6 +32,7 @@ TOOL_REQUIRED = {
     "dirt": "shovel",
     "coal ore": "pickaxe",
     "coal": "pickaxe",
+    "composter": "axe",
 }
 TOOL_EFFICIENCY = {
     "flint": 1, 
