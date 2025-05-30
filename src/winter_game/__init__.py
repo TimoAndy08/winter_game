@@ -6,13 +6,13 @@ from .info import FPS
 from .update import update
 from .settings_saving import settings_save
 from .rendering import render
-from .game_state import Game_State
+from .game_state import GameState
 
 pg.init()
 pg.mouse.set_visible(False)
 
 def main() -> None:
-    state = Game_State()
+    state = GameState()
     chunks = {(0, 0, 0, 0): {}}
     window = pg.display.set_mode((0, 0), pg.FULLSCREEN)
     SPRITES_FOLDER = "src/sprites"

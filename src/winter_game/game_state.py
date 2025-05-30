@@ -1,7 +1,7 @@
 from .settings_saving import settings_load
 import pygame as pg
 
-class Game_State:
+class GameState:
     def __init__(self):
         self.controls = settings_load()
         self.clock = pg.time.Clock()

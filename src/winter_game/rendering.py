@@ -1,9 +1,9 @@
 import pygame as pg
 
 from .render import render_menu, render_tiles, render_ui
-from .game_state import Game_State
+from .game_state import GameState
 
-def render(state: Game_State, chunks, window, images) -> tuple:
+def render(state: GameState, chunks, window, images) -> tuple:
     if state.menu_placement != "main_game":
         window = render_menu(state.menu_placement, state.save_file_name, state.control_adjusted, state.controls, window)
         window.blit(pg.transform.scale(images["cursor"], (32, 32)), (state.position[0] - 16, state.position[1] - 16))

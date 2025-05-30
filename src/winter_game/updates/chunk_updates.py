@@ -1,7 +1,7 @@
-from ..game_state import Game_State
+from ..game_state import GameState
 from .chunk_update import update_tile, create_tile, delete_tile
 
-def update_tiles(state: Game_State, chunks):
+def update_tiles(state: GameState, chunks):
     delete_tiles = []
     create_tiles = []
     tile_location = state.location["tile"]

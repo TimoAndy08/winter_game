@@ -3,10 +3,10 @@ import pygame as pg
 from .player_move import move_player
 from ..tile_systems.tile_class import Tile
 from ..tile_systems.world_generation import generate_chunk
-from ..game_state import Game_State
+from ..game_state import GameState
 from .mouse_update import button_press
 
-def update_game(state: Game_State, chunks):
+def update_game(state: GameState, chunks):
     state.health = chunks[state.location["room"]][state.location["tile"][0], state.location["tile"][1]][state.location["tile"][2], state.location["tile"][3]].health
     state.max_health = chunks[state.location["room"]][state.location["tile"][0], state.location["tile"][1]][state.location["tile"][2], state.location["tile"][3]].max_health
 
