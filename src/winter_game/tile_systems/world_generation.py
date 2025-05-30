@@ -36,9 +36,9 @@ def generate_chunk(
                     elif 0.03 > elevation_value > -0.03 and moisture_value > 0.47:
                         tile[tile_pos] = Tile("mushroom hut")
                     elif 0.1 > elevation_value > -0.1 and moisture_value > 0.45:
-                        tile[tile_pos] = Tile("mushroom", {"spore": 2})
+                        tile[tile_pos] = Tile("mushroom", {"spore": 2}, "dirt")
                     elif 0.15 > elevation_value > -0.15 and moisture_value > 0.4:
-                        tile[tile_pos] = Tile("spore")
+                        tile[tile_pos] = Tile("spore", floor = "dirt")
                     elif elevation_value > 0.3 and 0.3 > moisture_value > 0.2:
                         tile[tile_pos] = Tile("tree", {"wood": 4, "sapling": 2}, "dirt")
                     elif elevation_value > 0.25 and 0.35 > moisture_value > 0.15:

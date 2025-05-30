@@ -26,26 +26,10 @@ def render_lights(tick, chunks, location, zoom, camera, window):
                 for tile in chunks[chunk]:
                     current_tile = chunks[chunk][tile]
                     if "light" in current_tile.attributes:
-                        scaled_glow = pg.transform.scale(
-                            LIGHTS[current_tile.kind][0],
-                            (
-                                int(LIGHTS[current_tile.kind][1] * zoom),
-                                int(LIGHTS[current_tile.kind][1] * zoom),
-                            ),
-                        )
-                        night_factor = 1 - cos(
-                            ((tick / DAY_LENGTH * 2) - 1 / 2) * pi
-                        )
+                        scaled_glow = pg.transform.scale(LIGHTS[current_tile.kind][0], (int(LIGHTS[current_tile.kind][1] * zoom), int(LIGHTS[current_tile.kind][1] * zoom)))
+                        night_factor = 1 - cos(((tick / DAY_LENGTH * 2) - 1 / 2) * pi)
                         scaled_glow.set_alpha(int(night_factor * 180))
-                        window.blit(
-                            scaled_glow,
-                            (
-                                camera[0]
-                                + (tile[0] * TILE_SIZE + chunk[0] * CHUNK_SIZE + HALF_SIZE) * zoom
-                                - int(LIGHTS[current_tile.kind][1] * zoom / 2),
-                                camera[1]
-                                + (tile[1] * TILE_SIZE + chunk[1] * CHUNK_SIZE + HALF_SIZE) * zoom
-                                - int(LIGHTS[current_tile.kind][1] * zoom / 2),
-                            ),
-                        )
+                        placement_x = camera[0] + (tile[0] * TILE_SIZE + chunk[0] * CHUNK_SIZE + HALF_SIZE) * zoom - int(LIGHTS[current_tile.kind][1] * zoom / 2)
+                        placement_y = camera[1] + (tile[1] * TILE_SIZE + chunk[1] * CHUNK_SIZE + HALF_SIZE) * zoom - int(LIGHTS[current_tile.kind][1] * zoom / 2)
+                        window.blit(scaled_glow, (placement_x, placement_y))
     return window
