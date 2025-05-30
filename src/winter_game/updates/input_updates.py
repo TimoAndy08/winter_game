@@ -1,6 +1,6 @@
 import pygame as pg
 
-from ..player_move import move_player
+from .player_move import move_player
 from ..tile_systems.tile_class import Tile
 from ..tile_systems.world_generation import generate_chunk
 from ..game_state import Game_State
