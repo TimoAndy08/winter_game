@@ -1,12 +1,7 @@
 import pygame as pg
 
-from ...info.render_info import TILE_SIZE, HALF_SIZE, CHUNK_SIZE, SCREEN_SIZE
-from ...info.tile_info import MULTI_TILES, FLOOR
-from .mine_rendering import render_mined
-from .light_rendering import render_lights
-from .ghost_rendering import render_ghost
-from .hand_rendering import render_hand
-from .map_rendering import render_map
+from ..info import TILE_SIZE, HALF_SIZE, CHUNK_SIZE, SCREEN_SIZE, MULTI_TILES, FLOOR
+from .game_rendering import render_ghost, render_mined, render_hand, render_lights, render_map
 
 def render_tiles(
     chunks,

@@ -1,5 +1,4 @@
-from ...info.render_info import TILE_SIZE, HALF_SIZE, CHUNK_SIZE, SCREEN_SIZE
-from ...info.tile_info import MULTI_TILES
+from ...info import TILE_SIZE, HALF_SIZE, CHUNK_SIZE, SCREEN_SIZE, MULTI_TILES
 
 def render_map(location, chunks, camera, zoom, scaled_image, window):
     for chunk_y in range(-3, 4):

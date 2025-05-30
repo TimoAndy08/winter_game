@@ -1,10 +1,6 @@
-from ...info.attribute_info import TILE_ATTRIBUTES
-from ...tile_systems.tile_class import Tile
-from ...info.render_info import DAY_LENGTH
-from .craft import recipe
-from .placement import place
-from .store import storage
-from .enter import enter_room
+from ..info import TILE_ATTRIBUTES, DAY_LENGTH
+from ..tile_systems.tile_class import Tile
+from .left_click import recipe, place, storage, enter_room
 
 def left_click(
     machine_ui: str,

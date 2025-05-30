@@ -1,6 +1,4 @@
-from ...info.render_info import SCREEN_SIZE
-from ...info.render_info import INVENTORY_SIZE, UI_SCALE
-from ...info.tile_info import STORAGE
+from ...info import SCREEN_SIZE, INVENTORY_SIZE, UI_SCALE, STORAGE
 
 def storage(position, chunks, location, inventory, machine_ui):
     moved_x = position[0] - SCREEN_SIZE[0] // 2

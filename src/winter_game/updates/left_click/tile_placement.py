@@ -1,5 +1,4 @@
-from ...info.tile_info import MULTI_TILES, FLOOR_TYPE
-from ...info.attribute_info import TILE_ATTRIBUTES
+from ...info import MULTI_TILES, FLOOR_TYPE, TILE_ATTRIBUTES
 from ...tile_systems.tile_class import Tile
 
 def place_tile(chunks, location, inventory_key, grid_position, is_not_tile, inventory):

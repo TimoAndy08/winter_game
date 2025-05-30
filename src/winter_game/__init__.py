@@ -2,10 +2,10 @@ from os import path, listdir
 
 import pygame as pg
 
-from .info.render_info import FPS
-from .updates.update import update
+from .info import FPS
+from .update import update
 from .settings_saving import settings_save
-from .render.rendering import render
+from .rendering import render
 from .game_state import Game_State
 
 pg.init()

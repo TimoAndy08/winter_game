@@ -1,9 +1,7 @@
 import pygame as pg
 
-from .menu_rendering import render_menu
-from .game_rendering.tile_rendering import render_tiles
-from .user_interface_rendering.ui_rendering import render_ui
-from ..game_state import Game_State
+from .render import render_menu, render_tiles, render_ui
+from .game_state import Game_State
 
 def render(state: Game_State, chunks, window, images) -> tuple:
     if state.menu_placement != "main_game":

@@ -1,6 +1,6 @@
 import pygame as pg
 
-from ...info.render_info import TILE_SIZE, HALF_SIZE, CHUNK_SIZE
+from ...info import TILE_SIZE, HALF_SIZE, CHUNK_SIZE
 
 def render_hand(inventory, inventory_number, camera, location, zoom, window, images):
     if len(inventory) > inventory_number:

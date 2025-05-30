@@ -1,6 +1,5 @@
 from .tile_placement import place_tile
-from ...info.tile_info import FOOD, FLOOR
-from ...info.attribute_info import TILE_ATTRIBUTES
+from ...info import FOOD, FLOOR, TILE_ATTRIBUTES
 from ...tile_systems.tile_class import Tile
 
 def place(inventory, inventory_number, is_not_tile, is_kind, health, max_health, grid_position, location, chunks):

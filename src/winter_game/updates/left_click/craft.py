@@ -1,5 +1,4 @@
-from ...info.recipes_info import RECIPES
-from ...info.render_info import INVENTORY_SIZE
+from ...info import RECIPES, INVENTORY_SIZE
 
 def recipe(machine_ui: str, recipe_number: int, inventory: dict[str, int],):
     output_item, output_amount = RECIPES[machine_ui][recipe_number][0]

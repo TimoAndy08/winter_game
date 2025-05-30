@@ -2,7 +2,7 @@ from math import cos, pi
 
 import pygame as pg
 
-from ...info.render_info import TILE_SIZE, HALF_SIZE, CHUNK_SIZE, SCREEN_SIZE, DAY_LENGTH
+from ...info import TILE_SIZE, HALF_SIZE, CHUNK_SIZE, SCREEN_SIZE, DAY_LENGTH
 
 def create_light_surface(intensity: int, color: tuple[int, int, int]):
     light_surface = pg.Surface((32, 32), pg.SRCALPHA)

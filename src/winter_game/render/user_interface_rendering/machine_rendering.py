@@ -1,8 +1,6 @@
 import pygame as pg
 
-from ...info.attribute_info import TILE_ATTRIBUTES
-from ...info.tile_info import FLOOR, STORAGE
-from ...info.render_info import SCREEN_SIZE, UI_SCALE, SLOT_SIZE, TILE_UI_SIZE, UI_FONT, FLOOR_SIZE, HALF_SCREEN_SIZE
+from ...info import TILE_ATTRIBUTES, FLOOR, STORAGE, SCREEN_SIZE, UI_SCALE, SLOT_SIZE, TILE_UI_SIZE, UI_FONT, FLOOR_SIZE, HALF_SCREEN_SIZE
 from .craft_rendering import render_craft
 
 def render_machine(machine_ui, window, images, recipe_number, machine_inventory):

@@ -1,8 +1,6 @@
 import pygame as pg
 
-from ...info.recipes_info import RECIPES
-from ...info.render_info import UI_SCALE, SCREEN_SIZE, BIG_UI_FONT, UI_FONT, SLOT_SIZE, TILE_UI_SIZE, FLOOR_SIZE, HALF_SCREEN_SIZE
-from ...info.tile_info import FLOOR
+from ...info import UI_SCALE, SCREEN_SIZE, BIG_UI_FONT, UI_FONT, SLOT_SIZE, TILE_UI_SIZE, FLOOR_SIZE, HALF_SCREEN_SIZE, RECIPES, FLOOR
 
 def render_craft(window, machine_ui, images, recipe_number):
     current_recipes = RECIPES[machine_ui]

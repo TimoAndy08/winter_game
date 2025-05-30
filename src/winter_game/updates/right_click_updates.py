@@ -1,7 +1,5 @@
-from ..info.resistance_info import RESISTANCE
-from ..info.tool_info import TOOL_EFFICIENCY, TOOL_REQUIRED
+from ..info import RESISTANCE, TOOL_EFFICIENCY, TOOL_REQUIRED, INVENTORY_SIZE
 from ..tile_systems.tile_class import Tile
-from ..info.render_info import INVENTORY_SIZE
 
 def calculate_damage(mining_type, inventory, inventory_number):
     damage = 1 - RESISTANCE.get(mining_type, 0)

@@ -1,5 +1,4 @@
-from ...info.tile_info import FLOOR, MULTI_TILES
-from ...info.render_info import TILE_SIZE, HALF_SIZE, SCREEN_SIZE
+from ...info import TILE_SIZE, HALF_SIZE, SCREEN_SIZE, MULTI_TILES, FLOOR
 
 def render_ghost(position, camera, zoom, chunks, location, inventory, inventory_number, scaled_image, window):
     world_x = int((position[0] - camera[0]) // (TILE_SIZE * zoom))

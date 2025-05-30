@@ -1,6 +1,6 @@
 import pygame as pg
 
-from ...info.render_info import SCREEN_SIZE, UI_SCALE, UI_FONT
+from ...info import SCREEN_SIZE, UI_SCALE, UI_FONT
 
 def render_health(window, images, health, max_health):
     window.blit(

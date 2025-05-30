@@ -1,9 +1,6 @@
-from ..info.render_info import TILE_SIZE
-from ..info.attribute_info import TILE_ATTRIBUTES
-from ..info.recipes_info import RECIPES
-from ..info.render_info import INVENTORY_SIZE
+from ..info import TILE_SIZE, TILE_ATTRIBUTES, RECIPES, INVENTORY_SIZE
 from .right_click_updates import right_click
-from .left_click.left_click_update import left_click
+from .left_click_update import left_click
 
 def button_press(button, position, zoom, chunks, location, machine_ui, inventory, health, max_health, machine_inventory, tick, inventory_number, recipe_number, camera):
     world_x = int((position[0] - camera[0]) // (TILE_SIZE * zoom))

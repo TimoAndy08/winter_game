@@ -1,6 +1,6 @@
 import pygame as pg
 
-from ...info.render_info import TILE_SIZE, CHUNK_SIZE
+from ...info import TILE_SIZE, CHUNK_SIZE
 
 def render_mined(location, chunks, camera, zoom, window, images):
     if location[0] in chunks:
