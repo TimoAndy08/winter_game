@@ -1,3 +1,3 @@
-# winter-game
+# Winter Game
 
-Describe your project here.
+A sandbox game with procedual world generation, mining, building, and crafting
