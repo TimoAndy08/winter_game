@@ -12,7 +12,8 @@ def generate_room(material: str, location: tuple[int, int], size: tuple[int, int
             if (x // 16, y // 16) not in room:
                 room[x // 16, y // 16] = {}
             if left or top or right or bottom:
-                room[x // 16, y // 16][x % 16, y % 16] = Tile(material, floor = floor, attributes = ("unbreak",), floor_unbreak = True, unbreak = True)
+                room[x // 16, y // 16][x % 16, y % 16] = Tile(material, floor = floor, floor_unbreak = True, unbreak = True)
+                room[x // 16, y // 16][x % 16, y % 16].attributes = (*room[x // 16, y // 16][x % 16, y % 16].attributes, "unbreak")
             else:
                 room[x // 16, y // 16][x % 16, y % 16] = Tile(floor = floor, floor_unbreak = True)
     return room

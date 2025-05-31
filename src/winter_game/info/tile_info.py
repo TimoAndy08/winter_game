@@ -36,3 +36,7 @@ UNBREAK = ("rabbit hole", "wooden door", "left", "up", "obelisk")
 FLOOR = ("void", "ice", "wood floor", "dirt", "mushroom floor")
 FLOOR_UNBREAK = ("void",)
 FLOOR_TYPE = {"void": "block", "ice": "block", "dirt": "soil"}
+ROOMS = {
+    "wooden cabin": (("wood", (-5, -4), (8, 6), "wood floor"), ("wooden door", (0, 1), (1, 1), "wood floor")),
+    "mushroom hut": (("mushroom block", (-3, -2), (5, 4), "mushroom floor"), ("wooden door", (0, 1), (1, 1), "mushroom floor"), ("mushroom shaper", (-2, -1), (1, 1), None)),
+}

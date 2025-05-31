@@ -1,5 +1,6 @@
 from ...tile_systems.room_generation import generate_room
 from ...tile_systems.tile_class import Tile
+from ...info import ROOMS
 
 def enter_room(location, grid_position, chunks, health, max_health, inventory):
     location["room"] = (*grid_position[0], *grid_position[1],)
@@ -10,13 +11,15 @@ def enter_room(location, grid_position, chunks, health, max_health, inventory):
         chunks[0, 0, 0, 0][location["tile"][0], location["tile"][1]][location["tile"][2], location["tile"][3]] = Tile(floor = chunks[0, 0, 0, 0][location["tile"][0], location["tile"][1]][location["tile"][2], location["tile"][3]].floor)
         location["tile"] = [0, 0, 0, 0]
     else:
-        if chunks[0, 0, 0, 0][grid_position[0]][grid_position[1]].kind == "wooden cabin":
-            chunks[location["room"]] = generate_room("wood", (-5, -4), (8, 6), "wood floor")
-            chunks[location["room"]][0, 0][0, 1] = Tile("wooden door")
-        elif chunks[0, 0, 0, 0][grid_position[0]][grid_position[1]].kind == "mushroom hut":
-            chunks[location["room"]] = generate_room("mushroom block", (-3, -2), (5, 4), "mushroom floor")
-            chunks[location["room"]][0, 0][0, 1] = Tile("wooden door")
-            chunks[location["room"]][-1, -1][14, 15] = Tile("mushroom shaper")
+        room_generating = ROOMS[chunks[0, 0, 0, 0][grid_position[0]][grid_position[1]].kind]
+        chunks[location["room"]] = {}
+        for room_info in room_generating:
+            room = generate_room(room_info[0], room_info[1], room_info[2], room_info[3])
+            for chunk_pos in room:
+                if chunk_pos not in chunks[location["room"]]:
+                    chunks[location["room"]][chunk_pos] = {}
+                for tile_pos in room[chunk_pos]:
+                    chunks[location["room"]][chunk_pos][tile_pos] = room[chunk_pos][tile_pos]
         chunks[location["room"]][0, 0][0, 0] = Tile("player", inventory, chunks[location["room"]][0, 0][0, 0].floor, health, max_health, chunks[location["room"]][0, 0][0, 0].floor_health, chunks[location["room"]][0, 0][0, 0].floor_unbreak)
         chunks[0, 0, 0, 0][(location["tile"][0], location["tile"][1])][(location["tile"][2], location["tile"][3])] = Tile(floor = chunks[0, 0, 0, 0][location["tile"][0], location["tile"][1]][location["tile"][2], location["tile"][3]].floor)
         location["tile"] = [0, 0, 0, 0]
