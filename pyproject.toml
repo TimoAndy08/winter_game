@@ -1,5 +1,5 @@
 [project]
-name = "winter-game"
+name = "frost-forge"
 version = "0.0.1"
 description = "A sandbox game with procedual world generation, mining, building, and crafting"
 authors = [
@@ -17,7 +17,7 @@ requires-python = ">= 3.13"
 main = "winter_game:main"
 
 [build-system]
-requires = ["hatchling"]
+requires = ["hatchling==1.26.3"]
 build-backend = "hatchling.build"
 
 [tool.rye]

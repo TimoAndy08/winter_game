@@ -11,6 +11,6 @@
 
 -e file:.
 noise==1.2.2
-    # via winter-game
+    # via frost-forge
 pygame==2.6.1
-    # via winter-game
+    # via frost-forge
