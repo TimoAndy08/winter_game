@@ -1,5 +1,6 @@
 TILE_HEALTH = {
     "big rock": 45,
+    "bonsai pot": 24,
     "blue dye": 6,
     "bluebell": 10,
     "blueprint": 8,
@@ -30,6 +31,7 @@ TILE_HEALTH = {
     "mushroom": 10,
     "obelisk": 1,
     "paper": 8,
+    "plant bouquet": 6,
     "player": 20,
     "rabbit adult": 10,
     "rabbit child": 6,

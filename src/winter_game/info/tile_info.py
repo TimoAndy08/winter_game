@@ -6,8 +6,9 @@ MULTI_TILES = {
     "obelisk": (1, 2),
     "big rock": (2, 2),
     "mushroom hut": (3, 2),
+    "bonsai pot": (2, 2),
 }
-STORAGE = {"small crate": (9, 48), "small barrel": (1, 512), "composter": (2, 16)}
+STORAGE = {"small crate": (9, 48), "small barrel": (1, 512)}
 FOOD = {
     "mushroom": 1,
     "carrot": 2,
@@ -30,7 +31,7 @@ GROW_CHANCE = {
     "carrot": 10000,
     "rabbit child": 12500,
 }
-PROCESSING_TIME = {"composter": 120}
+PROCESSING_TIME = {"composter": 120, "bonsai pot": 1200}
 UNBREAK = ("rabbit hole", "wooden door", "left", "up", "obelisk")
 FLOOR = ("void", "ice", "wood floor", "dirt", "mushroom floor")
 FLOOR_UNBREAK = ("void",)
