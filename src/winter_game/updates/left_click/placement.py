@@ -11,6 +11,8 @@ def place(inventory, inventory_number, is_not_tile, is_kind, health, max_health,
                     if health < max_health:
                         chunks[location["room"]][location["tile"][0], location["tile"][1]][location["tile"][2], location["tile"][3]].health = min(health + FOOD[inventory_key], max_health)
                         inventory[inventory_key] -= 1
+                        if inventory[inventory_key] == 0:
+                            del inventory[inventory_key]
                         return chunks
                 chunks = place_tile(chunks, location, inventory_key, grid_position, is_not_tile, inventory)
         elif is_not_tile:
