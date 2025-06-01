@@ -7,6 +7,7 @@ MULTI_TILES = {
     "big rock": (2, 2),
     "mushroom hut": (3, 2),
     "bonsai pot": (2, 2),
+    "greenhouse": (5, 3),
 }
 STORAGE = {"small crate": (9, 48), "small barrel": (1, 512)}
 FOOD = {
@@ -39,4 +40,5 @@ FLOOR_TYPE = {"void": "block", "ice": "block", "dirt": "soil"}
 ROOMS = {
     "wooden cabin": (("wood", (-5, -4), (8, 6), "wood floor"), ("wooden door", (0, 1), (1, 1), "wood floor")),
     "mushroom hut": (("mushroom block", (-3, -2), (5, 4), "mushroom floor"), ("wooden door", (0, 1), (1, 1), "mushroom floor"), ("mushroom shaper", (-2, -1), (1, 1), None)),
+    "greenhouse": (("glass", (-5, -9), (11, 11), "dirt"), ("wooden door", (0, 1), (1, 1), "wood floor"), (None, (-4, -4), (9, 1), "wood floor"), (None, (0, -8), (1, 9), "wood floor"))
 }

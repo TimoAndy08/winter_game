@@ -24,11 +24,13 @@ RECIPES = {
         (("stone", 1), (("rock", 1),)),
         (("brick", 2), (("clay", 1),)),
         (("roasted rabbit meat", 1), (("rabbit meat", 1),)),
+        (("glass", 1), ("sand", 3)),
     ),
     "manual press": (
         (("blue dye", 2), (("bluebell", 2), ("water", 1), ("bowl", 1))),
         (("paper", 2), (("wood pulp", 3),)),
         (("blueprint", 1), (("paper", 3), ("blue dye", 2))),
+        (("sand", 3), ("rock", 2)),
     ),
     "sawbench": (
         (("handle", 1), (("stick", 4), ("blue dye", 1))),
@@ -45,6 +47,7 @@ RECIPES = {
         (("wooden bed", 1), (("wood", 10), ("blue dye", 3), ("rabbit fur", 2))),
         (("composter", 1), (("small barrel", 1), ("mushroom", 2), ("paper", 2))),
         (("bonsai pot", 1), (("small crate", 3), ("big rock", 2), ("plant bouquet", 1), ("dirt", 4))),
+        (("greenhouse", 1), (("glass", 16), ("bonsai pot", 4), ("wood", 32)))
     ),
     "mushroom shaper": (
         (("mushroom block", 1), (("mushroom", 2), ("wood", 1))),

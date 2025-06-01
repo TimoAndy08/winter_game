@@ -34,6 +34,8 @@ TOOL_REQUIRED = {
     "coal": "pickaxe",
     "composter": "axe",
     "bonsai pot": "axe",
+    "greenhouse": "axe",
+    "sand": "shovel",
 }
 TOOL_EFFICIENCY = {
     "flint": 1, 

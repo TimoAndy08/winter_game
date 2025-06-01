@@ -18,4 +18,5 @@ RESISTANCE = {
     "coal": 1,
     "composter": 1,
     "bonsai pot": 2,
+    "greenhouse": 2,
 }

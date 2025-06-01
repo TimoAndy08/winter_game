@@ -27,6 +27,7 @@ TILE_ATTRIBUTES = {
     "coal ore": ("no_pickup"),
     "composter": ("open", "machine"),
     "bonsai pot": ("open", "machine", "multi"),
+    "greenhouse": ("enter", "multi"),
     # Special tiles
     "left": ("point", "no_pickup"),
     "up": ("point", "no_pickup"),
