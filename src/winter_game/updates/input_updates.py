@@ -5,6 +5,11 @@ from ..tile_systems.tile_class import Tile
 from ..tile_systems.world_generation import generate_chunk
 from ..game_state import GameState
 from .mouse_update import button_press
+from json import dumps
+from os import path
+from ..info import DAY_LENGTH
+from ..render.menu_rendering import SAVES_FOLDER
+from ..tile_systems.serialize import serialize_chunks
 
 def update_game(state: GameState, chunks):
     state.health = chunks[state.location["tile"][0], state.location["tile"][1]][state.location["tile"][2], state.location["tile"][3]].health
@@ -70,5 +75,9 @@ def update_game(state: GameState, chunks):
                 state.location["opened"] = ((0, 0), (0, 0))
 
     state.tick += 1
+    if state.tick % (DAY_LENGTH // 4) == 0:
+        with open(path.join(SAVES_FOLDER, f"autosave_{(state.tick // (DAY_LENGTH // 4)) % 4}.txt"), "w", encoding="utf-8") as file:
+                chunks_json = dumps(serialize_chunks(chunks))
+                file.write(f"{chunks_json};{state.location['tile']};{state.tick};{state.noise_offset}")
     state.zoom = 0.05 * state.target_zoom + 0.95 * state.zoom
     return chunks
