@@ -1,13 +1,11 @@
 MULTI_TILES = {
     "sawbench": (2, 1),
     "manual press": (2, 1),
-    "wooden cabin": (4, 3),
     "wooden bed": (1, 2),
     "obelisk": (1, 2),
     "big rock": (2, 2),
-    "mushroom hut": (3, 2),
+    "mushroom hut": (5, 4),
     "bonsai pot": (2, 2),
-    "greenhouse": (5, 3),
 }
 STORAGE = {"small crate": (9, 48), "small barrel": (1, 512)}
 FOOD = {
@@ -37,3 +35,6 @@ UNBREAK = ("rabbit hole", "wooden door", "left", "up", "obelisk")
 FLOOR = ("void", "ice", "wood floor", "dirt", "mushroom floor")
 FLOOR_UNBREAK = ("void",)
 FLOOR_TYPE = {"void": "block", "ice": "block", "dirt": "soil"}
+ROOMS = {
+    "mushroom hut": (("mushroom block", (0, 0), (5, 4), "mushroom floor"), (None, (3, 3), (1, 1), "mushroom floor"), ("mushroom shaper", (1, 1), (1, 1), None))
+}

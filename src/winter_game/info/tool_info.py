@@ -25,8 +25,6 @@ TOOL_REQUIRED = {
     "manual press": "pickaxe",
     "bluebell": "shovel",
     "small crate": "axe",
-    "wooden cabin": "axe",
-    "mushroom hut": "axe",
     "mushroom block": "axe",
     "mushroom shaper": "axe",
     "dirt": "shovel",
@@ -34,7 +32,6 @@ TOOL_REQUIRED = {
     "coal": "pickaxe",
     "composter": "axe",
     "bonsai pot": "axe",
-    "greenhouse": "axe",
     "sand": "shovel",
 }
 TOOL_EFFICIENCY = {

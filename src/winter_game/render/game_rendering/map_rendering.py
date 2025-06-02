@@ -8,7 +8,7 @@ def render_map(location, chunks, camera, zoom, scaled_image, window):
                 for y in range(0, 16):
                     for x in range(0, 16):
                         tile = (x, y)
-                        if tile in chunks[chunk] and "point" not in chunks[chunk][tile].attributes:
+                        if tile in chunks[chunk]:
                             current_tile = chunks[chunk][tile]
                             placement = (camera[0] + (x * TILE_SIZE + chunk[0] * CHUNK_SIZE) * zoom, camera[1] + (y * TILE_SIZE + chunk[1] * CHUNK_SIZE - HALF_SIZE) * zoom,)
                             size = MULTI_TILES.get(current_tile.kind, (1, 1))
