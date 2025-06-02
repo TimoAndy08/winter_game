@@ -7,11 +7,11 @@ def button_press(button, position, zoom, chunks, location, machine_ui, inventory
     world_y = int((position[1] - camera[1]) // (TILE_SIZE * zoom))
     if (world_x - location["tile"][0] * 16 - location["tile"][2]) ** 2 + (world_y - location["tile"][1] * 16 - location["tile"][3]) ** 2 <= 20 or "open" in TILE_ATTRIBUTES.get(machine_ui, ()):
         grid_position = [(world_x // 16, world_y // 16), (world_x % 16, world_y % 16)]
-        if grid_position[1] in chunks[location["room"]][grid_position[0]]:
-            while "point" in chunks[location["room"]][grid_position[0]][grid_position[1]].attributes:
-                if chunks[location["room"]][grid_position[0]][grid_position[1]].kind == "left":
+        if grid_position[1] in chunks[grid_position[0]]:
+            while "point" in chunks[grid_position[0]][grid_position[1]].attributes:
+                if chunks[grid_position[0]][grid_position[1]].kind == "left":
                     grid_position = [(grid_position[0][0] - (grid_position[1][0] == 0), grid_position[0][1]), ((grid_position[1][0] - 1) % 16, grid_position[1][1])]
-                elif chunks[location["room"]][grid_position[0]][grid_position[1]].kind == "up":
+                elif chunks[grid_position[0]][grid_position[1]].kind == "up":
                     grid_position = [(grid_position[0][0], grid_position[0][1] - (grid_position[1][1] == 0)), (grid_position[1][0], (grid_position[1][1] - 1) % 16)]
                     
         if button == 1:
@@ -21,7 +21,7 @@ def button_press(button, position, zoom, chunks, location, machine_ui, inventory
     
     if button == 4 or button == 5:
         if "craft" in TILE_ATTRIBUTES.get(machine_ui, ()) or "machine" in TILE_ATTRIBUTES.get(machine_ui, ()):
-            chunks[location["room"]][location["opened"][0]][location["opened"][1]].recipe = (recipe_number + (button == 5) - (button == 4)) % len(RECIPES[machine_ui])
+            chunks[location["opened"][0]][location["opened"][1]].recipe = (recipe_number + (button == 5) - (button == 4)) % len(RECIPES[machine_ui])
         else:
             inventory_number = (inventory_number + (button == 5) - (button == 4)) % INVENTORY_SIZE[0]
     return chunks, location, machine_ui, machine_inventory, tick, inventory_number

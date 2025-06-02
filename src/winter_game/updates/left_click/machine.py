@@ -4,7 +4,7 @@ from .take_out import take_out
 
 def machine_storage(position, chunks, location, inventory, machine_ui):
     moved_x = position[0] - SCREEN_SIZE[0] // 2
-    machine = chunks[location["room"]][location["opened"][0]][location["opened"][1]]
+    machine = chunks[location["opened"][0]][location["opened"][1]]
     machine_recipe = RECIPES[machine_ui][machine.recipe]
     holding_over_inventory = position[1] >= SCREEN_SIZE[1] - 32 * UI_SCALE and abs(moved_x) <= 16 * INVENTORY_SIZE[0] * UI_SCALE
     if holding_over_inventory:

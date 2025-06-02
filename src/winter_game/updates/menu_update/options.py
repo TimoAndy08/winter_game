@@ -12,7 +12,7 @@ def option(state, chunks):
             state.menu_placement = "main_menu"
             with open(path.join(SAVES_FOLDER, state.save_file_name + ".txt"), "w", encoding="utf-8") as file:
                 chunks_json = dumps(serialize_chunks(chunks))
-                file.write(f"{chunks_json};{state.location['tile']};{state.tick};{state.location['room']};{state.noise_offset}")
+                file.write(f"{chunks_json};{state.location['tile']};{state.tick};{state.noise_offset}")
             state.save_file_name = ""
     elif state.menu_placement == "options_main":
         if 0 <= state.position[1] <= 50:

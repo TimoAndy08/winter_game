@@ -34,7 +34,7 @@ def generate_chunk(
                     elif 0.2 > elevation_value > 0.1 and -0.4 > moisture_value:
                         tile[tile_pos] = Tile("coal ore", {"coal": 1})
                     elif 0.03 > elevation_value > -0.03 and moisture_value > 0.47:
-                        tile[tile_pos] = Tile("mushroom hut")
+                        tile[tile_pos] = Tile("mushroom block") # Change into a structure
                     elif 0.1 > elevation_value > -0.1 and moisture_value > 0.45:
                         tile[tile_pos] = Tile("mushroom", {"spore": 2}, "dirt")
                     elif 0.15 > elevation_value > -0.15 and moisture_value > 0.4:

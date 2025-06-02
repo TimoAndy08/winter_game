@@ -7,27 +7,25 @@ from ..game_state import GameState
 from .mouse_update import button_press
 
 def update_game(state: GameState, chunks):
-    state.health = chunks[state.location["room"]][state.location["tile"][0], state.location["tile"][1]][state.location["tile"][2], state.location["tile"][3]].health
-    state.max_health = chunks[state.location["room"]][state.location["tile"][0], state.location["tile"][1]][state.location["tile"][2], state.location["tile"][3]].max_health
+    state.health = chunks[state.location["tile"][0], state.location["tile"][1]][state.location["tile"][2], state.location["tile"][3]].health
+    state.max_health = chunks[state.location["tile"][0], state.location["tile"][1]][state.location["tile"][2], state.location["tile"][3]].max_health
 
     state.location["old"] = list(state.location["tile"])
-    state.inventory = chunks[state.location["room"]][state.location["tile"][0], state.location["tile"][1]][state.location["tile"][2], state.location["tile"][3]].inventory
+    state.inventory = chunks[state.location["tile"][0], state.location["tile"][1]][state.location["tile"][2], state.location["tile"][3]].inventory
     key = pg.key.get_pressed()
     state.location, state.velocity = move_player(key, state.controls, state.velocity, state.location)
 
-    if state.location["room"] == (0, 0, 0, 0):
-        for x in range(-4, 5):
-            for y in range(-4, 5):
-                generate_chunk(state.location["tile"][0] + x, state.location["tile"][1] + y, chunks[state.location["room"]], state.noise_offset)
+    for x in range(-4, 5):
+        for y in range(-4, 5):
+            generate_chunk(state.location["tile"][0] + x, state.location["tile"][1] + y, chunks, state.noise_offset)
 
-    room = state.location["room"]
     tile_chunk_coords = (state.location["tile"][0], state.location["tile"][1])
     tile_coords = (state.location["tile"][2], state.location["tile"][3])
     old_chunk_coords = (state.location["old"][0], state.location["old"][1])
     old_tile_coords = (state.location["old"][2], state.location["old"][3])
 
-    chunk = chunks[room][tile_chunk_coords]
-    old_chunk = chunks[room][old_chunk_coords]
+    chunk = chunks[tile_chunk_coords]
+    old_chunk = chunks[old_chunk_coords]
     old_tile = old_chunk[old_tile_coords]
 
     if tile_coords not in chunk:
@@ -52,7 +50,7 @@ def update_game(state: GameState, chunks):
         elif event.type == pg.MOUSEBUTTONDOWN:
             chunks, state.location, state.machine_ui, state.machine_inventory, state.tick, state.inventory_number = button_press(
                 event.button, state.position, state.zoom, chunks, state.location, state.machine_ui, state.inventory, state.health, state.max_health,
-                state.machine_inventory, state.tick, state.inventory_number, chunks[state.location["room"]][state.location["opened"][0]][state.location["opened"][1]].recipe, state.camera)
+                state.machine_inventory, state.tick, state.inventory_number, chunks[state.location["opened"][0]][state.location["opened"][1]].recipe, state.camera)
         elif event.type == pg.KEYDOWN:
             keys = pg.key.get_pressed()
             if keys[state.controls[4]]:

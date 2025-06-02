@@ -27,9 +27,8 @@ def break_tile(mining_kind, inventory, player_tile, grid_position, chunks, locat
         if len(junk_inventory) > 0:
             mining_tile = Tile("junk", junk_inventory, mining_tile.floor, floor_unbreak = mining_tile.floor_unbreak)
     else:
-        chunks[location["room"]][grid_position[0]][grid_position[1]] = Tile("corpse", inventory, mining_tile.floor, floor_unbreak = mining_tile.floor_unbreak)
+        chunks[grid_position[0]][grid_position[1]] = Tile("corpse", inventory, mining_tile.floor, floor_unbreak = mining_tile.floor_unbreak)
         chunks[(0, 0, 0, 0)][(0, 0)][(0, 2)] = Tile("player", floor = "void")
         location["tile"] = [0, 0, 0, 2]
         location["real"] = [0, 0, 0, 2]
-        location["room"] = (0, 0, 0, 0)
     return chunks, location, delete_mining_tile, mining_tile

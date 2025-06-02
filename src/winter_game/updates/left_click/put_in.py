@@ -8,9 +8,9 @@ def put_in(chunks, location, inventory, machine_ui, moved_x, machine_inventory):
         machine_item = machine_inventory.get(item[0], 0)
         if not (machine_item == 0 and len(machine_inventory) == machine_storage[0]):
             if machine_item + item[1] <= machine_storage[1]:
-                chunks[location["room"]][location["opened"][0]][location["opened"][1]].inventory[item[0]] = machine_item + item[1]
-                del chunks[location["room"]][location["tile"][0], location["tile"][1]][location["tile"][2], location["tile"][3]].inventory[item[0]]
+                chunks[location["opened"][0]][location["opened"][1]].inventory[item[0]] = machine_item + item[1]
+                del chunks[location["tile"][0], location["tile"][1]][location["tile"][2], location["tile"][3]].inventory[item[0]]
             else:
-                chunks[location["room"]][location["opened"][0]][location["opened"][1]].inventory[item[0]] = machine_storage[1]
-                chunks[location["room"]][location["tile"][0], location["tile"][1]][location["tile"][2], location["tile"][3]].inventory[item[0]] = (machine_item + item[1] - machine_storage[1])
+                chunks[location["opened"][0]][location["opened"][1]].inventory[item[0]] = machine_storage[1]
+                chunks[location["tile"][0], location["tile"][1]][location["tile"][2], location["tile"][3]].inventory[item[0]] = (machine_item + item[1] - machine_storage[1])
     return chunks

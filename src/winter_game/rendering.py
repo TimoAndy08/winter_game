@@ -9,7 +9,7 @@ def render(state: GameState, chunks, window, images) -> tuple:
         window.blit(pg.transform.scale(images["cursor"], (32, 32)), (state.position[0] - 16, state.position[1] - 16))
     else:
         state.camera, window = render_tiles(
-            chunks[state.location["room"]],
+            chunks,
             state.location,
             state.zoom,
             state.target_zoom,
@@ -25,7 +25,7 @@ def render(state: GameState, chunks, window, images) -> tuple:
             state.inventory_number,
             state.inventory,
             state.machine_ui,
-            chunks[state.location["room"]][state.location["opened"][0]].get(state.location["opened"][1], chunks[0, 0, 0, 0][0, 0][0, 0]).recipe,
+            chunks[state.location["opened"][0]].get(state.location["opened"][1], chunks[0, 0][0, 0]).recipe,
             state.health,
             state.max_health,
             state.machine_inventory,

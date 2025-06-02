@@ -6,5 +6,5 @@ def update(state: GameState, chunks):
         chunks = update_menu(state, chunks)
     else:
         chunks = update_game(state, chunks)
-        chunks[state.location["room"]] = update_tiles(state, chunks[state.location["room"]])
+        chunks = update_tiles(state, chunks)
     return chunks
