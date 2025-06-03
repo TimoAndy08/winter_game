@@ -70,7 +70,7 @@ def update_game(state: GameState, chunks):
                 state.target_zoom = min(max(state.target_zoom, 0.5), 2)
             elif keys[pg.K_TAB]:
                 state.menu_placement = "options_game"
-            elif keys[state.controls[0]] or keys[state.controls[1]] or keys[state.controls[2]] or keys[state.controls[3]]:
+            if keys[state.controls[0]] or keys[state.controls[1]] or keys[state.controls[2]] or keys[state.controls[3]]:
                 state.machine_ui = "game"
                 state.location["opened"] = ((0, 0), (0, 0))
 

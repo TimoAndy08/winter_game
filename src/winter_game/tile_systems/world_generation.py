@@ -24,8 +24,6 @@ def generate_chunk(
                     world_y = chunk_y * 16 + tile_y + noise_offset[1]
                     elevation_value = pnoise2(world_x / 10, world_y / 10, 3, 0.5, 2)
                     moisture_value = pnoise2(world_x / 30, world_y / 30, 3, 0.5, 3)
-                    elevation_value = random() - 0.5
-                    moisture_value = random() - 0.5
                     if moisture_value > 0 and -0.25 > elevation_value:
                         tile[tile_pos] = Tile(floor = "ice")
                     elif 0 > moisture_value > -0.15 and -0.2 > elevation_value:
