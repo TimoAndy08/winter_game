@@ -1,4 +1,4 @@
-from os import listdir
+from os import listdir, path, makedirs
 
 import pygame as pg
 
@@ -7,6 +7,9 @@ pg.font.init()
 MENU_FONT = pg.font.SysFont("Lucida Console", 50)
 CONTROL_NAMES = ["Move up ", "Move left ", "Move down ", "Move right", "Inventory ", "Zoom in", "Zoom out"]
 SAVES_FOLDER = "src/saves/"
+
+if not path.exists(SAVES_FOLDER):
+    makedirs(SAVES_FOLDER)
 
 def render_menu(
     menu_placement: str,
