@@ -1,4 +1,4 @@
-from os import path, listdir
+import os
 
 import pygame as pg
 
@@ -14,12 +14,12 @@ def main() -> None:
     pg.mouse.set_visible(False)
 
     state = GameState()
-    chunks = {(0, 0, 0, 0): {}}
+    chunks = {}
     window = pg.display.set_mode((0, 0), pg.FULLSCREEN)
-    SPRITES_FOLDER = "src/sprites"
+    SPRITES_FOLDER = os.path.normpath(os.path.join(__file__, "../..", "sprites"))
     IMAGES = {}
-    for filename in listdir(SPRITES_FOLDER):
-        IMAGES[filename.split(".")[0]] = pg.image.load(path.join(SPRITES_FOLDER, filename)).convert_alpha()
+    for filename in os.listdir(SPRITES_FOLDER):
+        IMAGES[filename.split(".")[0]] = pg.image.load(os.path.join(SPRITES_FOLDER, filename)).convert_alpha()
     while state.run:
         state.position = pg.mouse.get_pos()
         chunks = update(state, chunks)

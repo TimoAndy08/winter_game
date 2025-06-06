@@ -1,9 +1,10 @@
-from os import path
+import os
 
-SETTINGS_FILE = "src/settings.txt"
+
+SETTINGS_FILE = os.path.normpath(os.path.join(__file__, "../..", "settings.txt"))
 
 def settings_load():
-    if path.exists(SETTINGS_FILE):
+    if os.path.exists(SETTINGS_FILE):
         with open(SETTINGS_FILE, "r", encoding="utf-8") as file:
             controls = [int(i) for i in file.read().split(";")[0].split(":") if i]
     else:

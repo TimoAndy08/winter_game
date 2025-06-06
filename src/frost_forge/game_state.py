@@ -1,5 +1,7 @@
-from .settings_saving import settings_load
 import pygame as pg
+
+from .settings_saving import settings_load
+
 
 class GameState:
     def __init__(self):

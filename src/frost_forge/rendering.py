@@ -3,6 +3,7 @@ import pygame as pg
 from .render import render_menu, render_tiles, render_ui
 from .game_state import GameState
 
+
 def render(state: GameState, chunks, window, images) -> tuple:
     if state.menu_placement != "main_game":
         window = render_menu(state.menu_placement, state.save_file_name, state.control_adjusted, state.controls, window)

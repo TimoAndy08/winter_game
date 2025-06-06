@@ -1,4 +1,4 @@
-from os import listdir, path, makedirs
+import os
 
 import pygame as pg
 
@@ -6,10 +6,10 @@ pg.font.init()
 
 MENU_FONT = pg.font.SysFont("Lucida Console", 50)
 CONTROL_NAMES = ["Move up ", "Move left ", "Move down ", "Move right", "Inventory ", "Zoom in", "Zoom out"]
-SAVES_FOLDER = "src/saves/"
+SAVES_FOLDER = os.path.normpath(os.path.join(__file__, "../../..", "saves"))
 
-if not path.exists(SAVES_FOLDER):
-    makedirs(SAVES_FOLDER)
+if not os.path.exists(SAVES_FOLDER):
+    os.makedirs(SAVES_FOLDER)
 
 def render_menu(
     menu_placement: str,
@@ -22,7 +22,7 @@ def render_menu(
     if menu_placement == "load_save":
         window.blit(MENU_FONT.render("Back to menu", False, (19, 17, 18)), (0, 0))
         window.blit(MENU_FONT.render("Create new world", False, (19, 17, 18)), (0, 50))
-        saves = [f[:-len(".txt")] for f in listdir(SAVES_FOLDER)]
+        saves = [f[:-len(".txt")] for f in os.listdir(SAVES_FOLDER)]
         for i in range(0, len(saves)):
             window.blit(MENU_FONT.render(f"[x] [{saves[i]}]", False, (19, 17, 18)), (0, 100 + i * 50))
     elif menu_placement == "save_creation":
