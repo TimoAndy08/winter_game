@@ -3,7 +3,7 @@ import pygame as pg
 pg.display.init()
 pg.font.init()
 
-SCREEN_SIZE = (pg.display.Info().current_w + 64, pg.display.Info().current_h + 36)
+SCREEN_SIZE = (pg.display.Info().current_w, pg.display.Info().current_h)
 TILE_SIZE = 64
 HALF_SIZE = TILE_SIZE // 2
 CHUNK_SIZE = 16 * TILE_SIZE

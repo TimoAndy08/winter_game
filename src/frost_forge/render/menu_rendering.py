@@ -5,7 +5,7 @@ import pygame as pg
 pg.font.init()
 
 MENU_FONT = pg.font.SysFont("Lucida Console", 50)
-CONTROL_NAMES = ["Move up ", "Move left ", "Move down ", "Move right", "Inventory ", "Zoom in", "Zoom out"]
+CONTROL_NAMES = ["Move up ", "Move left ", "Move down ", "Move right", "Inventory ", "Zoom in", "Zoom out", "Slot 1", "Slot 2", "Slot 3", "Slot 4", "Slot 5", "Slot 6", "Slot 7", "Slot 8", "Slot 9", "Slot 10", "Slot 11", "Slot 12", "Hotbar scroll right", "Hotbar scroll left", "Go to menu"]
 SAVES_FOLDER = os.path.normpath(os.path.join(__file__, "../../..", "saves"))
 
 if not os.path.exists(SAVES_FOLDER):
@@ -42,12 +42,5 @@ def render_menu(
         window.blit(MENU_FONT.render("Quit Game", False, (19, 17, 18)), (0, 200))
     elif menu_placement == "controls_options":
         window.blit(MENU_FONT.render("Proceed", False, (19, 17, 18)), (0, 0))
-        window.blit(
-            MENU_FONT.render(
-                f"{CONTROL_NAMES[control_adjusted]}: {chr(controls[control_adjusted])}",
-                False,
-                (19, 17, 18),
-            ),
-            (0, 100),
-        )
+        window.blit(MENU_FONT.render(f"{CONTROL_NAMES[control_adjusted]}: {pg.key.name(controls[control_adjusted]).capitalize()}", False, (19, 17, 18)), (0, 100))
     return window

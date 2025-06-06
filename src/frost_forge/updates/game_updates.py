@@ -7,7 +7,7 @@ from ..game_state import GameState
 from .mouse_update import button_press
 from json import dumps
 from os import path
-from ..info import DAY_LENGTH
+from ..info import DAY_LENGTH, INVENTORY_SIZE
 from ..render.menu_rendering import SAVES_FOLDER
 from ..tile_systems.serialize import serialize_chunks
 
@@ -68,11 +68,18 @@ def update_game(state: GameState, chunks):
             elif keys[state.controls[5]] or keys[state.controls[6]]:
                 state.target_zoom += (keys[state.controls[5]] - keys[state.controls[6]]) / 4
                 state.target_zoom = min(max(state.target_zoom, 0.5), 2)
-            elif keys[pg.K_TAB]:
+            elif keys[state.controls[21]]:
                 state.menu_placement = "options_game"
-            if keys[state.controls[0]] or keys[state.controls[1]] or keys[state.controls[2]] or keys[state.controls[3]]:
+            elif keys[state.controls[0]] or keys[state.controls[1]] or keys[state.controls[2]] or keys[state.controls[3]]:
                 state.machine_ui = "game"
                 state.location["opened"] = ((0, 0), (0, 0))
+            elif keys[state.controls[19]]:
+                state.inventory_number = (state.inventory_number + 1) % INVENTORY_SIZE[0]
+            elif keys[state.controls[20]]:
+                state.inventory_number = (state.inventory_number - 1) % INVENTORY_SIZE[0]
+            for i in range(7, 19):
+                if keys[state.controls[i]]:
+                    state.inventory_number = i - 7
 
     state.tick += 1
     if state.tick % (DAY_LENGTH // 4) == 0:
