@@ -25,6 +25,7 @@ RECIPES = {
         (("brick", 2), (("clay", 1),)),
         (("roasted rabbit meat", 1), (("rabbit meat", 1),)),
         (("glass", 1), (("sand", 3),)),
+        (("glass key"), (("handle", 1), ("glass", 3))),
     ),
     "manual press": (
         (("blue dye", 2), (("bluebell", 2), ("water", 1), ("bowl", 1))),

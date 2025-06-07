@@ -21,6 +21,8 @@ TILE_HEALTH = {
     "flint sword": 6,
     "flint": 16,
     "glass": 8,
+    "glass key": 1,
+    "glass lock": 1,
     "ice": 12,
     "junk": 1,
     "left": 1,

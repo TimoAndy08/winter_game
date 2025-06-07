@@ -32,7 +32,7 @@ GROW_CHANCE = {
     "rabbit child": 200 * FPS,
 }
 PROCESSING_TIME = {"composter": 2 * FPS, "bonsai pot": 40 * FPS}
-UNBREAK = ("rabbit hole", "wooden door", "left", "up", "obelisk")
+UNBREAK = ("rabbit hole", "wooden door", "left", "up", "obelisk", "glass lock")
 FLOOR = ("void", "ice", "wood floor", "dirt", "mushroom floor")
 FLOOR_UNBREAK = ("void",)
 FLOOR_TYPE = {"void": "block", "ice": "block", "dirt": "soil"}

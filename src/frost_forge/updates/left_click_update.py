@@ -1,5 +1,5 @@
 from ..info import TILE_ATTRIBUTES, DAY_LENGTH
-from .left_click import recipe, place, storage, machine_storage
+from .left_click import recipe, place, storage, machine_storage, unlock
 
 def left_click(
     machine_ui: str,
@@ -30,6 +30,8 @@ def left_click(
         elif "sleep" in chunks[grid_position[0]][grid_position[1]].attributes:
             if 9 / 16 <= (tick / DAY_LENGTH) % 1 < 15 / 16:
                 tick = (tick // DAY_LENGTH + 9 / 16) * DAY_LENGTH
+        elif "lock" in chunks[grid_position[0]][grid_position[1]].attributes:
+            chunks = unlock(inventory, inventory_number, chunks, grid_position)
     elif "machine" in TILE_ATTRIBUTES.get(machine_ui, ()):
         chunks = machine_storage(position, chunks, location, inventory, machine_ui)
     elif "store" in TILE_ATTRIBUTES.get(machine_ui, ()):
