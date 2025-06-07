@@ -5,6 +5,8 @@ from .tile_class import Tile
 from ..info import MULTI_TILES, ROOMS
 from .room_generation import generate_room
 
+ATTRIBUTE_CARE = ("unbreak", "point", "structure")
+
 def generate_chunk(
     chunk_x: int,
     chunk_y: int,
@@ -64,8 +66,10 @@ def generate_chunk(
                         for x in range(0, tile_size[0]):
                             for y in range(0, tile_size[1]):
                                 test_tile = (new_tile_x + x, new_tile_y + y)
-                                if test_tile in tile and ("unbreak" in tile[test_tile].attributes or "point" in tile[test_tile].attributes):
-                                    can_place = False
+                                if test_tile in tile:
+                                    for attribute in ATTRIBUTE_CARE:
+                                        if attribute in tile[test_tile].attributes:
+                                            can_place = False
                         if can_place:
                             tile[new_tile_x, new_tile_y] = tile[tile_pos]
                             if tile[tile_pos].kind not in ROOMS:

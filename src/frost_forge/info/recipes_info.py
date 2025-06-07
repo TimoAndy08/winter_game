@@ -43,11 +43,9 @@ RECIPES = {
         (("small crate", 1), (("wood", 6), ("stick", 4))),
         (("small barrel", 1), (("wood", 6), ("stick", 4))),
         (("stone brick", 2), (("stone", 3),)),
-        (("wooden cabin", 1), (("wood", 16), ("brick", 6))),
         (("wooden bed", 1), (("wood", 10), ("blue dye", 3), ("rabbit fur", 2))),
         (("composter", 1), (("small barrel", 1), ("mushroom", 2), ("paper", 2))),
-        (("bonsai pot", 1), (("small crate", 3), ("big rock", 2), ("plant bouquet", 1), ("dirt", 4))),
-        (("greenhouse", 1), (("glass", 16), ("bonsai pot", 4), ("wood", 32)))
+        (("bonsai pot", 1), (("small crate", 1), ("brick", 2), ("plant bouquet", 1), ("dirt", 4))),
     ),
     "mushroom shaper": (
         (("mushroom block", 1), (("mushroom", 2), ("wood", 1))),
@@ -57,10 +55,10 @@ RECIPES = {
         (("dirt", 1), (("spore", 3), ("sapling", 1))),
     ),
     "bonsai pot": (
-        (("sapling", 4), ()),
-        (("wood", 3), (("sapling", 2),)),
-        (("spore", 2), ()),
-        (("mushroom", 1), (("spore", 1),)),
+        (("sapling", 2), ()),
+        (("wood", 2), (("sapling", 1),)),
+        (("spore", 1), ()),
+        (("mushroom", 1), (("spore", 2),)),
         (("carrot", 1), ()),
         (("bluebell", 1), (("water", 1),)),
     )

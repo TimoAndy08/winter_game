@@ -19,11 +19,11 @@ TILE_ATTRIBUTES = {
     "wooden bed": ("sleep", "multi"),
     "rabbit meat": ("eat",),
     "roasted rabbit meat": ("eat",),
-    "big rock": ("multi"),
+    "big rock": ("multi", "no_pickup"),
     "mushroom shaper": ("open", "craft"),
     "coal ore": ("no_pickup"),
     "composter": ("open", "machine"),
-    "bonsai pot": ("open", "machine", "multi"),
+    "bonsai pot": ("open", "machine"),
     # Special tiles
     "left": ("point", "no_pickup"),
     "up": ("point", "no_pickup"),

@@ -1,3 +1,5 @@
+from .render_info import FPS
+
 MULTI_TILES = {
     "sawbench": (2, 1),
     "manual press": (2, 1),
@@ -5,7 +7,6 @@ MULTI_TILES = {
     "obelisk": (1, 2),
     "big rock": (2, 2),
     "mushroom hut": (5, 4),
-    "bonsai pot": (2, 2),
 }
 STORAGE = {"small crate": (9, 48), "small barrel": (1, 512)}
 FOOD = {
@@ -24,13 +25,13 @@ GROW_TILES = {
     "rabbit child": ("rabbit adult", {"rabbit fur": 1, "rabbit meat": 2}),
 }
 GROW_CHANCE = {
-    "sapling": 5000,
-    "treeling": 10000,
-    "spore": 7500,
-    "carrot": 10000,
-    "rabbit child": 12500,
+    "sapling": 80 * FPS,
+    "treeling": 160 * FPS,
+    "spore": 120 * FPS,
+    "carrot": 160 * FPS,
+    "rabbit child": 200 * FPS,
 }
-PROCESSING_TIME = {"composter": 120, "bonsai pot": 1200}
+PROCESSING_TIME = {"composter": 2 * FPS, "bonsai pot": 40 * FPS}
 UNBREAK = ("rabbit hole", "wooden door", "left", "up", "obelisk")
 FLOOR = ("void", "ice", "wood floor", "dirt", "mushroom floor")
 FLOOR_UNBREAK = ("void",)
