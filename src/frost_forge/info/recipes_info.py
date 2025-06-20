@@ -27,8 +27,10 @@ RECIPES = {
         (("sand", 3), (("rock", 2),)),
     ),
     "mushroom shaper": (
+        (("bonsai pot", 1), (("brick", 2), ("dirt", 4), ("plant bouquet", 1), ("small crate", 1))),
         (("mushroom block", 1), (("mushroom", 2), ("wood", 1))),
-        (("mushroom floor", 1), (("mushroom block", 1), ("wood", 1))),
+        (("mushroom door", 1), (("mushroom floor", 1), ("mushroom block", 1))),
+        (("mushroom floor", 2), (("mushroom block", 1), ("wood", 1))),
     ),
     "player": (
         (("plant bouquet", 1), (("bluebell", 1), ("carrot", 1), ("sapling", 1), ("spore", 1))),
@@ -37,7 +39,6 @@ RECIPES = {
         (("workbench", 1), (("flint", 1), ("wood", 4))),
     ),
     "sawbench": (
-        (("bonsai pot", 1), (("brick", 2), ("dirt", 4), ("plant bouquet", 1), ("small crate", 1))),
         (("composter", 1), (("mushroom", 2), ("paper", 2), ("small barrel", 1))),
         (("handle", 1), (("blue dye", 1), ("stick", 4))),
         (("rock axe", 1), (("handle", 2), ("rock", 4))),

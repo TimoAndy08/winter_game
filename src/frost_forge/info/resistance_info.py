@@ -9,6 +9,8 @@ RESISTANCE = {
     "ice": 1,
     "manual press": 1,
     "mushroom block": 1,
+    "mushroom door": 1,
+    "mushroom floor": 1,
     "mushroom shaper": 2,
     "rabbit adult": 1,
     "rock": 1,

@@ -28,6 +28,7 @@ TILE_HEALTH = {
     "left": 1,
     "manual press": 12,
     "mushroom block": 5,
+    "mushroom door": 8,
     "mushroom shaper": 13,
     "mushroom stew": 6,
     "mushroom": 10,

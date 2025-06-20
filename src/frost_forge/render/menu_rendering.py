@@ -29,6 +29,7 @@ def render_menu(
         window.blit(MENU_FONT.render("Name your new save?", False, (19, 17, 18)), (0, 0))
         window.blit(MENU_FONT.render(save_file_name, False, (19, 17, 18)), (0, 100))
         window.blit(MENU_FONT.render("Proceed", False, (19, 17, 18)), (0, 200))
+        window.blit(MENU_FONT.render("Don't save", False, (19, 17, 18)), (0, 300))
     elif menu_placement.split("_")[0] == "options":
         if menu_placement == "options_game":
             window.blit(MENU_FONT.render("Return to game", False, (19, 17, 18)), (0, 0))

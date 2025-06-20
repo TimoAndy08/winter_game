@@ -18,12 +18,16 @@ def update_mouse(state, event, chunks):
     elif state.menu_placement.startswith("options"):
         option(state, chunks)
 
-    elif state.menu_placement == "save_creation" and state.save_file_name != "" and state.save_file_name.split("_")[0] != "autosave":
-        state.menu_placement = "main_menu"
-        with open(path.join(SAVES_FOLDER, state.save_file_name + ".txt"), "w", encoding="utf-8") as file:
-            chunks_json = dumps(serialize_chunks(chunks))
-            file.write(f"{chunks_json};{state.location['tile']};{state.tick};{state.noise_offset}")
-        state.save_file_name = ""
+    elif state.menu_placement == "save_creation":
+        if 200 <= state.position[1] <= 250 and state.save_file_name != "" and state.save_file_name.split("_")[0] != "autosave":
+            state.menu_placement = "main_menu"
+            with open(path.join(SAVES_FOLDER, state.save_file_name + ".txt"), "w", encoding="utf-8") as file:
+                chunks_json = dumps(serialize_chunks(chunks))
+                file.write(f"{chunks_json};{state.location['tile']};{state.tick};{state.noise_offset}")
+            state.save_file_name = ""
+        elif 300 <= state.position[1] <= 350:
+            state.menu_placement = "main_menu"
+            state.save_file_name = ""
 
     elif state.menu_placement == "main_menu":
         if 0 <= state.position[1] <= 50:

@@ -7,7 +7,7 @@ from ..game_state import GameState
 from .mouse_update import button_press
 from json import dumps
 from os import path
-from ..info import DAY_LENGTH, INVENTORY_SIZE
+from ..info import DAY_LENGTH, INVENTORY_SIZE, FLOOR_TYPE
 from ..render.menu_rendering import SAVES_FOLDER
 from ..tile_systems.serialize import serialize_chunks
 
@@ -35,7 +35,7 @@ def update_game(state: GameState, chunks):
 
     if tile_coords not in chunk:
         chunk[tile_coords] = Tile("player", state.inventory, health=state.health, max_health=state.max_health)
-    elif chunk[tile_coords].kind is None:
+    elif chunk[tile_coords].kind is None and FLOOR_TYPE.get(chunk[tile_coords].floor) != "door":
         exist_tile = chunk[tile_coords]
         chunk[tile_coords] = Tile("player", state.inventory, exist_tile.floor, state.health, state.max_health, exist_tile.floor_health, exist_tile.floor_unbreak)
     elif chunk[tile_coords].kind != "player":

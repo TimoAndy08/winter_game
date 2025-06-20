@@ -11,6 +11,8 @@ FOOD = {
 FLOOR = (
     "dirt",
     "ice",
+    "mushroom door",
+    "mushroom door open",
     "mushroom floor",
     "void",
     "wood floor",
@@ -19,6 +21,8 @@ FLOOR_TYPE = {
     "dirt": "soil",
     "ice": "block",
     "void": "block",
+    "mushroom door": "door",
+    "mushroom door open": "open",
 }
 FLOOR_UNBREAK = (
     "void",
@@ -52,8 +56,8 @@ PROCESSING_TIME = {
 ROOMS = {
     "mushroom hut": (
         ("mushroom block", (0, 0), (5, 4), "mushroom floor"),
-        (None, (3, 3), (1, 1), "mushroom floor"),
-        ("mushroom shaper", (1, 1), (1, 1), None),
+        (None, (3, 3), (1, 1), "mushroom door"),
+        ("mushroom shaper", (1, 1), (1, 1), "mushroom floor"),
     ),
 }
 STORAGE = {
