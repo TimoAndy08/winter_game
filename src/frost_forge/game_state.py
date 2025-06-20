@@ -19,7 +19,8 @@ class GameState:
         self.menu_placement = "main_menu"
         self.velocity = [0, 0]
         self.machine_ui = "game"
-        self.control_adjusted = 0
+        self.control_adjusted = -1
+        self.scroll = 0
         self.machine_inventory = {}
         self.camera = (0, 0)
         self.tick = 0

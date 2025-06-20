@@ -21,4 +21,5 @@ def option(state, chunks):
         if 0 <= state.position[1] <= 50:
             state.menu_placement = "main_menu"
     if 200 <= state.position[1] <= 250:
+        state.control_adjusted = -1
         state.menu_placement = "controls_options"

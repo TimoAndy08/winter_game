@@ -6,6 +6,7 @@ from ...tile_systems.serialize import serialize_chunks
 from .load_save import save_loading
 from .create_save import save_creating
 from .options import option
+from ...info import SCREEN_SIZE
 
 def update_mouse(state, event, chunks):
     if state.menu_placement == "load_save":
@@ -25,9 +26,11 @@ def update_mouse(state, event, chunks):
                 chunks_json = dumps(serialize_chunks(chunks))
                 file.write(f"{chunks_json};{state.location['tile']};{state.tick};{state.noise_offset}")
             state.save_file_name = ""
+            chunks = {}
         elif 300 <= state.position[1] <= 350:
             state.menu_placement = "main_menu"
             state.save_file_name = ""
+            chunks = {}
 
     elif state.menu_placement == "main_menu":
         if 0 <= state.position[1] <= 50:
@@ -38,10 +41,12 @@ def update_mouse(state, event, chunks):
             state.run = False
 
     elif state.menu_placement == "controls_options":
-        if 0 <= state.position[1] <= 50:
-            state.menu_placement = "options_game" if len(state.save_file_name) else "options_main"
         if event.button == 4:
-            state.control_adjusted = (state.control_adjusted - 1) % len(state.controls)
+            if state.scroll > 0:
+                state.scroll -= 1
         elif event.button == 5:
-            state.control_adjusted = (state.control_adjusted + 1) % len(state.controls)
+            if state.scroll < len(state.controls) - SCREEN_SIZE[1] // 50 - 1:
+                state.scroll += 1
+        else:
+            state.control_adjusted = state.scroll + state.position[1] // 50
     return chunks
