@@ -17,6 +17,7 @@ TOOL_REQUIRED = {
     "mushroom": "axe",
     "mushroom block": "hammer",
     "mushroom door": "hammer",
+    "mushroom door open": "hammer",
     "mushroom floor": "hammer",
     "mushroom shaper": "hammer",
     "player": "sword",
@@ -34,6 +35,9 @@ TOOL_REQUIRED = {
     "tree": "axe",
     "treeling": "axe",
     "wood": "axe",
+    "wood door": "axe",
+    "wood door open": "axe",
+    "wood floor": "axe",
     "wood pulp": "shovel",
 }
 TOOL_EFFICIENCY = {

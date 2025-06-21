@@ -28,7 +28,6 @@ TILE_HEALTH = {
     "left": 1,
     "manual press": 12,
     "mushroom block": 5,
-    "mushroom door": 8,
     "mushroom shaper": 13,
     "mushroom stew": 6,
     "mushroom": 10,
@@ -64,12 +63,14 @@ TILE_HEALTH = {
     "wood pulp": 6,
     "wood": 4,
     "wooden bed": 12,
-    "wooden door": 1,
     "workbench": 5,
 }
 FLOOR_HEALTH = {
     "dirt": 5,
     "ice": 12,
+    "mushroom door": 10,
+    "mushroom floor": 8,
     "void": 1,
+    "wood door": 8,
     "wood floor": 6,
 }

@@ -15,14 +15,18 @@ FLOOR = (
     "mushroom door open",
     "mushroom floor",
     "void",
+    "wood door",
+    "wood door open",
     "wood floor",
 )
 FLOOR_TYPE = {
     "dirt": "soil",
     "ice": "block",
-    "void": "block",
     "mushroom door": "door",
     "mushroom door open": "open",
+    "void": "block",
+    "wood door": "door",
+    "wood door open": "open"
 }
 FLOOR_UNBREAK = (
     "void",

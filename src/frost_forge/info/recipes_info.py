@@ -35,6 +35,7 @@ RECIPES = {
     "player": (
         (("plant bouquet", 1), (("bluebell", 1), ("carrot", 1), ("sapling", 1), ("spore", 1))),
         (("stick", 4), (("wood", 2),)),
+        (("wood door", 1), (("wood floor", 1), ("wood", 2))),
         (("wood floor", 1), (("wood", 2),)),
         (("workbench", 1), (("flint", 1), ("wood", 4))),
     ),
