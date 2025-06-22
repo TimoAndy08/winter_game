@@ -2,6 +2,8 @@ import os
 
 import pygame as pg
 
+from ..info import SCREEN_SIZE
+
 pg.font.init()
 
 MENU_FONT = pg.font.SysFont("Lucida Console", 50)
@@ -17,6 +19,7 @@ def render_menu(
     controls: list,
     window,
     scroll,
+    control_adjusted,
 ):
     window.fill((206, 229, 242))
     if menu_placement == "load_save":
@@ -42,6 +45,7 @@ def render_menu(
         window.blit(MENU_FONT.render("Options", False, (19, 17, 18)), (0, 100))
         window.blit(MENU_FONT.render("Quit Game", False, (19, 17, 18)), (0, 200))
     elif menu_placement == "controls_options":
+        pg.draw.rect(window, (181, 102, 60), pg.Rect(0, 50 * (control_adjusted - scroll), SCREEN_SIZE[0], 50))
         for y in range(0, len(controls)):
             window.blit(MENU_FONT.render(f"{CONTROL_NAMES[y]}: {pg.key.name(controls[y]).capitalize()}", False, (19, 17, 18)), (0, 50 * (y - scroll)))
     return window
