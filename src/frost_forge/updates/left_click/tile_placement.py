@@ -10,7 +10,7 @@ def place_tile(chunks, inventory_key, grid_position, is_not_tile, inventory):
             if tile_coord in chunks[chunk_coord]:
                 current_tile = chunks[chunk_coord][tile_coord]
                 tile_floor_type = FLOOR_TYPE.get(current_tile.floor, "empty")
-                if tile_floor_type == "block" or "grow" in TILE_ATTRIBUTES.get(inventory_key, ()) and tile_floor_type != "soil" or isinstance(current_tile.kind, str):
+                if tile_floor_type == "block" or tile_floor_type == "fluid" or "grow" in TILE_ATTRIBUTES.get(inventory_key, ()) and tile_floor_type != "soil" or isinstance(current_tile.kind, str):
                     return chunks
             elif "grow" in TILE_ATTRIBUTES.get(inventory_key, ()):
                 return chunks

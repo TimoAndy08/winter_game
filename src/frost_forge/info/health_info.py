@@ -59,7 +59,6 @@ TILE_HEALTH = {
     "tree": 15,
     "treeling": 9,
     "up": 1,
-    "water": 8,
     "wood pulp": 6,
     "wood": 4,
     "wooden bed": 12,
@@ -71,6 +70,7 @@ FLOOR_HEALTH = {
     "mushroom door": 10,
     "mushroom floor": 8,
     "void": 1,
+    "water": 8,
     "wood door": 8,
     "wood floor": 6,
 }

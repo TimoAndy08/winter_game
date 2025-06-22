@@ -35,7 +35,7 @@ def update_game(state: GameState, chunks):
 
     if tile_coords not in chunk:
         chunk[tile_coords] = Tile("player", state.inventory, health=state.health, max_health=state.max_health)
-    elif chunk[tile_coords].kind is None and FLOOR_TYPE.get(chunk[tile_coords].floor) != "door":
+    elif chunk[tile_coords].kind is None and FLOOR_TYPE.get(chunk[tile_coords].floor) != "door" and FLOOR_TYPE.get(chunk[tile_coords].floor) != "fluid":
         exist_tile = chunk[tile_coords]
         chunk[tile_coords] = Tile("player", state.inventory, exist_tile.floor, state.health, state.max_health, exist_tile.floor_health, exist_tile.floor_unbreak)
     elif chunk[tile_coords].kind != "player":

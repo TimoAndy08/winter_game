@@ -15,6 +15,7 @@ def option(state, chunks):
                     chunks_json = dumps(serialize_chunks(chunks))
                     file.write(f"{chunks_json};{state.location['tile']};{state.tick};{state.noise_offset}")
                 state.save_file_name = ""
+                state.machine_ui = "game"
             else:
                 state.menu_placement = "save_creation"
     elif state.menu_placement == "options_main":

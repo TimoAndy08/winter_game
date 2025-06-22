@@ -15,6 +15,7 @@ FLOOR = (
     "mushroom door open",
     "mushroom floor",
     "void",
+    "water",
     "wood door",
     "wood door open",
     "wood floor",
@@ -25,6 +26,7 @@ FLOOR_TYPE = {
     "mushroom door": "door",
     "mushroom door open": "open",
     "void": "block",
+    "water": "fluid",
     "wood door": "door",
     "wood door open": "open"
 }

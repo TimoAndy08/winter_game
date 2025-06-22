@@ -10,7 +10,7 @@ RECIPES = {
     "campfire": (
         (("brick", 2), (("clay", 1),)),
         (("glass", 1), (("sand", 3),)),
-        (("glass key",), (("glass", 3), ("handle", 1))),
+        (("glass key", 1), (("glass", 3), ("handle", 1))),
         (("mushroom stew", 2), (("carrot", 1), ("mushroom", 3), ("water", 2))),
         (("roasted mushroom", 1), (("mushroom", 1), ("stick", 1))),
         (("roasted rabbit meat", 1), (("rabbit meat", 1),)),
