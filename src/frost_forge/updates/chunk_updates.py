@@ -1,4 +1,4 @@
-from ..game_state import GameState
+from ..other_systems.game_state import GameState
 from .chunk_update import update_tile, create_tile, delete_tile
 
 def update_tiles(state: GameState, chunks):

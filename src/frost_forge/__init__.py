@@ -3,10 +3,10 @@ import os
 import pygame as pg
 
 from .info import FPS
-from .update import update
-from .settings_saving import settings_save
-from .rendering import render
-from .game_state import GameState
+from .other_systems.update import update
+from .other_systems.settings_saving import settings_save
+from .other_systems.rendering import render
+from .other_systems.game_state import GameState
 
 
 def main() -> None:

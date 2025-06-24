@@ -1,6 +1,6 @@
 import pygame as pg
 
-from .render import render_menu, render_tiles, render_ui
+from ..render import render_menu, render_tiles, render_ui
 from .game_state import GameState
 
 

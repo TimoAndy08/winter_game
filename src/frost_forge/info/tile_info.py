@@ -28,7 +28,7 @@ FLOOR_TYPE = {
     "void": "block",
     "water": "fluid",
     "wood door": "door",
-    "wood door open": "open"
+    "wood door open": "open",
 }
 FLOOR_UNBREAK = (
     "void",

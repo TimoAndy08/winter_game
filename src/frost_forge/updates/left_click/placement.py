@@ -1,6 +1,7 @@
-from .tile_placement import place_tile
 from ...info import FOOD, FLOOR, TILE_ATTRIBUTES
 from ...tile_systems.tile_class import Tile
+from ...tile_systems.tile_placement import place_tile
+from ...tile_systems.tile_placable import is_placable
 
 def place(inventory, inventory_number, is_not_tile, is_kind, health, max_health, grid_position, location, chunks):
     if len(inventory) > inventory_number:
@@ -14,7 +15,9 @@ def place(inventory, inventory_number, is_not_tile, is_kind, health, max_health,
                         if inventory[inventory_key] == 0:
                             del inventory[inventory_key]
                         return chunks
-                chunks = place_tile(chunks, inventory_key, grid_position, is_not_tile, inventory)
+                if is_placable(inventory_key, grid_position, chunks):
+                    chunks = place_tile(inventory_key, grid_position, chunks)
+                    inventory[inventory_key] -= 1
         elif is_not_tile:
             inventory[inventory_key] -= 1
             chunks[grid_position[0]][grid_position[1]] = Tile(floor = inventory_key)

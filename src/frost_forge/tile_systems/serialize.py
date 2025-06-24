@@ -1,6 +1,9 @@
 from json import loads
 from ast import literal_eval
+
 from .tile_class import Tile
+from .tile_placement import place_tile
+
 
 def parse_tuple_key(s):
     return tuple(int(float(x)) for x in s.strip(" ()").split(",") if x)
@@ -27,4 +30,7 @@ def deserialize_chunks(serialized_chunks):
             tile_pos = (ord(tile_key[0]) - 97, ord(tile_key[1]) - 97)
             tile_data = literal_eval(tile_data)
             chunks[chunk_pos][tile_pos] = Tile.from_dict(tile_data)
+    for chunk in list(chunks):
+        for tile in list(chunks[chunk]):
+            chunks = place_tile(chunks[chunk][tile].kind, (chunk, tile), chunks)
     return chunks

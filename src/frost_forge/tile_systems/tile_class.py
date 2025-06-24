@@ -49,7 +49,7 @@ class Tile:
 
     def to_dict(self):
         saving = {}
-        if isinstance(self.kind, str):
+        if isinstance(self.kind, str) and "point" not in self.attributes:
             saving[0] = self.kind
         if len(self.inventory) > 0:
             saving[1] = self.inventory

@@ -1,11 +1,10 @@
 from noise import pnoise2
-from random import uniform, random
+from random import uniform
 
 from .tile_class import Tile
-from ..info import MULTI_TILES, ROOMS
+from ..info import MULTI_TILES, ROOMS, NOISE_TILES, ATTRIBUTE_CARE
 from .room_generation import generate_room
 
-ATTRIBUTE_CARE = ("unbreak", "point", "structure")
 
 def generate_chunk(
     chunk_x: int,
@@ -26,36 +25,10 @@ def generate_chunk(
                     world_y = chunk_y * 16 + tile_y + noise_offset[1]
                     elevation_value = pnoise2(world_x / 10, world_y / 10, 3, 0.5, 2)
                     moisture_value = pnoise2(world_x / 30, world_y / 30, 3, 0.5, 3)
-                    if moisture_value > 0 and -0.25 > elevation_value:
-                        tile[tile_pos] = Tile(floor = "ice")
-                    elif 0 > moisture_value > -0.15 and -0.2 > elevation_value:
-                        tile[tile_pos] = Tile("flint")
-                    elif 0.1 > elevation_value > -0.1 and -0.40 > moisture_value:
-                        tile[tile_pos] = Tile("big rock", {"rock": 6})
-                    elif 0.1 > elevation_value > -0.2 and -0.35 > moisture_value:
-                        tile[tile_pos] = Tile("rock")
-                    elif 0.2 > elevation_value > 0.1 and -0.4 > moisture_value:
-                        tile[tile_pos] = Tile("coal ore", {"coal": 1})
-                    elif 0.03 > elevation_value > -0.03 and moisture_value > 0.47:
-                        tile[tile_pos] = Tile("mushroom hut")
-                    elif 0.1 > elevation_value > -0.1 and moisture_value > 0.45:
-                        tile[tile_pos] = Tile("mushroom", {"spore": 2}, "dirt")
-                    elif 0.15 > elevation_value > -0.15 and moisture_value > 0.4:
-                        tile[tile_pos] = Tile("spore", floor = "dirt")
-                    elif elevation_value > 0.3 and 0.3 > moisture_value > 0.2:
-                        tile[tile_pos] = Tile("tree", {"wood": 4, "sapling": 2}, "dirt")
-                    elif elevation_value > 0.25 and 0.35 > moisture_value > 0.15:
-                        tile[tile_pos] = Tile("treeling", {"wood": 2, "sapling": 1}, "dirt")
-                    elif elevation_value > 0.15 and 0.4 > moisture_value > 0.1:
-                        tile[tile_pos] = Tile("sapling", floor = "dirt")
-                    elif -0.02 > elevation_value > -0.03 and 0.28 > moisture_value > 0.27:
-                        tile[tile_pos] = Tile("rabbit hole", {"rabbit adult": 2, "rabbit child": 2}, "dirt")
-                    elif 0 > elevation_value > -0.05 and 0.3 > moisture_value > 0.25:
-                        tile[tile_pos] = Tile("carrot", floor = "dirt")
-                    elif -0.15 > elevation_value > -0.25 and 0.3 > moisture_value > 0.2:
-                        tile[tile_pos] = Tile("clay")
-                    elif 0.1 > elevation_value > 0.05 and 0.4 > moisture_value > 0.35:
-                        tile[tile_pos] = Tile("bluebell", floor = "dirt")
+                    for noise_tile in NOISE_TILES:
+                        if noise_tile[0][0] < elevation_value < noise_tile[0][1] and noise_tile[1][0] < moisture_value < noise_tile[1][1]:
+                            tile[tile_pos] = Tile(noise_tile[2], noise_tile[3], noise_tile[4])
+                            break
                     if tile_pos in tile:
                         tile_size = MULTI_TILES.get(tile[tile_pos].kind, (1, 1))
                         new_tile_x = tile_x - tile_size[0] + 1
