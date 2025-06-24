@@ -1,18 +1,41 @@
-NOISE_TILES = (
-    ((-0.5, -0.25), (0, 0.5), None, {}, "ice"),
-    ((-0.5, -0.2), (-0.15, 0), "flint", {}, None),
-    ((-0.1, 0.1), (-0.5, -0.4), "big rock", {"rock": 6}, None),
-    ((-0.2, 0.1), (-0.5, -0.35), "rock", {}, None),
-    ((0.1, 0.2), (-0.5, -0.4), "coal ore", {"coal": 1}, None),
-    ((-0.03, 0.03), (0.47, 0.5), "mushroom hut", {}, None),
-    ((-0.1, 0.1), (0.45, 0.5), "mushroom", {"spore": 2}, "dirt"),
-    ((-0.15, 0.15), (0.4, 0.5), "spore", {}, "dirt"),
-    ((0.3, 0.5), (0.2, 0.3), "tree", {"wood": 4, "sapling": 2}, "dirt"),
-    ((0.25, 0.5), (0.15, 0.35), "treeling", {"wood": 2, "sapling": 1}, "dirt"),
-    ((0.15, 0.5), (0.1, 0.4), "sapling", {}, "dirt"),
-    ((-0.03, -0.02), (0.27, 0.28), "rabbit hole", {"rabbit adult": 2, "rabbit child": 2}, "dirt"),
-    ((-0.05, 0), (0.25, 0.3), "carrot", {}, "dirt"),
-    ((-0.25, -0.15), (0.2, 0.3), "clay", {}, None),
-    ((0.05, 0.1), (0.35, 0.4), "bluebell", {}, "dirt"),
-)
+NOISE_TILES = {
+    "lake": (
+        (-0.18, -0.15, "clay", {}, None),
+        (-0.15, 0.2, None, {}, "ice"),
+        (0.25, 0.35, "flint", {}, None),
+    ),
+    "mushroom forest": (
+        (0.2, 0.21, "mushroom hut", {}, None),
+        (-0.05, 0.1, "mushroom", {"spore": 2}, "dirt"),
+        (-0.2, 0.2, "spore", {}, "dirt"),
+        (-0.5, 0.5, None, {}, "dirt")
+    ),
+    "forest": (
+        (-0.25, 0.2, "treeling", {"wood": 2, "sapling": 1}, "dirt"),
+        (0.35, 0.4, "bluebell", {}, "dirt"),
+        (-0.3, 0.3, None, {}, "dirt"),
+    ),
+    "carrot plains": (
+        (-0.2, 0, "carrot", {}, "dirt"),
+        (0, 0.01, "rabbit hole", {"rabbit adult": 2, "rabbit child": 2}, "dirt"),
+        (0.3, 0.35, "treeling", {"wood": 2, "sapling": 1}, "dirt"),
+        (0.35, 0.4, "bluebell", {}, "dirt"),
+    ),
+    "mountain": (
+        (-0.02, 0, "big rock", {"rock": 6}, None),
+        (-0.1, 0.05, "rock", {}, None),
+        (0.2, 0.35, "stone", {}, None),
+        (0.15, 0.45, "rock", {}, None),
+        (0.45, 0.5, "coal ore", {"coal": 1}, None),
+    ),
+    "plains": (),
+}
 ATTRIBUTE_CARE = ("unbreak", "point", "structure")
+BIOMES = (
+    (-0.04, 0, "lake"),
+    (-0.22, -0.2, "mushroom forest"),
+    (-0.25, -0.1, "forest"),
+    (0.1, 0.12, "carrot plains"),
+    (0.25, 0.5, "mountain"),
+    (-0.5, 0.5, "plains"),
+)

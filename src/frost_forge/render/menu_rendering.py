@@ -7,7 +7,7 @@ from ..info import SCREEN_SIZE
 pg.font.init()
 
 MENU_FONT = pg.font.SysFont("Lucida Console", 50)
-CONTROL_NAMES = ["Move up ", "Move left ", "Move down ", "Move right", "Inventory ", "Zoom in", "Zoom out", "Slot 1", "Slot 2", "Slot 3", "Slot 4", "Slot 5", "Slot 6", "Slot 7", "Slot 8", "Slot 9", "Slot 10", "Slot 11", "Slot 12", "Hotbar scroll right", "Hotbar scroll left", "Go to menu", "Menu scroll down", "Menu scroll up"]
+CONTROL_NAMES = ["Move up ", "Move left ", "Move down ", "Move right", "Inventory ", "Zoom in", "Zoom out", "Slot 1", "Slot 2", "Slot 3", "Slot 4", "Slot 5", "Slot 6", "Slot 7", "Slot 8", "Slot 9", "Slot 10", "Slot 11", "Slot 12", "Hotbar scroll right", "Hotbar scroll left", "Go to menu", "Menu scroll down", "Menu scroll up", "Sneak"]
 SAVES_FOLDER = os.path.normpath(os.path.join(__file__, "../../..", "saves"))
 
 if not os.path.exists(SAVES_FOLDER):
