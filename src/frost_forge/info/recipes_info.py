@@ -50,6 +50,7 @@ RECIPES = {
         (("small crate", 1), (("stick", 4), ("wood", 6))),
         (("stick", 7), (("wood", 3),)),
         (("stone brick", 2), (("stone", 3),)),
+        (("wood", 1), (("wood floor", 1),)),
         (("wood floor", 2), (("wood", 3),)),
         (("wooden bed", 1), (("blue dye", 3), ("rabbit fur", 2), ("wood", 10))),
     ),
