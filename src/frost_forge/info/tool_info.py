@@ -20,6 +20,7 @@ TOOL_REQUIRED = {
     "mushroom door open": "hammer",
     "mushroom floor": "hammer",
     "mushroom shaper": "hammer",
+    "pebble": "pickaxe",
     "player": "sword",
     "rabbit adult": "sword",
     "rabbit child": "sword",

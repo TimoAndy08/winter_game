@@ -23,12 +23,12 @@ def generate_chunk(
                 if tile_pos not in tile:
                     world_x = chunk_x * 16 + tile_x + noise_offset[0]
                     world_y = chunk_y * 16 + tile_y + noise_offset[1]
-                    biome_value = pnoise2(world_x / 70, world_y / 70, 3, 0.5, 2)
+                    biome_value = pnoise2(world_x / 70 + noise_offset[0], world_y / 70 + noise_offset[1], 3, 0.5, 2)
                     for noise_chunk in BIOMES:
                         if noise_chunk[0] < biome_value < noise_chunk[1]:
                             biome = noise_chunk[2]
                             break
-                    feature_value = pnoise2(world_x / 10, world_y / 10, 3, 0.5, 2)
+                    feature_value = pnoise2(world_x / 10 + noise_offset[0], world_y / 10 + noise_offset[1], 3, 0.5, 2)
                     try:
                         for noise_tile in NOISE_TILES[biome]:
                             if noise_tile[0] < feature_value < noise_tile[1]:

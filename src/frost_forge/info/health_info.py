@@ -69,6 +69,7 @@ FLOOR_HEALTH = {
     "ice": 12,
     "mushroom door": 10,
     "mushroom floor": 8,
+    "pebble": 8,
     "void": 1,
     "water": 8,
     "wood door": 8,

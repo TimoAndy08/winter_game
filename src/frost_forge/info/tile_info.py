@@ -14,6 +14,7 @@ FLOOR = (
     "mushroom door",
     "mushroom door open",
     "mushroom floor",
+    "pebble",
     "void",
     "water",
     "wood door",

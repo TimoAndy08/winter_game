@@ -12,6 +12,7 @@ RESISTANCE = {
     "mushroom door": 1,
     "mushroom floor": 1,
     "mushroom shaper": 2,
+    "pebble": 1,
     "rabbit adult": 1,
     "rock": 1,
     "sawbench": 1,

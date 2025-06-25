@@ -23,10 +23,11 @@ NOISE_TILES = {
     ),
     "mountain": (
         (-0.02, 0, "big rock", {"rock": 6}, None),
-        (-0.1, 0.05, "rock", {}, None),
-        (0.2, 0.35, "stone", {}, None),
-        (0.15, 0.45, "rock", {}, None),
-        (0.45, 0.5, "coal ore", {"coal": 1}, None),
+        (-0.1, 0.05, "rock", {}, "pebble"),
+        (0.2, 0.35, "stone", {}, "pebble"),
+        (0.15, 0.45, "rock", {}, "pebble"),
+        (0.45, 0.5, "coal ore", {"coal": 1}, "pebble"),
+        (-0.2, 0.15, None, {}, "pebble")
     ),
     "plains": (),
 }

@@ -24,7 +24,8 @@ RECIPES = {
         (("blue dye", 2), (("bluebell", 2), ("bowl", 1), ("water", 1))),
         (("blueprint", 1), (("blue dye", 2), ("paper", 3))),
         (("paper", 2), (("wood pulp", 3),)),
-        (("sand", 3), (("rock", 2),)),
+        (("rock", 1), (("pebble", 3),)),
+        (("sand", 1), (("pebble", 2),)),
     ),
     "mushroom shaper": (
         (("bonsai pot", 1), (("brick", 2), ("dirt", 4), ("plant bouquet", 1), ("small crate", 1))),
