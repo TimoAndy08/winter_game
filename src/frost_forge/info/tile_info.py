@@ -23,7 +23,7 @@ FLOOR = (
 )
 FLOOR_TYPE = {
     "dirt": "soil",
-    "ice": "block",
+    "ice": "fluid",
     "mushroom door": "door",
     "mushroom door open": "open",
     "void": "block",

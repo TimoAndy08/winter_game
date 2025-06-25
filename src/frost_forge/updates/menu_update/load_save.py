@@ -15,7 +15,7 @@ def save_loading(state, chunks):
                 file_content = file.read().split(";")
             chunks = deserialize_chunks(file_content[0])
             state.location["tile"] = literal_eval(file_content[1])
-            state.tick = int(file_content[2])
+            state.tick = int(float(file_content[2]))
             state.location["real"] = list(state.location["tile"])
             state.noise_offset = literal_eval(file_content[3])
         elif state.position[0] <= 90:

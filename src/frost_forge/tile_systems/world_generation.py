@@ -23,19 +23,18 @@ def generate_chunk(
                 if tile_pos not in tile:
                     world_x = chunk_x * 16 + tile_x + noise_offset[0]
                     world_y = chunk_y * 16 + tile_y + noise_offset[1]
-                    biome_value = pnoise2(world_x / 70 + noise_offset[0], world_y / 70 + noise_offset[1], 3, 0.5, 2)
+                    biome_value = pnoise2(world_x / 120 + noise_offset[0], world_y / 120 + noise_offset[1], 3, 0.5, 2)
+                    biome = "plains"
                     for noise_chunk in BIOMES:
                         if noise_chunk[0] < biome_value < noise_chunk[1]:
                             biome = noise_chunk[2]
                             break
-                    feature_value = pnoise2(world_x / 10 + noise_offset[0], world_y / 10 + noise_offset[1], 3, 0.5, 2)
-                    try:
-                        for noise_tile in NOISE_TILES[biome]:
-                            if noise_tile[0] < feature_value < noise_tile[1]:
-                                tile[tile_pos] = Tile(noise_tile[2], noise_tile[3], noise_tile[4])
-                                break
-                    except:
-                        print(biome_value)
+                    elevation_value = pnoise2(world_x / 10 + noise_offset[0], world_y / 10 + noise_offset[1], 3, 0.5, 2)
+                    moisture_value = pnoise2(world_x / 30 + noise_offset[0], world_y / 30 + noise_offset[1], 3, 0.5, 2)
+                    for noise_tile in NOISE_TILES[biome]:
+                        if noise_tile[0][0] < elevation_value < noise_tile[0][1] and noise_tile[1][0] < moisture_value < noise_tile[1][1]:
+                            tile[tile_pos] = Tile(noise_tile[2], noise_tile[3], noise_tile[4])
+                            break
                     if tile_pos in tile:
                         tile_size = MULTI_TILES.get(tile[tile_pos].kind, (1, 1))
                         new_tile_x = tile_x - tile_size[0] + 1
