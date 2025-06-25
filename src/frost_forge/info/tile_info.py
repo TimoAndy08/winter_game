@@ -11,6 +11,7 @@ FOOD = {
 FLOOR = (
     "dirt",
     "ice",
+    "log floor",
     "mushroom door",
     "mushroom door open",
     "mushroom floor",
@@ -44,9 +45,9 @@ GROW_CHANCE = {
 GROW_TILES = {
     "carrot": ("carroot", {"carrot": 2}),
     "rabbit child": ("rabbit adult", {"rabbit fur": 1, "rabbit meat": 2}),
-    "sapling": ("treeling", {"sapling": 1, "wood": 2}),
+    "sapling": ("treeling", {"sapling": 1, "log": 1}),
     "spore": ("mushroom", {"mushroom": 1, "spore": 2}),
-    "treeling": ("tree", {"sapling": 2, "wood": 4}),
+    "treeling": ("tree", {"sapling": 2, "log": 2}),
 }
 MULTI_TILES = {
     "big rock": (2, 2),

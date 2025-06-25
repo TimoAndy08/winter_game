@@ -26,6 +26,7 @@ TILE_HEALTH = {
     "ice": 12,
     "junk": 1,
     "left": 1,
+    "log": 8,
     "manual press": 12,
     "mushroom block": 5,
     "mushroom shaper": 13,
@@ -67,6 +68,7 @@ TILE_HEALTH = {
 FLOOR_HEALTH = {
     "dirt": 5,
     "ice": 12,
+    "log floor": 12,
     "mushroom door": 10,
     "mushroom floor": 8,
     "pebble": 8,

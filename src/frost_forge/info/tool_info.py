@@ -13,6 +13,8 @@ TOOL_REQUIRED = {
     "dirt": "shovel",
     "flint": "pickaxe",
     "ice": "pickaxe",
+    "log": "axe",
+    "log floor": "axe",
     "manual press": "axe",
     "mushroom": "axe",
     "mushroom block": "hammer",

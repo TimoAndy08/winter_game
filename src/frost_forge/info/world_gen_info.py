@@ -5,8 +5,8 @@ NOISE_TILES = {
         ((-0.2, 0.1), (-0.5, -0.35), "rock", {}, None),
         ((-0.1, 0.1), (0.45, 0.5), "mushroom", {"spore": 2}, "dirt"),
         ((-0.15, 0.15), (0.4, 0.5), "spore", {}, "dirt"),
-        ((0.3, 0.5), (0.2, 0.3), "tree", {"wood": 4, "sapling": 2}, "dirt"),
-        ((0.25, 0.5), (0.15, 0.35), "treeling", {"wood": 2, "sapling": 1}, "dirt"),
+        ((0.3, 0.5), (0.2, 0.3), "tree", {"log": 2, "sapling": 2}, "dirt"),
+        ((0.25, 0.5), (0.15, 0.35), "treeling", {"log": 1, "sapling": 1}, "dirt"),
         ((0.15, 0.5), (0.1, 0.4), "sapling", {}, "dirt"),
         ((-0.03, -0.02), (0.27, 0.28), "rabbit hole", {"rabbit adult": 2, "rabbit child": 2}, "dirt"),
         ((-0.05, 0), (0.25, 0.3), "carrot", {}, "dirt"),
@@ -23,13 +23,13 @@ NOISE_TILES = {
         ((-0.01, 0.01), (0.48, 0.5), "mushroom", {"spore": 2}, "dirt"),
         ((-0.1, 0.1), (0.45, 0.5), "mushroom", {"spore": 2}, "dirt"),
         ((-0.25, 0.25), (0.4, 0.5), "spore", {}, "dirt"),
-        ((0.25, 0.5), (0, 0.3), "tree", {"wood": 4, "sapling": 2}, "dirt"),
-        ((0.2, 0.5), (-0.05, 0.35), "treeling", {"wood": 2, "sapling": 1}, "dirt"),
+        ((0.25, 0.5), (0, 0.3), "tree", {"log": 2, "sapling": 2}, "dirt"),
+        ((0.2, 0.5), (-0.05, 0.35), "treeling", {"log": 1, "sapling": 1}, "dirt"),
         ((0.1, 0.5), (-0.1, 0.4), "sapling", {}, "dirt"),
         ((0, 0.5), (0, 0.5), None, {}, "dirt")
     ),
     "mountain": (
-        ((0.35, 0.4), (0.1, 0.15), "coal ore", {"coal": 1}, "pebble"),
+        ((0.3, 0.4), (0.1, 0.2), "coal ore", {"coal": 1}, "pebble"),
         ((0.1, 0.4), (-0.15, 0.15), "stone", {}, "pebble"),
         ((0, 0.5), (-0.2, 0.2), "rock", {}, "pebble"),
         ((-0.1, 0.3), (-0.25, 0.25), None, {}, "pebble")
