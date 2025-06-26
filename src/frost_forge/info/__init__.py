@@ -5,4 +5,4 @@ from .render_info import SCREEN_SIZE, SLOT_SIZE, UI_SCALE, HALF_SCREEN_SIZE, HAL
 from .resistance_info import RESISTANCE
 from .tile_info import MULTI_TILES, STORAGE, FOOD, FLOOR, FLOOR_TYPE, FLOOR_UNBREAK, UNBREAK, GROW_CHANCE, GROW_TILES, ROOMS
 from .tool_info import TOOL_EFFICIENCY, TOOL_REQUIRED
-from .world_gen_info import NOISE_TILES, ATTRIBUTE_CARE, BIOMES
+from .world_gen_info import NOISE_TILES, NOISE_STRUCTURES, ATTRIBUTE_CARE, BIOMES

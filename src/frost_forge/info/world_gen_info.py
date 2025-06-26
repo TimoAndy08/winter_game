@@ -20,7 +20,6 @@ NOISE_TILES = {
     ),
     "forest": (
         ((0, 0.1), (0.3, 0.35), "bluebell", {}, "dirt"),
-        ((-0.01, 0.01), (0.48, 0.5), "mushroom", {"spore": 2}, "dirt"),
         ((-0.1, 0.1), (0.45, 0.5), "mushroom", {"spore": 2}, "dirt"),
         ((-0.25, 0.25), (0.4, 0.5), "spore", {}, "dirt"),
         ((0.25, 0.5), (0, 0.3), "tree", {"log": 2, "sapling": 2}, "dirt"),
@@ -33,6 +32,11 @@ NOISE_TILES = {
         ((0.1, 0.4), (-0.15, 0.15), "stone", {}, "pebble"),
         ((0, 0.5), (-0.2, 0.2), "rock", {}, "pebble"),
         ((-0.1, 0.3), (-0.25, 0.25), None, {}, "pebble")
+    )
+}
+NOISE_STRUCTURES = {
+    "forest": (
+        ((0, 0.05), "mushroom hut"),
     )
 }
 ATTRIBUTE_CARE = ("unbreak", "point", "structure")
