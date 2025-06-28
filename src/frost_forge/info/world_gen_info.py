@@ -45,3 +45,10 @@ BIOMES = (
     (-0.25, -0.1, "forest"),
     (0.25, 0.5, "mountain"),
 )
+DUNGEON_ROOMS = {
+    "copper dungeon": {
+        (1, 1): ("treasure room",),
+        (2, 1): ("library",),
+        (2, 2): ("banquet",),
+    }
+}
