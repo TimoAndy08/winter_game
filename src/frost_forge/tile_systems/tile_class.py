@@ -1,6 +1,4 @@
-from random import randint
-
-from ..info import GROW_CHANCE, GROW_TILES, FLOOR_UNBREAK, UNBREAK, TILE_ATTRIBUTES, TILE_HEALTH, FLOOR_HEALTH
+from ..info import FLOOR_UNBREAK, UNBREAK, TILE_ATTRIBUTES, TILE_HEALTH, FLOOR_HEALTH
 
 class Tile:
     def __init__(self, kind: str = None, inventory: dict[str, int] = None, floor: str = None, health: int = None, max_health: int = None, floor_health: int = None, floor_unbreak: bool = None, attributes: tuple = None, unbreak: bool = None, spawn: tuple[int, int] = None, recipe: int = None):
@@ -40,12 +38,6 @@ class Tile:
             self.recipe = recipe
         self.max_floor_health = self.floor_health
         self.spawn = spawn
-        
-    def grow(self):
-        if randint(0, GROW_CHANCE[self.kind]) == 0:
-            grow_tile = GROW_TILES[self.kind]
-            return Tile(grow_tile[0], grow_tile[1], self.floor, floor_health = self.floor_health, floor_unbreak = self.floor_unbreak, spawn = self.spawn)
-        return self
 
     def to_dict(self):
         saving = {}
