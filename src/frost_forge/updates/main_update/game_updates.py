@@ -1,15 +1,15 @@
 import pygame as pg
 
 from .player_move import move_player
-from ..tile_systems.tile_class import Tile
-from ..tile_systems.world_generation import generate_chunk
-from ..other_systems.game_state import GameState
+from ...tile_systems.tile_class import Tile
+from ...tile_systems.world_generation import generate_chunk
+from ...other_systems.game_state import GameState
 from .mouse_update import button_press
 from json import dumps
 from os import path
-from ..info import DAY_LENGTH, INVENTORY_SIZE, FLOOR_TYPE
-from ..render.menu_rendering import SAVES_FOLDER
-from ..tile_systems.serialize import serialize_chunks
+from ...info import DAY_LENGTH, INVENTORY_SIZE, FLOOR_TYPE
+from ...render.menu_rendering import SAVES_FOLDER
+from ...tile_systems.serialize import serialize_chunks
 
 def update_game(state: GameState, chunks):
     state.health = chunks[state.location["tile"][0], state.location["tile"][1]][state.location["tile"][2], state.location["tile"][3]].health
@@ -37,7 +37,7 @@ def update_game(state: GameState, chunks):
         chunk[tile_coords] = Tile("player", state.inventory, health=state.health, max_health=state.max_health)
     elif chunk[tile_coords].kind is None and FLOOR_TYPE.get(chunk[tile_coords].floor) != "door" and FLOOR_TYPE.get(chunk[tile_coords].floor) != "fluid":
         exist_tile = chunk[tile_coords]
-        chunk[tile_coords] = Tile("player", state.inventory, exist_tile.floor, state.health, state.max_health, exist_tile.floor_health, exist_tile.floor_unbreak)
+        chunk[tile_coords] = Tile("player", state.inventory, exist_tile.floor, state.health, state.max_health, exist_tile.floor_health)
     elif chunk[tile_coords].kind != "player":
         state.location["real"] = list(state.location["old"])
         state.location["tile"] = list(state.location["old"])
@@ -45,7 +45,7 @@ def update_game(state: GameState, chunks):
 
     if state.location["old"] != state.location["tile"]:
         if isinstance(old_tile.floor, str):
-            old_chunk[old_tile_coords] = Tile(floor=old_tile.floor, floor_health=old_tile.floor_health, floor_unbreak=old_tile.floor_unbreak)
+            old_chunk[old_tile_coords] = Tile(floor=old_tile.floor, floor_health=old_tile.floor_health)
         else:
             del old_chunk[old_tile_coords]
 

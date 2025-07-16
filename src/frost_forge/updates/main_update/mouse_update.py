@@ -1,4 +1,4 @@
-from ..info import TILE_SIZE, TILE_ATTRIBUTES, RECIPES, INVENTORY_SIZE
+from ...info import TILE_SIZE, TILE_ATTRIBUTES, RECIPES, INVENTORY_SIZE
 from .right_click_updates import right_click
 from .left_click_update import left_click
 

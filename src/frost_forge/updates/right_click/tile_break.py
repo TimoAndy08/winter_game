@@ -21,13 +21,13 @@ def break_tile(mining_kind, inventory, player_tile, grid_position, chunks, locat
         if "enter" in mining_tile.attributes and (*grid_position[0], *grid_position[1]) in chunks:
             del chunks[(*grid_position[0], *grid_position[1])]
         if isinstance(mining_tile.floor, str):
-            mining_tile = Tile(floor = mining_tile.floor, floor_unbreak = mining_tile.floor_unbreak)
+            mining_tile = Tile(floor = mining_tile.floor)
         else:
             delete_mining_tile = True
         if len(junk_inventory) > 0:
-            mining_tile = Tile("junk", junk_inventory, mining_tile.floor, floor_unbreak = mining_tile.floor_unbreak)
+            mining_tile = Tile("junk", junk_inventory, mining_tile.floor)
     else:
-        chunks[grid_position[0]][grid_position[1]] = Tile("corpse", inventory, mining_tile.floor, floor_unbreak = mining_tile.floor_unbreak)
+        chunks[grid_position[0]][grid_position[1]] = Tile("corpse", inventory, mining_tile.floor)
         chunks[(0, 0)][(0, 2)] = Tile("player", floor = "void")
         location["tile"] = [0, 0, 0, 2]
         location["real"] = [0, 0, 0, 2]

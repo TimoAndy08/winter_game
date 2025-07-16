@@ -32,9 +32,6 @@ FLOOR_TYPE = {
     "wood door": "door",
     "wood door open": "open",
 }
-FLOOR_UNBREAK = (
-    "void",
-)
 GROW_CHANCE = {
     "carrot": 160 * FPS,
     "rabbit child": 200 * FPS,
@@ -78,5 +75,5 @@ UNBREAK = (
     "obelisk",
     "rabbit hole",
     "up",
-    "wooden door",
+    "void",
 )

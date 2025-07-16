@@ -1,3 +1,1 @@
-from .menu_updates import update_menu
-from .game_updates import update_game
-from .chunk_updates import update_tiles
+from .main_update import update_menu, update_game, update_tiles

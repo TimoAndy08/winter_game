@@ -1,17 +1,13 @@
-from ..info import FLOOR_UNBREAK, UNBREAK, TILE_ATTRIBUTES, TILE_HEALTH, FLOOR_HEALTH
+from ..info import UNBREAK, TILE_ATTRIBUTES, TILE_HEALTH
 
 class Tile:
-    def __init__(self, kind: str = None, inventory: dict[str, int] = None, floor: str = None, health: int = None, max_health: int = None, floor_health: int = None, floor_unbreak: bool = None, attributes: tuple = None, unbreak: bool = None, spawn: tuple[int, int] = None, recipe: int = None):
+    def __init__(self, kind: str = None, inventory: dict[str, int] = None, floor: str = None, health: int = None, max_health: int = None, floor_health: int = None, attributes: tuple = None, unbreak: bool = None, spawn: tuple[int, int] = None, recipe: int = None):
         self.kind = kind
         self.floor = floor
         if inventory == None:
             self.inventory = {}
         else:
             self.inventory = inventory
-        if floor_unbreak == None:
-            self.floor_unbreak = (floor in FLOOR_UNBREAK)
-        else:
-            self.floor_unbreak = floor_unbreak
         if unbreak == None:
             self.unbreak = (kind in UNBREAK)
         else:
@@ -29,7 +25,7 @@ class Tile:
         else:
             self.max_health = max_health
         if floor_health == None:
-            self.floor_health = FLOOR_HEALTH.get(floor, 1)
+            self.floor_health = TILE_HEALTH.get(floor, 1)
         else:
             self.floor_health = floor_health
         if recipe == None:
@@ -47,14 +43,12 @@ class Tile:
             saving[1] = self.inventory
         if isinstance(self.floor, str):
             saving[2] = self.floor
-        if self.floor_unbreak and self.floor not in FLOOR_UNBREAK:
-            saving[3] = 1
         if self.unbreak and self.unbreak not in UNBREAK:
-            saving[4] = 1
+            saving[3] = 1
         if isinstance(self.spawn, tuple):
-            saving[5] = self.spawn
+            saving[4] = self.spawn
         if self.recipe > 0:
-            saving[6] = self.recipe
+            saving[5] = self.recipe
         return str(saving)
 
     @staticmethod
@@ -67,11 +61,9 @@ class Tile:
         if 2 in data:
             loading[2] = data[2]
         if 3 in data:
-            loading[3] = True
-        if 4 in data:
             loading[4] = True
+        if 4 in data:
+            loading[4] = data[4]
         if 5 in data:
             loading[5] = data[5]
-        if 6 in data:
-            loading[6] = data[6]
-        return Tile(loading[0], loading[1], loading[2], floor_unbreak = loading[3], unbreak = loading[4], spawn = loading[5], recipe = loading[6])
+        return Tile(loading[0], loading[1], loading[2], unbreak = loading[3], spawn = loading[4], recipe = loading[5])
