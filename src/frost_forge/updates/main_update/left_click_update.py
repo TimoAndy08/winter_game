@@ -1,6 +1,5 @@
-from ...info import TILE_ATTRIBUTES, DAY_LENGTH, FLOOR_TYPE
+from ...info import ATTRIBUTES, DAY_LENGTH, FLOOR_TYPE
 from ..left_click import recipe, place, storage, machine_storage, unlock
-from ...tile_systems.tile_class import Tile
 
 def left_click(
     machine_ui: str,
@@ -8,7 +7,6 @@ def left_click(
     chunks,
     inventory_number: int,
     health: int,
-    max_health: int,
     position,
     recipe_number: int,
     location: dict[str],
@@ -21,29 +19,30 @@ def left_click(
         if is_not_tile:
             is_kind = True
         else:
-            is_kind = isinstance(chunks[grid_position[0]][grid_position[1]].kind, str)
+            is_kind = "kind" in chunks[grid_position[0]][grid_position[1]]
             current_tile = chunks[grid_position[0]][grid_position[1]]
         is_floor = not is_not_tile and not is_kind
-        if is_floor and FLOOR_TYPE.get(current_tile.floor) == "door":
-            chunks[grid_position[0]][grid_position[1]] = Tile(floor=current_tile.floor + " open", floor_health=current_tile.floor_health)
-        elif is_floor and FLOOR_TYPE.get(current_tile.floor) == "open":
-            change_floor = current_tile.floor[:-5]
-            chunks[grid_position[0]][grid_position[1]] = Tile(floor=change_floor, floor_health=current_tile.floor_health)
+        if is_floor and FLOOR_TYPE.get(current_tile["floor"]) == "door":
+            chunks[grid_position[0]][grid_position[1]]["floor"] += " open"
+        elif is_floor and FLOOR_TYPE.get(current_tile["floor"]) == "open":
+            chunks[grid_position[0]][grid_position[1]]["floor"] = current_tile["floor"][:-5]
         elif is_not_tile or not is_kind:
-            chunks = place(inventory, inventory_number, is_not_tile, is_kind, health, max_health, grid_position, location, chunks)
-        elif "open" in chunks[grid_position[0]][grid_position[1]].attributes:
-            machine_ui = chunks[grid_position[0]][grid_position[1]].kind
-            location["opened"] = (grid_position[0], grid_position[1])
-            machine_inventory = chunks[grid_position[0]][grid_position[1]].inventory
-        elif "sleep" in chunks[grid_position[0]][grid_position[1]].attributes:
-            if 9 / 16 <= (tick / DAY_LENGTH) % 1 < 15 / 16:
-                tick = (tick // DAY_LENGTH + 9 / 16) * DAY_LENGTH
-        elif "lock" in chunks[grid_position[0]][grid_position[1]].attributes:
-            chunks = unlock(inventory, inventory_number, chunks, grid_position)
-    elif "machine" in TILE_ATTRIBUTES.get(machine_ui, ()):
+            chunks = place(inventory, inventory_number, is_not_tile, is_kind, health, grid_position, location, chunks)
+        else:
+            attributes = ATTRIBUTES.get(chunks[grid_position[0]][grid_position[1]]["kind"], ())
+            if "open" in attributes:
+                machine_ui = chunks[grid_position[0]][grid_position[1]]["kind"]
+                location["opened"] = (grid_position[0], grid_position[1])
+                machine_inventory = chunks[grid_position[0]][grid_position[1]].get("inventory", {})
+            elif "sleep" in attributes:
+                if 9 / 16 <= (tick / DAY_LENGTH) % 1 < 15 / 16:
+                    tick = (tick // DAY_LENGTH + 9 / 16) * DAY_LENGTH
+            elif "lock" in attributes:
+                chunks = unlock(inventory, inventory_number, chunks, grid_position)
+    elif "machine" in ATTRIBUTES.get(machine_ui, ()):
         chunks = machine_storage(position, chunks, location, inventory, machine_ui)
-    elif "store" in TILE_ATTRIBUTES.get(machine_ui, ()):
+    elif "store" in ATTRIBUTES.get(machine_ui, ()):
         chunks = storage(position, chunks, location, inventory, machine_ui)
-    elif "craft" in TILE_ATTRIBUTES.get(machine_ui, ()):
+    elif "craft" in ATTRIBUTES.get(machine_ui, ()):
         inventory = recipe(machine_ui, recipe_number, inventory)
     return machine_ui, chunks, location, machine_inventory, tick

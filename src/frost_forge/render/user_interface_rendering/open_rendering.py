@@ -1,12 +1,12 @@
 import pygame as pg
 
-from ...info import TILE_ATTRIBUTES, SCREEN_SIZE, UI_SCALE, SLOT_SIZE, TILE_UI_SIZE, HALF_SCREEN_SIZE
+from ...info import ATTRIBUTES, SCREEN_SIZE, UI_SCALE, SLOT_SIZE, TILE_UI_SIZE, HALF_SCREEN_SIZE
 from .craft_rendering import render_craft
 from .store_rendering import render_store
 from .machine_rendering import render_machine
 
 def render_open(machine_ui, window, images, recipe_number, machine_inventory):
-    attributes = TILE_ATTRIBUTES.get(machine_ui, ())
+    attributes = ATTRIBUTES.get(machine_ui, ())
     if "open" in attributes:
         window.blit(pg.transform.scale(images["big_inventory_slot"], (320 * UI_SCALE, 128 * UI_SCALE)), (HALF_SCREEN_SIZE - 160 * UI_SCALE, SCREEN_SIZE[1] - 160 * UI_SCALE))
         window.blit(pg.transform.scale(images["inventory_slot_3"], SLOT_SIZE), (HALF_SCREEN_SIZE + 88 * UI_SCALE, SCREEN_SIZE[1] - 80 * UI_SCALE))

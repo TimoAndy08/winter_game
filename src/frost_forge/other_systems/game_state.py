@@ -14,7 +14,6 @@ class GameState:
         self.inventory_number = 0
         self.inventory = {}
         self.health = 20
-        self.max_health = 20
         self.save_file_name = ""
         self.menu_placement = "main_menu"
         self.velocity = [0, 0]

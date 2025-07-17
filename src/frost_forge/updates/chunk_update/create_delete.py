@@ -1,5 +1,3 @@
-from ...tile_systems.tile_class import Tile
-
 def create_tile(chunks, create_tiles):
     for chunk_pos, tile_pos, tile_data in create_tiles:
         chunk_tiles = chunks.setdefault(chunk_pos, {})
@@ -13,8 +11,8 @@ def create_tile(chunks, create_tiles):
 def delete_tile(chunks, delete_tiles):
     for chunk_pos, tile_pos in delete_tiles:
         tile = chunks[chunk_pos][tile_pos]
-        if tile.floor is not None:
-            chunks[chunk_pos][tile_pos] = Tile(floor=tile.floor, floor_health=tile.floor_health)
+        if "floor" in tile:
+            chunks[chunk_pos][tile_pos] = {"floor": tile["floor"]}
         else:
             del chunks[chunk_pos][tile_pos]
     return chunks

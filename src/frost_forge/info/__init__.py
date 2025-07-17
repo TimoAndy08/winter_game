@@ -1,5 +1,5 @@
-from .attribute_info import TILE_ATTRIBUTES
-from .health_info import TILE_HEALTH
+from .attribute_info import ATTRIBUTES
+from .health_info import HEALTH
 from .recipes_info import RECIPES
 from .render_info import SCREEN_SIZE, SLOT_SIZE, UI_SCALE, HALF_SCREEN_SIZE, HALF_SIZE, TILE_SIZE, CHUNK_SIZE, FLOOR_SIZE, TILE_UI_SIZE, INVENTORY_SIZE, FPS, UI_FONT, BIG_UI_FONT, DAY_LENGTH
 from .resistance_info import RESISTANCE

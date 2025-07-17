@@ -2,7 +2,6 @@ from json import dumps
 from os import path
 
 from ...render.menu_rendering import SAVES_FOLDER
-from ...tile_systems.serialize import serialize_chunks
 from .load_save import save_loading
 from .create_save import save_creating
 from .options import option
@@ -23,8 +22,7 @@ def update_mouse(state, event, chunks):
         if 200 <= state.position[1] <= 250 and state.save_file_name != "" and state.save_file_name.split("_")[0] != "autosave":
             state.menu_placement = "main_menu"
             with open(path.join(SAVES_FOLDER, state.save_file_name + ".txt"), "w", encoding="utf-8") as file:
-                chunks_json = dumps(serialize_chunks(chunks))
-                file.write(f"{chunks_json};{state.location['tile']};{state.tick};{state.noise_offset}")
+                file.write(f"{chunks};{state.location['tile']};{state.tick};{state.noise_offset}")
             state.save_file_name = ""
             chunks = {}
         elif 300 <= state.position[1] <= 350:

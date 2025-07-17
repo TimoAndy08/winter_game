@@ -16,10 +16,10 @@ def machine_storage(position, chunks, location, inventory, machine_ui):
                 if machine_recipe[1][i][0] == item[0]:
                     may_put_in = True
             if may_put_in:
-                chunks = put_in(chunks, location, inventory, machine_ui, moved_x, machine.inventory)
+                chunks = put_in(chunks, location, inventory, machine_ui, moved_x, machine["inventory"])
     slot_row = (position[1] - SCREEN_SIZE[1] + 144 * UI_SCALE) // (32 * UI_SCALE)
     if slot_row == 2 and (moved_x + 112 * UI_SCALE) // (32 * UI_SCALE) == 0:
-        item = (machine_recipe[0][0], machine.inventory.get(machine_recipe[0][0], 0))
-        if machine.inventory.get(item[0], 0) > 0:
+        item = (machine_recipe[0][0], machine["inventory"].get(machine_recipe[0][0], 0))
+        if machine["inventory"].get(item[0], 0) > 0:
             chunks = take_out(chunks, location, inventory, item)
     return chunks

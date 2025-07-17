@@ -1,34 +1,42 @@
-from ...info import INVENTORY_SIZE
-from ...tile_systems.tile_class import Tile
+from ...info import INVENTORY_SIZE, HEALTH, ATTRIBUTES
+from .damage_calculation import calculate_damage
 
-def break_tile(mining_kind, inventory, player_tile, grid_position, chunks, location, mining_tile):
+def break_tile(mining_kind, inventory, player_tile, grid_position, chunks, location, mining_tile, inventory_number):
     delete_mining_tile = False
-    if mining_kind != "player":
-        junk_inventory = {}
-        if "no_pickup" not in mining_tile.attributes:
-            inventory[mining_kind] = inventory.get(mining_kind, 0) + 1
-        for item, amount in mining_tile.inventory.items():
-            if item in player_tile.inventory:
-                player_tile.inventory[item] += amount
-                if inventory[item] > INVENTORY_SIZE[1]:
-                    junk_inventory[item] = player_tile.inventory[item] - INVENTORY_SIZE[1]
-                    player_tile.inventory[item] = INVENTORY_SIZE[1]
+    if "health" not in mining_tile:
+        mining_tile["health"] = HEALTH[mining_tile["kind"]]
+    mining_tile["health"] -= calculate_damage(mining_tile["kind"], inventory, inventory_number)
+    if mining_tile["health"] <= 0:
+        mining_floor_exist = "floor" in mining_tile
+        if mining_floor_exist:
+            mining_floor = mining_tile["floor"]
+        if mining_kind != "player":
+            junk_inventory = {}
+            if "no_pickup" not in ATTRIBUTES.get(mining_tile["kind"], ()):
+                inventory[mining_kind] = inventory.get(mining_kind, 0) + 1
+            if "inventory" in mining_tile:
+                for item, amount in mining_tile["inventory"].items():
+                    if item in player_tile["inventory"]:
+                        player_tile["inventory"][item] += amount
+                        if inventory[item] > INVENTORY_SIZE[1]:
+                            junk_inventory[item] = player_tile["inventory"][item] - INVENTORY_SIZE[1]
+                            player_tile["inventory"][item] = INVENTORY_SIZE[1]
+                    else:
+                        if len(inventory) < INVENTORY_SIZE[0]:
+                            player_tile["inventory"][item] = amount
+                        else:
+                            junk_inventory[item] = amount
+            if mining_floor_exist:
+                mining_tile = {}
             else:
-                if len(inventory) < INVENTORY_SIZE[0]:
-                    player_tile.inventory[item] = amount
-                else:
-                    junk_inventory[item] = amount
-        if "enter" in mining_tile.attributes and (*grid_position[0], *grid_position[1]) in chunks:
-            del chunks[(*grid_position[0], *grid_position[1])]
-        if isinstance(mining_tile.floor, str):
-            mining_tile = Tile(floor = mining_tile.floor)
+                delete_mining_tile = True
+            if len(junk_inventory) > 0:
+                mining_tile = {"kind": "junk", "inventory": junk_inventory}
         else:
-            delete_mining_tile = True
-        if len(junk_inventory) > 0:
-            mining_tile = Tile("junk", junk_inventory, mining_tile.floor)
-    else:
-        chunks[grid_position[0]][grid_position[1]] = Tile("corpse", inventory, mining_tile.floor)
-        chunks[(0, 0)][(0, 2)] = Tile("player", floor = "void")
-        location["tile"] = [0, 0, 0, 2]
-        location["real"] = [0, 0, 0, 2]
+            chunks[grid_position[0]][grid_position[1]] = {"kind": "corpse", "inventory": inventory}
+            chunks[0, 0][0, 2] = {"kind": "player", "inventory": {}, "health": 20, "floor": "void", "recipe": 0}
+            location["tile"] = [0, 0, 0, 2]
+            location["real"] = [0, 0, 0, 2]
+        if mining_floor_exist:
+            mining_tile["floor"] = mining_floor
     return chunks, location, delete_mining_tile, mining_tile

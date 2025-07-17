@@ -1,4 +1,4 @@
-TILE_ATTRIBUTES = {
+ATTRIBUTES = {
     "big rock": ("multi", "no_pickup"),
     "bonsai pot": ("open", "machine"),
     "campfire": ("open", "craft", "light"),

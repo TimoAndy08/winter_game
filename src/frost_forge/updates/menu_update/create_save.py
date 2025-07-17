@@ -1,5 +1,4 @@
 from ...tile_systems.world_generation import generate_chunk
-from ...tile_systems.tile_class import Tile
 
 def save_creating(state, chunks):
     state.save_file_name = ""
@@ -11,8 +10,8 @@ def save_creating(state, chunks):
     for x in range(-4, 5):
         for y in range(-4, 5):
             generate_chunk(state.location["tile"][0] + x, state.location["tile"][1] + y, chunks, state.noise_offset)
-    chunks[(0, 0)][(0, 0)] = Tile("obelisk")
-    chunks[(0, 0)][(0, 1)] = Tile("up")
-    chunks[(0, 0)][(0, 2)] = Tile("player", floor="void")
+    chunks[(0, 0)][(0, 0)] = {"kind": "obelisk", "health": 1}
+    chunks[(0, 0)][(0, 1)] = {"kind": "up", "health": 1}
+    chunks[(0, 0)][(0, 2)] = {"kind": "player", "inventory": {}, "health": 20, "floor": "void", "recipe": 0}
     state.tick = 0
     return chunks

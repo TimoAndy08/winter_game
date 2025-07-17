@@ -40,11 +40,11 @@ GROW_CHANCE = {
     "treeling": 160 * FPS,
 }
 GROW_TILES = {
-    "carrot": ("carroot", {"carrot": 2}),
-    "rabbit child": ("rabbit adult", {"rabbit fur": 1, "rabbit meat": 2}),
-    "sapling": ("treeling", {"sapling": 1, "log": 1}),
-    "spore": ("mushroom", {"mushroom": 1, "spore": 2}),
-    "treeling": ("tree", {"sapling": 2, "log": 2}),
+    "carrot": {"kind": "carroot", "inventory": {"carrot": 2}},
+    "rabbit child": {"kind": "rabbit adult", "inventory": {"rabbit fur": 1, "rabbit meat": 2}},
+    "sapling": {"kind": "treeling", "inventory": {"sapling": 1, "log": 1}},
+    "spore": {"kind": "mushroom", "inventory": {"mushroom": 1, "spore": 2}},
+    "treeling": {"kind": "tree", "inventory": {"sapling": 2, "log": 2}},
 }
 MULTI_TILES = {
     "big rock": (2, 2),

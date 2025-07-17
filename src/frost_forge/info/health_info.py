@@ -1,4 +1,4 @@
-TILE_HEALTH = {
+HEALTH = {
     "big rock": 45,
     "bonsai pot": 24,
     "blue dye": 6,

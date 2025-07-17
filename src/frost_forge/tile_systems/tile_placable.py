@@ -1,4 +1,4 @@
-from ..info import MULTI_TILES, TILE_ATTRIBUTES, FLOOR_TYPE
+from ..info import MULTI_TILES, ATTRIBUTES, FLOOR_TYPE
 
 def is_placable(kind, grid_position, chunks):
     tile_size = MULTI_TILES.get(kind, (1, 1))
@@ -8,9 +8,9 @@ def is_placable(kind, grid_position, chunks):
             chunk_coord = (grid_position[0][0] + (grid_position[1][0] + x) // 16, grid_position[0][1] + (grid_position[1][1] + y) // 16)
             if tile_coord in chunks[chunk_coord]:
                 current_tile = chunks[chunk_coord][tile_coord]
-                tile_floor_type = FLOOR_TYPE.get(current_tile.floor, "empty")
-                if tile_floor_type == "block" or tile_floor_type == "fluid" or "grow" in TILE_ATTRIBUTES.get(kind, ()) and tile_floor_type != "soil" or isinstance(current_tile.kind, str):
+                tile_floor_type = FLOOR_TYPE.get(current_tile["floor"])
+                if tile_floor_type == "block" or tile_floor_type == "fluid" or "grow" in ATTRIBUTES.get(kind, ()) and tile_floor_type != "soil" or "kind" in current_tile:
                     return False
-            elif "grow" in TILE_ATTRIBUTES.get(kind, ()):
+            elif "grow" in ATTRIBUTES.get(kind, ()):
                 return False
     return True

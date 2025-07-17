@@ -1,22 +1,17 @@
 import pygame as pg
 
 from .player_move import move_player
-from ...tile_systems.tile_class import Tile
 from ...tile_systems.world_generation import generate_chunk
 from ...other_systems.game_state import GameState
 from .mouse_update import button_press
-from json import dumps
 from os import path
-from ...info import DAY_LENGTH, INVENTORY_SIZE, FLOOR_TYPE
+from ...info import DAY_LENGTH, INVENTORY_SIZE, FLOOR_TYPE, HEALTH
 from ...render.menu_rendering import SAVES_FOLDER
-from ...tile_systems.serialize import serialize_chunks
 
 def update_game(state: GameState, chunks):
-    state.health = chunks[state.location["tile"][0], state.location["tile"][1]][state.location["tile"][2], state.location["tile"][3]].health
-    state.max_health = chunks[state.location["tile"][0], state.location["tile"][1]][state.location["tile"][2], state.location["tile"][3]].max_health
-
+    state.health = chunks[state.location["tile"][0], state.location["tile"][1]][state.location["tile"][2], state.location["tile"][3]].get("health", 20)
     state.location["old"] = list(state.location["tile"])
-    state.inventory = chunks[state.location["tile"][0], state.location["tile"][1]][state.location["tile"][2], state.location["tile"][3]].inventory
+    state.inventory = chunks[state.location["tile"][0], state.location["tile"][1]][state.location["tile"][2], state.location["tile"][3]].get("inventory", {})
     key = pg.key.get_pressed()
     state.location, state.velocity = move_player(key, state.controls, state.velocity, state.location)
 
@@ -34,18 +29,18 @@ def update_game(state: GameState, chunks):
     old_tile = old_chunk[old_tile_coords]
 
     if tile_coords not in chunk:
-        chunk[tile_coords] = Tile("player", state.inventory, health=state.health, max_health=state.max_health)
-    elif chunk[tile_coords].kind is None and FLOOR_TYPE.get(chunk[tile_coords].floor) != "door" and FLOOR_TYPE.get(chunk[tile_coords].floor) != "fluid":
+        chunk[tile_coords] = {"kind": "player", "inventory": state.inventory, "health": state.health}
+    elif "kind" not in chunk[tile_coords] and "door" != FLOOR_TYPE.get(chunk[tile_coords]["floor"]) != "fluid":
         exist_tile = chunk[tile_coords]
-        chunk[tile_coords] = Tile("player", state.inventory, exist_tile.floor, state.health, state.max_health, exist_tile.floor_health)
-    elif chunk[tile_coords].kind != "player":
+        chunk[tile_coords] = {"kind": "player", "inventory": state.inventory, "health": state.health, "floor": exist_tile["floor"]}
+    elif chunk[tile_coords].get("kind") != "player":
         state.location["real"] = list(state.location["old"])
         state.location["tile"] = list(state.location["old"])
         state.velocity = [0, 0]
 
     if state.location["old"] != state.location["tile"]:
-        if isinstance(old_tile.floor, str):
-            old_chunk[old_tile_coords] = Tile(floor=old_tile.floor, floor_health=old_tile.floor_health)
+        if "floor" in old_tile:
+            old_chunk[old_tile_coords] = {"floor": old_tile["floor"], "health": HEALTH.get(old_tile["floor"], 1)}
         else:
             del old_chunk[old_tile_coords]
 
@@ -54,8 +49,8 @@ def update_game(state: GameState, chunks):
             state.run = False
         elif event.type == pg.MOUSEBUTTONDOWN:
             chunks, state.location, state.machine_ui, state.machine_inventory, state.tick, state.inventory_number = button_press(
-                event.button, state.position, state.zoom, chunks, state.location, state.machine_ui, state.inventory, state.health, state.max_health,
-                state.machine_inventory, state.tick, state.inventory_number, chunks[state.location["opened"][0]][state.location["opened"][1]].recipe, state.camera)
+                event.button, state.position, state.zoom, chunks, state.location, state.machine_ui, state.inventory, state.health,
+                state.machine_inventory, state.tick, state.inventory_number, chunks[state.location["opened"][0]][state.location["opened"][1]].get("recipe", 0), state.camera)
         elif event.type == pg.KEYDOWN:
             keys = pg.key.get_pressed()
             if keys[state.controls[4]]:
@@ -84,7 +79,6 @@ def update_game(state: GameState, chunks):
     state.tick += 1
     if state.tick % (DAY_LENGTH // 4) == 0:
         with open(path.join(SAVES_FOLDER, f"autosave_{(state.tick // (DAY_LENGTH // 4)) % 4}.txt"), "w", encoding="utf-8") as file:
-                chunks_json = dumps(serialize_chunks(chunks))
-                file.write(f"{chunks_json};{state.location['tile']};{state.tick};{state.noise_offset}")
+                file.write(f"{chunks};{state.location['tile']};{state.tick};{state.noise_offset}")
     state.zoom = 0.05 * state.target_zoom + 0.95 * state.zoom
     return chunks
