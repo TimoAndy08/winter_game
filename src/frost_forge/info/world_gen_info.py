@@ -46,6 +46,8 @@ BIOMES = (
     (-0.25, -0.1, "forest"),
     (0.25, 0.5, "mountain"),
 )
+DUNGEON_ROOM_SIZES = {"copper dungeon": ((1, 1), (1, 2), (2, 1), (2, 2))}
+DUNGEON_SIZE = {"copper dungeon": 0.8}
 DUNGEON_ROOMS = {
     "copper dungeon": {
         (1, 1): ("treasure room",),

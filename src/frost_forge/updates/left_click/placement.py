@@ -1,6 +1,6 @@
 from ...info import FOOD, FLOOR, ATTRIBUTES, HEALTH
-from ...tile_systems.tile_placement import place_tile
-from ...tile_systems.tile_placable import is_placable
+from ...other_systems.tile_placement import place_tile
+from ...other_systems.tile_placable import is_placable
 
 def place(inventory, inventory_number, is_not_tile, is_kind, health, grid_position, location, chunks):
     if len(inventory) > inventory_number:

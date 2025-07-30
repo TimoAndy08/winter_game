@@ -1,7 +1,7 @@
 import pygame as pg
 
 from .player_move import move_player
-from ...tile_systems.world_generation import generate_chunk
+from ...world_generation.world_generation import generate_chunk
 from ...other_systems.game_state import GameState
 from .mouse_update import button_press
 from os import path
