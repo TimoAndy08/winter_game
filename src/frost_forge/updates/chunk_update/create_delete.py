@@ -3,8 +3,7 @@ def create_tile(chunks, create_tiles):
         chunk_tiles = chunks.setdefault(chunk_pos, {})
         if tile_pos in chunk_tiles:
             current_tile = chunk_tiles[tile_pos]
-            tile_data.floor = current_tile.floor
-            tile_data.floor_health = current_tile.floor_health
+            tile_data["floor"] = current_tile["floor"]
         chunk_tiles[tile_pos] = tile_data
     return chunks
 
