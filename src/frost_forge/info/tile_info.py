@@ -49,7 +49,6 @@ GROW_TILES = {
 MULTI_TILES = {
     "big rock": (2, 2),
     "manual press": (2, 1),
-    "mushroom hut": (5, 4),
     "obelisk": (1, 2),
     "sawbench": (2, 1),
     "wooden bed": (1, 2),
@@ -57,13 +56,6 @@ MULTI_TILES = {
 PROCESSING_TIME = {
     "bonsai pot": 40 * FPS,
     "composter": 2 * FPS,
-}
-ROOMS = {
-    "mushroom hut": (
-        ("mushroom block", (0, 0), (5, 4), "mushroom floor"),
-        (None, (3, 3), (1, 1), "mushroom door"),
-        ("mushroom shaper", (1, 1), (1, 1), "mushroom floor"),
-    ),
 }
 STORAGE = {
     "small barrel": (1, 512),

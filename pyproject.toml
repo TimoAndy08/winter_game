@@ -8,6 +8,7 @@ authors = [
 dependencies = [
     "noise~=1.2.2",
     "pygame~=2.6",
+    "pillow==11.3.0",
 ]
 readme = "README.md"
 license = { file = "LICENSE" }

@@ -12,5 +12,7 @@
 -e file:.
 noise==1.2.2
     # via frost-forge
+pillow==11.3.0
+    # via frost-forge
 pygame==2.6.1
     # via frost-forge

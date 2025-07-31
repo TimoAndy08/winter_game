@@ -22,5 +22,4 @@ class GameState:
         self.scroll = 0
         self.machine_inventory = {}
         self.camera = (0, 0)
-        self.tick = 0
-        self.noise_offset = (0, 0)
+        self.checked = set()

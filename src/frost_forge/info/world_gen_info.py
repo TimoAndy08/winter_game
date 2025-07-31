@@ -35,23 +35,9 @@ NOISE_TILES = {
         ((-0.1, 0.3), (-0.25, 0.25), {"floor": "pebble"}),
     )
 }
-NOISE_STRUCTURES = {
-    "forest": (
-        ((0, 0.05), "mushroom hut"),
-    )
-}
-ATTRIBUTE_CARE = ("unbreak", "point", "structure")
+ATTRIBUTE_CARE = {"unbreak", "point", "structure"}
 BIOMES = (
     (-0.05, 0.05, "lake"),
     (-0.25, -0.1, "forest"),
     (0.25, 0.5, "mountain"),
 )
-DUNGEON_ROOM_SIZES = {"copper dungeon": ((1, 1), (1, 2), (2, 1), (2, 2))}
-DUNGEON_SIZE = {"copper dungeon": 0.8}
-DUNGEON_ROOMS = {
-    "copper dungeon": {
-        (1, 1): ("treasure room",),
-        (2, 1): ("library",),
-        (2, 2): ("banquet",),
-    }
-}

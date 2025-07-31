@@ -25,12 +25,12 @@ def rabbit_entity(chunks, chunk, tile, current_tile, create_tiles, delete_tiles)
         empty = find_empty_place(tile, chunk, chunks)
         if empty:
             x, y = empty
-            if abs(chunk[0] * 16 + tile[0] + x - current_tile.spawn[0]) <= 8 and \
-                abs(chunk[1] * 16 + tile[1] + y - current_tile.spawn[1]) <= 8:
+            if abs(chunk[0] * 16 + tile[0] + x - current_tile["spawn"][0]) <= 8 and \
+                abs(chunk[1] * 16 + tile[1] + y - current_tile["spawn"][1]) <= 8:
                 create_tiles.append((
                     (chunk[0] + (tile[0] + x) // 16, chunk[1] + (tile[1] + y) // 16),
                     ((tile[0] + x) % 16, (tile[1] + y) % 16),
-                    {"kind": current_tile["kind"], "inventory": current_tile["inventory"], "spawn": current_tile.spawn}
+                    {"kind": current_tile["kind"], "inventory": current_tile["inventory"], "spawn": current_tile["spawn"]}
                 ))
                 delete_tiles.append((chunk, tile))
     return create_tiles, delete_tiles

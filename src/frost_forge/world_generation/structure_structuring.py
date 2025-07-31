@@ -1,16 +1,19 @@
 from random import random, choice
-from ..info import DUNGEON_SIZE, DUNGEON_ROOM_SIZES
+from ..info import STRUCTURE_SIZE, STRUCTURE_ROOM_SIZES, STRUCTURE_ROOMS
 
 
 ADJACENT_ROOMS = ((0, -1), (0, 1), (-1, 0), (1, 0))
 
-def structure_dungeon(dungeon_type, dungeon=None, tile=(0, 0), distanse=1):
+def structure_structure(dungeon_type, offset, dungeon=None, tile=None, distanse=1):
     if dungeon == None:
         dungeon = set()
-    dungeon.add(tile)
+    if tile == None:
+        tile = offset
+    if tile != (0, 0):
+        dungeon.add(tile)
     for pos in ADJACENT_ROOMS:
-        if random() < DUNGEON_SIZE[dungeon_type]**distanse and (tile[0] + pos[0], tile[1] + pos[1]) not in dungeon:
-            structure_dungeon(dungeon_type, dungeon, (tile[0] + pos[0], tile[1] + pos[1]), distanse + 1)
+        if random() < STRUCTURE_SIZE[dungeon_type]**distanse and (tile[0] + pos[0], tile[1] + pos[1]) not in dungeon:
+            structure_structure(dungeon_type, offset, dungeon, (tile[0] + pos[0], tile[1] + pos[1]), distanse + 1)
     return dungeon
 
 def add_hallways(hallways, room, adj_room):
@@ -39,7 +42,6 @@ def ensure_hallways(dungeon, hallways, room, visited=None):
         visited = set()
     visited.add(room)
     adj_dungeon_rooms = []
-    return_rooms = []
     for pos in ADJACENT_ROOMS:
         adj_room = (room[0] + pos[0], room[1] + pos[1])
         if adj_room not in visited:
@@ -48,19 +50,14 @@ def ensure_hallways(dungeon, hallways, room, visited=None):
                 return hallways
             elif adj_room in dungeon:
                 adj_dungeon_rooms.append(adj_room)
-        else:
-            return_rooms.append(adj_room)
     if len(adj_dungeon_rooms):
-        adj_room = choice(adj_dungeon_rooms)
-    else:
-        adj_room = choice(return_rooms)
-    hallways = add_hallways(hallways, room, choice(adj_room))
-    if adj_room != (0, 0):
-        hallways = ensure_hallways(dungeon, hallways, adj_room, visited)
+        next_room = choice(adj_dungeon_rooms)
+        hallways = add_hallways(hallways, room, next_room)
+        hallways = ensure_hallways(dungeon, hallways, next_room, visited)
     return hallways
 
-def dungeon_rooms(dungeon_type):
-    structure = structure_dungeon(dungeon_type)
+def structure_rooms(dungeon_type, offset):
+    structure = structure_structure(dungeon_type, offset)
     dungeon = {}
     if len(structure) > 1:
         hallways = structure_hallways((0, 0), structure)
@@ -70,14 +67,13 @@ def dungeon_rooms(dungeon_type):
     else:
         hallways = {}
     y = 0
-    while (0, y) in structure:
+    while (offset[0], y + offset[1]) in structure:
         y -= 1
-    entrance = (0, y + 1)
-    dungeon[0, y + 1] = (1, 1)
+    entrance = (offset[0], y + 1 + offset[1])
     for room in structure:
         if room not in dungeon:
             avaliable_sizes = []
-            for size in DUNGEON_ROOM_SIZES[dungeon_type]:
+            for size in STRUCTURE_ROOM_SIZES[dungeon_type]:
                 can_place = True
                 for x in range(0, size[0]):
                     for y in range(0, size[1]):
@@ -90,4 +86,7 @@ def dungeon_rooms(dungeon_type):
                 for y in range(0, size[1]):
                     dungeon[room[0] + x, room[1] + y] = (-x, -y)
             dungeon[room] = size
+    for room in dungeon:
+        if dungeon[room][0] > 0 < dungeon[room][1]:
+            dungeon[room] = choice(STRUCTURE_ROOMS[dungeon_type][dungeon[room]])
     return (dungeon, hallways, entrance)

@@ -1,9 +1,13 @@
-def generate_room(material: str, location: tuple[int, int], size: tuple[int, int], floor: str, structure: str):
-    room = {}
-    for x in range(location[0], location[0] + size[0]):
-        for y in range(location[1], location[1] + size[1]):
-            room[x, y] = {"kind": material, "structure": structure, "floor": floor}
-    for x in range(location[0] + 1, location[0] + size[0] - 1):
-        for y in range(location[1] + 1, location[1] + size[1] - 1):
-            room[x, y] = {"structure": structure, "floor": floor}
-    return room
+import os
+from PIL import Image
+
+from ..info import ROOM_COLORS
+
+def generate_room(structure, room, offset):
+    room_image = Image.open(os.path.normpath(os.path.join(__file__, "../../..", f"structures/{structure}/{room}.png"))).convert("RGB")
+    chunk = {}
+    for x in range(0, room_image.size[0]):
+        for y in range(0, room_image.size[1]):
+            if room_image.getpixel((x, y)) in ROOM_COLORS:
+                chunk[x + offset[0], y + offset[1]] = ROOM_COLORS[room_image.getpixel((x, y))]
+    return chunk
