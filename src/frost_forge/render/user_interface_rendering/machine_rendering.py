@@ -14,12 +14,12 @@ def render_machine(window, machine_ui, images, machine_inventory, recipe_number)
             window.blit(pg.transform.scale(images[item], TILE_UI_SIZE), position)
         else:
             window.blit(pg.transform.scale(images[item], FLOOR_SIZE), (position[0], position[1] + 8 * UI_SCALE))
-        window.blit(UI_FONT.render(str(machine_inventory.get(item, 0)), False, (19, 17, 18)), position)
+        window.blit(UI_FONT.render(f"{machine_inventory.get(item, 0)}/{machine_recipe[1][i][1]}", False, (19, 17, 18)), (position[0] - 4 * UI_SCALE, position[1]))
     position = (HALF_SCREEN_SIZE - 104 * UI_SCALE, SCREEN_SIZE[1] - 76 * UI_SCALE)
     item = machine_recipe[0][0]
     if item not in FLOOR:
         window.blit(pg.transform.scale(images[item], TILE_UI_SIZE), position)
     else:
         window.blit(pg.transform.scale(images[item], FLOOR_SIZE), (position[0], position[1] + 8 * UI_SCALE))
-    window.blit(UI_FONT.render(str(machine_inventory.get(item, 0)), False, (19, 17, 18)), position)
+    window.blit(UI_FONT.render(f"{machine_inventory.get(item, 0)}/{machine_recipe[0][1]}", False, (19, 17, 18)), (position[0] - 4 * UI_SCALE, position[1]))
     return window
