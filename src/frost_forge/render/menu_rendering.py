@@ -2,7 +2,7 @@ import os
 
 import pygame as pg
 
-from ..info import SCREEN_SIZE
+from ..info import SCREEN_SIZE, WORLD_TYPES
 
 pg.font.init()
 
@@ -20,6 +20,7 @@ def render_menu(
     window,
     scroll,
     control_adjusted,
+    world_type,
 ):
     window.fill((206, 229, 242))
     if menu_placement == "load_save":
@@ -33,6 +34,9 @@ def render_menu(
         window.blit(MENU_FONT.render(save_file_name, False, (19, 17, 18)), (0, 100))
         window.blit(MENU_FONT.render("Proceed", False, (19, 17, 18)), (0, 200))
         window.blit(MENU_FONT.render("Don't save", False, (19, 17, 18)), (0, 300))
+    elif menu_placement == "save_options":
+        window.blit(MENU_FONT.render("Create new save", False, (19, 17, 18)), (0, 0))
+        window.blit(MENU_FONT.render(f"World type: {WORLD_TYPES[world_type].capitalize()}", False, (19, 17, 18)), (0, 50))
     elif menu_placement.split("_")[0] == "options":
         if menu_placement == "options_game":
             window.blit(MENU_FONT.render("Return to game", False, (19, 17, 18)), (0, 0))

@@ -62,7 +62,7 @@ HEALTH = {
     "stick": 4,
     "stone brick": 16,
     "stone": 16,
-    "tree": 15,
+    "tree": 10,
     "treeling": 9,
     "up": 1,
     "void": 1,

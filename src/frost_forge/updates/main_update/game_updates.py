@@ -18,10 +18,11 @@ def update_game(state: GameState, chunks):
 
     for x in range(-4, 5):
         for y in range(-4, 5):
-            generate_chunk(state.location["tile"][0] + x, state.location["tile"][1] + y, chunks, state.noise_offset)
-    for x in range(-20, 20):
-        for y in range(-20, 20):
-            generate_structure(state.noise_offset, state.location["tile"][0] + x, state.location["tile"][1] + y, chunks, state.checked)
+            generate_chunk(state.world_type, state.location["tile"][0] + x, state.location["tile"][1] + y, chunks, state.noise_offset)
+    if state.world_type == 0:
+        for x in range(-20, 20):
+            for y in range(-20, 20):
+                generate_structure(state.noise_offset, state.location["tile"][0] + x, state.location["tile"][1] + y, chunks, state.checked)
 
     tile_chunk_coords = (state.location["tile"][0], state.location["tile"][1])
     tile_coords = (state.location["tile"][2], state.location["tile"][3])

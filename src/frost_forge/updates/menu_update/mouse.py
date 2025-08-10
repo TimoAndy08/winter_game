@@ -5,19 +5,25 @@ from ...render.menu_rendering import SAVES_FOLDER
 from .load_save import save_loading
 from .create_save import save_creating
 from .options import option
-from ...info import SCREEN_SIZE
+from ...info import SCREEN_SIZE, WORLD_TYPES
 
 def update_mouse(state, event, chunks):
     if state.menu_placement == "load_save":
         if state.position[1] <= 50:
             state.menu_placement = "main_menu"
         elif state.position[1] <= 100:
-            chunks = save_creating(state, chunks)
+            state.menu_placement = "save_options"
+            state.world_type = 0
         else:
             chunks = save_loading(state, chunks)
     elif state.menu_placement.startswith("options"):
         option(state, chunks)
 
+    elif state.menu_placement == "save_options":
+        if state.position[1] <= 50:
+            chunks = save_creating(state, chunks)
+        elif state.position[1] <= 100:
+            state.world_type = (state.world_type + 1) % len(WORLD_TYPES)
     elif state.menu_placement == "save_creation":
         if 200 <= state.position[1] <= 250 and state.save_file_name != "" and state.save_file_name.split("_")[0] != "autosave":
             state.menu_placement = "main_menu"

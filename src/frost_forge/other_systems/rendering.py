@@ -6,7 +6,7 @@ from .game_state import GameState
 
 def render(state: GameState, chunks, window, images) -> tuple:
     if state.menu_placement != "main_game":
-        window = render_menu(state.menu_placement, state.save_file_name, state.controls, window, state.scroll, state.control_adjusted)
+        window = render_menu(state.menu_placement, state.save_file_name, state.controls, window, state.scroll, state.control_adjusted, state.world_type)
         window.blit(pg.transform.scale(images["cursor"], (32, 32)), (state.position[0] - 16, state.position[1] - 16))
     else:
         state.camera, window = render_tiles(
