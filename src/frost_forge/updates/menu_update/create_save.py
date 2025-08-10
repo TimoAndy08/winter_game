@@ -16,5 +16,6 @@ def save_creating(state, chunks):
     if state.world_type == 1:
         chunks[0, 0][0, 2]["inventory"] = {"flint axe": 1}
         chunks[0, 0][0, 3] = {"kind": "tree", "floor": "dirt", "inventory": {"log": 2, "sapling": 2}}
+        chunks[0, 0][0, 4] = {"kind": "composter"}
     state.tick = 0
     return chunks

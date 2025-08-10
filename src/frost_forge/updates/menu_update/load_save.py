@@ -17,6 +17,7 @@ def save_loading(state, chunks):
             state.tick = int(float(file_content[2]))
             state.location["real"] = list(state.location["tile"])
             state.noise_offset = literal_eval(file_content[3])
+            state.world_type = int(file_content[4])
         elif state.position[0] <= 90:
             file_path = path.join(SAVES_FOLDER, state.save_file_name + ".txt")
             if path.exists(file_path):

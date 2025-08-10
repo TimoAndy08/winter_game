@@ -11,7 +11,7 @@ def option(state, chunks):
             if state.save_file_name != "" and state.save_file_name.split("_")[0] != "autosave":
                 state.menu_placement = "main_menu"
                 with open(path.join(SAVES_FOLDER, state.save_file_name + ".txt"), "w", encoding="utf-8") as file:
-                    file.write(f"{chunks};{state.location['tile']};{state.tick};{state.noise_offset}")
+                    file.write(f"{chunks};{state.location['tile']};{state.tick};{state.noise_offset};{state.world_type}")
                 state.save_file_name = ""
                 state.machine_ui = "game"
             else:
