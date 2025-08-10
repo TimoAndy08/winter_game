@@ -9,9 +9,9 @@ def button_press(button, position, zoom, chunks, location, machine_ui, inventory
         grid_position = [(world_x // 16, world_y // 16), (world_x % 16, world_y % 16)]
         if grid_position[1] in chunks[grid_position[0]] and "kind" in chunks[grid_position[0]][grid_position[1]]:
             while "point" in ATTRIBUTES.get(chunks[grid_position[0]][grid_position[1]]["kind"], ()):
-                if chunks[grid_position[0]][grid_position[1]].kind == "left":
+                if chunks[grid_position[0]][grid_position[1]]["kind"] == "left":
                     grid_position = [(grid_position[0][0] - (grid_position[1][0] == 0), grid_position[0][1]), ((grid_position[1][0] - 1) % 16, grid_position[1][1])]
-                elif chunks[grid_position[0]][grid_position[1]].kind == "up":
+                elif chunks[grid_position[0]][grid_position[1]]["kind"] == "up":
                     grid_position = [(grid_position[0][0], grid_position[0][1] - (grid_position[1][1] == 0)), (grid_position[1][0], (grid_position[1][1] - 1) % 16)]
                     
         if button == 1:

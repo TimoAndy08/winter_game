@@ -18,7 +18,7 @@ RECIPES = {
         (("water", 2), (("bowl", 2), ("ice", 1))),
     ),
     "composter": (
-        (("dirt", 1), (("sapling", 1), ("spore", 3))),
+        (("dirt", 1), (("compost", 60),)),
     ),
     "manual press": (
         (("blue dye", 2), (("bluebell", 2), ("bowl", 1), ("water", 1))),

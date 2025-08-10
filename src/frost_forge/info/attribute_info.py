@@ -5,7 +5,7 @@ ATTRIBUTES = {
     "carrot": {"grow", "eat"},
     "carroot": {"no_pickup"},
     "coal ore": {"no_pickup"},
-    "composter": {"open", "machine"},
+    "composter": {"open", "machine", "value"},
     "glass key": {"key"},
     "glass lock": {"lock"},
     "manual press": {"open", "craft", "multi"},
