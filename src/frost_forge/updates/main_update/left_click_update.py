@@ -1,7 +1,7 @@
 from random import random
 
 from ...info import ATTRIBUTES, DAY_LENGTH, FERTILIZER_EFFICIENCY, FERTILIZER_SPAWN, FLOOR_TYPE, GROW_CHANCE
-from ..left_click import recipe, place, storage, machine_storage, unlock
+from ..left_click import recipe, place, storage, machine_storage, unlock, fertilize_grow, fertilize_spawn
 from ...other_systems.tile_placement import place_tile
 from ..chunk_update.growth import grow
 
@@ -32,17 +32,7 @@ def left_click(
         elif is_floor and FLOOR_TYPE.get(current_tile["floor"]) == "open":
             chunks[grid_position[0]][grid_position[1]]["floor"] = current_tile["floor"][:-5]
         elif is_floor and FLOOR_TYPE.get(current_tile["floor"]) == "soil" and inventory_number < len(inventory) and "fertilize" in ATTRIBUTES.get(list(inventory.keys())[inventory_number], ()):
-            inventory_key = list(inventory.keys())[inventory_number]
-            inventory[inventory_key] -= 1
-            if inventory[inventory_key] == 0:
-                del inventory[inventory_key]
-            spawn_number = random()
-            spawn = None
-            for i in FERTILIZER_SPAWN:
-                if spawn_number < i[0]:
-                    spawn = i[0]
-            if isinstance(spawn, str):
-                chunks = place_tile(spawn, grid_position, chunks)
+            chunks = fertilize_spawn(chunks, inventory, inventory_number, grid_position)
         elif is_not_tile or not is_kind:
             chunks = place(inventory, inventory_number, is_not_tile, is_kind, health, grid_position, location, chunks)
         else:
@@ -56,15 +46,8 @@ def left_click(
                     tick = (tick // DAY_LENGTH + 9 / 16) * DAY_LENGTH
             elif "lock" in attributes:
                 chunks = unlock(inventory, inventory_number, chunks, grid_position)
-            elif "grow" in attributes:
-                if inventory_number < len(inventory):
-                    inventory_key = list(inventory.keys())[inventory_number]
-                    current_tile = chunks[grid_position[0]][grid_position[1]]
-                    if random() < 1 / GROW_CHANCE[current_tile["kind"]] * FERTILIZER_EFFICIENCY[inventory_key]:
-                        chunks[grid_position[0]][grid_position[1]] = grow(current_tile, True)
-                    inventory[inventory_key] -= 1
-                    if inventory[inventory_key] == 0:
-                        del inventory[inventory_key]
+            elif "grow" in attributes and inventory_number < len(inventory):
+                chunks = fertilize_grow(chunks, inventory, inventory_number, grid_position)
     elif "machine" in ATTRIBUTES.get(machine_ui, ()):
         chunks = machine_storage(position, chunks, location, inventory, machine_ui)
     elif "store" in ATTRIBUTES.get(machine_ui, ()):
