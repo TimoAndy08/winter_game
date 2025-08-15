@@ -1,5 +1,15 @@
 from .render_info import FPS
 
+FERTILIZER_SPAWN = (
+    (0.02, "bluebell"),
+    (0.1, "carrot"),
+    (0.3, "spore"),
+    (0.6, "sapling"),
+)
+FERTILIZER_EFFICIENCY = {
+    "fertilizer": 20,
+    "compost": 1,
+}
 FOOD = {
     "carrot": 2,
     "mushroom": 1,
@@ -33,11 +43,11 @@ FLOOR_TYPE = {
     "wood door open": "open",
 }
 GROW_CHANCE = {
-    "carrot": 160 * FPS,
-    "rabbit child": 200 * FPS,
-    "sapling": 80 * FPS,
-    "spore": 120 * FPS,
-    "treeling": 160 * FPS,
+    "carrot": 160,
+    "rabbit child": 200,
+    "sapling": 80,
+    "spore": 120,
+    "treeling": 160,
 }
 GROW_TILES = {
     "carrot": {"kind": "carroot", "inventory": {"carrot": 2}},

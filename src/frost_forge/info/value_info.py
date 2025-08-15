@@ -3,10 +3,10 @@ MACHINES = {
 }
 VALUES = {
     "compost": {
-        "sapling": 5,
-        "spore": 6,
-        "mushroom": 10,
-        "carrot": 6,
-        "bluebell": 15, 
+        "sapling": 1,
+        "spore": 1,
+        "mushroom": 2,
+        "carrot": 1,
+        "bluebell": 3, 
     }
 }

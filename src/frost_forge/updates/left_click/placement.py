@@ -2,6 +2,7 @@ from ...info import FOOD, FLOOR, ATTRIBUTES, HEALTH
 from ...other_systems.tile_placement import place_tile
 from ...other_systems.tile_placable import is_placable
 
+
 def place(inventory, inventory_number, is_not_tile, is_kind, health, grid_position, location, chunks):
     if len(inventory) > inventory_number:
         inventory_key = list(inventory.keys())[inventory_number]

@@ -1,9 +1,9 @@
-from random import randint
+from random import random
 
-from ...info import GROW_CHANCE, GROW_TILES, HEALTH
+from ...info import GROW_CHANCE, GROW_TILES, FPS
 
-def grow(tile):
-    if randint(0, GROW_CHANCE[tile["kind"]]) == 0:
+def grow(tile, guarantee = False):
+    if random() < 1 / (GROW_CHANCE[tile["kind"]] * FPS) or guarantee:
         floor = tile["floor"]
         if "spawn" in tile:
             spawn = tile["spawn"]

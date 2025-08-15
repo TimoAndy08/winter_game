@@ -15,6 +15,7 @@ HEALTH = {
     "composter": 8,
     "corpse": 1,
     "dirt": 5,
+    "fertilizer": 5,
     "flint axe": 6,
     "flint hammer": 10,
     "flint pickaxe": 6,
