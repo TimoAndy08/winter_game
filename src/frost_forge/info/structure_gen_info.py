@@ -25,11 +25,15 @@ STRUCTURE_ROOMS = {
 }
 LOOT_TABLES = {
     "mushroom chest": {
+        (0.7, "spore", 1, 5),
+        (0.6, "mushroom", 2, 7),
         (0.4, "mushroom block", 3, 5),
+        (0.25, "fertilizer", 1, 2),
         (0.2, "mushroom floor", 2, 3),
         (0.15, "plant bouquet", 1, 3),
         (0.1, "mushroom shaper", 1, 1),
         (0.05, "mushroom door", 1, 2),
+        (0.03, "composter", 1, 1),
         (0.02, "bonsai pot", 1, 2),
     }
 }
