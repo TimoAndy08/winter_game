@@ -27,6 +27,7 @@ ATTRIBUTES = {
     "tree": {"no_pickup"},
     "treeling": {"grow", "no_pickup"},
     "wooden bed": {"sleep", "multi"},
+    "wooden table": {"store", "table"},
     "workbench": {"open", "craft"},
 
     # Special tiles

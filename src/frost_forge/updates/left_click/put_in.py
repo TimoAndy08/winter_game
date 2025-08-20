@@ -1,8 +1,4 @@
-from ...info import INVENTORY_SIZE, UI_SCALE, STORAGE
-
-def put_in(chunks, location, inventory, machine_ui, moved_x, machine_inventory):
-    slot_number = ((moved_x - 16 * UI_SCALE * (INVENTORY_SIZE[0] % 2)) // (32 * UI_SCALE) + INVENTORY_SIZE[0] // 2 + INVENTORY_SIZE[0] % 2)
-    machine_storage = STORAGE.get(machine_ui, (14, 16))
+def put_in(chunks, location, inventory, machine_storage, slot_number, machine_inventory):
     if slot_number < len(inventory):
         item = list(inventory.items())[slot_number]
         machine_item = machine_inventory.get(item[0], 0)

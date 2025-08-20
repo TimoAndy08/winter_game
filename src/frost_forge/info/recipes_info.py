@@ -61,6 +61,7 @@ RECIPES = {
         (("wood", 5), (("log", 2),)),
         (("wood floor", 2), (("wood", 3),)),
         (("wooden bed", 1), (("blue dye", 3), ("rabbit fur", 2), ("wood", 10))),
+        (("wooden table", 1), (("wood floor", 4), ("stick", 4))),
     ),
     "workbench": (
         (("bowl", 2), (("stick", 2), ("wood", 3))),

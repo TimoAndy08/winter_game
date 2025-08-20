@@ -1,9 +1,5 @@
-from random import random
-
-from ...info import ATTRIBUTES, DAY_LENGTH, FERTILIZER_EFFICIENCY, FERTILIZER_SPAWN, FLOOR_TYPE, GROW_CHANCE
-from ..left_click import recipe, place, storage, machine_storage, unlock, fertilize_grow, fertilize_spawn
-from ...other_systems.tile_placement import place_tile
-from ..chunk_update.growth import grow
+from ...info import ATTRIBUTES, DAY_LENGTH, FLOOR_TYPE
+from ..left_click import recipe, place, open_storage, closed_storage, machine_storage, unlock, fertilize_grow, fertilize_spawn
 
 
 def left_click(
@@ -48,10 +44,12 @@ def left_click(
                 chunks = unlock(inventory, inventory_number, chunks, grid_position)
             elif "grow" in attributes and inventory_number < len(inventory):
                 chunks = fertilize_grow(chunks, inventory, inventory_number, grid_position)
+            elif "store" in attributes:
+                chunks = closed_storage(chunks, grid_position, inventory, location, inventory_number)
     elif "machine" in ATTRIBUTES.get(machine_ui, ()):
         chunks = machine_storage(position, chunks, location, inventory, machine_ui)
     elif "store" in ATTRIBUTES.get(machine_ui, ()):
-        chunks = storage(position, chunks, location, inventory, machine_ui)
+        chunks = open_storage(position, chunks, location, inventory, machine_ui)
     elif "craft" in ATTRIBUTES.get(machine_ui, ()):
         inventory = recipe(machine_ui, recipe_number, inventory)
     return machine_ui, chunks, location, machine_inventory, tick

@@ -1,3 +1,5 @@
+import pygame as pg
+
 from ...info import TILE_SIZE, HALF_SIZE, CHUNK_SIZE, SCREEN_SIZE, MULTI_TILES, ATTRIBUTES
 from .border_rendering import render_border
 
@@ -30,4 +32,8 @@ def render_map(location, chunks, camera, zoom, scaled_image, window):
                             if -TILE_SIZE * zoom * size[0] <= placement[0] <= SCREEN_SIZE[0] and -TILE_SIZE * zoom * size[1] * 3 / 2 <= placement[1] <= SCREEN_SIZE[1]:
                                 if isinstance(chunks[chunk][tile]["kind"], str):
                                     window.blit(scaled_image[current_tile["kind"]], placement)
+                                if "table" in ATTRIBUTES.get(current_tile["kind"], ()) and "inventory" in current_tile:
+                                    image_size = scaled_image[list(current_tile["inventory"])[0]].get_size()
+                                    image = pg.transform.scale(scaled_image[list(current_tile["inventory"])[0]], (image_size[0] / 1.5, image_size[1] / 1.5))
+                                    window.blit(image, (placement[0] + HALF_SIZE * zoom / 4, placement[1] - HALF_SIZE * zoom / 4))
     return window
