@@ -27,7 +27,7 @@ def render_tiles(
         else:
             size = MULTI_TILES.get(image, (1, 1))
             scaled_image[image] = pg.transform.scale(images[image], ((TILE_SIZE * size[0] + 2) * zoom, ((size[1] + 1 / 2) * TILE_SIZE + 2) * zoom))
-    window = render_map(location, chunks, camera, zoom, scaled_image, window)
+    window = render_map(location, chunks, camera, zoom, scaled_image, window, images)
     window = render_hand(inventory, inventory_number, camera, location, zoom, window, images)
     window = render_ghost(position, camera, zoom, chunks, location, inventory, inventory_number, scaled_image, window)
     window = render_lights(tick, chunks, location, zoom, camera, window)
