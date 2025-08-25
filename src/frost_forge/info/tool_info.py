@@ -10,6 +10,8 @@ TOOL_REQUIRED = {
     "coal": "pickaxe",
     "coal ore": "pickaxe",
     "composter": "axe",
+    "copper brick": "pickaxe",
+    "copper brick floor": "pickaxe",
     "dirt": "shovel",
     "flint": "pickaxe",
     "ice": "pickaxe",

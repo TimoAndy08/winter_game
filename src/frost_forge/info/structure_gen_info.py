@@ -1,7 +1,10 @@
 NOISE_STRUCTURES = {
     "forest": (
         ((0, 0.05), "mushroom hut"),
-    )
+    ),
+    "plains": (
+        ((0, 0.01), "copper dungeon"),
+    ),
 }
 ROOM_COLORS = {
     (247, 247, 255): {"kind": "mushroom block", "floor": "mushroom floor"},
@@ -9,13 +12,15 @@ ROOM_COLORS = {
     (53, 53, 54): {"floor": "mushroom door"},
     (106, 228, 138): {"kind": "mushroom shaper", "floor": "mushroom floor"},
     (92, 74, 49): {"kind": "small crate", "loot": "mushroom chest", "floor": "mushroom floor"},
+    (136, 68, 31): {"kind": "copper brick", "floor": "copper brick floor"},
+    (181, 102, 60): {"floor": "copper brick floor"},
 }
 STRUCTURE_ENTRANCE = {"copper dungeon": {"kind": "glass lock"}, "mushroom hut": {"floor": "mushroom door"}}
 STRUCTURE_ROOM_SIZES = {"copper dungeon": ((1, 1), (2, 1), (2, 2)), "mushroom hut": ((1, 1),)}
 STRUCTURE_SIZE = {"copper dungeon": 0.8, "mushroom hut": 0}
 STRUCTURE_ROOMS = {
     "copper dungeon": {
-        (1, 1): ("treasure room", "hallway"),
+        (1, 1): ("treasury", "hallway"),
         (2, 1): ("library", "banquet"),
         (2, 2): ("forge",),
     },

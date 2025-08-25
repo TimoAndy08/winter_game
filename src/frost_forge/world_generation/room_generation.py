@@ -1,8 +1,8 @@
 import os
 from PIL import Image, ImageOps
-from random import randint, random
+from random import randint
 
-from ..info import ROOM_COLORS, LOOT_TABLES
+from ..info import ROOM_COLORS
 from .loot_calculation import calculate_loot
 
 
