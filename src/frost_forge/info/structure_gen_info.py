@@ -3,7 +3,7 @@ NOISE_STRUCTURES = {
         ((0, 0.05), "mushroom hut"),
     ),
     "plains": (
-        ((0, 0.01), "copper dungeon"),
+        ((0, 0), "copper dungeon"),
     ),
 }
 ROOM_COLORS = {

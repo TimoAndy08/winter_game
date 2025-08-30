@@ -10,6 +10,7 @@ RESISTANCE = {
     "copper brick floor": 3,
     "ice": 1,
     "manual press": 1,
+    "masonry bench": 1,
     "mushroom block": 1,
     "mushroom door": 1,
     "mushroom floor": 1,

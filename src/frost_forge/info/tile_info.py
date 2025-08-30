@@ -59,6 +59,7 @@ GROW_TILES = {
 MULTI_TILES = {
     "big rock": (2, 2),
     "manual press": (2, 1),
+    "masonry bench": (2, 1),
     "obelisk": (1, 2),
     "sawbench": (2, 1),
     "wooden bed": (1, 2),

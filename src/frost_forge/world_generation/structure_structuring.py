@@ -86,7 +86,12 @@ def structure_rooms(dungeon_type, offset):
                 for y in range(0, size[1]):
                     dungeon[room[0] + x, room[1] + y] = (-x, -y)
             dungeon[room] = size
+    delete_rooms = set()
     for room in dungeon:
         if dungeon[room][0] > 0 < dungeon[room][1]:
             dungeon[room] = choice(STRUCTURE_ROOMS[dungeon_type][dungeon[room]])
+        else:
+            delete_rooms.add(room)
+    for room in delete_rooms:
+        del dungeon[room]
     return (dungeon, hallways, entrance)

@@ -1,5 +1,5 @@
-from ..right_click import calculate_damage, break_tile, break_floor
-from ...info import UNBREAK, HEALTH
+from ..right_click import break_tile, break_floor
+from ...info import UNBREAK
 
 def right_click(
     chunks,
@@ -17,7 +17,7 @@ def right_click(
     player_tile = chunks[location["tile"][0], location["tile"][1]][location["tile"][2], location["tile"][3]]
     location["mined"] = (grid_position[0], grid_position[1])
     if "kind" in mining_tile and mining_tile["kind"] not in UNBREAK:
-        chunks, location, delete_mining_tile, mining_tile = break_tile(mining_tile["kind"], inventory, player_tile, grid_position, chunks, location, mining_tile, inventory_number)
+        chunks, delete_mining_tile, mining_tile = break_tile(mining_tile["kind"], inventory, player_tile, chunks, mining_tile, inventory_number)
     elif "floor" in mining_tile and mining_tile["floor"] not in UNBREAK:
         delete_mining_tile, inventory, mining_tile = break_floor(mining_tile, inventory, inventory_number, player_tile)
     chunks[location["tile"][0], location["tile"][1]][location["tile"][2], location["tile"][3]] = player_tile

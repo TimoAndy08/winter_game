@@ -11,6 +11,7 @@ ATTRIBUTES = {
     "glass key": {"key"},
     "glass lock": {"lock"},
     "manual press": {"open", "craft", "multi"},
+    "masonry bench": {"open", "craft", "multi"},
     "mushroom": {"eat"},
     "mushroom shaper": {"open", "craft"},
     "mushroom stew": {"eat"},

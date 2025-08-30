@@ -18,6 +18,7 @@ TOOL_REQUIRED = {
     "log": "axe",
     "log floor": "axe",
     "manual press": "axe",
+    "masonry bench": "pickaxe",
     "mushroom": "axe",
     "mushroom block": "hammer",
     "mushroom door": "hammer",

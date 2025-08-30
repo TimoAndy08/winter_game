@@ -33,6 +33,7 @@ HEALTH = {
     "log floor": 12,
     "log": 8,
     "manual press": 12,
+    "masonry bench": 12,
     "mushroom block": 5,
     "mushroom door": 10,
     "mushroom floor": 8,
