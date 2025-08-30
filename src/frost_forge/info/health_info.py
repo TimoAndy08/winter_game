@@ -69,6 +69,7 @@ HEALTH = {
     "stone brick floor": 12,
     "stone": 16,
     "stone floor": 12,
+    "torch": 12,
     "tree": 10,
     "treeling": 9,
     "up": 1,

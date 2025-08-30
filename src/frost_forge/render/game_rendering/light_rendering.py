@@ -11,7 +11,7 @@ def create_light_surface(intensity: int, color: tuple[int, int, int]):
         pg.draw.circle(light_surface, (*color, alpha), (16, 16), i)
     return light_surface
 
-LIGHTS = {"campfire": (create_light_surface(170, (181, 102, 60)), 832)}
+LIGHTS = {"campfire": (create_light_surface(170, (181, 102, 60)), 832), "torch": (create_light_surface(85, (181, 102, 60)), 832)}
 
 def render_lights(tick, chunks, location, zoom, camera, window):
     dark_overlay = pg.Surface(SCREEN_SIZE)

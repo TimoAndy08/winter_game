@@ -41,6 +41,7 @@ TOOL_REQUIRED = {
     "stone brick": "pickaxe",
     "stone brick floor": "pickaxe",
     "stone floor": "pickaxe",
+    "torch": "axe",
     "tree": "axe",
     "treeling": "axe",
     "wood": "axe",

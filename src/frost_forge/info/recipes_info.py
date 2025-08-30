@@ -14,6 +14,7 @@ RECIPES = {
         (("roasted mushroom", 1), (("mushroom", 1), ("stick", 1))),
         (("roasted rabbit meat", 1), (("rabbit meat", 1),)),
         (("stone", 1), (("rock", 1),)),
+        (("torch", 3), (("stick", 2), ("coal", 1))),
         (("water", 2), (("bowl", 2), ("ice", 1))),
     ),
     "composter": (
