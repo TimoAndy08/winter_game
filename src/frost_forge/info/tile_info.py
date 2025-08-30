@@ -18,7 +18,7 @@ FOOD = {
     "roasted mushroom": 3,
     "roasted rabbit meat": 4,
 }
-FLOOR = (
+FLOOR = {
     "brick floor",
     "dirt",
     "ice",
@@ -34,7 +34,7 @@ FLOOR = (
     "wood door",
     "wood door open",
     "wood floor",
-)
+}
 FLOOR_TYPE = {
     "dirt": "soil",
     "ice": "block",
@@ -75,11 +75,11 @@ STORAGE = {
     "small barrel": (1, 512),
     "small crate": (9, 48),
 }
-UNBREAK = (
+UNBREAK = {
     "glass lock",
     "left",
     "obelisk",
     "rabbit hole",
     "up",
     "void",
-)
+}

@@ -10,7 +10,6 @@ RECIPES = {
     "campfire": (
         (("brick", 2), (("clay", 1),)),
         (("glass", 1), (("sand", 3),)),
-        (("glass key", 1), (("glass", 3), ("handle", 1))),
         (("mushroom stew", 2), (("carrot", 1), ("mushroom", 3), ("water", 2))),
         (("roasted mushroom", 1), (("mushroom", 1), ("stick", 1))),
         (("roasted rabbit meat", 1), (("rabbit meat", 1),)),
@@ -33,6 +32,7 @@ RECIPES = {
     ),
     "masonry bench": (
         (("brick floor", 2), (("brick", 1),)),
+        (("glass key", 1), (("glass", 3), ("handle", 1))),
         (("rock axe", 1), (("handle", 2), ("rock", 4))),
         (("rock pickaxe", 1), (("handle", 2), ("rock", 4))),
         (("rock shovel", 1), (("handle", 1), ("rock", 3))),
