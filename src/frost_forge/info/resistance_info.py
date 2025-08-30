@@ -2,6 +2,7 @@ RESISTANCE = {
     "big rock": 2,
     "bonsai pot": 2,
     "brick": 1,
+    "brick floor": 1,
     "clay": 1,
     "coal": 1,
     "coal ore": 2,
@@ -21,5 +22,7 @@ RESISTANCE = {
     "sawbench": 1,
     "stone": 1,
     "stone brick": 1,
+    "stone brick floor": 1,
+    "stone floor": 1,
     "tree": 1,
 }

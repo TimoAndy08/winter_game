@@ -19,6 +19,7 @@ FOOD = {
     "roasted rabbit meat": 4,
 }
 FLOOR = (
+    "brick floor",
     "dirt",
     "ice",
     "log floor",
@@ -26,6 +27,8 @@ FLOOR = (
     "mushroom door open",
     "mushroom floor",
     "pebble",
+    "stone brick floor",
+    "stone floor",
     "void",
     "water",
     "wood door",
