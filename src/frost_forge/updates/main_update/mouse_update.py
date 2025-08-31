@@ -6,7 +6,7 @@ from .left_click_update import left_click
 def button_press(button, position, zoom, chunks, location, machine_ui, inventory, health, machine_inventory, tick, inventory_number, recipe_number, camera):
     world_x = int((position[0] - camera[0]) // (TILE_SIZE * zoom))
     world_y = int((position[1] - camera[1]) // (TILE_SIZE * zoom))
-    if (world_x - location["tile"][0] * 16 - location["tile"][2]) ** 2 + (world_y - location["tile"][1] * 16 - location["tile"][3]) ** 2 <= 20 or "open" in ATTRIBUTES.get(machine_ui, ()):
+    if (world_x - location["tile"][0] * 16 - location["tile"][2]) ** 2 + (world_y - location["tile"][1] * 16 - location["tile"][3]) ** 2 <= 10 or "open" in ATTRIBUTES.get(machine_ui, ()):
         grid_position = [(world_x // 16, world_y // 16), (world_x % 16, world_y % 16)]
         if grid_position[1] in chunks[grid_position[0]] and "kind" in chunks[grid_position[0]][grid_position[1]]:
             while "point" in ATTRIBUTES.get(chunks[grid_position[0]][grid_position[1]]["kind"], ()):

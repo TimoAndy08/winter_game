@@ -13,7 +13,7 @@ def fertilize_spawn(chunks, inventory, inventory_number, grid_position):
     spawn_number = random()
     spawn = None
     for i in FERTILIZER_SPAWN:
-        if spawn_number < i[0]:
+        if spawn_number < i[0] * FERTILIZER_EFFICIENCY[inventory_key]:
             spawn = i[1]
             break
     if isinstance(spawn, str):
@@ -23,7 +23,7 @@ def fertilize_spawn(chunks, inventory, inventory_number, grid_position):
 def fertilize_grow(chunks, inventory, inventory_number, grid_position):
     inventory_key = list(inventory.keys())[inventory_number]
     current_tile = chunks[grid_position[0]][grid_position[1]]
-    if random() < 1 / GROW_CHANCE[current_tile["kind"]] * FERTILIZER_EFFICIENCY[inventory_key]:
+    if random() < FERTILIZER_EFFICIENCY[inventory_key] / GROW_CHANCE[current_tile["kind"]]:
         chunks[grid_position[0]][grid_position[1]] = grow(current_tile, True)
     inventory[inventory_key] -= 1
     if inventory[inventory_key] == 0:

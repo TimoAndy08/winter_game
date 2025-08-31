@@ -2,10 +2,10 @@ from .render_info import FPS
 
 
 FERTILIZER_SPAWN = (
-    (0.02, "bluebell"),
-    (0.1, "carrot"),
-    (0.3, "spore"),
-    (0.6, "sapling"),
+    (0.001, "bluebell"),
+    (0.005, "carrot"),
+    (0.015, "spore"),
+    (0.03, "sapling"),
 )
 FERTILIZER_EFFICIENCY = {
     "fertilizer": 20,

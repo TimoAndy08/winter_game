@@ -21,4 +21,4 @@ def take_out(chunks, location, inventory, slot_number, machine_inventory, singul
                 chunks[location["opened"][0]][location["opened"][1]]["inventory"][item[0]] = inventory_item + item[1] - INVENTORY_SIZE[1]
         if chunks[location["opened"][0]][location["opened"][1]]["inventory"] == {}:
             del chunks[location["opened"][0]][location["opened"][1]]["inventory"]
-        return chunks
+    return chunks

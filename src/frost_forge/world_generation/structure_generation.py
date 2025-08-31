@@ -1,4 +1,4 @@
-from random import random
+from noise import pnoise2
 
 from ..info import NOISE_STRUCTURES, STRUCTURE_ENTRANCE
 from .room_generation import generate_room
@@ -9,7 +9,7 @@ from .biome_determination import determine_biome
 def generate_structure(noise_offset, chunk_x, chunk_y, chunks, checked):
     if (chunk_x, chunk_y) not in checked:
         checked.add((chunk_x, chunk_y))
-        structure_value = random()
+        structure_value = pnoise2(chunk_x * 10 + noise_offset[0], chunk_y * 10 + noise_offset[1], 3, 0.5, 2)
         structure = False
         biome = determine_biome(16 * chunk_x, 16 * chunk_y, noise_offset)
         for noise_structure in NOISE_STRUCTURES.get(biome, ()):
