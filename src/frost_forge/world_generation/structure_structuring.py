@@ -12,9 +12,10 @@ def structure_structure(dungeon_type, offset, dungeon=None, tile=None, distanse=
         tile = offset
     if tile != (0, 0):
         dungeon.add(tile)
-    for pos in ADJACENT_ROOMS:
-        if random() < STRUCTURE_SIZE[dungeon_type]**distanse and (tile[0] + pos[0], tile[1] + pos[1]) not in dungeon:
-            structure_structure(dungeon_type, offset, dungeon, (tile[0] + pos[0], tile[1] + pos[1]), distanse + 1)
+    elif tile[0] ** 4 + tile[1] ** 4 < 882:
+        for pos in ADJACENT_ROOMS:
+            if random() < STRUCTURE_SIZE[dungeon_type]**distanse and (tile[0] + pos[0], tile[1] + pos[1]) not in dungeon:
+                structure_structure(dungeon_type, offset, dungeon, (tile[0] + pos[0], tile[1] + pos[1]), distanse + 1)
     return dungeon
 
 def add_hallways(hallways, room, adj_room):

@@ -49,7 +49,7 @@ def left_click(
     elif "machine" in ATTRIBUTES.get(machine_ui, ()):
         chunks = machine_storage(position, chunks, location, inventory, machine_ui)
     elif "store" in ATTRIBUTES.get(machine_ui, ()):
-        chunks = open_storage(position, chunks, location, inventory, machine_ui)
+        chunks, machine_inventory = open_storage(position, chunks, location, inventory, machine_ui)
     elif "craft" in ATTRIBUTES.get(machine_ui, ()):
         inventory = recipe(machine_ui, recipe_number, inventory)
     return machine_ui, chunks, location, machine_inventory, tick

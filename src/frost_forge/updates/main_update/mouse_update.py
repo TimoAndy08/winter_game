@@ -18,7 +18,7 @@ def button_press(button, position, zoom, chunks, location, machine_ui, inventory
         if button == 1:
             machine_ui, chunks, location, machine_inventory, tick = left_click(machine_ui, grid_position, chunks, inventory_number, health, position, recipe_number, location, inventory, machine_inventory, tick)
         elif button == 3:
-            chunks, location, machine_ui = right_click(chunks, grid_position, inventory, inventory_number, location, machine_ui)
+            chunks, location, machine_ui, machine_inventory = right_click(chunks, grid_position, inventory, inventory_number, location, machine_ui, position, machine_inventory)
     
     if button == 4 or button == 5:
         if "craft" in ATTRIBUTES.get(machine_ui, ()) or "machine" in ATTRIBUTES.get(machine_ui, ()):

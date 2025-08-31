@@ -5,7 +5,10 @@ from ...info import GROW_CHANCE, GROW_TILES, FPS
 
 def grow(tile, guarantee = False):
     if random() < 1 / (GROW_CHANCE[tile["kind"]] * FPS) or guarantee:
-        floor = tile["floor"]
+        if "floor" in tile:
+            floor = tile["floor"]
+        else:
+            floor = "dirt"
         if "spawn" in tile:
             spawn = tile["spawn"]
             tile = GROW_TILES[tile["kind"]]
