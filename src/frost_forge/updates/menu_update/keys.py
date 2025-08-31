@@ -3,7 +3,7 @@ import pygame as pg
 from ...info import SCREEN_SIZE
 
 
-def update_keys(menu_placement, save_file_name, controls, control_adjusted, chunks, scroll):
+def update_keys(menu_placement, save_file_name, controls, control_adjusted, chunks, scroll, seed):
     keys = pg.key.get_pressed()
     if menu_placement == "save_creation":
         for letter in range(48, 123):
@@ -29,4 +29,14 @@ def update_keys(menu_placement, save_file_name, controls, control_adjusted, chun
             elif keys[controls[23]]:
                 if scroll > 0:
                     scroll -= 1
-    return save_file_name, controls, menu_placement, scroll, control_adjusted
+
+    elif menu_placement == "save_options":
+        for letter in range(48, 123):
+            if keys[letter]:
+                seed += chr(letter)
+        if keys[pg.K_SPACE]:
+            seed += " "
+        elif keys[pg.K_BACKSPACE]:
+            seed = seed[:-1]
+    
+    return save_file_name, controls, menu_placement, scroll, control_adjusted, seed

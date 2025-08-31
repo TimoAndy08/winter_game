@@ -24,3 +24,4 @@ class GameState:
         self.camera = (0, 0)
         self.checked = set()
         self.world_type = 0
+        self.seed = ""

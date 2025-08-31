@@ -12,6 +12,7 @@ def update_mouse(state, event, chunks):
         elif state.position[1] <= 100:
             state.menu_placement = "save_options"
             state.world_type = 0
+            state.seed = ""
         else:
             chunks = save_loading(state, chunks)
     elif state.menu_placement.startswith("options"):

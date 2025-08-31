@@ -22,6 +22,7 @@ def render_menu(
     scroll,
     control_adjusted,
     world_type,
+    seed,
 ):
     window.fill((206, 229, 242))
     if menu_placement == "load_save":
@@ -38,6 +39,7 @@ def render_menu(
     elif menu_placement == "save_options":
         window.blit(MENU_FONT.render("Create new save", False, (19, 17, 18)), (0, 0))
         window.blit(MENU_FONT.render(f"World type: {WORLD_TYPES[world_type].capitalize()}", False, (19, 17, 18)), (0, 50))
+        window.blit(MENU_FONT.render(f"World seed: {seed.capitalize()}", False, (19, 17, 18)), (0, 100))
     elif menu_placement.split("_")[0] == "options":
         if menu_placement == "options_game":
             window.blit(MENU_FONT.render("Return to game", False, (19, 17, 18)), (0, 0))

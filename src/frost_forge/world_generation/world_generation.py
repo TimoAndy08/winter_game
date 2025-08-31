@@ -1,5 +1,5 @@
 from noise import pnoise2
-from random import uniform
+import random
 
 from ..info import MULTI_TILES, NOISE_TILES, ATTRIBUTE_CARE, ATTRIBUTES
 from .biome_determination import determine_biome
@@ -10,10 +10,15 @@ def generate_chunk(
     chunk_x: int,
     chunk_y: int,
     chunks: dict[tuple[int, int], dict[tuple[int, int], tuple[dict, dict]]],
-    noise_offset: tuple[float, float] = None
+    noise_offset: tuple[float, float] = None,
+    seed: str = None,
 ):
     if noise_offset == None:
-        noise_offset = (uniform(-10000, 10000), uniform(-10000, 10000))
+        if seed == "":
+            random.seed()
+        else:
+            random.seed(seed)
+        noise_offset = (random.uniform(-10000, 10000), random.uniform(-10000, 10000))
     if (chunk_x, chunk_y) not in chunks:
         chunks[chunk_x, chunk_y] = {}
         tile = chunks[chunk_x, chunk_y]
