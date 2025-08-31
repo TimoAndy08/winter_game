@@ -2,6 +2,7 @@ from random import random
 
 from ...info import GROW_CHANCE, GROW_TILES, FPS
 
+
 def grow(tile, guarantee = False):
     if random() < 1 / (GROW_CHANCE[tile["kind"]] * FPS) or guarantee:
         floor = tile["floor"]

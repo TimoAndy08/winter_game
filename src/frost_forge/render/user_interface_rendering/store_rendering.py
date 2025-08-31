@@ -2,6 +2,7 @@ import pygame as pg
 
 from ...info import FLOOR, STORAGE, SCREEN_SIZE, UI_SCALE, SLOT_SIZE, TILE_UI_SIZE, UI_FONT, FLOOR_SIZE, HALF_SCREEN_SIZE
 
+
 def render_store(window, machine_ui, images, machine_inventory):
     for item in range(0, STORAGE[machine_ui][0]):
         window.blit(pg.transform.scale(images["inventory_slot"], SLOT_SIZE), (HALF_SCREEN_SIZE + (32 * (item % 7) - 112) * UI_SCALE, SCREEN_SIZE[1] + (32 * (item // 7) - 144) * UI_SCALE))

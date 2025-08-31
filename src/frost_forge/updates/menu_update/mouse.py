@@ -1,11 +1,9 @@
-from json import dumps
-from os import path
-
-from ...render.menu_rendering import SAVES_FOLDER
 from .load_save import save_loading
 from .create_save import save_creating
 from .options import option
 from ...info import SCREEN_SIZE, WORLD_TYPES
+from ...other_systems.game_saving import save_game
+
 
 def update_mouse(state, event, chunks):
     if state.menu_placement == "load_save":
@@ -27,8 +25,7 @@ def update_mouse(state, event, chunks):
     elif state.menu_placement == "save_creation":
         if 200 <= state.position[1] <= 250 and state.save_file_name != "" and state.save_file_name.split("_")[0] != "autosave":
             state.menu_placement = "main_menu"
-            with open(path.join(SAVES_FOLDER, state.save_file_name + ".txt"), "w", encoding="utf-8") as file:
-                file.write(f"{chunks};{state.location['tile']};{state.tick};{state.noise_offset};{state.world_type}")
+            save_game(chunks, state, state.save_file_name)
             state.save_file_name = ""
             chunks = {}
         elif 300 <= state.position[1] <= 350:

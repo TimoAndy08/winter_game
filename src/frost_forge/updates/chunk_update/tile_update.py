@@ -4,6 +4,7 @@ from .machine import machine
 from .growth import grow
 from ...info import ATTRIBUTES
 
+
 def update_tile(current_tile, chunks, chunk, tile, delete_tiles, create_tiles, tick):
     if "grow" in ATTRIBUTES.get(current_tile["kind"], ()):
         chunks[chunk][tile] = grow(current_tile)

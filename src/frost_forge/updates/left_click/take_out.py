@@ -1,5 +1,6 @@
 from ...info import INVENTORY_SIZE
 
+
 def take_out(chunks, location, inventory, item):
     inventory_item = inventory.get(item[0], 0)
     if not (inventory_item == 0 and len(inventory) == INVENTORY_SIZE[0]):

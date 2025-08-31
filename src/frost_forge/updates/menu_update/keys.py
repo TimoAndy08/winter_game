@@ -2,6 +2,7 @@ import pygame as pg
 
 from ...info import SCREEN_SIZE
 
+
 def update_keys(menu_placement, save_file_name, controls, control_adjusted, chunks, scroll):
     keys = pg.key.get_pressed()
     if menu_placement == "save_creation":

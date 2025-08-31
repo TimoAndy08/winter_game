@@ -2,6 +2,7 @@ from ...info import SCREEN_SIZE, UI_SCALE, INVENTORY_SIZE, RECIPES, ATTRIBUTES, 
 from .put_in import put_in
 from .take_out import take_out
 
+
 def machine_storage(position, chunks, location, inventory, machine_ui):
     if "inventory" not in chunks[location["opened"][0]][location["opened"][1]]:
         chunks[location["opened"][0]][location["opened"][1]]["inventory"] = {}

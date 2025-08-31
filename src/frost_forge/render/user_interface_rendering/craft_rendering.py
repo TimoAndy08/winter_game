@@ -2,6 +2,7 @@ import pygame as pg
 
 from ...info import UI_SCALE, SCREEN_SIZE, BIG_UI_FONT, UI_FONT, SLOT_SIZE, TILE_UI_SIZE, FLOOR_SIZE, HALF_SCREEN_SIZE, RECIPES, FLOOR
 
+
 def render_craft(window, machine_ui, images, recipe_number):
     current_recipes = RECIPES[machine_ui]
     window.blit(pg.transform.scale(images["big_inventory_slot_2"], (96 * UI_SCALE, 96 * UI_SCALE)), (HALF_SCREEN_SIZE - 128 * UI_SCALE, SCREEN_SIZE[1] - 144 * UI_SCALE))

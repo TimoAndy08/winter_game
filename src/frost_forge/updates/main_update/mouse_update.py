@@ -2,6 +2,7 @@ from ...info import TILE_SIZE, ATTRIBUTES, RECIPES, INVENTORY_SIZE
 from .right_click_updates import right_click
 from .left_click_update import left_click
 
+
 def button_press(button, position, zoom, chunks, location, machine_ui, inventory, health, machine_inventory, tick, inventory_number, recipe_number, camera):
     world_x = int((position[0] - camera[0]) // (TILE_SIZE * zoom))
     world_y = int((position[1] - camera[1]) // (TILE_SIZE * zoom))

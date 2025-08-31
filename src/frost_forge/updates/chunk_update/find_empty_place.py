@@ -1,5 +1,6 @@
 from random import choice
 
+
 def find_empty_place(tile, chunk, chunks):
     empty_places = []
     for x in range(-1, 2):

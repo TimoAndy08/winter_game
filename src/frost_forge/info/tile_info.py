@@ -1,5 +1,6 @@
 from .render_info import FPS
 
+
 FERTILIZER_SPAWN = (
     (0.02, "bluebell"),
     (0.1, "carrot"),

@@ -1,5 +1,6 @@
 from ..info import MULTI_TILES, ATTRIBUTES, FLOOR_TYPE
 
+
 def is_placable(kind, grid_position, chunks):
     tile_size = MULTI_TILES.get(kind, (1, 1))
     for x in range(0, tile_size[0]):

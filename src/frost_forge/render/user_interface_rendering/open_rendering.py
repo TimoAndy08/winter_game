@@ -5,6 +5,7 @@ from .craft_rendering import render_craft
 from .store_rendering import render_store
 from .machine_rendering import render_machine
 
+
 def render_open(machine_ui, window, images, recipe_number, machine_inventory):
     attributes = ATTRIBUTES.get(machine_ui, ())
     if "open" in attributes:

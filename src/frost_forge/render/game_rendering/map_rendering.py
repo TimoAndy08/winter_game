@@ -1,6 +1,7 @@
 from ...info import TILE_SIZE, HALF_SIZE, CHUNK_SIZE, SCREEN_SIZE, MULTI_TILES, ATTRIBUTES
 from .border_rendering import render_border
 
+
 def render_map(location, chunks, camera, zoom, scaled_image, window, images):
     for chunk_y in range(-3, 4):
         for chunk_x in range(-3, 4):

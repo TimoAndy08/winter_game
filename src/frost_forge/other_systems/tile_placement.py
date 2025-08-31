@@ -1,5 +1,6 @@
 from ..info import ATTRIBUTES, MULTI_TILES
 
+
 def place_tile(kind, grid_position, chunks):
     if "multi" in ATTRIBUTES.get(kind, ()):
         width, height = MULTI_TILES[kind]

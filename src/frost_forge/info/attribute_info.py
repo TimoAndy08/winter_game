@@ -25,6 +25,7 @@ ATTRIBUTES = {
     "small barrel": {"open", "store"},
     "small crate": {"open", "store"},
     "spore": {"grow"},
+    "torch": {"light"},
     "tree": {"no_pickup"},
     "treeling": {"grow", "no_pickup"},
     "wooden bed": {"sleep", "multi"},

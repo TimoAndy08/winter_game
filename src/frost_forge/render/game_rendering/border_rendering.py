@@ -2,6 +2,7 @@ import pygame as pg
 
 from ...info import TILE_SIZE
 
+
 def render_border(chunk, x, y, chunks, placement, zoom, window, current_tile):
     total_x = chunk[0] * 16 + x
     total_y = chunk[1] * 16 + y

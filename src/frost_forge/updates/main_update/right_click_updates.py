@@ -1,6 +1,7 @@
 from ..right_click import break_tile, break_floor
 from ...info import UNBREAK
 
+
 def right_click(
     chunks,
     grid_position: tuple[tuple[int, int], tuple[int, int]],

@@ -1,6 +1,7 @@
 from ...info import INVENTORY_SIZE, HEALTH
 from .damage_calculation import calculate_damage
 
+
 def break_floor(mining_tile, inventory, inventory_number, player_tile):
     delete_mining_tile = False
     if "health" not in mining_tile:

@@ -1,5 +1,6 @@
 from ...info import RESISTANCE, TOOL_EFFICIENCY, TOOL_REQUIRED
 
+
 def calculate_damage(mining_type, inventory, inventory_number):
     damage = 1 - RESISTANCE.get(mining_type, 0)
     if len(inventory) > inventory_number:

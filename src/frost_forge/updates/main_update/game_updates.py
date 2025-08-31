@@ -4,10 +4,10 @@ from .player_move import move_player
 from ...world_generation.world_generation import generate_chunk
 from ...world_generation.structure_generation import generate_structure
 from ...other_systems.game_state import GameState
+from ...other_systems.game_saving import save_game
 from .mouse_update import button_press
-from os import path
 from ...info import DAY_LENGTH, INVENTORY_SIZE, FLOOR_TYPE, HEALTH
-from ...render.menu_rendering import SAVES_FOLDER
+
 
 def update_game(state: GameState, chunks):
     state.health = chunks[state.location["tile"][0], state.location["tile"][1]][state.location["tile"][2], state.location["tile"][3]].get("health", 20)
@@ -83,7 +83,6 @@ def update_game(state: GameState, chunks):
 
     state.tick += 1
     if state.tick % (DAY_LENGTH // 4) == 0:
-        with open(path.join(SAVES_FOLDER, f"autosave_{(state.tick // (DAY_LENGTH // 4)) % 4}.txt"), "w", encoding="utf-8") as file:
-                file.write(f"{chunks};{state.location['tile']};{state.tick};{state.noise_offset}")
+        save_game(chunks, state, f"autosave_{(state.tick // (DAY_LENGTH // 4)) % 4}")
     state.zoom = 0.05 * state.target_zoom + 0.95 * state.zoom
     return chunks

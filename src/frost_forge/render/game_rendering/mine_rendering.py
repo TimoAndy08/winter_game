@@ -2,6 +2,7 @@ import pygame as pg
 
 from ...info import TILE_SIZE, CHUNK_SIZE, HEALTH
 
+
 def render_mined(location, chunks, camera, zoom, window, images):
     if location[0] in chunks and location[1] in chunks[location[0]]:
         placement = (camera[0] + (location[1][0] * TILE_SIZE + location[0][0] * CHUNK_SIZE) * zoom, camera[1] + (location[1][1] * TILE_SIZE + location[0][1] * CHUNK_SIZE + 60) * zoom,)

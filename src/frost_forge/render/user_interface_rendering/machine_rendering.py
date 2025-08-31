@@ -2,6 +2,7 @@ import pygame as pg
 
 from ...info import FLOOR, SCREEN_SIZE, UI_SCALE, SLOT_SIZE, TILE_UI_SIZE, UI_FONT, FLOOR_SIZE, HALF_SCREEN_SIZE, RECIPES
 
+
 def render_machine(window, machine_ui, images, machine_inventory, recipe_number):
     machine_recipe = RECIPES[machine_ui][recipe_number]
     for item in range(0, len(machine_recipe[1])):

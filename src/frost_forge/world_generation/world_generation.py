@@ -4,6 +4,7 @@ from random import uniform
 from ..info import MULTI_TILES, NOISE_TILES, ATTRIBUTE_CARE, ATTRIBUTES
 from .biome_determination import determine_biome
 
+
 def generate_chunk(
     world_type: int,
     chunk_x: int,

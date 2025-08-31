@@ -1,6 +1,7 @@
 from ...info import INVENTORY_SIZE, HEALTH, ATTRIBUTES
 from .damage_calculation import calculate_damage
 
+
 def break_tile(mining_kind, inventory, player_tile, chunks, mining_tile, inventory_number):
     delete_mining_tile = False
     if mining_kind != "player":

@@ -4,11 +4,12 @@ import pygame as pg
 
 from ...info import TILE_SIZE, HALF_SIZE, CHUNK_SIZE, SCREEN_SIZE, DAY_LENGTH, ATTRIBUTES
 
+
 def create_light_surface(intensity: int, color: tuple[int, int, int]):
-    light_surface = pg.Surface((32, 32), pg.SRCALPHA)
+    light_surface = pg.Surface((TILE_SIZE, TILE_SIZE), pg.SRCALPHA)
     for i in range(16, 0, -1):
         alpha = intensity - int((i / 16) * intensity)
-        pg.draw.circle(light_surface, (*color, alpha), (16, 16), i)
+        pg.draw.circle(light_surface, (*color, alpha), (HALF_SIZE, HALF_SIZE), i)
     return light_surface
 
 LIGHTS = {"campfire": (create_light_surface(170, (181, 102, 60)), 832), "torch": (create_light_surface(85, (181, 102, 60)), 832)}

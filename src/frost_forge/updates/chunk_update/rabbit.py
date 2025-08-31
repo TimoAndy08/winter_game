@@ -2,6 +2,7 @@ from random import choice, randint
 
 from .find_empty_place import find_empty_place
 
+
 def rabbit_hole(chunks, chunk, tile, current_tile, create_tiles):
     if randint(0, 10000) == 0:
         spawn_pos = (chunk[0] * 16 + tile[0], chunk[1] * 16 + tile[1])

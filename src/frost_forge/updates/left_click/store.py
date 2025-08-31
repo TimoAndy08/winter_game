@@ -2,6 +2,7 @@ from ...info import SCREEN_SIZE, INVENTORY_SIZE, UI_SCALE, STORAGE
 from .put_in import put_in
 from .take_out import take_out
 
+
 def open_storage(position, chunks, location, inventory, machine_ui):
     moved_x = position[0] - SCREEN_SIZE[0] // 2
     if "inventory" not in chunks[location["opened"][0]][location["opened"][1]]:

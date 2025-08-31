@@ -2,6 +2,7 @@ import pygame as pg
 
 from ..menu_update import update_keys, update_mouse
 
+
 def update_menu(state, chunks):
     for event in pg.event.get():
         if event.type == pg.QUIT:

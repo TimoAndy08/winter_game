@@ -2,6 +2,7 @@ import pygame as pg
 
 from ...info import SCREEN_SIZE, UI_SCALE, UI_FONT, HEALTH
 
+
 def render_health(window, images, health):
     max_health = HEALTH["player"]
     window.blit(pg.transform.scale(images["health_bar"], (128 * UI_SCALE, 32 * UI_SCALE)), (SCREEN_SIZE[0] - 128 * UI_SCALE, 0))

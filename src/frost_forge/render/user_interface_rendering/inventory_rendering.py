@@ -2,6 +2,7 @@ import pygame as pg
 
 from ...info import SCREEN_SIZE, UI_SCALE, UI_FONT, INVENTORY_SIZE, SLOT_SIZE, TILE_UI_SIZE, FLOOR_SIZE, HALF_SCREEN_SIZE, FLOOR
 
+
 def render_inventory(inventory_number, window, images, inventory):
     for i in range(0, INVENTORY_SIZE[0]):
         if i == inventory_number:
