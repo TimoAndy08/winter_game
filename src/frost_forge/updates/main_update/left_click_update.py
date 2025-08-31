@@ -42,7 +42,7 @@ def left_click(
                     tick = (tick // DAY_LENGTH + 9 / 16) * DAY_LENGTH
             elif "lock" in attributes:
                 chunks = unlock(inventory, inventory_number, chunks, grid_position)
-            elif "grow" in attributes and inventory_number < len(inventory):
+            elif "grow" in attributes and inventory_number < len(inventory) and "fertilize" in ATTRIBUTES.get(list(inventory.keys())[inventory_number], ()):
                 chunks = fertilize_grow(chunks, inventory, inventory_number, grid_position)
             elif "store" in attributes:
                 chunks = closed_storage(chunks, grid_position, inventory, location, inventory_number)
