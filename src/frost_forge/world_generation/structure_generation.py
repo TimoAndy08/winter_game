@@ -22,10 +22,8 @@ def generate_structure(noise_offset, chunk_x, chunk_y, chunks, checked):
             dungeon = structure_rooms(structure_type, (chunk_x, chunk_y))
             for dungeon_room in dungeon[0]:
                 chunks[dungeon_room] = {}
-                room = generate_room(structure_type, dungeon[0][dungeon_room], (1, 1), (chunk_x, chunk_y), dungeon[0][dungeon_room][0] == dungeon[0][dungeon_room][1])
+                room = generate_room(structure_type, dungeon[0][dungeon_room], (0, 0), (chunk_x, chunk_y), dungeon[0][dungeon_room][0] == dungeon[0][dungeon_room][1])
                 for chunk in room:
                     chunks[chunk] = room[chunk]
-            if dungeon[2] not in chunks:
-                chunks[dungeon[2]] = {}
-            chunks[dungeon[2]][7, 1] = STRUCTURE_ENTRANCE[structure_type]
+            chunks[dungeon[2]][7, 0] = STRUCTURE_ENTRANCE[structure_type]
     return chunks, checked

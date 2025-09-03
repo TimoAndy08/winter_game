@@ -1,6 +1,6 @@
 NOISE_STRUCTURES = {
     "forest": (
-        ((0, 0.03), "mushroom hut"),
+        ((0, 0.02), "mushroom hut"),
     ),
     "mountain": (
         ((0, 0.02), "mineshaft"),
