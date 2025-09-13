@@ -7,12 +7,12 @@ from .structure_structuring import structure_rooms
 from .biome_determination import determine_biome
 
 
-def generate_structure(noise_offset, chunk_x, chunk_y, chunks, checked):
+def generate_structure(world_type, noise_offset, chunk_x, chunk_y, chunks, checked):
     if (chunk_x, chunk_y) not in checked:
         checked.add((chunk_x, chunk_y))
         structure_value = pnoise2(1 / (sin(chunk_x * 4 + 1) ** 3) + noise_offset[0], 1 / (sin(chunk_y * 4 + 1) ** 3) + noise_offset[1], 3, 0.5, 2)
         structure = False
-        biome = determine_biome(16 * chunk_x, 16 * chunk_y, noise_offset)
+        biome = determine_biome(world_type, 16 * chunk_x, 16 * chunk_y, noise_offset)
         for noise_structure in NOISE_STRUCTURES.get(biome, ()):
             if noise_structure[0][0] < structure_value < noise_structure[0][1]:
                 structure_type = noise_structure[1]

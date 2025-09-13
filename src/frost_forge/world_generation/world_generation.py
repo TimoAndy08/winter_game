@@ -22,14 +22,14 @@ def generate_chunk(
     if (chunk_x, chunk_y) not in chunks:
         chunks[chunk_x, chunk_y] = {}
         tile = chunks[chunk_x, chunk_y]
-        if world_type == 0:
+        if world_type != 1:
             for tile_x in range(0, 16):
                 for tile_y in range(0, 16):
                     tile_pos = (tile_x, tile_y)
                     if tile_pos not in tile:
                         world_x = chunk_x * 16 + tile_x + noise_offset[0]
                         world_y = chunk_y * 16 + tile_y + noise_offset[1]
-                        biome = determine_biome(world_x, world_y, noise_offset)
+                        biome = determine_biome(world_type, world_x, world_y, noise_offset)
                         elevation_value = pnoise2(world_x / 10 + noise_offset[0], world_y / 10 + noise_offset[1], 3, 0.5, 2)
                         moisture_value = pnoise2(world_x / 30 + noise_offset[0], world_y / 30 + noise_offset[1], 3, 0.5, 2)
                         for noise_tile in NOISE_TILES[biome]:

@@ -22,7 +22,7 @@ def update_game(state: GameState, chunks):
     if state.world_type == 0:
         for x in range(-10, 11):
             for y in range(-10, 11):
-                generate_structure(state.noise_offset, state.location["tile"][0] + x, state.location["tile"][1] + y, chunks, state.checked)
+                generate_structure(state.world_type, state.noise_offset, state.location["tile"][0] + x, state.location["tile"][1] + y, chunks, state.checked)
 
     tile_chunk_coords = (state.location["tile"][0], state.location["tile"][1])
     tile_coords = (state.location["tile"][2], state.location["tile"][3])
