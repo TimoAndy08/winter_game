@@ -1,6 +1,6 @@
 [project]
 name = "frost-forge"
-version = "0.1.2"
+version = "0.1.3"
 description = "A sandbox game with procedual world generation, mining, building, and crafting"
 authors = [
     { name = "TimoAndy08", email = "134264827+TimoAndy08@users.noreply.github.com" }
