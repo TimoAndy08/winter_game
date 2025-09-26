@@ -19,7 +19,7 @@ def update_game(state: GameState, chunks):
     for x in range(-4, 5):
         for y in range(-4, 5):
             generate_chunk(state.world_type, state.location["tile"][0] + x, state.location["tile"][1] + y, chunks, state.noise_offset)
-    if state.world_type != 1:
+    if 3 != state.world_type != 1:
         for x in range(-10, 11):
             for y in range(-10, 11):
                 generate_structure(state.world_type, state.noise_offset, state.location["tile"][0] + x, state.location["tile"][1] + y, chunks, state.checked)
