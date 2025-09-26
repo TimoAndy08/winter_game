@@ -15,6 +15,7 @@ TOOL_REQUIRED = {
     "copper brick floor": "pickaxe",
     "dirt": "shovel",
     "flint": "pickaxe",
+    "furnace": "pickaxe",
     "ice": "pickaxe",
     "log": "axe",
     "log floor": "axe",

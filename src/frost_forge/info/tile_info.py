@@ -62,6 +62,7 @@ GROW_TILES = {
 }
 MULTI_TILES = {
     "big rock": (2, 2),
+    "furnace": (2, 2),
     "manual press": (2, 1),
     "masonry bench": (2, 1),
     "obelisk": (1, 2),
@@ -71,6 +72,7 @@ MULTI_TILES = {
 PROCESSING_TIME = {
     "bonsai pot": 40 * FPS,
     "composter": 2 * FPS,
+    "furnace": 10 * FPS,
 }
 STORAGE = {
     "small barrel": (1, 512),

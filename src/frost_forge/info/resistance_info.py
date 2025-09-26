@@ -9,6 +9,7 @@ RESISTANCE = {
     "composter": 1,
     "copper brick": 3,
     "copper brick floor": 3,
+    "furnace": 3,
     "ice": 1,
     "manual press": 1,
     "masonry bench": 1,

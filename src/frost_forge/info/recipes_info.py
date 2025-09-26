@@ -24,6 +24,9 @@ RECIPES = {
         (("rock", 1), (("compost", 12), ("pebble", 2))),
         (("fertilizer", 2), (("compost", 24), ("dirt", 1))),
     ),
+    "furnace": (
+        (("coal", 1), (("log", 1), ("fuel", 4))),
+    ),
     "manual press": (
         (("blue dye", 2), (("bluebell", 2), ("bowl", 1), ("water", 1))),
         (("blueprint", 1), (("blue dye", 2), ("paper", 3))),

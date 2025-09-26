@@ -8,6 +8,7 @@ ATTRIBUTES = {
     "compost": {"fertilize"},
     "composter": {"open", "machine", "value"},
     "fertilizer": {"fertilize"},
+    "furnace": {"open", "machine", "value"},
     "glass key": {"key"},
     "glass lock": {"lock"},
     "manual press": {"open", "craft", "multi"},

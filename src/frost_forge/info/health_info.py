@@ -25,6 +25,7 @@ HEALTH = {
     "flint shovel": 6,
     "flint sword": 6,
     "flint": 16,
+    "furnace": 32,
     "glass": 8,
     "glass key": 1,
     "glass lock": 1,
