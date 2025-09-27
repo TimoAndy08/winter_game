@@ -64,6 +64,9 @@ GROW_TILES = {
     "spore": {"kind": "mushroom", "inventory": {"mushroom": 1, "spore": 2}},
     "treeling": {"kind": "tree", "inventory": {"sapling": 2, "log": 2}},
 }
+HEALTH_INCREASE = {
+    "life crystal": (20, 40, 4)
+}
 MULTI_TILES = {
     "big rock": (2, 2),
     "furnace": (2, 2),

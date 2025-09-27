@@ -44,10 +44,10 @@ def update_game(state: GameState, chunks):
 
     else:
         if tile_coords not in chunk:
-            chunk[tile_coords] = {"kind": "player"}
+            chunk[tile_coords] = {"kind": "player", "recipe": old_tile["recipe"]}
         elif "kind" not in chunk[tile_coords] and "door" != FLOOR_TYPE.get(chunk[tile_coords]["floor"]) != "fluid":
             exist_tile = chunk[tile_coords]
-            chunk[tile_coords] = {"kind": "player", "floor": exist_tile["floor"]}
+            chunk[tile_coords] = {"kind": "player", "recipe": old_tile["recipe"], "floor": exist_tile["floor"]}
         elif chunk[tile_coords].get("kind") != "player":
             state.location["real"] = list(state.location["old"])
             state.location["tile"] = list(state.location["old"])
@@ -58,12 +58,15 @@ def update_game(state: GameState, chunks):
                 old_chunk[old_tile_coords] = {"floor": old_tile["floor"]}
             else:
                 del old_chunk[old_tile_coords]
+    
+    if state.location["opened"] == ((state.location["old"][0], state.location["old"][1]), (state.location["old"][2], state.location["old"][3])):
+        state.location["opened"] = ((state.location["tile"][0], state.location["tile"][1]), (state.location["tile"][2], state.location["tile"][3]))
 
     for event in pg.event.get():
         if event.type == pg.QUIT:
             state.run = False
         elif event.type == pg.MOUSEBUTTONDOWN:
-            chunks, state.location, state.machine_ui, state.machine_inventory, state.tick, state.inventory_number = button_press(
+            chunks, state.location, state.machine_ui, state.machine_inventory, state.tick, state.inventory_number, state.health, state.max_health = button_press(
                 event.button, state.position, state.zoom, chunks, state.location, state.machine_ui, state.inventory, state.health, state.max_health,
                 state.machine_inventory, state.tick, state.inventory_number, chunks[state.location["opened"][0]][state.location["opened"][1]].get("recipe", 0), state.camera)
         elif event.type == pg.KEYDOWN:
@@ -80,9 +83,6 @@ def update_game(state: GameState, chunks):
                 state.target_zoom = min(max(state.target_zoom, 0.5), 2)
             elif keys[state.controls[21]]:
                 state.menu_placement = "options_game"
-            elif keys[state.controls[0]] or keys[state.controls[1]] or keys[state.controls[2]] or keys[state.controls[3]]:
-                state.machine_ui = "game"
-                state.location["opened"] = ((0, 0), (0, 0))
             elif keys[state.controls[19]]:
                 state.inventory_number = (state.inventory_number + 1) % INVENTORY_SIZE[0]
             elif keys[state.controls[20]]:

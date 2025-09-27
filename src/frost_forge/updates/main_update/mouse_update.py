@@ -16,7 +16,7 @@ def button_press(button, position, zoom, chunks, location, machine_ui, inventory
                     grid_position = [(grid_position[0][0], grid_position[0][1] - (grid_position[1][1] == 0)), (grid_position[1][0], (grid_position[1][1] - 1) % 16)]
                     
         if button == 1:
-            machine_ui, chunks, location, machine_inventory, tick = left_click(machine_ui, grid_position, chunks, inventory_number, health, max_health, position, recipe_number, location, inventory, machine_inventory, tick)
+            machine_ui, chunks, location, machine_inventory, tick, health, max_health = left_click(machine_ui, grid_position, chunks, inventory_number, health, max_health, position, recipe_number, location, inventory, machine_inventory, tick)
         elif button == 3:
             chunks, location, machine_ui, machine_inventory = right_click(chunks, grid_position, inventory, inventory_number, location, machine_ui, position, machine_inventory)
     
@@ -25,4 +25,4 @@ def button_press(button, position, zoom, chunks, location, machine_ui, inventory
             chunks[location["opened"][0]][location["opened"][1]]["recipe"] = (recipe_number + (button == 5) - (button == 4)) % len(RECIPES[machine_ui])
         else:
             inventory_number = (inventory_number + (button == 5) - (button == 4)) % INVENTORY_SIZE[0]
-    return chunks, location, machine_ui, machine_inventory, tick, inventory_number
+    return chunks, location, machine_ui, machine_inventory, tick, inventory_number, health, max_health

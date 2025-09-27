@@ -21,7 +21,8 @@ ROOM_COLORS = {
     (73, 58, 37): {"kind": "log", "floor": "wood floor"},
     (92, 74, 49): {"kind": "wood", "floor": "wood floor"},
     (129, 107, 63): {"floor": "wood door"},
-    (19, 17, 18): {"kind": "coal ore", "inventory": {"coal": 1}, "floor": "stone floor"}
+    (19, 17, 18): {"kind": "coal ore", "inventory": {"coal": 1}, "floor": "stone floor"},
+    (123, 104, 150): {"kind": "small crate", "loot": "mine chest", "floor": "stone floor"},
     },
     "mushroom hut": {
     (247, 247, 255): {"kind": "mushroom block", "floor": "mushroom floor"},
@@ -49,15 +50,27 @@ STRUCTURE_ROOMS = {
 }
 LOOT_TABLES = {
     "mushroom chest": {
-        (0.7, "spore", 1, 5),
-        (0.6, "mushroom", 2, 7),
-        (0.4, "mushroom block", 3, 5),
+        (0.7, "mushroom", 2, 7),
+        (0.5, "mushroom block", 3, 5),
+        (0.35, "spore", 1, 5),
         (0.25, "fertilizer", 1, 2),
         (0.2, "mushroom floor", 2, 3),
         (0.15, "plant bouquet", 1, 3),
         (0.1, "mushroom shaper", 1, 1),
         (0.05, "mushroom door", 1, 2),
-        (0.03, "composter", 1, 1),
-        (0.02, "bonsai pot", 1, 2),
-    }
+        (0.03, "bonsai pot", 1, 2),
+        (0.01, "composter", 1, 1),
+    },
+    "mine chest": {
+        (0.7, "rock", 2, 4),
+        (0.5, "flint", 3, 5),
+        (0.35, "coal", 1, 3),
+        (0.25, "stone", 2, 4),
+        (0.15, "handle", 1, 2),
+        (0.1, "life crystal", 1, 1),
+        (0.05, "sawbench", 1, 1),
+        (0.03, "rock pickaxe", 1, 1),
+        (0.02, "rock axe", 1, 1),
+        (0.01, "rock sword", 1, 1)
+    },
 }

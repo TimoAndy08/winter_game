@@ -17,6 +17,7 @@ TOOL_REQUIRED = {
     "flint": "pickaxe",
     "furnace": "pickaxe",
     "ice": "pickaxe",
+    "life crystal": "pickaxe",
     "log": "axe",
     "log floor": "axe",
     "manual press": "axe",

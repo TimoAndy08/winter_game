@@ -32,6 +32,7 @@ HEALTH = {
     "ice": 12,
     "junk": 1,
     "left": 1,
+    "life crystal": 16,
     "log floor": 12,
     "log": 8,
     "manual press": 12,

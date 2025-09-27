@@ -11,6 +11,7 @@ RESISTANCE = {
     "copper brick floor": 3,
     "furnace": 3,
     "ice": 1,
+    "life crystal": 1,
     "manual press": 1,
     "masonry bench": 1,
     "mushroom block": 1,

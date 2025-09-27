@@ -20,7 +20,7 @@ def save_creating(state, chunks):
         chunks[0, 0][0, 3] = {"kind": "tree", "floor": "dirt", "inventory": {"log": 2, "sapling": 2}}
         chunks[0, 0][0, 4] = {"kind": "composter"}
     state.tick = 0
-    state.inventory = {}
+    state.inventory = {"life crystal": 64}
     state.max_health = 20
     state.health = 20
     return chunks
