@@ -18,7 +18,7 @@ def right_click(
     else:
         machine_ui = "game"
         if grid_position[1] not in chunks[grid_position[0]]:
-            return chunks, location, machine_ui
+            return chunks, location, machine_ui, machine_inventory
         mining_tile = chunks[grid_position[0]][grid_position[1]]
         delete_mining_tile = False
         player_tile = chunks[location["tile"][0], location["tile"][1]][location["tile"][2], location["tile"][3]]

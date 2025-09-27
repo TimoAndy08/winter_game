@@ -9,9 +9,14 @@ def is_placable(kind, grid_position, chunks):
             chunk_coord = (grid_position[0][0] + (grid_position[1][0] + x) // 16, grid_position[0][1] + (grid_position[1][1] + y) // 16)
             if tile_coord in chunks[chunk_coord]:
                 current_tile = chunks[chunk_coord][tile_coord]
-                tile_floor_type = FLOOR_TYPE.get(current_tile["floor"])
-                if tile_floor_type == "block" or tile_floor_type == "fluid" or "grow" in ATTRIBUTES.get(kind, ()) and tile_floor_type != "soil" or "kind" in current_tile:
+                if "kind" in current_tile:
                     return False
+                elif "floor" in current_tile:
+                    tile_floor_type = FLOOR_TYPE.get(current_tile["floor"])
+                    if tile_floor_type == "block" or tile_floor_type == "fluid":
+                        return False
+                    elif "grow" in ATTRIBUTES.get(kind, ()) and tile_floor_type != "soil":
+                        return False
             elif "grow" in ATTRIBUTES.get(kind, ()):
                 return False
     return True
