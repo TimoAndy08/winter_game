@@ -40,6 +40,8 @@ def update_mouse(state, event, chunks):
         elif 150 <= state.position[1] <= 200:
             state.menu_placement = "options_main"
         elif 225 <= state.position[1] <= 275:
+            state.menu_placement = "credits"
+        elif 300 <= state.position[1] <= 350:
             state.run = False
 
     elif state.menu_placement == "controls_options":
@@ -51,4 +53,8 @@ def update_mouse(state, event, chunks):
                 state.scroll += 1
         else:
             state.control_adjusted = state.scroll + state.position[1] // 50
+    
+    elif state.menu_placement == "credits":
+        if state.position[1] <= 50:
+            state.menu_placement = "main_menu"
     return chunks

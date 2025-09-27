@@ -57,10 +57,16 @@ def render_menu(
         render_text(window, "Welcome to Frost Forge", 0, images)
         render_text(window, "Play", 1, images)
         render_text(window, "Options", 2, images)
-        render_text(window, "Quit Game", 3, images)
+        render_text(window, "Credits", 3, images)
+        render_text(window, "Quit Game", 4, images)
 
     elif menu_placement == "controls_options":
         pg.draw.rect(window, (181, 102, 60), pg.Rect(0, 50 * (control_adjusted - scroll), SCREEN_SIZE[0], 50))
         for y in range(len(controls)):
             render_text(window, f"{CONTROL_NAMES[y]}: {pg.key.name(controls[y]).capitalize()}", y - scroll, images)
+    
+    elif menu_placement == "credits":
+        render_text(window, "Back to menu", 0, images)
+        render_text(window, "Game developer: TimoAndy08", 1, images)
+        render_text(window, "Special thanks to: Havsalt", 2, images)
     return window
