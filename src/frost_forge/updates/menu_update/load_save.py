@@ -15,11 +15,13 @@ def save_loading(state, chunks):
                 file_content = file.read().split(";")
             chunks = literal_eval(file_content[0])
             state.location["tile"] = literal_eval(file_content[1])
-            state.tick = int(float(file_content[2]))
             state.location["real"] = list(state.location["tile"])
-            state.noise_offset = literal_eval(file_content[3])
-            state.world_type = int(file_content[4])
-            state.checked = literal_eval(file_content[5])
+            state.inventory = literal_eval(file_content[2])
+            state.max_health = int(float(file_content[3]))
+            state.tick = int(float(file_content[4]))
+            state.noise_offset = literal_eval(file_content[5])
+            state.world_type = int(file_content[6])
+            state.checked = literal_eval(file_content[7])
         elif state.position[0] <= 90:
             file = os.path.join(SAVES_FOLDER, state.save_file_name + ".txt")
             if os.path.exists(file):

@@ -8,12 +8,12 @@ def put_in(chunks, location, inventory, machine_storage, slot_number, machine_in
             if machine_item + item[1] <= machine_storage[1]:
                 chunks[location["opened"][0]][location["opened"][1]]["inventory"][item[0]] = machine_item + item[1]
                 if not singular:
-                    del chunks[location["tile"][0], location["tile"][1]][location["tile"][2], location["tile"][3]]["inventory"][item[0]]
+                    del inventory[item[0]]
                 else:
-                    chunks[location["tile"][0], location["tile"][1]][location["tile"][2], location["tile"][3]]["inventory"][item[0]] -= 1
-                    if chunks[location["tile"][0], location["tile"][1]][location["tile"][2], location["tile"][3]]["inventory"][item[0]] == 0:
-                        del chunks[location["tile"][0], location["tile"][1]][location["tile"][2], location["tile"][3]]["inventory"][item[0]]
+                    inventory[item[0]] -= 1
+                    if inventory[item[0]] == 0:
+                        del inventory[item[0]]
             else:
                 chunks[location["opened"][0]][location["opened"][1]]["inventory"][item[0]] = machine_storage[1]
-                chunks[location["tile"][0], location["tile"][1]][location["tile"][2], location["tile"][3]]["inventory"][item[0]] = (machine_item + item[1] - machine_storage[1])
+                inventory[item[0]] = (machine_item + item[1] - machine_storage[1])
     return chunks

@@ -14,10 +14,13 @@ def save_creating(state, chunks):
             generate_chunk(state.world_type, state.location["tile"][0] + x, state.location["tile"][1] + y, chunks, state.noise_offset)
     chunks[0, 0][0, 0] = {"kind": "obelisk", "health": 1}
     chunks[0, 0][0, 1] = {"kind": "up", "health": 1}
-    chunks[0, 0][0, 2] = {"kind": "player", "inventory": {}, "health": 20, "floor": "void", "recipe": 0}
+    chunks[0, 0][0, 2] = {"kind": "player", "floor": "void", "recipe": 0}
     if state.world_type == 1:
         chunks[0, 0][0, 2]["inventory"] = {"flint axe": 1}
         chunks[0, 0][0, 3] = {"kind": "tree", "floor": "dirt", "inventory": {"log": 2, "sapling": 2}}
         chunks[0, 0][0, 4] = {"kind": "composter"}
     state.tick = 0
+    state.inventory = {}
+    state.max_health = 20
+    state.health = 20
     return chunks

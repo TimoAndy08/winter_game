@@ -28,6 +28,7 @@ def render(state: GameState, chunks, window, images) -> tuple:
             state.machine_ui,
             chunks[state.location["opened"][0]].get(state.location["opened"][1], chunks[0, 0][0, 0]).get("recipe", 0),
             state.health,
+            state.max_health,
             state.machine_inventory,
             window,
             images,

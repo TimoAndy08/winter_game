@@ -46,7 +46,6 @@ HEALTH = {
     "paper": 8,
     "pebble": 8,
     "plant bouquet": 6,
-    "player": 20,
     "rabbit adult": 10,
     "rabbit child": 6,
     "rabbit fur": 8,

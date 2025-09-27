@@ -6,13 +6,11 @@ from ...world_generation.structure_generation import generate_structure
 from ...other_systems.game_state import GameState
 from ...other_systems.game_saving import save_game
 from .mouse_update import button_press
-from ...info import DAY_LENGTH, INVENTORY_SIZE, FLOOR_TYPE, HEALTH
+from ...info import DAY_LENGTH, INVENTORY_SIZE, FLOOR_TYPE
 
 
 def update_game(state: GameState, chunks):
-    state.health = chunks[state.location["tile"][0], state.location["tile"][1]][state.location["tile"][2], state.location["tile"][3]].get("health", 20)
     state.location["old"] = list(state.location["tile"])
-    state.inventory = chunks[state.location["tile"][0], state.location["tile"][1]][state.location["tile"][2], state.location["tile"][3]].get("inventory", {})
     key = pg.key.get_pressed()
     state.location, state.velocity = move_player(key, state.controls, state.velocity, state.location)
 
@@ -33,28 +31,40 @@ def update_game(state: GameState, chunks):
     old_chunk = chunks[old_chunk_coords]
     old_tile = old_chunk[old_tile_coords]
 
-    if tile_coords not in chunk:
-        chunk[tile_coords] = {"kind": "player", "inventory": state.inventory, "health": state.health}
-    elif "kind" not in chunk[tile_coords] and "door" != FLOOR_TYPE.get(chunk[tile_coords]["floor"]) != "fluid":
-        exist_tile = chunk[tile_coords]
-        chunk[tile_coords] = {"kind": "player", "inventory": state.inventory, "health": state.health, "floor": exist_tile["floor"]}
-    elif chunk[tile_coords].get("kind") != "player":
-        state.location["real"] = list(state.location["old"])
-        state.location["tile"] = list(state.location["old"])
-        state.velocity = [0, 0]
-
-    if state.location["old"] != state.location["tile"]:
-        if "floor" in old_tile:
-            old_chunk[old_tile_coords] = {"floor": old_tile["floor"], "health": HEALTH.get(old_tile["floor"], 1)}
+    if state.health <= 0:
+        if "floor" in chunk[tile_coords]:
+            chunk[tile_coords] = {"kind": "corpse", "inventory": state.inventory, "floor": chunk[tile_coords]["floor"]}
         else:
-            del old_chunk[old_tile_coords]
+            chunk[tile_coords] = {"kind": "corpse", "inventory": state.inventory}
+        chunks[0, 0][0, 2] = {"kind": "player", "floor": "void", "recipe": 0}
+        state.health = state.max_health
+        state.inventory = {}
+        state.location["real"] = [0, 0, 0, 2]
+        state.location["tile"] = [0, 0, 0, 2]
+
+    else:
+        if tile_coords not in chunk:
+            chunk[tile_coords] = {"kind": "player"}
+        elif "kind" not in chunk[tile_coords] and "door" != FLOOR_TYPE.get(chunk[tile_coords]["floor"]) != "fluid":
+            exist_tile = chunk[tile_coords]
+            chunk[tile_coords] = {"kind": "player", "floor": exist_tile["floor"]}
+        elif chunk[tile_coords].get("kind") != "player":
+            state.location["real"] = list(state.location["old"])
+            state.location["tile"] = list(state.location["old"])
+            state.velocity = [0, 0]
+
+        if state.location["old"] != state.location["tile"]:
+            if "floor" in old_tile:
+                old_chunk[old_tile_coords] = {"floor": old_tile["floor"]}
+            else:
+                del old_chunk[old_tile_coords]
 
     for event in pg.event.get():
         if event.type == pg.QUIT:
             state.run = False
         elif event.type == pg.MOUSEBUTTONDOWN:
             chunks, state.location, state.machine_ui, state.machine_inventory, state.tick, state.inventory_number = button_press(
-                event.button, state.position, state.zoom, chunks, state.location, state.machine_ui, state.inventory, state.health,
+                event.button, state.position, state.zoom, chunks, state.location, state.machine_ui, state.inventory, state.health, state.max_health,
                 state.machine_inventory, state.tick, state.inventory_number, chunks[state.location["opened"][0]][state.location["opened"][1]].get("recipe", 0), state.camera)
         elif event.type == pg.KEYDOWN:
             keys = pg.key.get_pressed()

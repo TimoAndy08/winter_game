@@ -3,7 +3,7 @@ from .right_click_updates import right_click
 from .left_click_update import left_click
 
 
-def button_press(button, position, zoom, chunks, location, machine_ui, inventory, health, machine_inventory, tick, inventory_number, recipe_number, camera):
+def button_press(button, position, zoom, chunks, location, machine_ui, inventory, health, max_health, machine_inventory, tick, inventory_number, recipe_number, camera):
     world_x = int((position[0] - camera[0]) // (TILE_SIZE * zoom))
     world_y = int((position[1] - camera[1]) // (TILE_SIZE * zoom))
     if (world_x - location["tile"][0] * 16 - location["tile"][2]) ** 2 + (world_y - location["tile"][1] * 16 - location["tile"][3]) ** 2 <= 10 or "open" in ATTRIBUTES.get(machine_ui, ()):
@@ -16,7 +16,7 @@ def button_press(button, position, zoom, chunks, location, machine_ui, inventory
                     grid_position = [(grid_position[0][0], grid_position[0][1] - (grid_position[1][1] == 0)), (grid_position[1][0], (grid_position[1][1] - 1) % 16)]
                     
         if button == 1:
-            machine_ui, chunks, location, machine_inventory, tick = left_click(machine_ui, grid_position, chunks, inventory_number, health, position, recipe_number, location, inventory, machine_inventory, tick)
+            machine_ui, chunks, location, machine_inventory, tick = left_click(machine_ui, grid_position, chunks, inventory_number, health, max_health, position, recipe_number, location, inventory, machine_inventory, tick)
         elif button == 3:
             chunks, location, machine_ui, machine_inventory = right_click(chunks, grid_position, inventory, inventory_number, location, machine_ui, position, machine_inventory)
     

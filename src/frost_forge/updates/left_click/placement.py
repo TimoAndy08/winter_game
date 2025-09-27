@@ -3,14 +3,14 @@ from ...other_systems.tile_placement import place_tile
 from ...other_systems.tile_placable import is_placable
 
 
-def place(inventory, inventory_number, is_not_tile, is_kind, health, grid_position, location, chunks):
+def place(inventory, inventory_number, is_not_tile, is_kind, health, max_health, grid_position, chunks):
     if len(inventory) > inventory_number:
         inventory_key = list(inventory.keys())[inventory_number]
         if inventory_key not in FLOOR:
             if is_not_tile or not is_kind:
                 if inventory_key in FOOD:
-                    if health < HEALTH["player"]:
-                        chunks[location["tile"][0], location["tile"][1]][location["tile"][2], location["tile"][3]]["health"] = min(health + FOOD[inventory_key], HEALTH["player"])
+                    if health < max_health:
+                        health = min(health + FOOD[inventory_key], max_health)
                 elif is_placable(inventory_key, grid_position, chunks):
                     chunks = place_tile(inventory_key, grid_position, chunks)
                     inventory[inventory_key] -= 1

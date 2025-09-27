@@ -12,8 +12,6 @@ class GameState:
         self.zoom = 1
         self.target_zoom = 1
         self.inventory_number = 0
-        self.inventory = {}
-        self.health = 20
         self.save_file_name = ""
         self.menu_placement = "main_menu"
         self.velocity = [0, 0]

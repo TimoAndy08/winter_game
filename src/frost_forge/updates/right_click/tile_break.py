@@ -2,7 +2,7 @@ from ...info import INVENTORY_SIZE, HEALTH, UNOBTAINABLE
 from .damage_calculation import calculate_damage
 
 
-def break_tile(mining_kind, inventory, player_tile, chunks, mining_tile, inventory_number):
+def break_tile(mining_kind, inventory, chunks, mining_tile, inventory_number):
     delete_mining_tile = False
     if "health" not in mining_tile:
         mining_tile["health"] = HEALTH[mining_tile["kind"]]
@@ -12,18 +12,18 @@ def break_tile(mining_kind, inventory, player_tile, chunks, mining_tile, invento
         if mining_floor_exist:
             mining_floor = mining_tile["floor"]
         junk_inventory = {}
-        if mining_tile["kind"] in UNOBTAINABLE:
+        if mining_tile["kind"] not in UNOBTAINABLE:
             inventory[mining_kind] = inventory.get(mining_kind, 0) + 1
         if "inventory" in mining_tile:
             for item, amount in mining_tile["inventory"].items():
-                if item in player_tile["inventory"]:
-                    player_tile["inventory"][item] += amount
+                if item in inventory:
+                    inventory[item] += amount
                     if inventory[item] > INVENTORY_SIZE[1]:
-                        junk_inventory[item] = player_tile["inventory"][item] - INVENTORY_SIZE[1]
-                        player_tile["inventory"][item] = INVENTORY_SIZE[1]
+                        junk_inventory[item] = inventory[item] - INVENTORY_SIZE[1]
+                        inventory[item] = INVENTORY_SIZE[1]
                 else:
                     if len(inventory) < INVENTORY_SIZE[0]:
-                        player_tile["inventory"][item] = amount
+                        inventory[item] = amount
                     else:
                         junk_inventory[item] = amount
         if mining_floor_exist:

@@ -8,6 +8,7 @@ def left_click(
     chunks,
     inventory_number: int,
     health: int,
+    max_health : int,
     position,
     recipe_number: int,
     location: dict[str],
@@ -30,7 +31,7 @@ def left_click(
         elif is_floor and FLOOR_TYPE.get(current_tile["floor"]) == "soil" and inventory_number < len(inventory) and list(inventory.keys())[inventory_number] in FERTILIZER_EFFICIENCY:
             chunks = fertilize_spawn(chunks, inventory, inventory_number, grid_position)
         elif is_not_tile or not is_kind:
-            chunks = place(inventory, inventory_number, is_not_tile, is_kind, health, grid_position, location, chunks)
+            chunks = place(inventory, inventory_number, is_not_tile, is_kind, health, max_health, grid_position, chunks)
         else:
             attributes = ATTRIBUTES.get(chunks[grid_position[0]][grid_position[1]]["kind"], ())
             kind = chunks[grid_position[0]][grid_position[1]]["kind"]
