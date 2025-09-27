@@ -2,7 +2,7 @@ from math import cos, pi
 
 import pygame as pg
 
-from ...info import TILE_SIZE, HALF_SIZE, CHUNK_SIZE, SCREEN_SIZE, DAY_LENGTH, ATTRIBUTES
+from ...info import TILE_SIZE, HALF_SIZE, CHUNK_SIZE, SCREEN_SIZE, DAY_LENGTH
 
 
 def create_light_surface(intensity: int, color: tuple[int, int, int]):
@@ -26,7 +26,7 @@ def render_lights(tick, chunks, location, zoom, camera, window):
             if chunk in chunks:
                 for tile in chunks[chunk]:
                     current_tile = chunks[chunk][tile]
-                    if "kind" in current_tile and "light" in ATTRIBUTES.get(current_tile["kind"], ()):
+                    if "kind" in current_tile and current_tile["kind"] in LIGHTS:
                         scaled_glow = pg.transform.scale(LIGHTS[current_tile["kind"]][0], (int(LIGHTS[current_tile["kind"]][1] * zoom), int(LIGHTS[current_tile["kind"]][1] * zoom)))
                         night_factor = 1 - cos(((tick / DAY_LENGTH * 2) - 1 / 2) * pi)
                         scaled_glow.set_alpha(int(night_factor * 180))

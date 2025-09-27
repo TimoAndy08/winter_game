@@ -1,4 +1,4 @@
-from ...info import ATTRIBUTES, DAY_LENGTH, FLOOR_TYPE
+from ...info import ATTRIBUTES, DAY_LENGTH, FLOOR_TYPE, FERTILIZER_EFFICIENCY, GROW_TILES
 from ..left_click import recipe, place, open_storage, closed_storage, machine_storage, unlock, fertilize_grow, fertilize_spawn
 
 
@@ -27,14 +27,15 @@ def left_click(
             chunks[grid_position[0]][grid_position[1]]["floor"] += " open"
         elif is_floor and FLOOR_TYPE.get(current_tile["floor"]) == "open":
             chunks[grid_position[0]][grid_position[1]]["floor"] = current_tile["floor"][:-5]
-        elif is_floor and FLOOR_TYPE.get(current_tile["floor"]) == "soil" and inventory_number < len(inventory) and "fertilize" in ATTRIBUTES.get(list(inventory.keys())[inventory_number], ()):
+        elif is_floor and FLOOR_TYPE.get(current_tile["floor"]) == "soil" and inventory_number < len(inventory) and list(inventory.keys())[inventory_number] in FERTILIZER_EFFICIENCY:
             chunks = fertilize_spawn(chunks, inventory, inventory_number, grid_position)
         elif is_not_tile or not is_kind:
             chunks = place(inventory, inventory_number, is_not_tile, is_kind, health, grid_position, location, chunks)
         else:
             attributes = ATTRIBUTES.get(chunks[grid_position[0]][grid_position[1]]["kind"], ())
+            kind = chunks[grid_position[0]][grid_position[1]]["kind"]
             if "open" in attributes:
-                machine_ui = chunks[grid_position[0]][grid_position[1]]["kind"]
+                machine_ui = kind
                 location["opened"] = (grid_position[0], grid_position[1])
                 machine_inventory = chunks[grid_position[0]][grid_position[1]].get("inventory", {})
             elif "sleep" in attributes:
@@ -42,7 +43,7 @@ def left_click(
                     tick = (tick // DAY_LENGTH + 9 / 16) * DAY_LENGTH
             elif "lock" in attributes:
                 chunks = unlock(inventory, inventory_number, chunks, grid_position)
-            elif "grow" in attributes and inventory_number < len(inventory) and "fertilize" in ATTRIBUTES.get(list(inventory.keys())[inventory_number], ()):
+            elif kind in GROW_TILES and inventory_number < len(inventory) and list(inventory.keys())[inventory_number] in FERTILIZER_EFFICIENCY:
                 chunks = fertilize_grow(chunks, inventory, inventory_number, grid_position)
             elif "store" in attributes:
                 chunks = closed_storage(chunks, grid_position, inventory, location, inventory_number)

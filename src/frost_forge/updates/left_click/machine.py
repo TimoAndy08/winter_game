@@ -19,7 +19,7 @@ def machine_storage(position, chunks, location, inventory, machine_ui):
             for i in range(0, len(machine_recipe[1])):
                 if machine_recipe[1][i][0] == item[0]:
                     may_put_in = True
-            if "value" in ATTRIBUTES[machine["kind"]]:
+            if machine["kind"] in MACHINES:
                 if item[0] in VALUES[MACHINES[machine["kind"]]]:
                     may_put_in = True
                     convert = True

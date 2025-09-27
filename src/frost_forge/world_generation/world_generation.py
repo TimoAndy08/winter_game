@@ -1,7 +1,7 @@
 from noise import pnoise2
 import random
 
-from ..info import MULTI_TILES, NOISE_TILES, ATTRIBUTE_CARE, ATTRIBUTES
+from ..info import MULTI_TILES, NOISE_TILES, ATTRIBUTES
 from .biome_determination import determine_biome
 
 
@@ -47,7 +47,7 @@ def generate_chunk(
                                 for y in range(0, tile_size[1]):
                                     test_tile = (new_tile_x + x, new_tile_y + y)
                                     if test_tile in tile:
-                                        if len(tuple(ATTRIBUTE_CARE & ATTRIBUTES.get(tile[test_tile].get("kind", None), set()))) or "structure" in tile[test_tile]:
+                                        if "point" in ATTRIBUTES.get(tile[test_tile].get("kind", None), set()):
                                             can_place = False
                             if can_place:
                                 tile[new_tile_x, new_tile_y] = tile[tile_pos]

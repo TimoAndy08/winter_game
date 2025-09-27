@@ -36,7 +36,6 @@ NOISE_TILES = {
         ((-0.1, 0.3), (-0.25, 0.25), {"floor": "pebble"}),
     )
 }
-ATTRIBUTE_CARE = {"unbreak", "point", "structure"}
 BIOMES = (
     (-0.05, 0.05, "lake"),
     (-0.25, -0.1, "forest"),

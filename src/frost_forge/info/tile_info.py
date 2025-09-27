@@ -82,7 +82,19 @@ UNBREAK = {
     "glass lock",
     "left",
     "obelisk",
+    "player",
     "rabbit hole",
     "up",
     "void",
+}
+UNOBTAINABLE = {
+    "big rock",
+    "carroot",
+    "coal ore",
+    "corpse",
+    "junk",
+    "rabbit adult",
+    "rabbit child",
+    "tree",
+    "treeling",
 }
