@@ -27,6 +27,7 @@ NOISE_TILES = {
         ((0.25, 0.5), (0, 0.3), {"kind": "tree", "inventory": {"log": 2, "sapling": 2}, "floor": "dirt"}),
         ((0.2, 0.5), (-0.05, 0.35), {"kind": "treeling", "inventory": {"log": 1, "sapling": 1}, "floor": "dirt"}),
         ((0.1, 0.5), (-0.1, 0.4), {"kind": "sapling", "floor": "dirt"}),
+        ((0, 0.05), (0.2, 0.25), {"kind": "potato", "floor": "dirt"}),
         ((0, 0.5), (0, 0.5), {"floor": "dirt"}),
     ),
     "mountain": (

@@ -2,10 +2,11 @@ from .render_info import FPS
 
 
 FERTILIZER_SPAWN = (
-    (0.001, "bluebell"),
-    (0.005, "carrot"),
-    (0.015, "spore"),
-    (0.03, "sapling"),
+    (0.002, "bluebell"),
+    (0.005, "potato"),
+    (0.01, "carrot"),
+    (0.02, "spore"),
+    (0.035, "sapling"),
 )
 FERTILIZER_EFFICIENCY = {
     "fertilizer": 20,
@@ -15,6 +16,7 @@ FOOD = {
     "carrot": 2,
     "mushroom": 1,
     "mushroom stew": 6,
+    "potato": 3,
     "rabbit meat": 1,
     "roasted mushroom": 3,
     "roasted rabbit meat": 4,
@@ -48,6 +50,7 @@ FLOOR_TYPE = {
 }
 GROW_CHANCE = {
     "carrot": 160,
+    "potato": 240,
     "rabbit child": 200,
     "sapling": 80,
     "spore": 120,
@@ -55,6 +58,7 @@ GROW_CHANCE = {
 }
 GROW_TILES = {
     "carrot": {"kind": "carroot", "inventory": {"carrot": 2}},
+    "potato": {"kind": "potatoo", "inventory": {"potato": 2}},
     "rabbit child": {"kind": "rabbit adult", "inventory": {"rabbit fur": 1, "rabbit meat": 2}},
     "sapling": {"kind": "treeling", "inventory": {"sapling": 1, "log": 1}},
     "spore": {"kind": "mushroom", "inventory": {"mushroom": 1, "spore": 2}},
@@ -93,6 +97,7 @@ UNOBTAINABLE = {
     "coal ore",
     "corpse",
     "junk",
+    "potatoo",
     "rabbit adult",
     "rabbit child",
     "tree",

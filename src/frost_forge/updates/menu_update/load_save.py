@@ -18,6 +18,7 @@ def save_loading(state, chunks):
             state.location["real"] = list(state.location["tile"])
             state.inventory = literal_eval(file_content[2])
             state.max_health = int(float(file_content[3]))
+            state.health = state.max_health
             state.tick = int(float(file_content[4]))
             state.noise_offset = literal_eval(file_content[5])
             state.world_type = int(file_content[6])
