@@ -9,7 +9,7 @@ def update_mouse(state, event, chunks):
     if state.menu_placement == "load_save":
         if state.position[1] <= 50:
             state.menu_placement = "main_menu"
-        elif state.position[1] <= 100:
+        elif 75 <= state.position[1] <= 125:
             state.menu_placement = "save_options"
             state.world_type = 0
             state.seed = ""
@@ -21,25 +21,25 @@ def update_mouse(state, event, chunks):
     elif state.menu_placement == "save_options":
         if state.position[1] <= 50:
             chunks = save_creating(state, chunks)
-        elif state.position[1] <= 100:
+        elif 75 <=state.position[1] <= 125:
             state.world_type = (state.world_type + 1) % len(WORLD_TYPES)
     elif state.menu_placement == "save_creation":
-        if 200 <= state.position[1] <= 250 and state.save_file_name != "" and state.save_file_name.split("_")[0] != "autosave":
+        if 150 <= state.position[1] <= 200 and state.save_file_name != "" and state.save_file_name.split("_")[0] != "autosave":
             state.menu_placement = "main_menu"
             save_game(chunks, state, state.save_file_name)
             state.save_file_name = ""
             chunks = {}
-        elif 300 <= state.position[1] <= 350:
+        elif 225 <= state.position[1] <= 275:
             state.menu_placement = "main_menu"
             state.save_file_name = ""
             chunks = {}
 
     elif state.menu_placement == "main_menu":
-        if 0 <= state.position[1] <= 50:
+        if 75 <= state.position[1] <= 125:
             state.menu_placement = "load_save"
-        elif 100 <= state.position[1] <= 150:
+        elif 150 <= state.position[1] <= 200:
             state.menu_placement = "options_main"
-        elif 200 <= state.position[1] <= 250:
+        elif 225 <= state.position[1] <= 275:
             state.run = False
 
     elif state.menu_placement == "controls_options":

@@ -6,7 +6,7 @@ from ...render.menu_rendering import SAVES_FOLDER
 
 def save_loading(state, chunks):
     saves = [f[:-4] for f in os.listdir(SAVES_FOLDER) if f.endswith(".txt")]
-    index = (state.position[1] // 50) - 2
+    index = (state.position[1] // 75) - 2
     if index < len(saves):
         state.save_file_name = saves[index]
         if state.position[0] >= 120:

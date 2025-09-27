@@ -5,7 +5,7 @@ def option(state, chunks):
     if state.menu_placement == "options_game":
         if 0 <= state.position[1] <= 50:
             state.menu_placement = "main_game"
-        elif 100 <= state.position[1] <= 150:
+        elif 150 <= state.position[1] <= 200:
             if state.save_file_name != "" and state.save_file_name.split("_")[0] != "autosave":
                 state.menu_placement = "main_menu"
                 save_game(chunks, state, state.save_file_name)
@@ -16,6 +16,6 @@ def option(state, chunks):
     elif state.menu_placement == "options_main":
         if 0 <= state.position[1] <= 50:
             state.menu_placement = "main_menu"
-    if 200 <= state.position[1] <= 250:
+    if 75 <= state.position[1] <= 125:
         state.control_adjusted = -1
         state.menu_placement = "controls_options"
