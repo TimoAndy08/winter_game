@@ -12,10 +12,12 @@ def place(inventory, inventory_number, is_not_tile, is_kind, health, max_health,
                     health = min(health + FOOD[inventory_key], max_health)
                 elif inventory_key in HEALTH_INCREASE and HEALTH_INCREASE[inventory_key][0] <= max_health < HEALTH_INCREASE[inventory_key][1]:
                     max_health += HEALTH_INCREASE[inventory_key][2]
-                    health += HEALTH_INCREASE[inventory_key][2]
+                    health += HEALTH_INCREASE[inventory_key][2]    
                 elif is_placable(inventory_key, grid_position, chunks):
                     chunks = place_tile(inventory_key, grid_position, chunks)
-                    inventory[inventory_key] -= 1
+                else:
+                    inventory[inventory_key] += 1
+                inventory[inventory_key] -= 1
         elif is_not_tile:
             inventory[inventory_key] -= 1
             chunks[grid_position[0]][grid_position[1]] = {"floor": inventory_key}

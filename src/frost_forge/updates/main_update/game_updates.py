@@ -50,6 +50,8 @@ def update_game(state: GameState, chunks):
             chunk[tile_coords]["recipe"] = old_tile["recipe"]
         elif chunk[tile_coords].get("kind") != "player":
             state.location["real"] = list(state.location["old"])
+            state.location["real"][2] += 0.5
+            state.location["real"][3] += 0.5
             state.location["tile"] = list(state.location["old"])
             state.velocity = [0, 0]
 

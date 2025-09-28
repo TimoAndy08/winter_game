@@ -15,6 +15,8 @@ def break_floor(mining_tile, inventory, inventory_number):
         elif len(inventory) < INVENTORY_SIZE[0]:
             broke = True
     if broke:
+        if mining_tile["floor"].split()[-1] == "open":
+            mining_tile["floor"] = mining_tile["floor"][:-5]
         inventory[mining_tile["floor"]] = inventory.get(mining_tile["floor"], 0) + 1
         delete_mining_tile = True
     return delete_mining_tile, inventory, mining_tile

@@ -57,3 +57,10 @@ TOOL_EFFICIENCY = {
     "flint": 1, 
     "rock": 2
 }
+TOOLS = {
+    "axe",
+    "hammer",
+    "pickaxe",
+    "shovel",
+    "sword",
+}
