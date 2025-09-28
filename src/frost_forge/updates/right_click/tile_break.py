@@ -2,7 +2,7 @@ from ...info import INVENTORY_SIZE, HEALTH, UNOBTAINABLE
 from .damage_calculation import calculate_damage
 
 
-def break_tile(mining_kind, inventory, chunks, mining_tile, inventory_number):
+def break_tile(inventory, chunks, mining_tile, inventory_number):
     delete_mining_tile = False
     if "health" not in mining_tile:
         mining_tile["health"] = HEALTH[mining_tile["kind"]]
