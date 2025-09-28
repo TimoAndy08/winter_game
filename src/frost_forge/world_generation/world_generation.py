@@ -34,7 +34,9 @@ def generate_chunk(
                         moisture_value = pnoise2(world_x / 30 + noise_offset[0], world_y / 30 + noise_offset[1], 3, 0.5, 2)
                         for noise_tile in NOISE_TILES[biome]:
                             if noise_tile[0][0] < elevation_value < noise_tile[0][1] and noise_tile[1][0] < moisture_value < noise_tile[1][1]:
-                                tile[tile_pos] = noise_tile[2]
+                                tile[tile_pos] = {}
+                                for info in noise_tile[2]:
+                                    tile[tile_pos][info] = noise_tile[2][info]
                                 break
                         if tile_pos in tile:
                             tile_size = MULTI_TILES.get(tile[tile_pos].get("kind", None), (1, 1))

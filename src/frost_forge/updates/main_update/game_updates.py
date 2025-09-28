@@ -46,8 +46,8 @@ def update_game(state: GameState, chunks):
         if tile_coords not in chunk:
             chunk[tile_coords] = {"kind": "player", "recipe": old_tile["recipe"]}
         elif "kind" not in chunk[tile_coords] and "door" != FLOOR_TYPE.get(chunk[tile_coords]["floor"]) != "fluid":
-            exist_tile = chunk[tile_coords]
-            chunk[tile_coords] = {"kind": "player", "recipe": old_tile["recipe"], "floor": exist_tile["floor"]}
+            chunk[tile_coords]["kind"] = "player"
+            chunk[tile_coords]["recipe"] = old_tile["recipe"]
         elif chunk[tile_coords].get("kind") != "player":
             state.location["real"] = list(state.location["old"])
             state.location["tile"] = list(state.location["old"])
@@ -55,7 +55,8 @@ def update_game(state: GameState, chunks):
 
         if state.location["old"] != state.location["tile"]:
             if "floor" in old_tile:
-                old_chunk[old_tile_coords] = {"floor": old_tile["floor"]}
+                del old_chunk[old_tile_coords]["kind"]
+                del old_chunk[old_tile_coords]["recipe"]
             else:
                 del old_chunk[old_tile_coords]
     

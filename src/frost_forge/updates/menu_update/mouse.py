@@ -49,10 +49,10 @@ def update_mouse(state, event, chunks):
             if state.scroll > 0:
                 state.scroll -= 1
         elif event.button == 5:
-            if state.scroll < len(state.controls) - SCREEN_SIZE[1] // 50 - 1:
+            if state.scroll < len(state.controls) - SCREEN_SIZE[1] // 75 - 1:
                 state.scroll += 1
-        else:
-            state.control_adjusted = state.scroll + state.position[1] // 50
+        elif state.position[1] % 75 <= 50:
+            state.control_adjusted = state.scroll + state.position[1] // 75
     
     elif state.menu_placement == "credits":
         if state.position[1] <= 50:

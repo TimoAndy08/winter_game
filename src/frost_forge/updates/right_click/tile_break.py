@@ -12,20 +12,21 @@ def break_tile(mining_kind, inventory, chunks, mining_tile, inventory_number):
         if mining_floor_exist:
             mining_floor = mining_tile["floor"]
         junk_inventory = {}
+        if "inventory" not in mining_tile:
+            mining_tile["inventory"] = {}
         if mining_tile["kind"] not in UNOBTAINABLE:
-            inventory[mining_kind] = inventory.get(mining_kind, 0) + 1
-        if "inventory" in mining_tile:
-            for item, amount in mining_tile["inventory"].items():
-                if item in inventory:
-                    inventory[item] += amount
-                    if inventory[item] > INVENTORY_SIZE[1]:
-                        junk_inventory[item] = inventory[item] - INVENTORY_SIZE[1]
-                        inventory[item] = INVENTORY_SIZE[1]
+            mining_tile["inventory"][mining_tile["kind"]] = mining_tile["inventory"].get(mining_tile["kind"], 0) + 1
+        for item, amount in mining_tile["inventory"].items():
+            if item in inventory:
+                inventory[item] += amount
+                if inventory[item] > INVENTORY_SIZE[1]:
+                    junk_inventory[item] = inventory[item] - INVENTORY_SIZE[1]
+                    inventory[item] = INVENTORY_SIZE[1]
+            else:
+                if len(inventory) < INVENTORY_SIZE[0]:
+                    inventory[item] = amount
                 else:
-                    if len(inventory) < INVENTORY_SIZE[0]:
-                        inventory[item] = amount
-                    else:
-                        junk_inventory[item] = amount
+                    junk_inventory[item] = amount
         if mining_floor_exist:
             mining_tile = {}
         else:

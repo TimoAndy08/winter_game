@@ -8,7 +8,7 @@ def render_mined(location, chunks, camera, zoom, window, images):
         placement = (camera[0] + (location[1][0] * TILE_SIZE + location[0][0] * CHUNK_SIZE) * zoom, camera[1] + (location[1][1] * TILE_SIZE + location[0][1] * CHUNK_SIZE + 60) * zoom,)
         current_tile = chunks[location[0]][location[1]]
         if "health" in current_tile:
-            if "kind" in chunks[location[0]][location[1]]:
+            if "kind" in chunks[location[0]][location[1]] and chunks[location[0]][location[1]]["kind"] != "player":
                 max_health = HEALTH[current_tile["kind"]]
             else:
                 max_health = HEALTH[current_tile["floor"]]

@@ -61,7 +61,7 @@ def render_menu(
         render_text(window, "Quit Game", 4, images)
 
     elif menu_placement == "controls_options":
-        pg.draw.rect(window, (181, 102, 60), pg.Rect(0, 50 * (control_adjusted - scroll), SCREEN_SIZE[0], 50))
+        pg.draw.rect(window, (181, 102, 60), pg.Rect(0, 75 * (control_adjusted - scroll), SCREEN_SIZE[0], 50))
         for y in range(len(controls)):
             render_text(window, f"{CONTROL_NAMES[y]}: {pg.key.name(controls[y]).capitalize()}", y - scroll, images)
     
