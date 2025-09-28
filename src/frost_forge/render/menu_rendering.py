@@ -69,4 +69,5 @@ def render_menu(
         render_text(window, "Back to menu", 0, images)
         render_text(window, "Game developer: TimoAndy08", 1, images)
         render_text(window, "Special thanks to: Havsalt", 2, images)
+        render_text(window, "Gamebreaker: Sonus", 3, images)
     return window
