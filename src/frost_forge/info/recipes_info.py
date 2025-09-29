@@ -18,11 +18,12 @@ RECIPES = {
         (("water", 1), (("bowl", 1), ("ice", 1))),
     ),
     "composter": (
-        (("dirt", 1), (("compost", 12),)),
-        (("pebble", 1), (("compost", 5),)),
+        (("dirt", 1), (("compost", 4),)),
+        (("fertilizer", 2), (("compost", 24), ("dirt", 2))),
+        (("pebble", 1), (("compost", 6),)),
         (("flint", 1), (("compost", 10), ("pebble", 1))),
         (("rock", 1), (("compost", 12), ("pebble", 2))),
-        (("fertilizer", 2), (("compost", 24), ("dirt", 1))),
+        (("coal", 1), (("fertilizer", 1), ("water", 2), ("log", 2))),
     ),
     "furnace": (
         (("coal", 1), (("log", 1), ("fuel", 4))),

@@ -20,8 +20,10 @@ def update_mouse(state, event, chunks):
 
     elif state.menu_placement == "save_options":
         if state.position[1] <= 50:
+            state.menu_placement = "load_save"
+        if 50 <= state.position[1] <= 125:
             chunks = save_creating(state, chunks)
-        elif 75 <=state.position[1] <= 125:
+        elif 150 <=state.position[1] <= 200:
             state.world_type = (state.world_type + 1) % len(WORLD_TYPES)
     elif state.menu_placement == "save_creation":
         if 150 <= state.position[1] <= 200 and state.save_file_name != "" and state.save_file_name.split("_")[0] != "autosave":

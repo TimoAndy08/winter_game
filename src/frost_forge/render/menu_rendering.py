@@ -41,9 +41,10 @@ def render_menu(
         render_text(window, "Don't save", 3, images)
 
     elif menu_placement == "save_options":
-        render_text(window, "Create new save", 0, images)
-        render_text(window, f"World type: {WORLD_TYPES[world_type].capitalize()}", 1, images)
-        render_text(window, f"World seed: {seed.capitalize()}", 2, images)
+        render_text(window, "Back to save selection", 0, images)
+        render_text(window, "Create new save", 1, images)
+        render_text(window, f"World type: {WORLD_TYPES[world_type].capitalize()}", 2, images)
+        render_text(window, f"World seed: {seed.capitalize()}", 3, images)
 
     elif menu_placement.split("_")[0] == "options":
         if menu_placement == "options_game":
