@@ -48,10 +48,14 @@ TOOL_REQUIRED = {
     "tree": "axe",
     "treeling": "axe",
     "wood": "axe",
+    "wood crucible": "axe",
     "wood door": "axe",
     "wood door open": "axe",
     "wood floor": "axe",
     "wood pulp": "shovel",
+    "wooden bed": "axe",
+    "wooden table": "axe",
+    "workbench": "axe",
 }
 TOOL_EFFICIENCY = {
     "flint": 1, 

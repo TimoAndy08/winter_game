@@ -1,6 +1,7 @@
 MACHINES = {
     "composter": "compost",
     "furnace": "fuel",
+    "wood crucible": "fuel",
 }
 VALUES = {
     "compost": {

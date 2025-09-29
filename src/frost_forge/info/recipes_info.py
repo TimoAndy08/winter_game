@@ -15,7 +15,7 @@ RECIPES = {
         (("roasted rabbit meat", 1), (("rabbit meat", 1),)),
         (("stone", 1), (("rock", 1),)),
         (("torch", 3), (("stick", 2), ("coal", 1))),
-        (("water", 2), (("bowl", 2), ("ice", 1))),
+        (("water", 1), (("bowl", 1), ("ice", 1))),
     ),
     "composter": (
         (("dirt", 1), (("compost", 12),)),
@@ -66,8 +66,12 @@ RECIPES = {
         (("mushroom shaper", 1), (("composter", 1), ("mushroom", 12))),
         (("small barrel", 1), (("stick", 4), ("wood", 6))),
         (("small crate", 1), (("stick", 4), ("wood", 6))),
+        (("wood crucible", 1), (("small barrel", 1), ("log", 2))),
         (("wooden bed", 1), (("blue dye", 3), ("rabbit fur", 2), ("wood", 10))),
         (("wooden table", 1), (("wood floor", 4), ("stick", 4))),
+    ),
+    "wood crucible": (
+        (("water", 1), (("fuel", 4),)),
     ),
     "workbench": (
         (("bowl", 2), (("stick", 2), ("wood", 3))),

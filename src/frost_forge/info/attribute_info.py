@@ -13,6 +13,7 @@ ATTRIBUTES = {
     "sawbench": {"open", "craft"},
     "small barrel": {"open", "store"},
     "small crate": {"open", "store"},
+    "wood crucible": {"open", "machine"},
     "wooden bed": {"sleep"},
     "wooden table": {"store", "table"},
     "workbench": {"open", "craft"},

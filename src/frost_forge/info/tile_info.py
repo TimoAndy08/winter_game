@@ -50,6 +50,7 @@ FLOOR_TYPE = {
 }
 GROW_CHANCE = {
     "carrot": 160,
+    "water": 60,
     "potato": 240,
     "rabbit child": 200,
     "sapling": 80,
@@ -58,6 +59,7 @@ GROW_CHANCE = {
 }
 GROW_TILES = {
     "carrot": {"kind": "carroot", "inventory": {"carrot": 2}},
+    "water": {"kind": "ice"},
     "potato": {"kind": "potatoo", "inventory": {"potato": 2}},
     "rabbit child": {"kind": "rabbit adult", "inventory": {"rabbit fur": 1, "rabbit meat": 2}},
     "sapling": {"kind": "treeling", "inventory": {"sapling": 1, "log": 1}},
@@ -80,6 +82,7 @@ PROCESSING_TIME = {
     "bonsai pot": 40 * FPS,
     "composter": 2 * FPS,
     "furnace": 10 * FPS,
+    "wood crucible": 300 * FPS,
 }
 STORAGE = {
     "small barrel": (1, 512),

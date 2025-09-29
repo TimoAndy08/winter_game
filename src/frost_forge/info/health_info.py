@@ -78,6 +78,7 @@ HEALTH = {
     "up": 1,
     "void": 1,
     "water": 8,
+    "wood crucible": 10,
     "wood door": 8,
     "wood door open": 8,
     "wood floor": 6,
