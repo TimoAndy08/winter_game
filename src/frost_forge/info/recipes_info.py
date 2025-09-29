@@ -38,8 +38,8 @@ RECIPES = {
     "masonry bench": (
         (("brick floor", 2), (("brick", 1),)),
         (("glass key", 1), (("glass", 3), ("handle", 1))),
-        (("rock axe", 1), (("handle", 2), ("rock", 4))),
-        (("rock pickaxe", 1), (("handle", 2), ("rock", 4))),
+        (("rock axe", 1), (("handle", 1), ("rock", 4))),
+        (("rock pickaxe", 1), (("handle", 1), ("rock", 4))),
         (("rock shovel", 1), (("handle", 1), ("rock", 3))),
         (("rock sword", 1), (("handle", 1), ("ice", 1), ("rock", 4))),
         (("stone brick", 1), (("stone", 1),)),
@@ -75,7 +75,7 @@ RECIPES = {
         (("water", 1), (("fuel", 4),)),
     ),
     "workbench": (
-        (("bowl", 2), (("stick", 2), ("wood", 3))),
+        (("bowl", 1), (("stick", 1), ("wood", 1))),
         (("campfire", 1), (("flint", 2), ("stick", 6), ("wood", 4))),
         (("flint axe", 1), (("flint", 2), ("stick", 3))),
         (("flint hammer", 1), (("flint", 2), ("rock", 2), ("stick", 4))),

@@ -21,7 +21,7 @@ def open_storage(position, chunks, location, inventory, machine_ui, singular = F
 def closed_storage(chunks, grid_position, inventory, location, inventory_number):
     location["opened"] = (grid_position[0], grid_position[1])
     if "inventory" in chunks[grid_position[0]][grid_position[1]]:
-        take_out(chunks, location, inventory, list(chunks[grid_position[0]][grid_position[1]]["inventory"].items())[0])
+        take_out(chunks, location, inventory, 0, chunks[grid_position[0]][grid_position[1]]["inventory"], True)
     elif inventory_number < len(inventory):
         chunks[grid_position[0]][grid_position[1]]["inventory"] = {}
         put_in(chunks, location, inventory, (1, 64), inventory_number, {})

@@ -39,6 +39,7 @@ HEALTH = {
     "masonry bench": 12,
     "mushroom block": 5,
     "mushroom door": 10,
+    "mushroom door open": 10,
     "mushroom floor": 8,
     "mushroom shaper": 13,
     "mushroom stew": 6,
