@@ -27,8 +27,8 @@ def generate_chunk(
                 for tile_y in range(0, 16):
                     tile_pos = (tile_x, tile_y)
                     if tile_pos not in tile:
-                        world_x = chunk_x * 16 + tile_x + noise_offset[0]
-                        world_y = chunk_y * 16 + tile_y + noise_offset[1]
+                        world_x = chunk_x * 16 + tile_x
+                        world_y = chunk_y * 16 + tile_y
                         biome = determine_biome(world_type, world_x, world_y, noise_offset)
                         elevation_value = pnoise2(world_x / 10 + noise_offset[0], world_y / 10 + noise_offset[1], 3, 0.5, 2)
                         moisture_value = pnoise2(world_x / 30 + noise_offset[0], world_y / 30 + noise_offset[1], 3, 0.5, 2)
