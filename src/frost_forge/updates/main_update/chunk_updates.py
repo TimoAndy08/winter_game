@@ -19,6 +19,8 @@ def update_tiles(state: GameState, chunks):
                         chunks, create_tiles, delete_tiles = update_tile(current_tile, chunks, chunk, tile, delete_tiles, create_tiles, state.tick)
                     elif "floor" in current_tile and current_tile["floor"] in GROW_TILES:
                         chunks[chunk][tile] = grow(current_tile)
+                        if chunks[chunk][tile] == {}:
+                            delete_tiles.append((chunk, tile))
 
     chunks = create_tile(chunks, create_tiles)
     chunks = delete_tile(chunks, delete_tiles)

@@ -65,6 +65,7 @@ HEALTH = {
     "sand": 6,
     "sapling": 4,
     "sawbench": 12,
+    "slime": 20,
     "small barrel": 10,
     "small crate": 10,
     "spore": 4,

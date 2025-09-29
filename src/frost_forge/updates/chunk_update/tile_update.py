@@ -8,6 +8,8 @@ from ...info import ATTRIBUTES, GROW_TILES
 def update_tile(current_tile, chunks, chunk, tile, delete_tiles, create_tiles, tick):
     if current_tile["kind"] in GROW_TILES:
         chunks[chunk][tile] = grow(current_tile)
+        if chunks[chunk][tile] == {}:
+            delete_tiles.append((chunk, tile))
     elif current_tile["kind"] == "left":
         chunks, delete_tiles = left(chunks, chunk, tile, delete_tiles)
     elif current_tile["kind"] == "up":
