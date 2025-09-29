@@ -1,5 +1,7 @@
 from ...other_systems.game_state import GameState
 from ..chunk_update import update_tile, create_tile, delete_tile
+from ...info import GROW_TILES
+from ..chunk_update.growth import grow
 
 
 def update_tiles(state: GameState, chunks):
@@ -15,6 +17,8 @@ def update_tiles(state: GameState, chunks):
                     current_tile = chunks[chunk][tile]
                     if "kind" in current_tile:
                         chunks, create_tiles, delete_tiles = update_tile(current_tile, chunks, chunk, tile, delete_tiles, create_tiles, state.tick)
+                    elif "floor" in current_tile and current_tile["floor"] in GROW_TILES:
+                        chunks[chunk][tile] = grow(current_tile)
 
     chunks = create_tile(chunks, create_tiles)
     chunks = delete_tile(chunks, delete_tiles)

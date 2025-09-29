@@ -59,7 +59,7 @@ GROW_CHANCE = {
 }
 GROW_TILES = {
     "carrot": {"kind": "carroot", "inventory": {"carrot": 2}},
-    "water": {"kind": "ice"},
+    "water": {"floor": "ice"},
     "potato": {"kind": "potatoo", "inventory": {"potato": 2}},
     "rabbit child": {"kind": "rabbit adult", "inventory": {"rabbit fur": 1, "rabbit meat": 2}},
     "sapling": {"kind": "treeling", "inventory": {"sapling": 1, "log": 1}},
