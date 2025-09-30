@@ -17,7 +17,6 @@ ATTRIBUTES = {
     "wooden bed": {"sleep"},
     "wooden table": {"store", "table"},
     "workbench": {"open", "craft"},
-
     # Special tiles
     "left": {"point"},
     "up": {"point"},

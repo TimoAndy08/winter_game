@@ -58,10 +58,7 @@ TOOL_REQUIRED = {
     "wooden table": "axe",
     "workbench": "axe",
 }
-TOOL_EFFICIENCY = {
-    "flint": 1, 
-    "rock": 2
-}
+TOOL_EFFICIENCY = {"flint": 1, "rock": 2}
 TOOLS = {
     "axe",
     "hammer",

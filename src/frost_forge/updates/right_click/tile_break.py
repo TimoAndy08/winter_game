@@ -6,7 +6,9 @@ def break_tile(inventory, chunks, mining_tile, inventory_number):
     delete_mining_tile = False
     if "health" not in mining_tile:
         mining_tile["health"] = HEALTH[mining_tile["kind"]]
-    mining_tile["health"] -= calculate_damage(mining_tile["kind"], inventory, inventory_number)
+    mining_tile["health"] -= calculate_damage(
+        mining_tile["kind"], inventory, inventory_number
+    )
     if mining_tile["health"] <= 0:
         mining_floor_exist = "floor" in mining_tile
         if mining_floor_exist:
@@ -15,7 +17,9 @@ def break_tile(inventory, chunks, mining_tile, inventory_number):
         if "inventory" not in mining_tile:
             mining_tile["inventory"] = {}
         if mining_tile["kind"] not in UNOBTAINABLE:
-            mining_tile["inventory"][mining_tile["kind"]] = mining_tile["inventory"].get(mining_tile["kind"], 0) + 1
+            mining_tile["inventory"][mining_tile["kind"]] = (
+                mining_tile["inventory"].get(mining_tile["kind"], 0) + 1
+            )
         for item, amount in mining_tile["inventory"].items():
             if item in inventory:
                 inventory[item] += amount

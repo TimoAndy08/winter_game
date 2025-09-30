@@ -11,7 +11,11 @@ def save_loading(state, chunks):
         state.save_file_name = saves[index]
         if state.position[0] >= 120:
             state.menu_placement = "main_game"
-            with open(os.path.join(SAVES_FOLDER, state.save_file_name + ".txt"), "r", encoding="utf-8") as file:
+            with open(
+                os.path.join(SAVES_FOLDER, state.save_file_name + ".txt"),
+                "r",
+                encoding="utf-8",
+            ) as file:
                 file_content = file.read().split(";")
             chunks = literal_eval(file_content[0])
             state.location["tile"] = literal_eval(file_content[1])

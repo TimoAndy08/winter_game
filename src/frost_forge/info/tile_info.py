@@ -61,14 +61,15 @@ GROW_TILES = {
     "carrot": {"kind": "carroot", "inventory": {"carrot": 2}},
     "water": {"floor": "ice"},
     "potato": {"kind": "potatoo", "inventory": {"potato": 2}},
-    "rabbit child": {"kind": "rabbit adult", "inventory": {"rabbit fur": 1, "rabbit meat": 2}},
+    "rabbit child": {
+        "kind": "rabbit adult",
+        "inventory": {"rabbit fur": 1, "rabbit meat": 2},
+    },
     "sapling": {"kind": "treeling", "inventory": {"sapling": 1, "log": 1}},
     "spore": {"kind": "mushroom", "inventory": {"mushroom": 1, "spore": 2}},
     "treeling": {"kind": "tree", "inventory": {"sapling": 2, "log": 2}},
 }
-HEALTH_INCREASE = {
-    "life crystal": (20, 40, 4)
-}
+HEALTH_INCREASE = {"life crystal": (20, 40, 4)}
 MULTI_TILES = {
     "big rock": (2, 2),
     "furnace": (2, 2),

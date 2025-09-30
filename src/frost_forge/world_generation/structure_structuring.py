@@ -5,6 +5,7 @@ from ..info import STRUCTURE_SIZE, STRUCTURE_ROOM_SIZES, STRUCTURE_ROOMS
 
 ADJACENT_ROOMS = ((0, -1), (0, 1), (-1, 0), (1, 0))
 
+
 def structure_structure(dungeon_type, offset, dungeon=None, tile=None, distanse=1):
     if dungeon == None:
         dungeon = set()
@@ -14,15 +15,26 @@ def structure_structure(dungeon_type, offset, dungeon=None, tile=None, distanse=
         dungeon.add(tile)
     elif tile[0] ** 4 + tile[1] ** 4 < 882:
         for pos in ADJACENT_ROOMS:
-            if random() < STRUCTURE_SIZE[dungeon_type]**distanse and (tile[0] + pos[0], tile[1] + pos[1]) not in dungeon:
-                structure_structure(dungeon_type, offset, dungeon, (tile[0] + pos[0], tile[1] + pos[1]), distanse + 1)
+            if (
+                random() < STRUCTURE_SIZE[dungeon_type] ** distanse
+                and (tile[0] + pos[0], tile[1] + pos[1]) not in dungeon
+            ):
+                structure_structure(
+                    dungeon_type,
+                    offset,
+                    dungeon,
+                    (tile[0] + pos[0], tile[1] + pos[1]),
+                    distanse + 1,
+                )
     return dungeon
+
 
 def add_hallways(hallways, room, adj_room):
     if isinstance(room, tuple) and isinstance(adj_room, tuple):
         hallways.setdefault(room, set()).add(adj_room)
         hallways.setdefault(adj_room, set()).add(room)
     return hallways
+
 
 def structure_hallways(room, dungeon, hallways=None, visited=None):
     if hallways == None:
@@ -36,8 +48,14 @@ def structure_hallways(room, dungeon, hallways=None, visited=None):
             if random() < 0.5:
                 hallways = add_hallways(hallways, room, adj_room)
                 if adj_room not in visited:
-                    hallways = structure_hallways((room[0] + pos[0], room[1] + pos[1]), dungeon, hallways, visited=visited)
+                    hallways = structure_hallways(
+                        (room[0] + pos[0], room[1] + pos[1]),
+                        dungeon,
+                        hallways,
+                        visited=visited,
+                    )
     return hallways
+
 
 def ensure_hallways(dungeon, hallways, room, visited=None):
     if visited == None:
@@ -57,6 +75,7 @@ def ensure_hallways(dungeon, hallways, room, visited=None):
         hallways = add_hallways(hallways, room, next_room)
         hallways = ensure_hallways(dungeon, hallways, next_room, visited)
     return hallways
+
 
 def structure_rooms(dungeon_type, offset):
     structure = structure_structure(dungeon_type, offset)

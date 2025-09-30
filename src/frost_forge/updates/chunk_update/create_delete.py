@@ -12,6 +12,7 @@ def create_tile(chunks, create_tiles):
             chunk_tiles[tile_pos][info] = tile_data[info]
     return chunks
 
+
 def delete_tile(chunks, delete_tiles):
     for chunk_pos, tile_pos in delete_tiles:
         tile = chunks[chunk_pos][tile_pos]

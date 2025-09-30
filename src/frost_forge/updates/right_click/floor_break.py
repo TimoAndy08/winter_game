@@ -6,7 +6,9 @@ def break_floor(mining_tile, inventory, inventory_number):
     delete_mining_tile = False
     if "health" not in mining_tile:
         mining_tile["health"] = HEALTH[mining_tile["floor"]]
-    mining_tile["health"] -= calculate_damage(mining_tile["floor"], inventory, inventory_number)
+    mining_tile["health"] -= calculate_damage(
+        mining_tile["floor"], inventory, inventory_number
+    )
     broke = False
     if mining_tile["health"] <= 0:
         if mining_tile["floor"] in inventory:

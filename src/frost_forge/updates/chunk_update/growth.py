@@ -3,7 +3,7 @@ from random import random
 from ...info import GROW_CHANCE, GROW_TILES, FPS
 
 
-def grow(tile, guarantee = False):
+def grow(tile, guarantee=False):
     if "kind" in tile:
         old_kind = tile["kind"]
     else:

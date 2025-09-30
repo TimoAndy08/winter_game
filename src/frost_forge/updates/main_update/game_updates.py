@@ -12,15 +12,30 @@ from ...info import DAY_LENGTH, INVENTORY_SIZE, FLOOR_TYPE
 def update_game(state: GameState, chunks):
     state.location["old"] = list(state.location["tile"])
     key = pg.key.get_pressed()
-    state.location, state.velocity = move_player(key, state.controls, state.velocity, state.location)
+    state.location, state.velocity = move_player(
+        key, state.controls, state.velocity, state.location
+    )
 
     for x in range(-4, 5):
         for y in range(-4, 5):
-            generate_chunk(state.world_type, state.location["tile"][0] + x, state.location["tile"][1] + y, chunks, state.noise_offset)
+            generate_chunk(
+                state.world_type,
+                state.location["tile"][0] + x,
+                state.location["tile"][1] + y,
+                chunks,
+                state.noise_offset,
+            )
     if 3 != state.world_type != 1:
         for x in range(-10, 11):
             for y in range(-10, 11):
-                generate_structure(state.world_type, state.noise_offset, state.location["tile"][0] + x, state.location["tile"][1] + y, chunks, state.checked)
+                generate_structure(
+                    state.world_type,
+                    state.noise_offset,
+                    state.location["tile"][0] + x,
+                    state.location["tile"][1] + y,
+                    chunks,
+                    state.checked,
+                )
 
     tile_chunk_coords = (state.location["tile"][0], state.location["tile"][1])
     tile_coords = (state.location["tile"][2], state.location["tile"][3])
@@ -33,7 +48,11 @@ def update_game(state: GameState, chunks):
 
     if state.health <= 0:
         if "floor" in chunk[tile_coords]:
-            chunk[tile_coords] = {"kind": "corpse", "inventory": state.inventory, "floor": chunk[tile_coords]["floor"]}
+            chunk[tile_coords] = {
+                "kind": "corpse",
+                "inventory": state.inventory,
+                "floor": chunk[tile_coords]["floor"],
+            }
         else:
             chunk[tile_coords] = {"kind": "corpse", "inventory": state.inventory}
         chunks[0, 0][0, 2] = {"kind": "player", "floor": "void", "recipe": 0}
@@ -45,7 +64,10 @@ def update_game(state: GameState, chunks):
     else:
         if tile_coords not in chunk:
             chunk[tile_coords] = {"kind": "player", "recipe": old_tile["recipe"]}
-        elif "kind" not in chunk[tile_coords] and "door" != FLOOR_TYPE.get(chunk[tile_coords]["floor"]) != "fluid":
+        elif (
+            "kind" not in chunk[tile_coords]
+            and "door" != FLOOR_TYPE.get(chunk[tile_coords]["floor"]) != "fluid"
+        ):
             chunk[tile_coords]["kind"] = "player"
             chunk[tile_coords]["recipe"] = old_tile["recipe"]
         elif chunk[tile_coords].get("kind") != "player":
@@ -61,35 +83,74 @@ def update_game(state: GameState, chunks):
                 del old_chunk[old_tile_coords]["recipe"]
             else:
                 del old_chunk[old_tile_coords]
-    
-    if state.location["opened"] == ((state.location["old"][0], state.location["old"][1]), (state.location["old"][2], state.location["old"][3])):
-        state.location["opened"] = ((state.location["tile"][0], state.location["tile"][1]), (state.location["tile"][2], state.location["tile"][3]))
+
+    if state.location["opened"] == (
+        (state.location["old"][0], state.location["old"][1]),
+        (state.location["old"][2], state.location["old"][3]),
+    ):
+        state.location["opened"] = (
+            (state.location["tile"][0], state.location["tile"][1]),
+            (state.location["tile"][2], state.location["tile"][3]),
+        )
 
     for event in pg.event.get():
         if event.type == pg.QUIT:
             state.run = False
         elif event.type == pg.MOUSEBUTTONDOWN:
-            chunks, state.location, state.machine_ui, state.machine_inventory, state.tick, state.inventory_number, state.health, state.max_health = button_press(
-                event.button, state.position, state.zoom, chunks, state.location, state.machine_ui, state.inventory, state.health, state.max_health,
-                state.machine_inventory, state.tick, state.inventory_number, chunks[state.location["opened"][0]][state.location["opened"][1]].get("recipe", 0), state.camera)
+            (
+                chunks,
+                state.location,
+                state.machine_ui,
+                state.machine_inventory,
+                state.tick,
+                state.inventory_number,
+                state.health,
+                state.max_health,
+            ) = button_press(
+                event.button,
+                state.position,
+                state.zoom,
+                chunks,
+                state.location,
+                state.machine_ui,
+                state.inventory,
+                state.health,
+                state.max_health,
+                state.machine_inventory,
+                state.tick,
+                state.inventory_number,
+                chunks[state.location["opened"][0]][state.location["opened"][1]].get(
+                    "recipe", 0
+                ),
+                state.camera,
+            )
         elif event.type == pg.KEYDOWN:
             keys = pg.key.get_pressed()
             if keys[state.controls[4]]:
                 if state.machine_ui == "game":
                     state.machine_ui = "player"
-                    state.location["opened"] = ((state.location["tile"][0], state.location["tile"][1]), (state.location["tile"][2], state.location["tile"][3]))
+                    state.location["opened"] = (
+                        (state.location["tile"][0], state.location["tile"][1]),
+                        (state.location["tile"][2], state.location["tile"][3]),
+                    )
                 else:
                     state.machine_ui = "game"
                     state.location["opened"] = ((0, 0), (0, 0))
             elif keys[state.controls[5]] or keys[state.controls[6]]:
-                state.target_zoom += (keys[state.controls[5]] - keys[state.controls[6]]) / 4
+                state.target_zoom += (
+                    keys[state.controls[5]] - keys[state.controls[6]]
+                ) / 4
                 state.target_zoom = min(max(state.target_zoom, 0.5), 2)
             elif keys[state.controls[21]]:
                 state.menu_placement = "options_game"
             elif keys[state.controls[19]]:
-                state.inventory_number = (state.inventory_number + 1) % INVENTORY_SIZE[0]
+                state.inventory_number = (state.inventory_number + 1) % INVENTORY_SIZE[
+                    0
+                ]
             elif keys[state.controls[20]]:
-                state.inventory_number = (state.inventory_number - 1) % INVENTORY_SIZE[0]
+                state.inventory_number = (state.inventory_number - 1) % INVENTORY_SIZE[
+                    0
+                ]
             for i in range(7, 19):
                 if keys[state.controls[i]]:
                     state.inventory_number = i - 7

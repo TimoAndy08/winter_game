@@ -25,9 +25,7 @@ RECIPES = {
         (("rock", 1), (("compost", 12), ("pebble", 2))),
         (("coal", 1), (("fertilizer", 1), ("water", 2), ("log", 2))),
     ),
-    "furnace": (
-        (("coal", 1), (("log", 1), ("fuel", 4))),
-    ),
+    "furnace": ((("coal", 1), (("log", 1), ("fuel", 4))),),
     "manual press": (
         (("blue dye", 2), (("bluebell", 2), ("bowl", 1), ("water", 1))),
         (("blueprint", 1), (("blue dye", 2), ("paper", 3))),
@@ -47,12 +45,18 @@ RECIPES = {
         (("stone floor", 2), (("stone", 1),)),
     ),
     "mushroom shaper": (
-        (("bonsai pot", 1), (("brick", 2), ("dirt", 4), ("plant bouquet", 1), ("small crate", 1))),
+        (
+            ("bonsai pot", 1),
+            (("brick", 2), ("dirt", 4), ("plant bouquet", 1), ("small crate", 1)),
+        ),
         (("composter", 1), (("mushroom", 2), ("paper", 2), ("small barrel", 1))),
         (("mushroom block", 1), (("mushroom", 2), ("wood", 1))),
         (("mushroom door", 1), (("mushroom floor", 1), ("mushroom block", 1))),
         (("mushroom floor", 2), (("mushroom block", 1),)),
-        (("plant bouquet", 1), (("bluebell", 1), ("carrot", 1), ("sapling", 1), ("spore", 1))),
+        (
+            ("plant bouquet", 1),
+            (("bluebell", 1), ("carrot", 1), ("sapling", 1), ("spore", 1)),
+        ),
     ),
     "player": (
         (("stick", 4), (("wood", 2),)),
@@ -71,9 +75,7 @@ RECIPES = {
         (("wooden bed", 1), (("blue dye", 3), ("rabbit fur", 2), ("wood", 10))),
         (("wooden table", 1), (("wood floor", 4), ("stick", 4))),
     ),
-    "wood crucible": (
-        (("water", 1), (("fuel", 4),)),
-    ),
+    "wood crucible": ((("water", 1), (("fuel", 4),)),),
     "workbench": (
         (("bowl", 1), (("stick", 1), ("wood", 1))),
         (("campfire", 1), (("flint", 2), ("stick", 6), ("wood", 4))),

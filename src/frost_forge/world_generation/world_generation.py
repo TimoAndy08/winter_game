@@ -29,35 +29,63 @@ def generate_chunk(
                     if tile_pos not in tile:
                         world_x = chunk_x * 16 + tile_x + noise_offset[0]
                         world_y = chunk_y * 16 + tile_y + noise_offset[1]
-                        biome = determine_biome(world_type, world_x, world_y, noise_offset)
-                        elevation_value = pnoise2(world_x / 10 + noise_offset[0], world_y / 10 + noise_offset[1], 3, 0.5, 2)
-                        moisture_value = pnoise2(world_x / 30 + noise_offset[0], world_y / 30 + noise_offset[1], 3, 0.5, 2)
+                        biome = determine_biome(
+                            world_type, world_x, world_y, noise_offset
+                        )
+                        elevation_value = pnoise2(
+                            world_x / 10 + noise_offset[0],
+                            world_y / 10 + noise_offset[1],
+                            3,
+                            0.5,
+                            2,
+                        )
+                        moisture_value = pnoise2(
+                            world_x / 30 + noise_offset[0],
+                            world_y / 30 + noise_offset[1],
+                            3,
+                            0.5,
+                            2,
+                        )
                         for noise_tile in NOISE_TILES[biome]:
-                            if noise_tile[0][0] < elevation_value < noise_tile[0][1] and noise_tile[1][0] < moisture_value < noise_tile[1][1]:
+                            if (
+                                noise_tile[0][0] < elevation_value < noise_tile[0][1]
+                                and noise_tile[1][0] < moisture_value < noise_tile[1][1]
+                            ):
                                 tile[tile_pos] = {}
                                 for info in noise_tile[2]:
                                     tile[tile_pos][info] = noise_tile[2][info]
                                 break
                         if tile_pos in tile:
-                            tile_size = MULTI_TILES.get(tile[tile_pos].get("kind", None), (1, 1))
+                            tile_size = MULTI_TILES.get(
+                                tile[tile_pos].get("kind", None), (1, 1)
+                            )
                             new_tile_x = tile_x - tile_size[0] + 1
                             new_tile_y = tile_y - tile_size[1] + 1
                             can_place = True
-                            if tile_x - tile_size[0] + 1 < 0 or tile_y - tile_size[1] + 1 < 0:
+                            if (
+                                tile_x - tile_size[0] + 1 < 0
+                                or tile_y - tile_size[1] + 1 < 0
+                            ):
                                 can_place = False
                             for x in range(0, tile_size[0]):
                                 for y in range(0, tile_size[1]):
                                     test_tile = (new_tile_x + x, new_tile_y + y)
                                     if test_tile in tile:
-                                        if "point" in ATTRIBUTES.get(tile[test_tile].get("kind", None), set()):
+                                        if "point" in ATTRIBUTES.get(
+                                            tile[test_tile].get("kind", None), set()
+                                        ):
                                             can_place = False
                             if can_place:
                                 tile[new_tile_x, new_tile_y] = tile[tile_pos]
                                 for x in range(0, tile_size[0]):
                                     if x != 0:
-                                        tile[new_tile_x + x, new_tile_y] = {"kind": "left"}
+                                        tile[new_tile_x + x, new_tile_y] = {
+                                            "kind": "left"
+                                        }
                                     for y in range(1, tile_size[1]):
-                                        tile[new_tile_x + x, new_tile_y + y] = {"kind": "up"}
+                                        tile[new_tile_x + x, new_tile_y + y] = {
+                                            "kind": "up"
+                                        }
                             else:
                                 del tile[tile_pos]
     return noise_offset

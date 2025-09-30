@@ -15,5 +15,5 @@ VALUES = {
     "fuel": {
         "coal": 8,
         "wood": 1,
-    }
+    },
 }

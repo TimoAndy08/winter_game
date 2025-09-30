@@ -6,8 +6,12 @@ from ..info import ROOM_COLORS
 from .loot_calculation import calculate_loot
 
 
-def generate_room(structure, room, tile_offset, chunk_offset, rotate = True, vary = True):
-    room_image = Image.open(os.path.normpath(os.path.join(__file__, "../../..", f"structures/{structure}/{room}.png"))).convert("RGB")
+def generate_room(structure, room, tile_offset, chunk_offset, rotate=True, vary=True):
+    room_image = Image.open(
+        os.path.normpath(
+            os.path.join(__file__, "../../..", f"structures/{structure}/{room}.png")
+        )
+    ).convert("RGB")
     room_chunks = {}
     if vary:
         variation = randint(0, 15)
@@ -21,7 +25,10 @@ def generate_room(structure, room, tile_offset, chunk_offset, rotate = True, var
         for y in range(0, room_image.size[1]):
             if room_image.getpixel((x, y)) in ROOM_COLORS[structure]:
                 tile_placement = (x + tile_offset[0]) % 16, (y + tile_offset[1]) % 16
-                chunk_placement = (x + tile_offset[0]) // 16 + chunk_offset[0], (y + tile_offset[1]) // 16 + chunk_offset[1]
+                chunk_placement = (
+                    (x + tile_offset[0]) // 16 + chunk_offset[0],
+                    (y + tile_offset[1]) // 16 + chunk_offset[1],
+                )
                 if chunk_placement not in room_chunks:
                     room_chunks[chunk_placement] = {}
                 room_chunks[chunk_placement][tile_placement] = {}
@@ -29,5 +36,7 @@ def generate_room(structure, room, tile_offset, chunk_offset, rotate = True, var
                 for index in tile:
                     room_chunks[chunk_placement][tile_placement][index] = tile[index]
                 if "loot" in room_chunks[chunk_placement][tile_placement]:
-                    room_chunks[chunk_placement][tile_placement] = calculate_loot(room_chunks[chunk_placement][tile_placement])
+                    room_chunks[chunk_placement][tile_placement] = calculate_loot(
+                        room_chunks[chunk_placement][tile_placement]
+                    )
     return room_chunks

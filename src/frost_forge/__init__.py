@@ -19,7 +19,9 @@ def main() -> None:
     SPRITES_FOLDER = os.path.normpath(os.path.join(__file__, "../..", "sprites"))
     IMAGES = {}
     for filename in os.listdir(SPRITES_FOLDER):
-        IMAGES[filename.split(".")[0]] = pg.image.load(os.path.join(SPRITES_FOLDER, filename)).convert_alpha()
+        IMAGES[filename.split(".")[0]] = pg.image.load(
+            os.path.join(SPRITES_FOLDER, filename)
+        ).convert_alpha()
     while state.run:
         state.position = pg.mouse.get_pos()
         chunks = update(state, chunks)

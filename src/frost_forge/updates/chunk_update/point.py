@@ -7,6 +7,7 @@ def left(chunks, chunk, tile, delete_tiles):
         del chunks[chunk][tile]["kind"]
     return chunks, delete_tiles
 
+
 def up(chunks, chunk, tile, delete_tiles):
     up_chunk = (chunk[0], chunk[1] + (tile[1] - 1) // 16)
     up_tile = (tile[0], (tile[1] - 1) % 16)
