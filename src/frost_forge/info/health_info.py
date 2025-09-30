@@ -53,7 +53,6 @@ HEALTH = {
     "rabbit adult": 10,
     "rabbit child": 6,
     "rabbit fur": 8,
-    "rabbit hole": 1,
     "rabbit meat": 6,
     "roasted mushroom": 8,
     "roasted rabbit meat": 10,

@@ -93,7 +93,6 @@ UNBREAK = {
     "left",
     "obelisk",
     "player",
-    "rabbit hole",
     "up",
     "void",
 }
