@@ -4,8 +4,8 @@ from ...info import FLOOR_TYPE
 def bfs(start, goal, chunks, goal_tile):
     blocked = set()
     for chunk in chunks:
-        for tile in chunk:
-            if "kind" in goal_tile or FLOOR_TYPE.get(goal_tile["floor"]) == "door" or FLOOR_TYPE.get(goal_tile["floor"]) == "fluid":
+        for tile in chunks[chunk]:
+            if ("kind" in goal_tile and goal_tile["kind"] != "player") or ("floor" in goal_tile and (FLOOR_TYPE.get(goal_tile["floor"]) == "door" or FLOOR_TYPE.get(goal_tile["floor"]) == "fluid")):
                 blocked.add((chunk[0] * 16 + tile[0], chunk[1] * 16 + tile[1]))
 
     queue = deque([start])

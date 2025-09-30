@@ -4,6 +4,8 @@ def create_tile(chunks, create_tiles):
         if tile_pos in chunk_tiles:
             current_tile = chunk_tiles[tile_pos]
             tile_data["floor"] = current_tile["floor"]
+        else:
+            chunk_tiles[tile_pos] = {}
         for info in tile_data:
             chunk_tiles[tile_pos][info] = tile_data[info]
     return chunks

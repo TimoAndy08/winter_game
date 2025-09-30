@@ -16,7 +16,7 @@ def update_tiles(state: GameState, chunks):
                 for tile in list(chunks[chunk]):
                     current_tile = chunks[chunk][tile]
                     if "kind" in current_tile:
-                        chunks, create_tiles, delete_tiles = update_tile(current_tile, chunks, chunk, tile, delete_tiles, create_tiles, state.tick)
+                        chunks, create_tiles, delete_tiles = update_tile(current_tile, chunks, chunk, tile, delete_tiles, create_tiles, state.tick, state.location)
                     elif "floor" in current_tile and current_tile["floor"] in GROW_TILES:
                         chunks[chunk][tile] = grow(current_tile)
                         if chunks[chunk][tile] == {}:
