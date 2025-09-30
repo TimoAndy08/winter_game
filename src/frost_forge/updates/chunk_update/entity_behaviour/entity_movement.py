@@ -1,7 +1,7 @@
 from random import randint
 
-from .maze_solving import bfs
-from ...info import FLOOR_TYPE
+from ..maze_solving import bfs
+from ....info import FLOOR_TYPE
 
 
 def move_entity(
@@ -43,7 +43,7 @@ def move_entity(
             )
         ):
             del current_tile["goal"]
-    if randint(0, 100) >= 0 and len(current_tile["path"]) > 0:
+    if randint(0, 50) == 0 and len(current_tile["path"]) > 0:
         path_tile = chunks[current_tile["path"][0][0]].get(
             current_tile["path"][0][1], {}
         )

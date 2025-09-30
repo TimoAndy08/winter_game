@@ -8,6 +8,10 @@ def update_tiles(state: GameState, chunks):
     delete_tiles = []
     create_tiles = []
     tile_location = state.location["tile"]
+    if len(state.inventory) > state.inventory_number:
+        inventory_key = list(state.inventory.keys())[state.inventory_number]
+    else:
+        inventory_key = None
 
     for chunk_dx in range(-3, 4):
         for chunk_dy in range(-3, 4):
@@ -25,6 +29,7 @@ def update_tiles(state: GameState, chunks):
                             create_tiles,
                             state.tick,
                             state.location,
+                            inventory_key
                         )
                     elif (
                         "floor" in current_tile and current_tile["floor"] in GROW_TILES

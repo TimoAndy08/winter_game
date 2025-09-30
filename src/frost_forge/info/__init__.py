@@ -44,3 +44,4 @@ from .structure_gen_info import (
     LOOT_TABLES,
 )
 from .value_info import VALUES, MACHINES
+from .entity_info import ATTRACTION

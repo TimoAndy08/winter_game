@@ -1,12 +1,13 @@
 from .point import left, up
-from .entity_behaviour import move_entity
+from .entity_behaviour.animal import animal
+from .entity_behaviour.enemy import enemy
 from .machine import machine
 from .growth import grow
 from ...info import ATTRIBUTES, GROW_TILES
 
 
 def update_tile(
-    current_tile, chunks, chunk, tile, delete_tiles, create_tiles, tick, location
+    current_tile, chunks, chunk, tile, delete_tiles, create_tiles, tick, location, inventory_key
 ):
     if current_tile["kind"] in GROW_TILES:
         chunks[chunk][tile] = grow(current_tile)
@@ -16,9 +17,13 @@ def update_tile(
         chunks, delete_tiles = left(chunks, chunk, tile, delete_tiles)
     elif current_tile["kind"] == "up":
         chunks, delete_tiles = up(chunks, chunk, tile, delete_tiles)
-    elif "rabbit" in ATTRIBUTES.get(current_tile["kind"], ()):
-        create_tiles, delete_tiles = move_entity(
-            chunks, chunk, tile, current_tile, create_tiles, delete_tiles, 0, location
+    elif "animal" in ATTRIBUTES.get(current_tile["kind"], ()):
+        create_tiles, delete_tiles = animal(
+            chunks, chunk, tile, current_tile, create_tiles, delete_tiles, location, inventory_key
+        )
+    elif "enemy" in ATTRIBUTES.get(current_tile["kind"], ()):
+        create_tiles, delete_tiles = enemy(
+            chunks, chunk, tile, current_tile, create_tiles, delete_tiles, location
         )
     elif "machine" in ATTRIBUTES.get(current_tile["kind"], ()):
         chunks = machine(chunks, chunk, tile, current_tile, tick)
