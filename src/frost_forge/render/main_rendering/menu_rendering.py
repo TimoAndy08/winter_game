@@ -2,7 +2,7 @@ import os
 
 import pygame as pg
 
-from ..info import SCREEN_SIZE, WORLD_TYPES
+from ...info import SCREEN_SIZE, WORLD_TYPES
 from .menu_text import render_text
 
 pg.font.init()

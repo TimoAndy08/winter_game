@@ -1,10 +1,9 @@
-from ...other_systems.game_state import GameState
 from ..chunk_update import update_tile, create_tile, delete_tile
 from ...info import GROW_TILES
 from ..chunk_update.growth import grow
 
 
-def update_tiles(state: GameState, chunks):
+def update_tiles(state, chunks):
     delete_tiles = []
     create_tiles = []
     tile_location = state.location["tile"]

@@ -1,4 +1,4 @@
-from .user_interface_rendering import render_health, render_inventory, render_open
+from ..user_interface_rendering import render_health, render_inventory, render_open
 
 
 def render_ui(

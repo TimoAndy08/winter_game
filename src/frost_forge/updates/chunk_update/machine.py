@@ -1,4 +1,4 @@
-from ...info.tile_info import PROCESSING_TIME
+from ...info import PROCESSING_TIME
 from ..left_click import recipe
 
 

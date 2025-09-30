@@ -1,7 +1,7 @@
 import pygame as pg
 
-from ..info import TILE_SIZE, HALF_SIZE, CHUNK_SIZE, SCREEN_SIZE, MULTI_TILES, FLOOR
-from .game_rendering import (
+from ...info import TILE_SIZE, HALF_SIZE, CHUNK_SIZE, SCREEN_SIZE, MULTI_TILES, FLOOR
+from ..game_rendering import (
     render_ghost,
     render_mined,
     render_hand,

@@ -1,5 +1,5 @@
-from .game_state import GameState
-from ..updates import update_menu, update_game, update_tiles
+from .other_systems.game_state import GameState
+from .updates.main_update import update_menu, update_game, update_tiles
 
 
 def update(state: GameState, chunks):

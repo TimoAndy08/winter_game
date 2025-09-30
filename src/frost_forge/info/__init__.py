@@ -1,6 +1,6 @@
-from .attribute_info import ATTRIBUTES
-from .health_info import HEALTH
-from .recipes_info import RECIPES
+from .general_tile_info.attribute_info import ATTRIBUTES
+from .general_tile_info.health_info import HEALTH
+from .specific_tile_info.recipes_info import RECIPES
 from .render_info import (
     SCREEN_SIZE,
     SLOT_SIZE,
@@ -17,24 +17,21 @@ from .render_info import (
     BIG_UI_FONT,
     DAY_LENGTH,
 )
-from .resistance_info import RESISTANCE
-from .tile_info import (
+from .general_tile_info.resistance_info import RESISTANCE
+from .specific_tile_info.tile_info import (
     MULTI_TILES,
     STORAGE,
-    FOOD,
     FLOOR,
     FLOOR_TYPE,
-    HEALTH_INCREASE,
     UNBREAK,
     GROW_CHANCE,
     GROW_TILES,
-    FERTILIZER_SPAWN,
-    FERTILIZER_EFFICIENCY,
-    UNOBTAINABLE,
+    PROCESSING_TIME,
 )
-from .tool_info import TOOL_EFFICIENCY, TOOL_REQUIRED, TOOLS
-from .world_gen_info import NOISE_TILES, BIOMES, WORLD_TYPES
-from .structure_gen_info import (
+from .specific_tile_info.item_info import HEALTH_INCREASE, FERTILIZER_EFFICIENCY, FERTILIZER_SPAWN, FOOD, UNOBTAINABLE
+from .general_tile_info.tool_info import TOOL_EFFICIENCY, TOOL_REQUIRED, TOOLS
+from .world_gen_info.world_gen_info import NOISE_TILES, BIOMES, WORLD_TYPES
+from .world_gen_info.structure_gen_info import (
     NOISE_STRUCTURES,
     STRUCTURE_SIZE,
     STRUCTURE_ROOM_SIZES,
@@ -43,5 +40,5 @@ from .structure_gen_info import (
     ROOM_COLORS,
     LOOT_TABLES,
 )
-from .value_info import VALUES, MACHINES
-from .entity_info import ATTRACTION
+from .specific_tile_info.value_info import VALUES, MACHINES
+from .specific_tile_info.entity_info import ATTRACTION

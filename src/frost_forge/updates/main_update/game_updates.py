@@ -1,15 +1,14 @@
 import pygame as pg
 
-from .player_move import move_player
+from ..input_update.player_move import move_player
 from ...world_generation.world_generation import generate_chunk
 from ...world_generation.structure_generation import generate_structure
-from ...other_systems.game_state import GameState
 from ...other_systems.game_saving import save_game
-from .mouse_update import button_press
+from ..input_update.mouse_update import button_press
 from ...info import DAY_LENGTH, INVENTORY_SIZE, FLOOR_TYPE
 
 
-def update_game(state: GameState, chunks):
+def update_game(state, chunks):
     state.location["old"] = list(state.location["tile"])
     key = pg.key.get_pressed()
     state.location, state.velocity = move_player(

@@ -1,7 +1,7 @@
 import pygame as pg
 
-from ..render import render_menu, render_tiles, render_ui
-from .game_state import GameState
+from .render.main_rendering import render_menu, render_tiles, render_ui
+from .other_systems.game_state import GameState
 
 
 def render(state: GameState, chunks, window, images) -> tuple:
