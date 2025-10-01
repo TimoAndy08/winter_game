@@ -19,7 +19,7 @@ def update_tile(
         chunks, delete_tiles = up(chunks, chunk, tile, delete_tiles)
     elif "machine" in ATTRIBUTES.get(current_tile["kind"], ()):
         chunks = machine(chunks, chunk, tile, current_tile, tick)
-    elif tick % (FPS // 6):
+    elif tick % (FPS // 6) == 0:
         if "animal" in ATTRIBUTES.get(current_tile["kind"], ()):
             create_tiles, delete_tiles = animal(
                 chunks, chunk, tile, current_tile, create_tiles, delete_tiles, location, inventory_key

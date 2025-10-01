@@ -13,8 +13,8 @@ def move_entity(
             goal = (randint(-8, 8), randint(-8, 8))
             current_tile["goal"] = (
                 (
-                    chunk[0] * 16 + (tile[0] + goal[0]) // 16,
-                    chunk[1] + (tile[1] + goal[1]) // 16,
+                    chunk[0] + int((tile[0] + goal[0]) / 16),
+                    chunk[1] + int((tile[1] + goal[1]) / 16),
                 ),
                 ((tile[0] + goal[0]) % 16, (tile[1] + goal[1]) % 16),
             )
@@ -23,7 +23,6 @@ def move_entity(
                 (location["tile"][0], location["tile"][1]),
                 (location["tile"][2], location["tile"][3]),
             )
-        goal_tile = chunks[current_tile["goal"][0]].get(current_tile["goal"][1], {})
         current_tile["path"] = []
         start = (chunk[0] * 16 + tile[0], chunk[1] * 16 + tile[1])
         goal = (
@@ -35,15 +34,7 @@ def move_entity(
             current_tile["path"].append(
                 ((road[0] // 16, road[1] // 16), (road[0] % 16, road[1] % 16))
             )
-        if ("kind" in goal_tile and goal_tile["kind"] != "player") or (
-            "floor" in goal_tile
-            and (
-                FLOOR_TYPE.get(goal_tile["floor"]) == "door"
-                or FLOOR_TYPE.get(goal_tile["floor"]) == "fluid"
-            )
-        ):
-            del current_tile["goal"]
-    if randint(0, 50) == 0 and len(current_tile["path"]) > 0:
+    if len(current_tile["path"]) > 0:
         path_tile = chunks[current_tile["path"][0][0]].get(
             current_tile["path"][0][1], {}
         )
