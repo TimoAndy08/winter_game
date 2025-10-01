@@ -16,6 +16,11 @@ from .render_info import (
     UI_FONT,
     BIG_UI_FONT,
     DAY_LENGTH,
+    TEXT_DISTANCE,
+    SETTINGS_FILE,
+    SAVES_FOLDER,
+    CONTROL_NAMES,
+    DEFAULT_CONTROLS,
 )
 from .general_tile_info.resistance_info import RESISTANCE
 from .specific_tile_info.tile_info import (

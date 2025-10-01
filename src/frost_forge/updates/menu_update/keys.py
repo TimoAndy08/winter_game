@@ -1,6 +1,6 @@
 import pygame as pg
 
-from ...info import SCREEN_SIZE
+from ...info import SCREEN_SIZE, TEXT_DISTANCE
 
 
 def update_keys(
@@ -26,7 +26,7 @@ def update_keys(
             if keys[controls[21]]:
                 menu_placement = "options_game" if chunks != {} else "options_main"
             elif keys[controls[22]]:
-                if scroll < len(controls) - SCREEN_SIZE[1] // 50 - 1:
+                if scroll < len(controls) - SCREEN_SIZE[1] // TEXT_DISTANCE - 1:
                     scroll += 1
             elif keys[controls[23]]:
                 if scroll > 0:

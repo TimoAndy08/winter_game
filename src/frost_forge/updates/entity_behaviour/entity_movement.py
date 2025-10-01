@@ -1,7 +1,7 @@
 from random import randint
 
-from ..maze_solving import bfs
-from ....info import FLOOR_TYPE
+from .maze_solving import bfs
+from ...info import FLOOR_TYPE
 
 
 def move_entity(

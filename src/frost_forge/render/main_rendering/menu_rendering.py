@@ -2,43 +2,10 @@ import os
 
 import pygame as pg
 
-from ...info import SCREEN_SIZE, WORLD_TYPES
+from ...info import SCREEN_SIZE, WORLD_TYPES, CONTROL_NAMES, SAVES_FOLDER, TEXT_DISTANCE
 from .menu_text import render_text
 
 pg.font.init()
-
-
-CONTROL_NAMES = [
-    "Move up ",
-    "Move left ",
-    "Move down ",
-    "Move right",
-    "Inventory ",
-    "Zoom in",
-    "Zoom out",
-    "Slot 1",
-    "Slot 2",
-    "Slot 3",
-    "Slot 4",
-    "Slot 5",
-    "Slot 6",
-    "Slot 7",
-    "Slot 8",
-    "Slot 9",
-    "Slot 10",
-    "Slot 11",
-    "Slot 12",
-    "Hotbar scroll right",
-    "Hotbar scroll left",
-    "Go to menu",
-    "Menu scroll down",
-    "Menu scroll up",
-    "Sneak",
-]
-SAVES_FOLDER = os.path.normpath(os.path.join(__file__, "../../..", "saves"))
-
-if not os.path.exists(SAVES_FOLDER):
-    os.makedirs(SAVES_FOLDER)
 
 
 def render_menu(
@@ -94,7 +61,7 @@ def render_menu(
         pg.draw.rect(
             window,
             (181, 102, 60),
-            pg.Rect(0, 75 * (control_adjusted - scroll), SCREEN_SIZE[0], 50),
+            pg.Rect(0, TEXT_DISTANCE * (control_adjusted - scroll), SCREEN_SIZE[0], 50),
         )
         for y in range(len(controls)):
             render_text(

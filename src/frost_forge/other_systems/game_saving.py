@@ -1,6 +1,6 @@
 from os import path
 
-from ..render.main_rendering.menu_rendering import SAVES_FOLDER
+from ..info import SAVES_FOLDER
 
 
 def save_game(chunks, state, file):

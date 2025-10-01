@@ -1,12 +1,12 @@
 from ast import literal_eval
 import os
 
-from ...render.main_rendering.menu_rendering import SAVES_FOLDER
+from ...info import SAVES_FOLDER, TEXT_DISTANCE
 
 
 def save_loading(state, chunks):
     saves = [f[:-4] for f in os.listdir(SAVES_FOLDER) if f.endswith(".txt")]
-    index = (state.position[1] // 75) - 2
+    index = (state.position[1] // TEXT_DISTANCE) - 2
     if index < len(saves):
         state.save_file_name = saves[index]
         if state.position[0] >= 120:

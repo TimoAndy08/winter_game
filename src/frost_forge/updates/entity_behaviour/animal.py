@@ -1,5 +1,5 @@
 from .entity_movement import move_entity
-from ....info import ATTRACTION
+from ...info import ATTRACTION
 
 
 def animal(chunks, chunk, tile, current_tile, create_tiles, delete_tiles, location, inventory_key):
