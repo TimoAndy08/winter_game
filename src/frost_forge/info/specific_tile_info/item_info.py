@@ -28,6 +28,7 @@ UNOBTAINABLE = {
     "potatoo",
     "rabbit adult",
     "rabbit child",
+    "slime",
     "tree",
     "treeling",
 }
