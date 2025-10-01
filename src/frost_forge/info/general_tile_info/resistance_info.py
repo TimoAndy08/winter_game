@@ -25,6 +25,8 @@ RESISTANCE = {
     "rabbit adult": 1,
     "rock": 1,
     "sawbench": 1,
+    "slime block": 1,
+    "slime floor": 1,
     "stone": 1,
     "stone brick": 1,
     "stone brick floor": 1,

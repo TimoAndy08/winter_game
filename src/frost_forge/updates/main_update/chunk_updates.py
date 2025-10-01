@@ -19,7 +19,7 @@ def update_tiles(state, chunks):
                 for tile in list(chunks[chunk]):
                     current_tile = chunks[chunk][tile]
                     if "kind" in current_tile:
-                        chunks, create_tiles, delete_tiles = update_tile(
+                        chunks, create_tiles, delete_tiles, state.health = update_tile(
                             current_tile,
                             chunks,
                             chunk,
@@ -28,7 +28,8 @@ def update_tiles(state, chunks):
                             create_tiles,
                             state.tick,
                             state.location,
-                            inventory_key
+                            inventory_key,
+                            state.health
                         )
                     elif (
                         "floor" in current_tile and current_tile["floor"] in GROW_TILES

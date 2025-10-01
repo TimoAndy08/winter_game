@@ -10,6 +10,7 @@ FLOOR = {
     "mushroom door open",
     "mushroom floor",
     "pebble",
+    "slime floor",
     "stone brick floor",
     "stone floor",
     "void",
