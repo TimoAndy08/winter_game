@@ -28,6 +28,7 @@ RECIPES = {
     ),
     "furnace": (
         (("coal", 1), (("log", 1), ("fuel", 4))),
+        (("slime crystal", 1), (("slime ball", 1), ("fuel", 8))),
     ),
     "manual press": (
         (("blue dye", 2), (("bluebell", 2), ("bowl", 1), ("water", 1))),
@@ -39,10 +40,10 @@ RECIPES = {
     "masonry bench": (
         (("brick floor", 2), (("brick", 1),)),
         (("glass key", 1), (("glass", 3), ("handle", 1))),
-        (("rock axe", 1), (("handle", 1), ("rock", 4))),
-        (("rock pickaxe", 1), (("handle", 1), ("rock", 4))),
-        (("rock shovel", 1), (("handle", 1), ("rock", 3))),
-        (("rock sword", 1), (("handle", 1), ("ice", 1), ("rock", 4))),
+        (("rock axe", 1), (("handle", 1), ("rock", 4), ("flint axe", 1))),
+        (("rock pickaxe", 1), (("handle", 1), ("rock", 4), ("flint pickaxe", 1))),
+        (("rock shovel", 1), (("handle", 1), ("rock", 3), ("flint shovel", 1))),
+        (("rock sword", 1), (("handle", 1), ("ice", 1), ("rock", 4), ("flint sword", 1))),
         (("stone brick", 1), (("stone", 1),)),
         (("stone brick floor", 2), (("stone brick", 1),)),
         (("stone floor", 2), (("stone", 1),)),
@@ -70,6 +71,7 @@ RECIPES = {
         (("mushroom shaper", 1), (("composter", 1), ("mushroom", 12))),
         (("small barrel", 1), (("stick", 4), ("wood", 6))),
         (("small crate", 1), (("stick", 4), ("wood", 6))),
+        (("stick", 2), (("wood", 1),)),
         (("wood crucible", 1), (("small barrel", 1), ("log", 2))),
         (("wooden bed", 1), (("blue dye", 3), ("rabbit fur", 2), ("wood", 10))),
         (("wooden table", 1), (("wood floor", 4), ("stick", 4))),
