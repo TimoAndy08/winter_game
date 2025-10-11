@@ -1,19 +1,13 @@
 from collections import deque
-from ...info import FLOOR_TYPE
+
+from ...other_systems.walk import walkable
 
 
 def bfs(start, goal, chunks):
     blocked = set()
     for chunk in chunks:
         for tile in chunks[chunk]:
-            current_tile = chunks[chunk][tile]
-            if ("kind" in current_tile and current_tile["kind"] != "player") or (
-                "floor" in current_tile
-                and (
-                    FLOOR_TYPE.get(current_tile["floor"]) == "door"
-                    or FLOOR_TYPE.get(current_tile["floor"]) == "fluid"
-                )
-            ):
+            if walkable(chunks, chunk, tile) or chunks[chunk][tile] == "player":
                 blocked.add((chunk[0] * 16 + tile[0], chunk[1] * 16 + tile[1]))
 
     queue = deque([start])

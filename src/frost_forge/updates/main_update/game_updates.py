@@ -4,6 +4,7 @@ from ..input_update.player_move import move_player
 from ...world_generation.world_generation import generate_chunk
 from ...world_generation.structure_generation import generate_structure
 from ...other_systems.game_saving import save_game
+from ...other_systems.walk import walkable
 from ..input_update.mouse_update import button_press
 from ...info import DAY_LENGTH, INVENTORY_SIZE, FLOOR_TYPE
 
@@ -63,10 +64,7 @@ def update_game(state, chunks):
     else:
         if tile_coords not in chunk:
             chunk[tile_coords] = {"kind": "player", "recipe": old_tile["recipe"]}
-        elif (
-            "kind" not in chunk[tile_coords]
-            and "door" != FLOOR_TYPE.get(chunk[tile_coords]["floor"]) != "fluid"
-        ):
+        elif walkable(chunks, tile_chunk_coords, tile_coords):
             chunk[tile_coords]["kind"] = "player"
             chunk[tile_coords]["recipe"] = old_tile["recipe"]
         elif chunk[tile_coords].get("kind") != "player":

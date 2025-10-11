@@ -1,7 +1,7 @@
 from random import randint
 
 from .maze_solving import bfs
-from ...info import FLOOR_TYPE
+from ...other_systems.walk import walkable
 
 
 def move_entity(
@@ -35,16 +35,13 @@ def move_entity(
                 ((road[0] // 16, road[1] // 16), (road[0] % 16, road[1] % 16))
             )
     if len(current_tile["path"]) > 0:
-        path_tile = chunks[current_tile["path"][0][0]].get(
-            current_tile["path"][0][1], {}
-        )
-        if "kind" not in path_tile and (
-            "floor" not in path_tile
-            or "door" != FLOOR_TYPE.get(path_tile["floor"]) != "fluid"
-        ):
-            path_location = current_tile["path"][0]
+        can_move = True
+        for create_tile in create_tiles:
+            if current_tile["path"][0] == (create_tiles[0], create_tile[1]):
+                can_move = False
+        if can_move and walkable(chunks, current_tile["path"][0][0], current_tile["path"][0][1]):
+            create_tiles.append((current_tile["path"][0][0], current_tile["path"][0][1], current_tile))
             current_tile["path"].pop(0)
-            create_tiles.append((path_location[0], path_location[1], current_tile))
             delete_tiles.append((chunk, tile))
         else:
             obscured_path = True
