@@ -7,7 +7,7 @@ def bfs(start, goal, chunks):
     blocked = set()
     for chunk in chunks:
         for tile in chunks[chunk]:
-            if walkable(chunks, chunk, tile) or chunks[chunk][tile] == "player":
+            if not walkable(chunks, chunk, tile) and chunks[chunk][tile].get("kind") != "player":
                 blocked.add((chunk[0] * 16 + tile[0], chunk[1] * 16 + tile[1]))
 
     queue = deque([start])
