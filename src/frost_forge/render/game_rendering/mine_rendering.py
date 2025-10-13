@@ -12,7 +12,7 @@ def render_mined(location, chunks, camera, zoom, window, images):
             + (location[1][1] * TILE_SIZE + location[0][1] * CHUNK_SIZE + 60) * zoom,
         )
         current_tile = chunks[location[0]][location[1]]
-        if "health" in current_tile:
+        if "health" in current_tile and current_tile["kind"] in HEALTH:
             if (
                 "kind" in chunks[location[0]][location[1]]
                 and chunks[location[0]][location[1]]["kind"] != "player"
