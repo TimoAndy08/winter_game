@@ -22,12 +22,12 @@ def save_creating(state, chunks):
     chunks[0, 0][0, 1] = {"kind": "up", "health": 1}
     chunks[0, 0][0, 2] = {"kind": "player", "floor": "void", "recipe": 0}
     if state.world_type == 1:
-        chunks[0, 0][0, 3] = {
+        chunks[0, 0][1, 1] = {
             "kind": "tree",
             "floor": "dirt",
             "inventory": {"log": 2, "sapling": 2},
         }
-        chunks[0, 0][0, 4] = {"kind": "composter"}
+        chunks[0, 0][1, 0] = {"kind": "composter"}
     state.tick = 0
     if state.world_type == 1:
         state.inventory = {"flint axe": 1}

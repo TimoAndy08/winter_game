@@ -3,7 +3,7 @@ from ...info import (
     UI_SCALE,
     INVENTORY_SIZE,
     RECIPES,
-    ATTRIBUTES,
+    STORAGE,
     MACHINES,
     VALUES,
 )
@@ -46,12 +46,18 @@ def machine_storage(position, chunks, location, inventory, machine_ui):
                     may_put_in = True
                     convert = True
             if may_put_in:
+                slot_number = (
+                    (moved_x - 16 * UI_SCALE * (INVENTORY_SIZE[0] % 2)) // (32 * UI_SCALE)
+                    + INVENTORY_SIZE[0] // 2
+                    + INVENTORY_SIZE[0] % 2
+                )
+                machine_storage = STORAGE.get(machine_ui, (14, 16))
                 chunks = put_in(
                     chunks,
                     location,
                     inventory,
-                    machine_ui,
-                    moved_x,
+                    machine_storage,
+                    slot_number,
                     machine["inventory"],
                 )
                 if convert:
