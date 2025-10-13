@@ -39,8 +39,12 @@ def move_entity(
         for create_tile in create_tiles:
             if current_tile["path"][0] == (create_tiles[0], create_tile[1]):
                 can_move = False
-        if can_move and walkable(chunks, current_tile["path"][0][0], current_tile["path"][0][1]):
-            create_tiles.append((current_tile["path"][0][0], current_tile["path"][0][1], current_tile))
+        if can_move and walkable(
+            chunks, current_tile["path"][0][0], current_tile["path"][0][1]
+        ):
+            create_tiles.append(
+                (current_tile["path"][0][0], current_tile["path"][0][1], current_tile)
+            )
             current_tile["path"].pop(0)
             delete_tiles.append((chunk, tile))
         else:

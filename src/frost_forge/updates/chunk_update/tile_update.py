@@ -7,7 +7,16 @@ from ...info import ATTRIBUTES, GROW_TILES, FPS
 
 
 def update_tile(
-    current_tile, chunks, chunk, tile, delete_tiles, create_tiles, tick, location, inventory_key, health
+    current_tile,
+    chunks,
+    chunk,
+    tile,
+    delete_tiles,
+    create_tiles,
+    tick,
+    location,
+    inventory_key,
+    health,
 ):
     if current_tile["kind"] in GROW_TILES:
         chunks[chunk][tile] = grow(current_tile)
@@ -22,10 +31,24 @@ def update_tile(
     elif tick % (FPS // 6) == 0:
         if "animal" in ATTRIBUTES.get(current_tile["kind"], ()):
             create_tiles, delete_tiles = animal(
-                chunks, chunk, tile, current_tile, create_tiles, delete_tiles, location, inventory_key
+                chunks,
+                chunk,
+                tile,
+                current_tile,
+                create_tiles,
+                delete_tiles,
+                location,
+                inventory_key,
             )
         elif "enemy" in ATTRIBUTES.get(current_tile["kind"], ()):
             create_tiles, delete_tiles, health = enemy(
-                chunks, chunk, tile, current_tile, create_tiles, delete_tiles, location, health,
+                chunks,
+                chunk,
+                tile,
+                current_tile,
+                create_tiles,
+                delete_tiles,
+                location,
+                health,
             )
     return chunks, create_tiles, delete_tiles, health

@@ -29,7 +29,7 @@ def update_tiles(state, chunks):
                             state.tick,
                             state.location,
                             inventory_key,
-                            state.health
+                            state.health,
                         )
                     elif (
                         "floor" in current_tile and current_tile["floor"] in GROW_TILES

@@ -25,7 +25,11 @@ ROOM_COLORS = {
             "loot": "mine chest",
             "floor": "stone floor",
         },
-        (60, 181, 71): {"kind": "slime", "inventory": {"slime ball": 1}, "floor": "stone floor"},
+        (60, 181, 71): {
+            "kind": "slime",
+            "inventory": {"slime ball": 1},
+            "floor": "stone floor",
+        },
     },
     "mushroom hut": {
         (247, 247, 255): {"kind": "mushroom block", "floor": "mushroom floor"},

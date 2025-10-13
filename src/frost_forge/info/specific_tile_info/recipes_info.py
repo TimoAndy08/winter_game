@@ -1,4 +1,3 @@
-# fmt off
 RECIPES = {
     "bonsai pot": (
         (("bluebell", 1), (("water", 1),)),
@@ -49,14 +48,17 @@ RECIPES = {
         (("stone floor", 2), (("stone", 1),)),
     ),
     "mushroom shaper": (
-        (("bonsai pot", 1), (("brick", 2), ("dirt", 4), ("plant bouquet", 1), ("small crate", 1)),),
+        (("bonsai pot", 1), (("brick", 2), ("dirt", 4), ("plant bouquet", 1), ("small crate", 1))),
         (("composter", 1), (("mushroom", 2), ("paper", 2), ("small barrel", 1))),
         (("mushroom block", 1), (("mushroom", 2), ("wood", 1))),
         (("mushroom door", 1), (("mushroom floor", 1), ("mushroom block", 1))),
         (("mushroom floor", 2), (("mushroom block", 1),)),
-        (("plant bouquet", 1), (("bluebell", 1), ("carrot", 1), ("sapling", 1), ("spore", 1)),),
+        (("mushroom table", 1), (("mushroom floor", 4), ("stick", 4))),
+        (("plant bouquet", 1), (("bluebell", 1), ("carrot", 1), ("sapling", 1), ("spore", 1))),
         (("slime block", 2), (("slime ball", 1), ("wood", 2))),
-        (("slime floor", 2), (("slime block", 2),)),
+        (("slime door", 1), (("slime floor", 1), ("slime block", 1))),
+        (("slime floor", 2), (("slime block", 1),)),
+        (("slime table", 1), (("slime floor", 4), ("stick", 4))),
     ),
     "player": (
         (("stick", 4), (("wood", 2),)),
@@ -78,6 +80,7 @@ RECIPES = {
     ),
     "wood crucible": (
         (("water", 1), (("fuel", 4),)),
+        (("slime ball", 1), (("fuel", 10), ("water", 2))),
     ),
     "workbench": (
         (("bowl", 1), (("stick", 1), ("wood", 1))),

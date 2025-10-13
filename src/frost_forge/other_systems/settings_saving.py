@@ -8,7 +8,9 @@ def settings_load():
         with open(SETTINGS_FILE, "r", encoding="utf-8") as file:
             controls = [int(i) for i in file.read().split(";")[0].split(":") if i]
     else:
-        controls = [*DEFAULT_CONTROLS,]
+        controls = [
+            *DEFAULT_CONTROLS,
+        ]
     return controls
 
 

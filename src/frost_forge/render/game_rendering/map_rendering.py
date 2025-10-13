@@ -10,5 +10,16 @@ def render_map(location, chunks, camera, zoom, scaled_image, window, images):
                     for x in range(0, 16):
                         tile = (x, y)
                         if tile in chunks[chunk]:
-                            render_tile(x, y, chunk, tile, zoom, camera, scaled_image, chunks, window, images)
+                            render_tile(
+                                x,
+                                y,
+                                chunk,
+                                tile,
+                                zoom,
+                                camera,
+                                scaled_image,
+                                chunks,
+                                window,
+                                images,
+                            )
     return window
