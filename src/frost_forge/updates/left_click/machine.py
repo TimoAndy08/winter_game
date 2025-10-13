@@ -28,51 +28,33 @@ def machine_storage(position, chunks, location, inventory, machine_ui):
             + INVENTORY_SIZE[0] % 2
         )
         if inventory_number < len(inventory):
-            item = list(inventory.items())[
-                (
-                    (moved_x - 16 * UI_SCALE * (INVENTORY_SIZE[0] % 2))
-                    // (32 * UI_SCALE)
-                    + INVENTORY_SIZE[0] // 2
-                    + INVENTORY_SIZE[0] % 2
-                )
-            ]
+            item = list(inventory.items())[inventory_number]
             may_put_in = False
-            convert = False
+            if machine["kind"] in MACHINES and item[0] in VALUES[MACHINES[machine["kind"]]]:
+                may_put_in = True
+                convertion_inventory = list(inventory.items())
+                convertion_inventory[inventory_number] = (MACHINES[machine["kind"]], item[1] * VALUES[MACHINES[machine["kind"]]][item[0]])
+                inventory = dict(convertion_inventory)
             for i in range(0, len(machine_recipe[1])):
                 if machine_recipe[1][i][0] == item[0]:
                     may_put_in = True
-            if machine["kind"] in MACHINES:
-                if item[0] in VALUES[MACHINES[machine["kind"]]]:
-                    may_put_in = True
-                    convert = True
             if may_put_in:
-                slot_number = (
-                    (moved_x - 16 * UI_SCALE * (INVENTORY_SIZE[0] % 2)) // (32 * UI_SCALE)
-                    + INVENTORY_SIZE[0] // 2
-                    + INVENTORY_SIZE[0] % 2
-                )
                 machine_storage = STORAGE.get(machine_ui, (14, 16))
                 chunks = put_in(
                     chunks,
                     location,
                     inventory,
                     machine_storage,
-                    slot_number,
+                    inventory_number,
                     machine["inventory"],
                 )
-                if convert:
-                    chunks[location["opened"][0]][location["opened"][1]]["inventory"][
-                        MACHINES[machine["kind"]]
-                    ] = (
-                        VALUES[MACHINES[machine["kind"]]][item[0]]
-                        * machine["inventory"][item[0]]
-                    )
-                    del chunks[location["opened"][0]][location["opened"][1]][
-                        "inventory"
-                    ][item[0]]
     slot_row = (position[1] - SCREEN_SIZE[1] + 144 * UI_SCALE) // (32 * UI_SCALE)
     if slot_row == 2 and (moved_x + 112 * UI_SCALE) // (32 * UI_SCALE) == 0:
         item = (machine_recipe[0][0], machine["inventory"].get(machine_recipe[0][0], 0))
-        if machine["inventory"].get(item[0], 0) > 0:
-            chunks = take_out(chunks, location, inventory, item)
-    return chunks
+        if item[0] in machine["inventory"]:
+            checking_inventory = list(machine["inventory"])
+            for i in range(len(checking_inventory)):
+                if checking_inventory[i] == item[0]:
+                    slot_number = i
+            chunks = take_out(chunks, location, inventory, slot_number, machine["inventory"])
+    return chunks, inventory

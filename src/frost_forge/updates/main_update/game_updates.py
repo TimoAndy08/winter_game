@@ -103,6 +103,7 @@ def update_game(state, chunks):
                 state.inventory_number,
                 state.health,
                 state.max_health,
+                state.inventory,
             ) = button_press(
                 event.button,
                 state.position,

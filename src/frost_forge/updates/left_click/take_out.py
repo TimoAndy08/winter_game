@@ -1,7 +1,7 @@
 from ...info import INVENTORY_SIZE
 
 
-def take_out(chunks, location, inventory, slot_number, machine_inventory, singular):
+def take_out(chunks, location, inventory, slot_number, machine_inventory, singular=False):
     if slot_number < len(machine_inventory):
         item = list(machine_inventory.items())[slot_number]
         if singular:

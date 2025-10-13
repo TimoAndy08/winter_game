@@ -58,6 +58,7 @@ def button_press(
                 tick,
                 health,
                 max_health,
+                inventory,
             ) = left_click(
                 machine_ui,
                 grid_position,
@@ -105,4 +106,5 @@ def button_press(
         inventory_number,
         health,
         max_health,
+        inventory,
     )

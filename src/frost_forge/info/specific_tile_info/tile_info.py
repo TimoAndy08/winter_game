@@ -40,7 +40,7 @@ GROW_CHANCE = {
     "rabbit child": 200,
     "sapling": 80,
     "spore": 120,
-    "treeling": 160,
+    "treeling": 100,
 }
 GROW_TILES = {
     "carrot": {"kind": "carroot", "inventory": {"carrot": 2}},
