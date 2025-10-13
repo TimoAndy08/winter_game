@@ -10,7 +10,7 @@ from ..game_rendering import (
 )
 
 
-def render_tiles(
+def render_game(
     chunks,
     location,
     zoom,

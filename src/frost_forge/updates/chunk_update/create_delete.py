@@ -1,15 +1,13 @@
 def create_tile(chunks, create_tiles):
     for chunk_pos, tile_pos, tile_data in create_tiles:
-        chunk_tiles = chunks.setdefault(chunk_pos, {})
-        if tile_pos in chunk_tiles:
-            current_tile = chunk_tiles[tile_pos]
-            tile_data["floor"] = current_tile["floor"]
-        else:
-            if "floor" in tile_data:
-                del tile_data["floor"]
-            chunk_tiles[tile_pos] = {}
+        if "floor" in tile_data:
+            del tile_data["floor"]
+        if "floor" in chunks[chunk_pos].get(tile_pos, {}):
+            tile_data["floor"] = chunks[chunk_pos][tile_pos]["floor"]
+        if tile_pos not in chunks[chunk_pos]:
+            chunks[chunk_pos][tile_pos] = {}
         for info in tile_data:
-            chunk_tiles[tile_pos][info] = tile_data[info]
+            chunks[chunk_pos][tile_pos][info] = tile_data[info]
     return chunks
 
 

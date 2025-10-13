@@ -1,6 +1,6 @@
 import pygame as pg
 
-from .render.main_rendering import render_menu, render_tiles, render_ui
+from .render.main_rendering import render_menu, render_game, render_ui
 from .other_systems.game_state import GameState
 
 
@@ -22,7 +22,7 @@ def render(state: GameState, chunks, window, images) -> tuple:
             (state.position[0] - 16, state.position[1] - 16),
         )
     else:
-        state.camera, window = render_tiles(
+        state.camera, window = render_game(
             chunks,
             state.location,
             state.zoom,
