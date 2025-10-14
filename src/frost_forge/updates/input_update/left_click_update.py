@@ -42,9 +42,7 @@ def left_click(
         if is_floor and FLOOR_TYPE.get(current_tile["floor"]) == "door":
             chunks[grid_position[0]][grid_position[1]]["floor"] += " open"
         elif is_floor and FLOOR_TYPE.get(current_tile["floor"]) == "open":
-            chunks[grid_position[0]][grid_position[1]]["floor"] = current_tile["floor"][
-                :-5
-            ]
+            chunks[grid_position[0]][grid_position[1]]["floor"] = current_tile["floor"][:-5]
         elif (
             is_floor
             and FLOOR_TYPE.get(current_tile["floor"]) == "soil"

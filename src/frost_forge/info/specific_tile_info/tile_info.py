@@ -51,7 +51,7 @@ GROW_TILES = {
         "inventory": {"rabbit fur": 1, "rabbit meat": 2},
     },
     "sapling": {"kind": "treeling", "inventory": {"sapling": 1, "log": 1}},
-    "spore": {"kind": "mushroom", "inventory": {"mushroom": 1, "spore": 2}},
+    "spore": {"kind": "mushroom", "inventory": {"spore": 2}},
     "treeling": {"kind": "tree", "inventory": {"sapling": 2, "log": 2}},
 }
 MULTI_TILES = {

@@ -19,7 +19,7 @@ RECIPES = {
     ),
     "composter": (
         (("dirt", 1), (("compost", 4),)),
-        (("fertilizer", 2), (("compost", 24), ("dirt", 2))),
+        (("fertilizer", 1), (("compost", 12), ("dirt", 1))),
         (("pebble", 1), (("compost", 6),)),
         (("flint", 1), (("compost", 10), ("pebble", 1))),
         (("rock", 1), (("compost", 12), ("pebble", 2))),

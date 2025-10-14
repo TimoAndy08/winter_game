@@ -23,7 +23,7 @@ INVENTORY_SIZE = (12, 64)
 TEXT_DISTANCE = 75
 SETTINGS_FILE = os.path.normpath(os.path.join(__file__, "../../..", "settings.txt"))
 SAVES_FOLDER = os.path.normpath(os.path.join(__file__, "../../..", "saves"))
-CONTROL_NAMES = [
+CONTROL_NAMES = (
     "Move up ",
     "Move left ",
     "Move down ",
@@ -49,7 +49,7 @@ CONTROL_NAMES = [
     "Menu scroll down",
     "Menu scroll up",
     "Sneak",
-]
+)
 DEFAULT_CONTROLS = (
     pg.K_w,
     pg.K_a,
@@ -69,10 +69,10 @@ DEFAULT_CONTROLS = (
     pg.K_9,
     pg.K_0,
     pg.K_PLUS,
-    pg.K_LSHIFT,
+    pg.K_BACKSLASH,
     pg.K_RIGHT,
     pg.K_LEFT,
-    pg.K_ESCAPE,
+    pg.K_TAB,
     pg.K_DOWN,
     pg.K_UP,
     pg.K_LCTRL,
