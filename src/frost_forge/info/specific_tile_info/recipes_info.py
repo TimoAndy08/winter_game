@@ -22,7 +22,6 @@ RECIPES = {
         (("fertilizer", 1), (("compost", 12), ("dirt", 1))),
         (("pebble", 1), (("compost", 6),)),
         (("flint", 1), (("compost", 10), ("pebble", 1))),
-        (("rock", 1), (("compost", 12), ("pebble", 2))),
         (("coal", 1), (("fertilizer", 1), ("water", 2), ("log", 2))),
     ),
     "furnace": (
@@ -90,7 +89,7 @@ RECIPES = {
         (("bowl", 1), (("stick", 1), ("wood", 1))),
         (("campfire", 1), (("flint", 2), ("stick", 6), ("wood", 4))),
         (("flint axe", 1), (("flint", 2), ("stick", 3))),
-        (("flint hammer", 1), (("flint", 2), ("rock", 2), ("stick", 4))),
+        (("flint hammer", 1), (("flint", 4), ("stick", 4))),
         (("flint pickaxe", 1), (("flint", 2), ("stick", 3))),
         (("flint shovel", 1), (("flint", 1), ("stick", 2))),
         (("flint sword", 1), (("flint", 1), ("ice", 1), ("stick", 2))),

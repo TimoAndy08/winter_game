@@ -54,6 +54,10 @@ def generate_chunk(
                                 tile[tile_pos] = {}
                                 for info in noise_tile[2]:
                                     tile[tile_pos][info] = noise_tile[2][info]
+                                if "inventory" in noise_tile[2]:
+                                    tile[tile_pos]["inventory"] = {}
+                                    for item in noise_tile[2]["inventory"]:
+                                        tile[tile_pos]["inventory"][item] = noise_tile[2]["inventory"][item]
                                 break
                         if tile_pos in tile:
                             tile_size = MULTI_TILES.get(
