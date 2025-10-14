@@ -10,7 +10,7 @@ def recipe(
     input = RECIPES[machine_ui][recipe_number][1]
     if (
         len(inventory) >= INVENTORY_SIZE[0]
-        or inventory.get(output_item, 0) + output_amount >= INVENTORY_SIZE[1]
+        or inventory.get(output_item, 0) + output_amount > INVENTORY_SIZE[1]
     ):
         return inventory
     for i in range(0, len(input)):

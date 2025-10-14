@@ -78,6 +78,10 @@ RECIPES = {
         (("wooden bed", 1), (("blue dye", 3), ("rabbit fur", 2), ("wood", 10))),
         (("wooden table", 1), (("wood floor", 4), ("stick", 4))),
     ),
+    "void convertor": (
+        (("sapling", 1), (("log", 1), ("wood", 1))),
+        (("rabbit child", 1), (("blue dye", 1), ("carrot", 4))),
+    ),
     "wood crucible": (
         (("water", 1), (("fuel", 4),)),
         (("slime ball", 1), (("fuel", 10), ("water", 2))),

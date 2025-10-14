@@ -19,6 +19,8 @@ ATTRIBUTES = {
     "small barrel": {"open", "store"},
     "small crate": {"open", "store"},
     "up": {"point"},
+    "void convertor": {"open", "machine"},
+    "void crate": {"open", "store"},
     "wood crucible": {"open", "machine"},
     "wooden bed": {"sleep"},
     "wooden table": {"store", "table"},

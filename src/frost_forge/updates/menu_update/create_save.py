@@ -18,21 +18,15 @@ def save_creating(state, chunks):
                 chunks,
                 state.noise_offset,
             )
-    chunks[0, 0][0, 0] = {"kind": "obelisk", "health": 1}
-    chunks[0, 0][0, 1] = {"kind": "up", "health": 1}
-    chunks[0, 0][0, 2] = {"kind": "player", "floor": "void", "recipe": 0}
-    if state.world_type == 1:
-        chunks[0, 0][1, 1] = {
-            "kind": "tree",
-            "floor": "dirt",
-            "inventory": {"log": 2, "sapling": 2},
-        }
-        chunks[0, 0][1, 0] = {"kind": "composter"}
-    state.tick = 0
-    if state.world_type == 1:
-        state.inventory = {"flint axe": 1}
+    if state.world_type != 1:
+        chunks[0, 0][0, 0] = {"kind": "obelisk"}
+        chunks[0, 0][0, 1] = {"kind": "up"}
     else:
-        state.inventory = {}
+        chunks[0, 0][0, 0] = {"kind": "void crate", "inventory": {"flint axe": 1, "sapling": 1, "dirt": 1, "composter": 1}}
+        chunks[0, 0][0, 1] = {"kind": "void convertor"}
+    chunks[0, 0][0, 2] = {"kind": "player", "floor": "void", "recipe": 0}
+    state.tick = 0
+    state.inventory = {}
     state.max_health = 20
     state.health = 20
     return chunks

@@ -67,11 +67,13 @@ PROCESSING_TIME = {
     "bonsai pot": 40 * FPS,
     "composter": 2 * FPS,
     "furnace": 10 * FPS,
+    "void convertor": 20 * FPS,
     "wood crucible": 300 * FPS,
 }
 STORAGE = {
     "small barrel": (1, 512),
-    "small crate": (9, 48),
+    "small crate": (8, 64),
+    "void crate": (8, 64),
 }
 UNBREAK = {
     "glass lock",
@@ -80,4 +82,6 @@ UNBREAK = {
     "player",
     "up",
     "void",
+    "void convertor",
+    "void crate",
 }
