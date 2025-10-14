@@ -12,37 +12,36 @@ def render_mined(location, chunks, camera, zoom, window, images):
             + (location[1][1] * TILE_SIZE + location[0][1] * CHUNK_SIZE + 60) * zoom,
         )
         current_tile = chunks[location[0]][location[1]]
-        if "health" in current_tile and current_tile["kind"] in HEALTH:
-            if (
-                "kind" in chunks[location[0]][location[1]]
-                and chunks[location[0]][location[1]]["kind"] != "player"
-            ):
-                max_health = HEALTH[current_tile["kind"]]
+        if "health" in current_tile:
+            if "kind" in current_tile:
+                health_tile = current_tile["kind"]
             else:
-                max_health = HEALTH[current_tile["floor"]]
-            window.blit(
-                pg.transform.scale(images["tiny_bar"], (TILE_SIZE * zoom, 16 * zoom)),
-                placement,
-            )
-            if current_tile["health"] // max_health == 0:
-                break_image = images[
-                    f"break_{8 - (current_tile['health'] * 8 // max_health)}"
-                ]
-                break_image.set_alpha(127)
+                health_tile = current_tile["floor"]
+            if health_tile in HEALTH:
+                max_health = HEALTH[health_tile]
                 window.blit(
-                    pg.transform.scale(
-                        break_image, (TILE_SIZE * zoom, TILE_SIZE * zoom)
-                    ),
-                    (placement[0], placement[1] - TILE_SIZE * zoom),
+                    pg.transform.scale(images["tiny_bar"], (TILE_SIZE * zoom, 16 * zoom)),
+                    placement,
                 )
-            pg.draw.rect(
-                window,
-                (181, 102, 60),
-                pg.Rect(
-                    placement[0] + 4 * zoom,
-                    placement[1] + 4 * zoom,
-                    current_tile["health"] * 44 * zoom / max_health,
-                    8 * zoom,
-                ),
-            )
+                if current_tile["health"] // max_health == 0:
+                    break_image = images[
+                        f"break_{8 - (current_tile['health'] * 8 // max_health)}"
+                    ]
+                    break_image.set_alpha(127)
+                    window.blit(
+                        pg.transform.scale(
+                            break_image, (TILE_SIZE * zoom, TILE_SIZE * zoom)
+                        ),
+                        (placement[0], placement[1] - TILE_SIZE * zoom),
+                    )
+                pg.draw.rect(
+                    window,
+                    (181, 102, 60),
+                    pg.Rect(
+                        placement[0] + 4 * zoom,
+                        placement[1] + 4 * zoom,
+                        current_tile["health"] * 44 * zoom / max_health,
+                        8 * zoom,
+                    ),
+                )
     return window
