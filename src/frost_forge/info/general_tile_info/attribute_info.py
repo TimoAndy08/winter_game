@@ -1,5 +1,4 @@
 ATTRIBUTES = {
-    "bonsai pot": {"open", "machine"},
     "campfire": {"open", "craft"},
     "composter": {"open", "machine"},
     "furnace": {"open", "machine"},

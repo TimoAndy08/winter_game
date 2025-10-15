@@ -31,7 +31,9 @@ from .specific_tile_info.tile_info import (
     UNBREAK,
     GROW_CHANCE,
     GROW_TILES,
+    GROW_REQUIREMENT,
     PROCESSING_TIME,
+    SOIL_STRENGTH,
 )
 from .specific_tile_info.item_info import (
     HEALTH_INCREASE,

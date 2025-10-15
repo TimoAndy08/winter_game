@@ -1,12 +1,4 @@
 RECIPES = {
-    "bonsai pot": (
-        (("bluebell", 1), (("water", 1),)),
-        (("carrot", 1), ()),
-        (("mushroom", 1), (("spore", 2),)),
-        (("sapling", 2), ()),
-        (("spore", 1), ()),
-        (("log", 1), (("sapling", 1),)),
-    ),
     "campfire": (
         (("brick", 2), (("clay", 1),)),
         (("glass", 1), (("sand", 3),)),
@@ -22,7 +14,7 @@ RECIPES = {
         (("fertilizer", 1), (("compost", 12), ("dirt", 1))),
         (("pebble", 1), (("compost", 6),)),
         (("flint", 1), (("compost", 10), ("pebble", 1))),
-        (("coal", 1), (("fertilizer", 1), ("water", 2), ("log", 2))),
+        (("moist dirt", 2), (("fertilizer", 1), ("dirt", 2), ("water", 1))),
     ),
     "furnace": (
         (("coal", 1), (("log", 1), ("fuel", 4))),
@@ -47,7 +39,7 @@ RECIPES = {
         (("stone floor", 2), (("stone", 1),)),
     ),
     "mushroom shaper": (
-        (("bonsai pot", 1), (("brick", 2), ("dirt", 4), ("plant bouquet", 1), ("small crate", 1))),
+        (("bluebell jar", 1), (("brick", 1), ("dirt", 2), ("bluebell", 1), ("glass", 1))),
         (("composter", 1), (("mushroom", 2), ("paper", 2), ("small barrel", 1))),
         (("mushroom block", 1), (("mushroom", 2), ("wood", 1))),
         (("mushroom door", 1), (("mushroom floor", 1), ("mushroom block", 1))),

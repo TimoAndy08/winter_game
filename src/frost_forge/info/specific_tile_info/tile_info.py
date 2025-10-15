@@ -6,6 +6,7 @@ FLOOR = {
     "dirt",
     "ice",
     "log floor",
+    "moist dirt",
     "mushroom door",
     "mushroom door open",
     "mushroom floor",
@@ -24,6 +25,7 @@ FLOOR = {
 FLOOR_TYPE = {
     "dirt": "soil",
     "ice": "block",
+    "moist dirt": "soil",
     "mushroom door": "door",
     "mushroom door open": "open",
     "slime door": "door",
@@ -33,7 +35,12 @@ FLOOR_TYPE = {
     "wood door": "door",
     "wood door open": "open",
 }
+SOIL_STRENGTH = {
+    "dirt": 1,
+    "moist dirt": 1.25,
+}
 GROW_CHANCE = {
+    "bluebell": 400,
     "carrot": 160,
     "water": 60,
     "potato": 240,
@@ -43,9 +50,10 @@ GROW_CHANCE = {
     "treeling": 100,
 }
 GROW_TILES = {
-    "carrot": {"kind": "carroot", "inventory": {"carrot": 2}},
+    "bluebell": {"kind": "bluebell grown", "inventory": {"bluebell": 2}},
+    "carrot": {"kind": "carrot grown", "inventory": {"carrot": 2}},
     "water": {"floor": "ice"},
-    "potato": {"kind": "potatoo", "inventory": {"potato": 2}},
+    "potato": {"kind": "potato grown", "inventory": {"potato": 2}},
     "rabbit child": {
         "kind": "rabbit adult",
         "inventory": {"rabbit fur": 1, "rabbit meat": 2},
@@ -53,6 +61,9 @@ GROW_TILES = {
     "sapling": {"kind": "treeling", "inventory": {"sapling": 1, "log": 1}},
     "spore": {"kind": "mushroom", "inventory": {"spore": 2}},
     "treeling": {"kind": "tree", "inventory": {"sapling": 2, "log": 2}},
+}
+GROW_REQUIREMENT = {
+    "bluebell": 1.25
 }
 MULTI_TILES = {
     "big rock": (2, 2),
@@ -64,7 +75,6 @@ MULTI_TILES = {
     "wooden bed": (1, 2),
 }
 PROCESSING_TIME = {
-    "bonsai pot": 40 * FPS,
     "composter": 2 * FPS,
     "furnace": 10 * FPS,
     "void convertor": 20 * FPS,
