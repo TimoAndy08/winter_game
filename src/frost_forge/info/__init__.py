@@ -49,6 +49,7 @@ from .world_gen_info.structure_gen_info import (
     STRUCTURE_SIZE,
     STRUCTURE_ROOMS,
     STRUCTURE_ENTRANCE,
+    STRUCTURE_HALLWAYS,
     ROOM_COLORS,
     LOOT_TABLES,
     ADJACENT_ROOMS,

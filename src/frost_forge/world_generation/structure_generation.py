@@ -1,6 +1,6 @@
 from noise import pnoise2
 
-from ..info import NOISE_STRUCTURES, STRUCTURE_ENTRANCE
+from ..info import NOISE_STRUCTURES, STRUCTURE_ENTRANCE, STRUCTURE_HALLWAYS
 from .room_generation import generate_room
 from .structure_structuring import structure_rooms
 from .biome_determination import determine_biome
@@ -27,13 +27,30 @@ def generate_structure(world_type, noise_offset, chunk_x, chunk_y, chunks, check
         if structure:
             dungeon, hallways, entrance = structure_rooms(structure_type, (chunk_x, chunk_y))
             for dungeon_room in dungeon:
-                if max(abs(dungeon_room[0]), abs(dungeon_room[1])) <= 5:
+                if min(abs(dungeon_room[0]), abs(dungeon_room[1])) >= 2:
                     chunks[dungeon_room] = generate_room(
                         structure_type,
                         dungeon[dungeon_room],
                         dungeon[dungeon_room][0] == dungeon[dungeon_room][1],
                     )
                 checked.add(dungeon_room)
-            if max(abs(entrance[0]), abs(entrance[1])) <= 5:
+            for room in hallways:
+                for adjacent_room in hallways[room]:
+                    if min(abs(room[0]), abs(room[1]), abs(adjacent_room[0]), abs(adjacent_room[1])) >= 2:
+                        if room[0] != adjacent_room[0]:
+                            if room[0] > adjacent_room[0]:
+                                added_locations = ((0, 7), (0, 8))
+                            else:
+                                added_locations = ((15, 7), (15, 8))
+                        else:
+                            if room[1] > adjacent_room[1]:
+                                added_locations = ((7, 0), (8, 0))
+                            else:
+                                added_locations = ((7, 15), (8, 15))
+                        for location in added_locations:
+                            chunks[room][location] = {}
+                            for info in STRUCTURE_HALLWAYS[structure_type]:
+                                chunks[room][location][info] = STRUCTURE_HALLWAYS[structure_type][info]
+            if min(abs(entrance[0]), abs(entrance[1])) >= 2:
                 chunks[entrance][7, 0] = STRUCTURE_ENTRANCE[structure_type]
     return chunks, checked

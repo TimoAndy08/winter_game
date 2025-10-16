@@ -6,6 +6,8 @@ def walkable(chunks, chunk, tile):
         return True
     elif "kind" in chunks[chunk][tile]:
         return False
-    elif FLOOR_TYPE.get(chunks[chunk][tile]["floor"]) in {"door", "fluid"}:
+    elif chunks[chunk][tile]["floor"].split()[-1] == "door":
+        return False
+    elif FLOOR_TYPE.get(chunks[chunk][tile]["floor"]) == "fluid":
         return False
     return True

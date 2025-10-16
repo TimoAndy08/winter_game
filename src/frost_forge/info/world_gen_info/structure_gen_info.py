@@ -48,11 +48,16 @@ STRUCTURE_ENTRANCE = {
     "mineshaft": {"floor": "stone floor"},
     "mushroom hut": {"floor": "mushroom door"},
 }
-STRUCTURE_SIZE = {"copper dungeon": 0.6, "mushroom hut": 0, "mineshaft": 0.4}
+STRUCTURE_SIZE = {"copper dungeon": 0.6, "mushroom hut": 0.1, "mineshaft": 0.4}
 STRUCTURE_ROOMS = {
     "copper dungeon": ("treasury", "hallway", "library", "banquet", "forge"),
     "mineshaft": ("hallway", "coal mine"),
     "mushroom hut": ("mushroom hut",),
+}
+STRUCTURE_HALLWAYS = {
+    "copper dungeon": {"floor": "copper brick floor"},
+    "mineshaft": {"floor": "stone brick floor"},
+    "mushroom hut": {"floor": "mushroom floor"},
 }
 LOOT_TABLES = {
     "mushroom chest": {
