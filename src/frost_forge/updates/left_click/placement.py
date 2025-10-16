@@ -13,6 +13,8 @@ def place(
     grid_position,
     chunks,
 ):
+    if inventory_key not in inventory:
+        return chunks, health, max_health
     if inventory_key not in FLOOR:
         if is_not_tile or not is_kind:
             if inventory_key in FOOD and health < max_health:

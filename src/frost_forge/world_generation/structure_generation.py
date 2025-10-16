@@ -27,15 +27,13 @@ def generate_structure(world_type, noise_offset, chunk_x, chunk_y, chunks, check
         if structure:
             dungeon, hallways, entrance = structure_rooms(structure_type, (chunk_x, chunk_y))
             for dungeon_room in dungeon:
-                room = generate_room(
-                    structure_type,
-                    dungeon[dungeon_room],
-                    (0, 0),
-                    (chunk_x, chunk_y),
-                    dungeon[dungeon_room][0] == dungeon[dungeon_room][1],
-                )
-                for chunk in room:
-                    chunks[chunk] = room[chunk]
-                    checked.add(chunk)
-            chunks[entrance][7, 0] = STRUCTURE_ENTRANCE[structure_type]
+                if max(abs(dungeon_room[0]), abs(dungeon_room[1])) <= 5:
+                    chunks[dungeon_room] = generate_room(
+                        structure_type,
+                        dungeon[dungeon_room],
+                        dungeon[dungeon_room][0] == dungeon[dungeon_room][1],
+                    )
+                checked.add(dungeon_room)
+            if max(abs(entrance[0]), abs(entrance[1])) <= 5:
+                chunks[entrance][7, 0] = STRUCTURE_ENTRANCE[structure_type]
     return chunks, checked

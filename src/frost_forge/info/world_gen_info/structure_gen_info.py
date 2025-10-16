@@ -1,7 +1,7 @@
 NOISE_STRUCTURES = {
     "forest": (((0, 0.01), "mushroom hut"),),
     "mountain": (((0, 0.005), "mineshaft"),),
-    "plains": (((0, 0.05), "copper dungeon"),),
+    "plains": (((0, 0.001), "copper dungeon"),),
 }
 ROOM_COLORS = {
     "copper dungeon": {
@@ -48,22 +48,11 @@ STRUCTURE_ENTRANCE = {
     "mineshaft": {"floor": "stone floor"},
     "mushroom hut": {"floor": "mushroom door"},
 }
-STRUCTURE_ROOM_SIZES = {
-    "copper dungeon": ((1, 1),),
-    "mineshaft": ((1, 1),),
-    "mushroom hut": ((1, 1),),
-}
-STRUCTURE_SIZE = {"copper dungeon": 0.8, "mushroom hut": 0, "mineshaft": 0.4}
+STRUCTURE_SIZE = {"copper dungeon": 0.6, "mushroom hut": 0, "mineshaft": 0.4}
 STRUCTURE_ROOMS = {
-    "copper dungeon": {
-        (1, 1): ("hallway",),
-    },
-    "mineshaft": {
-        (1, 1): ("hallway", "coal mine"),
-    },
-    "mushroom hut": {
-        (1, 1): ("mushroom hut",),
-    },
+    "copper dungeon": ("treasury", "hallway", "library", "banquet", "forge"),
+    "mineshaft": ("hallway", "coal mine"),
+    "mushroom hut": ("mushroom hut",),
 }
 LOOT_TABLES = {
     "mushroom chest": {

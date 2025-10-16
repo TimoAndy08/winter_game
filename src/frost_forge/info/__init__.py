@@ -47,7 +47,6 @@ from .world_gen_info.world_gen_info import NOISE_TILES, BIOMES, WORLD_TYPES
 from .world_gen_info.structure_gen_info import (
     NOISE_STRUCTURES,
     STRUCTURE_SIZE,
-    STRUCTURE_ROOM_SIZES,
     STRUCTURE_ROOMS,
     STRUCTURE_ENTRANCE,
     ROOM_COLORS,

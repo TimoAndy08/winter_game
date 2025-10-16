@@ -1,6 +1,6 @@
 from random import random, choice
 
-from ..info import STRUCTURE_SIZE, STRUCTURE_ROOM_SIZES, STRUCTURE_ROOMS, ADJACENT_ROOMS
+from ..info import STRUCTURE_SIZE, ADJACENT_ROOMS, STRUCTURE_ROOMS
 
 
 def structure_structure(dungeon_type, offset, dungeon=None, tile=None, distanse=1):
@@ -8,9 +8,8 @@ def structure_structure(dungeon_type, offset, dungeon=None, tile=None, distanse=
         dungeon = set()
     if tile == None:
         tile = offset
-    if tile != (0, 0):
-        dungeon.add(tile)
-    elif tile[0] ** 4 + tile[1] ** 4 < 882:
+    dungeon.add(tile)
+    if distanse < 10:
         for pos in ADJACENT_ROOMS:
             if (
                 random() < STRUCTURE_SIZE[dungeon_type] ** distanse
@@ -76,7 +75,6 @@ def ensure_hallways(dungeon, hallways, room, visited=None):
 
 def structure_rooms(dungeon_type, offset):
     structure = structure_structure(dungeon_type, offset)
-    dungeon = {}
     if len(structure) > 1:
         hallways = structure_hallways((0, 0), structure)
         for room in structure:
@@ -88,28 +86,7 @@ def structure_rooms(dungeon_type, offset):
     while (offset[0], y + offset[1]) in structure:
         y -= 1
     entrance = (offset[0], y + 1 + offset[1])
+    dungeon = {}
     for room in structure:
-        if room not in dungeon:
-            avaliable_sizes = []
-            for size in STRUCTURE_ROOM_SIZES[dungeon_type]:
-                can_place = True
-                for x in range(0, size[0]):
-                    for y in range(0, size[1]):
-                        if (room[0] + x, room[1] + y) in dungeon:
-                            can_place = False
-                if can_place:
-                    avaliable_sizes.append(size)
-            size = choice(avaliable_sizes)
-            for x in range(0, size[0]):
-                for y in range(0, size[1]):
-                    dungeon[room[0] + x, room[1] + y] = (-x, -y)
-            dungeon[room] = size
-    delete_rooms = set()
-    for room in dungeon:
-        if dungeon[room][0] > 0 < dungeon[room][1]:
-            dungeon[room] = choice(STRUCTURE_ROOMS[dungeon_type][dungeon[room]])
-        else:
-            delete_rooms.add(room)
-    for room in delete_rooms:
-        del dungeon[room]
+        dungeon[room] = choice(STRUCTURE_ROOMS[dungeon_type])
     return dungeon, hallways, entrance
