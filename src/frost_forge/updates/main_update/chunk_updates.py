@@ -27,7 +27,7 @@ def update_tiles(state, chunks):
                             delete_tiles,
                             create_tiles,
                             state.tick,
-                            state.location,
+                            state.location["tile"],
                             inventory_key,
                             state.health,
                         )

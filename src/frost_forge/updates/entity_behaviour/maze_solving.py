@@ -3,13 +3,14 @@ from collections import deque
 from ...other_systems.walk import walkable
 
 
-def bfs(start, goal, chunks):
+def bfs(start, goal, chunks, current_tile):
     blocked = set()
     for chunk in chunks:
         for tile in chunks[chunk]:
             if (
                 not walkable(chunks, chunk, tile)
                 and chunks[chunk][tile].get("kind") != "player"
+                and chunks[chunk][tile].get("kind") != current_tile["kind"]
             ):
                 blocked.add((chunk[0] * 16 + tile[0], chunk[1] * 16 + tile[1]))
 

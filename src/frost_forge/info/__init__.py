@@ -52,6 +52,7 @@ from .world_gen_info.structure_gen_info import (
     STRUCTURE_ENTRANCE,
     ROOM_COLORS,
     LOOT_TABLES,
+    ADJACENT_ROOMS,
 )
 from .specific_tile_info.value_info import VALUES, MACHINES
-from .specific_tile_info.entity_info import ATTRACTION
+from .specific_tile_info.entity_info import ATTRACTION, BREEDABLE

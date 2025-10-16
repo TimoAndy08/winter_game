@@ -20,8 +20,8 @@ def move_entity(
             )
         elif type == 1:
             current_tile["goal"] = (
-                (location["tile"][0], location["tile"][1]),
-                (location["tile"][2], location["tile"][3]),
+                (location[0], location[1]),
+                (location[2], location[3]),
             )
         current_tile["path"] = []
         start = (chunk[0] * 16 + tile[0], chunk[1] * 16 + tile[1])
@@ -29,7 +29,7 @@ def move_entity(
             current_tile["goal"][0][0] * 16 + current_tile["goal"][1][0],
             current_tile["goal"][0][1] * 16 + current_tile["goal"][1][1],
         )
-        path = bfs(start, goal, chunks)
+        path = bfs(start, goal, chunks, current_tile)
         for road in path:
             current_tile["path"].append(
                 ((road[0] // 16, road[1] // 16), (road[0] % 16, road[1] % 16))

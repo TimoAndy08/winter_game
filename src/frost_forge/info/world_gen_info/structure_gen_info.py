@@ -93,3 +93,4 @@ LOOT_TABLES = {
         (0.01, "rock sword", 1, 1),
     },
 }
+ADJACENT_ROOMS = ((0, -1), (0, 1), (-1, 0), (1, 0))

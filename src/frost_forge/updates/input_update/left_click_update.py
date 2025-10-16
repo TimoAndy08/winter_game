@@ -4,6 +4,8 @@ from ...info import (
     FLOOR_TYPE,
     FERTILIZER_EFFICIENCY,
     GROW_TILES,
+    ATTRACTION,
+    BREEDABLE,
 )
 from ..left_click import (
     recipe,
@@ -32,6 +34,10 @@ def left_click(
     tick: int,
 ):
     if machine_ui == "game":
+        if inventory_number < len(inventory):
+            inventory_key = list(inventory.keys())[inventory_number]
+        else:
+            inventory_key = None
         is_not_tile = grid_position[1] not in chunks[grid_position[0]]
         if is_not_tile:
             is_kind = True
@@ -46,14 +52,13 @@ def left_click(
         elif (
             is_floor
             and FLOOR_TYPE.get(current_tile["floor"]) == "soil"
-            and inventory_number < len(inventory)
-            and list(inventory.keys())[inventory_number] in FERTILIZER_EFFICIENCY
+            and inventory_key in FERTILIZER_EFFICIENCY
         ):
-            chunks = fertilize_spawn(chunks, inventory, inventory_number, grid_position)
+            chunks = fertilize_spawn(chunks, inventory, inventory_key, grid_position)
         elif is_not_tile or not is_kind:
             chunks, health, max_health = place(
                 inventory,
-                inventory_number,
+                inventory_key,
                 is_not_tile,
                 is_kind,
                 health,
@@ -79,16 +84,20 @@ def left_click(
                 chunks = unlock(inventory, inventory_number, chunks, grid_position)
             elif (
                 kind in GROW_TILES
-                and inventory_number < len(inventory)
-                and list(inventory.keys())[inventory_number] in FERTILIZER_EFFICIENCY
+                and inventory_key in FERTILIZER_EFFICIENCY
             ):
                 chunks = fertilize_grow(
-                    chunks, inventory, inventory_number, grid_position
+                    chunks, inventory, inventory_key, grid_position
                 )
             elif "store" in attributes:
                 chunks = closed_storage(
                     chunks, grid_position, inventory, location, inventory_number
                 )
+            elif kind in BREEDABLE and inventory_key == ATTRACTION[kind]:
+                inventory[inventory_key] -= 1
+                if inventory[inventory_key] == 0:
+                    del inventory[inventory_key]
+                chunks[grid_position[0]][grid_position[1]]["love"] = 100
     elif "machine" in ATTRIBUTES.get(machine_ui, ()):
         chunks, inventory = machine_storage(position, chunks, location, inventory, machine_ui)
     elif "store" in ATTRIBUTES.get(machine_ui, ()):

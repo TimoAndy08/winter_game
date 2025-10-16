@@ -5,8 +5,7 @@ from ...other_systems.tile_placement import place_tile
 from ..chunk_update.growth import grow
 
 
-def fertilize_spawn(chunks, inventory, inventory_number, grid_position):
-    inventory_key = list(inventory.keys())[inventory_number]
+def fertilize_spawn(chunks, inventory, inventory_key, grid_position):
     inventory[inventory_key] -= 1
     if inventory[inventory_key] == 0:
         del inventory[inventory_key]
@@ -21,8 +20,7 @@ def fertilize_spawn(chunks, inventory, inventory_number, grid_position):
     return chunks
 
 
-def fertilize_grow(chunks, inventory, inventory_number, grid_position):
-    inventory_key = list(inventory.keys())[inventory_number]
+def fertilize_grow(chunks, inventory, inventory_key, grid_position):
     current_tile = chunks[grid_position[0]][grid_position[1]]
     if (
         random()

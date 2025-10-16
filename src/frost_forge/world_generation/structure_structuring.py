@@ -1,9 +1,6 @@
 from random import random, choice
 
-from ..info import STRUCTURE_SIZE, STRUCTURE_ROOM_SIZES, STRUCTURE_ROOMS
-
-
-ADJACENT_ROOMS = ((0, -1), (0, 1), (-1, 0), (1, 0))
+from ..info import STRUCTURE_SIZE, STRUCTURE_ROOM_SIZES, STRUCTURE_ROOMS, ADJACENT_ROOMS
 
 
 def structure_structure(dungeon_type, offset, dungeon=None, tile=None, distanse=1):

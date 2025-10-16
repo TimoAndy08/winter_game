@@ -8,7 +8,7 @@ def grow(tile, guarantee=False):
         old_kind = tile["kind"]
     else:
         old_kind = tile["floor"]
-    if random() < SOIL_STRENGTH.get(tile["floor"], 1) / (GROW_CHANCE[old_kind] * 6) or guarantee:
+    if random() < SOIL_STRENGTH.get(tile.get("floor"), 1) / (GROW_CHANCE[old_kind] * 6) or guarantee:
         if GROW_REQUIREMENT.get(old_kind, 1) <= SOIL_STRENGTH.get(tile["floor"], 1):
             for info in GROW_TILES[old_kind]:
                 tile[info] = GROW_TILES[old_kind][info]
