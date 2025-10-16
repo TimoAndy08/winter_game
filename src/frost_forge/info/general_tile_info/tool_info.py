@@ -14,6 +14,8 @@ TOOL_REQUIRED = {
     "composter": "axe",
     "copper brick": "pickaxe",
     "copper brick floor": "pickaxe",
+    "copper door": "pickaxe",
+    "copper door open": "pickaxe",
     "dirt": "shovel",
     "flint": "pickaxe",
     "furnace": "pickaxe",

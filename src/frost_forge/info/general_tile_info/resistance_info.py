@@ -10,6 +10,8 @@ RESISTANCE = {
     "composter": 1,
     "copper brick": 3,
     "copper brick floor": 3,
+    "copper door": 3,
+    "copper door open": 3,
     "furnace": 3,
     "ice": 1,
     "life crystal": 1,

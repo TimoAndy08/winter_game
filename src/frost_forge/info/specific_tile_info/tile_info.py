@@ -3,6 +3,9 @@ from ..render_info import FPS
 
 FLOOR = {
     "brick floor",
+    "copper brick floor",
+    "copper door",
+    "copper door open",
     "dirt",
     "ice",
     "log floor",
@@ -23,6 +26,8 @@ FLOOR = {
     "wood floor",
 }
 FLOOR_TYPE = {
+    "copper door": "door",
+    "copper door open": "door",
     "dirt": "soil",
     "ice": "block",
     "moist dirt": "soil",

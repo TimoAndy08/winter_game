@@ -1,5 +1,4 @@
 from noise import pnoise2
-from math import sin
 
 from ..info import NOISE_STRUCTURES, STRUCTURE_ENTRANCE
 from .room_generation import generate_room
@@ -26,17 +25,17 @@ def generate_structure(world_type, noise_offset, chunk_x, chunk_y, chunks, check
                 structure = True
                 break
         if structure:
-            dungeon = structure_rooms(structure_type, (chunk_x, chunk_y))
-            for dungeon_room in dungeon[0]:
-                chunks[dungeon_room] = {}
+            dungeon, hallways, entrance = structure_rooms(structure_type, (chunk_x, chunk_y))
+            for dungeon_room in dungeon:
                 room = generate_room(
                     structure_type,
-                    dungeon[0][dungeon_room],
+                    dungeon[dungeon_room],
                     (0, 0),
                     (chunk_x, chunk_y),
-                    dungeon[0][dungeon_room][0] == dungeon[0][dungeon_room][1],
+                    dungeon[dungeon_room][0] == dungeon[dungeon_room][1],
                 )
                 for chunk in room:
                     chunks[chunk] = room[chunk]
-            chunks[dungeon[2]][7, 0] = STRUCTURE_ENTRANCE[structure_type]
+                    checked.add(chunk)
+            chunks[entrance][7, 0] = STRUCTURE_ENTRANCE[structure_type]
     return chunks, checked

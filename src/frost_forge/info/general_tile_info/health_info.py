@@ -17,6 +17,8 @@ HEALTH = {
     "composter": 8,
     "copper brick": 12,
     "copper brick floor": 8,
+    "copper door": 8,
+    "copper door open": 8,
     "corpse": 1,
     "dirt": 5,
     "fertilizer": 5,

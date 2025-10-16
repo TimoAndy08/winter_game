@@ -112,4 +112,4 @@ def structure_rooms(dungeon_type, offset):
             delete_rooms.add(room)
     for room in delete_rooms:
         del dungeon[room]
-    return (dungeon, hallways, entrance)
+    return dungeon, hallways, entrance
