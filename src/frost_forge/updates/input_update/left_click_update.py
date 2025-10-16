@@ -45,13 +45,13 @@ def left_click(
             is_kind = "kind" in chunks[grid_position[0]][grid_position[1]]
             current_tile = chunks[grid_position[0]][grid_position[1]]
         is_floor = not is_not_tile and not is_kind
-        if is_floor and FLOOR_TYPE.get(current_tile["floor"]) == "door":
+        if is_floor and current_tile["floor"].split()[-1] == "door":
             chunks[grid_position[0]][grid_position[1]]["floor"] += " open"
-        elif is_floor and FLOOR_TYPE.get(current_tile["floor"]) == "open":
+        elif is_floor and current_tile["floor"].split()[-1] == "open":
             chunks[grid_position[0]][grid_position[1]]["floor"] = current_tile["floor"][:-5]
         elif (
             is_floor
-            and FLOOR_TYPE.get(current_tile["floor"]) == "soil"
+            and current_tile["floor"].split()[-1] == "dirt"
             and inventory_key in FERTILIZER_EFFICIENCY
         ):
             chunks = fertilize_spawn(chunks, inventory, inventory_key, grid_position)

@@ -26,19 +26,9 @@ FLOOR = {
     "wood floor",
 }
 FLOOR_TYPE = {
-    "copper door": "door",
-    "copper door open": "door",
-    "dirt": "soil",
     "ice": "block",
-    "moist dirt": "soil",
-    "mushroom door": "door",
-    "mushroom door open": "open",
-    "slime door": "door",
-    "slime door open": "open",
     "void": "block",
     "water": "fluid",
-    "wood door": "door",
-    "wood door open": "open",
 }
 SOIL_STRENGTH = {
     "dirt": 1,
