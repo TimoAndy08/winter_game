@@ -1,12 +1,12 @@
 import os
 from PIL import Image, ImageOps
-from random import randint
+from noise import pnoise2
 
 from ..info import ROOM_COLORS
 from .loot_calculation import calculate_loot
 
 
-def generate_room(structure, room, rotate=True, vary=True):
+def generate_room(structure, room, position, rotate=True, vary=True):
     room_image = Image.open(
         os.path.normpath(
             os.path.join(__file__, "../../..", f"structures/{structure}/{room}.png")
@@ -14,7 +14,7 @@ def generate_room(structure, room, rotate=True, vary=True):
     ).convert("RGB")
     room_chunks = {}
     if vary:
-        variation = randint(0, 15)
+        variation = int((pnoise2(position[0], position[1], 3, 0.5, 2) + 0.5) * 16)
         if variation % 2:
             room_image = ImageOps.mirror(room_image)
         if (variation // 2) % 2:

@@ -5,6 +5,7 @@ def save_creating(state, chunks):
     state.save_file_name = ""
     state.menu_placement = "main_game"
     chunks = {}
+    state.save_chunks = {(0, 0)}
     state.checked = set()
     state.location["tile"] = [0, 0, 0, 2]
     state.location["real"] = [0, 0, 0, 2]

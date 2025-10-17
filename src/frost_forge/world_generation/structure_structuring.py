@@ -1,4 +1,4 @@
-from random import random, choice
+from noise import pnoise2
 
 from ..info import STRUCTURE_SIZE, ADJACENT_ROOMS, STRUCTURE_ROOMS
 
@@ -12,7 +12,7 @@ def structure_structure(dungeon_type, offset, dungeon=None, tile=None, distanse=
     if distanse < 10:
         for pos in ADJACENT_ROOMS:
             if (
-                random() < STRUCTURE_SIZE[dungeon_type] ** distanse
+                pnoise2(offset[0] + distanse ** 2, offset[1] + distanse ** 2, 3, 0.5, 2) + 0.5 < STRUCTURE_SIZE[dungeon_type] ** distanse
                 and (tile[0] + pos[0], tile[1] + pos[1]) not in dungeon
             ):
                 structure_structure(
@@ -41,7 +41,7 @@ def structure_hallways(room, dungeon, hallways=None, visited=None):
     for pos in ADJACENT_ROOMS:
         adj_room = (room[0] + pos[0], room[1] + pos[1])
         if adj_room in dungeon:
-            if random() < 0.5:
+            if pnoise2(room[0] ** 3 + pos[0], room[1] ** 3 + pos[1], 3, 0.5, 2) < 0.5:
                 hallways = add_hallways(hallways, room, adj_room)
                 if adj_room not in visited:
                     hallways = structure_hallways(
@@ -67,7 +67,8 @@ def ensure_hallways(dungeon, hallways, room, visited=None):
             elif adj_room in dungeon:
                 adj_dungeon_rooms.append(adj_room)
     if len(adj_dungeon_rooms):
-        next_room = choice(adj_dungeon_rooms)
+        adj_noise_value = int((pnoise2(room[0], room[1], 3, 0.5, 2) + 0.5) * len(adj_dungeon_rooms))
+        next_room = adj_dungeon_rooms[adj_noise_value]
         hallways = add_hallways(hallways, room, next_room)
         hallways = ensure_hallways(dungeon, hallways, next_room, visited)
     return hallways
@@ -88,5 +89,6 @@ def structure_rooms(dungeon_type, offset):
     entrance = (offset[0], y + 1 + offset[1])
     dungeon = {}
     for room in structure:
-        dungeon[room] = choice(STRUCTURE_ROOMS[dungeon_type])
+        room_value = int((pnoise2(room[0], room[1], 3, 0.5, 2) + 0.5) * len(STRUCTURE_ROOMS[dungeon_type]))
+        dungeon[room] = STRUCTURE_ROOMS[dungeon_type][room_value]
     return dungeon, hallways, entrance

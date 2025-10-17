@@ -6,7 +6,7 @@ from .structure_structuring import structure_rooms
 from .biome_determination import determine_biome
 
 
-def generate_structure(world_type, noise_offset, chunk_x, chunk_y, chunks, checked):
+def generate_structure(world_type, noise_offset, chunk_x, chunk_y, chunks, checked, save_chunks):
     if (chunk_x, chunk_y) not in checked:
         checked.add((chunk_x, chunk_y))
         structure_value = pnoise2(
@@ -31,8 +31,10 @@ def generate_structure(world_type, noise_offset, chunk_x, chunk_y, chunks, check
                     chunks[dungeon_room] = generate_room(
                         structure_type,
                         dungeon[dungeon_room],
+                        dungeon_room,
                         dungeon[dungeon_room][0] == dungeon[dungeon_room][1],
                     )
+                    save_chunks.add(dungeon_room)
                 checked.add(dungeon_room)
             for room in hallways:
                 for adjacent_room in hallways[room]:
@@ -53,4 +55,4 @@ def generate_structure(world_type, noise_offset, chunk_x, chunk_y, chunks, check
                                 chunks[room][location][info] = STRUCTURE_HALLWAYS[structure_type][info]
             if min(abs(entrance[0]), abs(entrance[1])) >= 2:
                 chunks[entrance][7, 0] = STRUCTURE_ENTRANCE[structure_type]
-    return chunks, checked
+    return chunks, checked, save_chunks

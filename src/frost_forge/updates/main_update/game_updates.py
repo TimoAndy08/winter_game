@@ -6,7 +6,7 @@ from ...world_generation.structure_generation import generate_structure
 from ...other_systems.game_saving import save_game
 from ...other_systems.walk import walkable
 from ..input_update.mouse_update import button_press
-from ...info import DAY_LENGTH, INVENTORY_SIZE, FLOOR_TYPE
+from ...info import DAY_LENGTH, INVENTORY_SIZE
 
 
 def update_game(state, chunks):
@@ -28,13 +28,14 @@ def update_game(state, chunks):
     if 3 != state.world_type != 1:
         for x in range(-10, 11):
             for y in range(-10, 11):
-                generate_structure(
+                chunks, state.checked, state.save_chunks = generate_structure(
                     state.world_type,
                     state.noise_offset,
                     state.location["tile"][0] + x,
                     state.location["tile"][1] + y,
                     chunks,
                     state.checked,
+                    state.save_chunks,
                 )
 
     tile_chunk_coords = (state.location["tile"][0], state.location["tile"][1])
@@ -154,6 +155,7 @@ def update_game(state, chunks):
                     state.inventory_number = i - 7
 
     state.tick += 1
+    state.save_chunks.add((state.location["tile"][0], state.location["tile"][1]))
     if state.tick % (DAY_LENGTH // 4) == 0:
         save_game(chunks, state, f"autosave_{(state.tick // (DAY_LENGTH // 4)) % 4}")
     state.zoom = 0.05 * state.target_zoom + 0.95 * state.zoom
