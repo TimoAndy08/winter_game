@@ -36,9 +36,11 @@ RECIPES = {
     ),
     "masonry bench": (
         (("brick floor", 2), (("brick", 1),)),
+        (("copper block", 1), (("copper ingot", 8),)),
         (("copper brick", 2), (("copper ingot", 1), ("stone brick", 2))),
-        (("copper brick floor", 2), (("copper brick", 1))),
+        (("copper brick floor", 2), (("copper brick", 1),)),
         (("copper door", 1), (("copper brick", 1), ("copper brick floor", 1))),
+        (("copper ingot", 8), (("copper block", 1),)),
         (("furnace", 1), (("copper ingot", 6), ("stone brick", 8))),
         (("glass key", 1), (("glass", 3), ("handle", 1))),
         (("rock axe", 1), (("handle", 1), ("rock", 4))),

@@ -8,6 +8,7 @@ RESISTANCE = {
     "coal": 1,
     "coal ore": 2,
     "composter": 1,
+    "copper block": 2,
     "copper brick": 3,
     "copper brick floor": 3,
     "copper door": 3,

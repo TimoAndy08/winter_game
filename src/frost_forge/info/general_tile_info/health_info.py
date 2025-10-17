@@ -15,6 +15,7 @@ HEALTH = {
     "coal ore": 20,
     "coal": 8,
     "composter": 8,
+    "copper block": 24,
     "copper brick": 12,
     "copper brick floor": 8,
     "copper door": 8,
