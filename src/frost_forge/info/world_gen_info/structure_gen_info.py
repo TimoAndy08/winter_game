@@ -1,7 +1,7 @@
 NOISE_STRUCTURES = {
     "forest": (((0, 0.01), "mushroom hut"),),
-    "mountain": (((0, 0.005), "mineshaft"),),
-    "plains": (((0, 0.001), "copper dungeon"),),
+    "mountain": (((0, 0.01), "mineshaft"),),
+    "plains": (((0, 0.005), "copper dungeon"),),
 }
 ROOM_COLORS = {
     "copper dungeon": {

@@ -5,7 +5,7 @@ from ...other_systems.walk import walkable
 
 
 def move_entity(
-    chunks, chunk, tile, current_tile, create_tiles, delete_tiles, type, location
+    chunks, chunk, tile, current_tile, type, location
 ):
     obscured_path = False
     if "goal" not in current_tile:
@@ -35,21 +35,22 @@ def move_entity(
                 ((road[0] // 16, road[1] // 16), (road[0] % 16, road[1] % 16))
             )
     if len(current_tile["path"]) > 0:
-        can_move = True
-        for create_tile in create_tiles:
-            if current_tile["path"][0] == (create_tiles[0], create_tile[1]):
-                can_move = False
-        if can_move and walkable(
-            chunks, current_tile["path"][0][0], current_tile["path"][0][1]
-        ):
-            create_tiles.append(
-                (current_tile["path"][0][0], current_tile["path"][0][1], current_tile)
-            )
+        path_chunk = current_tile["path"][0][0]
+        path_tile = current_tile["path"][0][1]
+        if walkable(chunks, path_chunk, path_tile):
+            if path_tile not in chunks[path_chunk]:
+                chunks[path_chunk][path_tile] = {}
+            for info in current_tile:
+                if info != "floor":
+                    chunks[path_chunk][path_tile][info] = current_tile[info]
             current_tile["path"].pop(0)
-            delete_tiles.append((chunk, tile))
+            if "floor" in current_tile:
+                chunks[chunk][tile] = {"floor": current_tile["floor"]}
+            else:
+                del chunks[chunk][tile]
         else:
             obscured_path = True
-    if len(current_tile["path"]) == 0 or obscured_path:
+    elif len(current_tile["path"]) == 0 or obscured_path:
         del current_tile["path"]
         del current_tile["goal"]
-    return create_tiles, delete_tiles
+    return chunks
