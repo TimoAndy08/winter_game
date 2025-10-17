@@ -24,6 +24,7 @@ UNOBTAINABLE = {
     "bluebell grown",
     "carrot grown",
     "coal ore",
+    "copper ore",
     "corpse",
     "junk",
     "potato grown",

@@ -21,6 +21,7 @@ HEALTH = {
     "copper door": 8,
     "copper door open": 8,
     "copper ingot": 16,
+    "copper ore": 30,
     "corpse": 1,
     "dirt": 5,
     "fertilizer": 5,

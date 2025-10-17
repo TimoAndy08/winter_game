@@ -14,6 +14,7 @@ RESISTANCE = {
     "copper door": 3,
     "copper door open": 3,
     "copper ingot": 2,
+    "copper ore": 2,
     "furnace": 3,
     "ice": 1,
     "life crystal": 1,
