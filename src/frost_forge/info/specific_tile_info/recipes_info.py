@@ -18,6 +18,7 @@ RECIPES = {
     ),
     "furnace": (
         (("coal", 1), (("log", 1), ("fuel", 4))),
+        (("copper ingot", 1), (("raw copper", 1), ("fuel", 6))),
         (("glass", 1), (("sand", 2), ("fuel", 4))),
         (("slime crystal", 1), (("slime ball", 1), ("fuel", 8))),
     ),
@@ -35,6 +36,10 @@ RECIPES = {
     ),
     "masonry bench": (
         (("brick floor", 2), (("brick", 1),)),
+        (("copper brick", 2), (("copper ingot", 1), ("stone brick", 2))),
+        (("copper brick floor", 2), (("copper brick", 1))),
+        (("copper door", 1), (("copper brick", 1), ("copper brick floor", 1))),
+        (("furnace", 1), (("copper ingot", 6), ("stone brick", 8))),
         (("glass key", 1), (("glass", 3), ("handle", 1))),
         (("rock axe", 1), (("handle", 1), ("rock", 4))),
         (("rock hammer", 1), (("handle", 2), ("rock", 6))),
@@ -61,7 +66,7 @@ RECIPES = {
     "player": (
         (("stick", 4), (("wood", 2),)),
         (("wood", 2), (("log", 1),)),
-        (("wood door", 1), (("wood floor", 1), ("wood", 2))),
+        (("wood door", 1), (("wood floor", 1), ("wood", 1))),
         (("wood floor", 2), (("wood", 1),)),
         (("workbench", 1), (("flint", 1), ("wood", 4))),
     ),
