@@ -7,6 +7,7 @@ ROOM_COLORS = {
     "copper dungeon": {
         (136, 68, 31): {"kind": "copper brick", "floor": "copper brick floor"},
         (181, 102, 60): {"floor": "copper brick floor"},
+        (228, 148, 106): {"floor": "copper door"},
     },
     "mineshaft": {
         (53, 53, 54): {"kind": "stone brick", "floor": "stone floor"},
