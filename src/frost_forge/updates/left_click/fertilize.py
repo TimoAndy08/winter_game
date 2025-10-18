@@ -1,6 +1,6 @@
 from random import random
 
-from ...info import FERTILIZER_SPAWN, FERTILIZER_EFFICIENCY, GROW_CHANCE
+from ...info import FERTILIZER_SPAWN, FERTILIZER_EFFICIENCY, GROW_TIME
 from ...other_systems.tile_placement import place_tile
 from ..chunk_update.growth import grow
 
@@ -24,7 +24,7 @@ def fertilize_grow(chunks, inventory, inventory_key, grid_position):
     current_tile = chunks[grid_position[0]][grid_position[1]]
     if (
         random()
-        < FERTILIZER_EFFICIENCY[inventory_key] / GROW_CHANCE[current_tile["kind"]]
+        < FERTILIZER_EFFICIENCY[inventory_key] / GROW_TIME[current_tile["kind"]]
     ):
         chunks[grid_position[0]][grid_position[1]] = grow(current_tile, True)
     inventory[inventory_key] -= 1

@@ -23,6 +23,7 @@ UNOBTAINABLE = {
     "big rock",
     "bluebell grown",
     "carrot grown",
+    "copper pit grown",
     "coal ore",
     "copper ore",
     "corpse",

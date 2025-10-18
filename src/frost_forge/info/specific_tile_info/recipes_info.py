@@ -17,7 +17,7 @@ RECIPES = {
         (("moist dirt", 2), (("fertilizer", 1), ("dirt", 2), ("water", 1))),
     ),
     "furnace": (
-        (("coal", 1), (("log", 1), ("fuel", 4))),
+        (("coal", 1), (("log", 1), ("fuel", 2))),
         (("copper ingot", 1), (("raw copper", 1), ("fuel", 6))),
         (("glass", 1), (("sand", 2), ("fuel", 4))),
         (("slime crystal", 1), (("slime ball", 1), ("fuel", 8))),
@@ -25,6 +25,7 @@ RECIPES = {
     "manual press": (
         (("blue dye", 2), (("bluebell", 2), ("bowl", 1), ("water", 1))),
         (("blueprint", 1), (("blue dye", 2), ("paper", 3))),
+        (("copper pit", 1), (("raw copper", 2), ("flint shovel", 1), ("coal", 1))),
         (("paper", 2), (("wood pulp", 3),)),
         (("rock", 1), (("pebble", 3),)),
         (("sand", 1), (("pebble", 2),)),
@@ -32,7 +33,7 @@ RECIPES = {
         (("water hammer", 1), (("stick", 6), ("water", 5), ("rabbit fur", 2))),
         (("water pickaxe", 1), (("stick", 4), ("water", 3), ("rabbit fur", 1))),
         (("water shovel", 1), (("stick", 3), ("water", 2), ("rabbit fur", 1))),
-        (("water sword", 1), (("stick", 4), ("ice", 3), ("rabbit fur", 1))),
+        (("water sword", 1), (("stick", 4), ("water", 3), ("sand", 2), ("rabbit fur", 1))),
     ),
     "masonry bench": (
         (("brick floor", 2), (("brick", 1),)),

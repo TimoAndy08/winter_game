@@ -6,6 +6,7 @@ FLOOR = {
     "copper brick floor",
     "copper door",
     "copper door open",
+    "copper pit",
     "dirt",
     "ice",
     "log floor",
@@ -26,6 +27,7 @@ FLOOR = {
     "wood floor",
 }
 FLOOR_TYPE = {
+    "copper pit": "fluid",
     "ice": "block",
     "void": "block",
     "water": "fluid",
@@ -34,9 +36,10 @@ SOIL_STRENGTH = {
     "dirt": 1,
     "moist dirt": 1.25,
 }
-GROW_CHANCE = {
+GROW_TIME = {
     "bluebell": 400,
     "carrot": 160,
+    "copper pit": 600,
     "water": 60,
     "potato": 240,
     "rabbit child": 200,
@@ -47,6 +50,7 @@ GROW_CHANCE = {
 GROW_TILES = {
     "bluebell": {"kind": "bluebell grown", "inventory": {"bluebell": 2}},
     "carrot": {"kind": "carrot grown", "inventory": {"carrot": 2}},
+    "copper pit": {"kind": "copper pit grown", "inventory": {"copper ingot": 1, "flint": 1}},
     "water": {"floor": "ice"},
     "potato": {"kind": "potato grown", "inventory": {"potato": 2}},
     "rabbit child": {
@@ -81,6 +85,7 @@ STORAGE = {
     "void crate": (8, 64),
 }
 UNBREAK = {
+    "copper pit",
     "glass lock",
     "left",
     "obelisk",

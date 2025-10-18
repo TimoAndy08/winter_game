@@ -19,6 +19,7 @@ TOOL_REQUIRED = {
     "copper door open": "pickaxe",
     "copper ingot": "pickaxe",
     "copper ore": "pickaxe",
+    "copper pit grown": "pickaxe",
     "dirt": "shovel",
     "flint": "pickaxe",
     "furnace": "pickaxe",

@@ -31,7 +31,7 @@ from .specific_tile_info.tile_info import (
     FLOOR,
     FLOOR_TYPE,
     UNBREAK,
-    GROW_CHANCE,
+    GROW_TIME,
     GROW_TILES,
     GROW_REQUIREMENT,
     PROCESSING_TIME,
