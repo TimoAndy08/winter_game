@@ -76,9 +76,8 @@ def left_click(
             if "open" in attributes:
                 machine_ui = kind
                 location["opened"] = (grid_position[0], grid_position[1])
-                machine_inventory = chunks[grid_position[0]][grid_position[1]].get(
-                    "inventory", {}
-                )
+                machine_inventory = chunks[grid_position[0]][grid_position[1]].get("inventory", {})
+                recipe_number = chunks[grid_position[0]][grid_position[1]].get("recipe", -1)
             elif "sleep" in attributes:
                 if 9 / 16 <= (tick / DAY_LENGTH) % 1 < 15 / 16:
                     tick = (tick // DAY_LENGTH + 9 / 16) * DAY_LENGTH
