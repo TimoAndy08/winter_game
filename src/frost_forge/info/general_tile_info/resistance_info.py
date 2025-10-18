@@ -35,6 +35,7 @@ RESISTANCE = {
     "raw copper": 2,
     "rock": 1,
     "sawbench": 1,
+    "skeleton": 1,
     "slime block": 1,
     "slime door": 1,
     "slime door open": 1,

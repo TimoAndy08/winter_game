@@ -1,4 +1,5 @@
 from noise import pnoise2
+from math import tan
 
 from ..info import STRUCTURE_SIZE, ADJACENT_ROOMS, STRUCTURE_ROOMS
 
@@ -67,7 +68,7 @@ def ensure_hallways(dungeon, hallways, room, visited=None):
             elif adj_room in dungeon:
                 adj_dungeon_rooms.append(adj_room)
     if len(adj_dungeon_rooms):
-        adj_noise_value = int((pnoise2(room[0], room[1], 3, 0.5, 2) + 0.5) * len(adj_dungeon_rooms))
+        adj_noise_value = int((pnoise2(tan(room[0]), tan(room[1]), 3, 0.5, 2) + 0.5) * len(adj_dungeon_rooms))
         next_room = adj_dungeon_rooms[adj_noise_value]
         hallways = add_hallways(hallways, room, next_room)
         hallways = ensure_hallways(dungeon, hallways, next_room, visited)
@@ -89,6 +90,6 @@ def structure_rooms(dungeon_type, offset):
     entrance = (offset[0], y + 1 + offset[1])
     dungeon = {}
     for room in structure:
-        room_value = int((pnoise2(room[0], room[1], 3, 0.5, 2) + 0.5) * len(STRUCTURE_ROOMS[dungeon_type]))
+        room_value = int((pnoise2(tan(room[0]), tan(room[1]), 3, 0.5, 2) + 0.5) * len(STRUCTURE_ROOMS[dungeon_type]))
         dungeon[room] = STRUCTURE_ROOMS[dungeon_type][room_value]
     return dungeon, hallways, entrance

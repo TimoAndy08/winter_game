@@ -47,6 +47,7 @@ TOOL_REQUIRED = {
     "sand": "shovel",
     "sapling": "shovel",
     "sawbench": "axe",
+    "skeleton": "sword",
     "slime": "sword",
     "slime ball": "hammer",
     "slime block": "hammer",

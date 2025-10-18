@@ -72,6 +72,7 @@ HEALTH = {
     "sand": 6,
     "sapling": 4,
     "sawbench": 12,
+    "skeleton": 16,
     "slime": 20,
     "slime ball": 6,
     "slime block": 5,
