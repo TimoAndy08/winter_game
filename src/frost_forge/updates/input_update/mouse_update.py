@@ -59,6 +59,7 @@ def button_press(
                 health,
                 max_health,
                 inventory,
+                recipe_number,
             ) = left_click(
                 machine_ui,
                 grid_position,
@@ -90,9 +91,7 @@ def button_press(
         if "craft" in ATTRIBUTES.get(machine_ui, ()) or "machine" in ATTRIBUTES.get(
             machine_ui, ()
         ):
-            chunks[location["opened"][0]][location["opened"][1]]["recipe"] = (
-                recipe_number + (button == 5) - (button == 4)
-            ) % len(RECIPES[machine_ui])
+            recipe_number = (recipe_number + (button == 5) - (button == 4)) % len(RECIPES[machine_ui])
         else:
             inventory_number = (
                 inventory_number + (button == 5) - (button == 4)
@@ -107,4 +106,5 @@ def button_press(
         health,
         max_health,
         inventory,
+        recipe_number,
     )

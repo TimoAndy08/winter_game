@@ -1,11 +1,13 @@
 from ...info import (
     ATTRIBUTES,
     DAY_LENGTH,
-    FLOOR_TYPE,
     FERTILIZER_EFFICIENCY,
     GROW_TILES,
     ATTRACTION,
     BREEDABLE,
+    UI_SCALE,
+    SCREEN_SIZE,
+    RECIPES,
 )
 from ..left_click import (
     recipe,
@@ -105,5 +107,13 @@ def left_click(
             position, chunks, location, inventory, machine_ui
         )
     elif "craft" in ATTRIBUTES.get(machine_ui, ()):
-        inventory = recipe(machine_ui, recipe_number, inventory)
-    return machine_ui, chunks, location, machine_inventory, tick, health, max_health, inventory
+        if recipe_number >= 0:
+            inventory = recipe(machine_ui, recipe_number, inventory)
+        else:
+            moved_x = position[0] - SCREEN_SIZE[0] // 2
+            recipe_number = (moved_x + 112 * UI_SCALE) // (32 * UI_SCALE) + (
+                position[1] - SCREEN_SIZE[1] + 144 * UI_SCALE
+            ) // (32 * UI_SCALE) * 7
+            if recipe_number >= len(RECIPES[machine_ui]):
+                recipe_number = -1
+    return machine_ui, chunks, location, machine_inventory, tick, health, max_health, inventory, recipe_number

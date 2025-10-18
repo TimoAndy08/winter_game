@@ -7,6 +7,8 @@ from ...info import (
     SLOT_SIZE,
     TILE_UI_SIZE,
     HALF_SCREEN_SIZE,
+    STORAGE,
+    RECIPES,
 )
 from .craft_rendering import render_craft
 from .store_rendering import render_store
@@ -31,11 +33,11 @@ def render_open(machine_ui, window, images, recipe_number, machine_inventory):
             (HALF_SCREEN_SIZE + 96 * UI_SCALE, SCREEN_SIZE[1] - 76 * UI_SCALE),
         )
         if "craft" in attributes:
-            window = render_craft(window, machine_ui, images, recipe_number)
+            window = render_craft(window, RECIPES[machine_ui], images, recipe_number)
         elif "machine" in attributes:
             window = render_machine(
                 window, machine_ui, images, machine_inventory, recipe_number
             )
         elif "store" in attributes:
-            window = render_store(window, machine_ui, images, machine_inventory)
+            window = render_store(window, STORAGE[machine_ui][0], images, machine_inventory)
     return window

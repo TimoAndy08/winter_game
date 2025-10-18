@@ -105,6 +105,7 @@ def update_game(state, chunks):
                 state.health,
                 state.max_health,
                 state.inventory,
+                recipe_number
             ) = button_press(
                 event.button,
                 state.position,
@@ -123,6 +124,8 @@ def update_game(state, chunks):
                 ),
                 state.camera,
             )
+            if "recipe" in chunks[state.location["opened"][0]][state.location["opened"][1]]:
+                chunks[state.location["opened"][0]][state.location["opened"][1]]["recipe"] = recipe_number
         elif event.type == pg.KEYDOWN:
             keys = pg.key.get_pressed()
             if keys[state.controls[4]]:
