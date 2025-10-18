@@ -6,7 +6,7 @@ from ...world_generation.structure_generation import generate_structure
 from ...other_systems.game_saving import save_game
 from ...other_systems.walk import walkable
 from ..input_update.mouse_update import button_press
-from ...info import DAY_LENGTH, INVENTORY_SIZE
+from ...info import DAY_LENGTH, INVENTORY_SIZE, RECIPES
 
 
 def update_game(state, chunks):
@@ -119,9 +119,7 @@ def update_game(state, chunks):
                 state.machine_inventory,
                 state.tick,
                 state.inventory_number,
-                chunks[state.location["opened"][0]][state.location["opened"][1]].get(
-                    "recipe", 0
-                ),
+                chunks[state.location["opened"][0]][state.location["opened"][1]].get("recipe", -1),
                 state.camera,
             )
             if "recipe" in chunks[state.location["opened"][0]][state.location["opened"][1]]:
@@ -144,15 +142,17 @@ def update_game(state, chunks):
                 ) / 4
                 state.target_zoom = min(max(state.target_zoom, 0.5), 2)
             elif keys[state.controls[21]]:
-                state.menu_placement = "options_game"
-            elif keys[state.controls[19]]:
-                state.inventory_number = (state.inventory_number + 1) % INVENTORY_SIZE[
-                    0
-                ]
-            elif keys[state.controls[20]]:
-                state.inventory_number = (state.inventory_number - 1) % INVENTORY_SIZE[
-                    0
-                ]
+                if state.machine_ui not in RECIPES:
+                    state.menu_placement = "options_game"
+                else:
+                    chunks[state.location["opened"][0]][state.location["opened"][1]]["recipe"] = -1
+            elif keys[state.controls[19]] or keys[state.controls[20]]:
+                if state.machine_ui not in RECIPES:
+                    state.inventory_number = (state.inventory_number + keys[state.controls[19]] - keys[state.controls[20]]) % INVENTORY_SIZE[0]
+                else:
+                    recipe_number = chunks[state.location["opened"][0]][state.location["opened"][1]]["recipe"]
+                    recipe_number = (recipe_number + keys[state.controls[19]] - keys[state.controls[20]]) % len(RECIPES[state.machine_ui])
+                    chunks[state.location["opened"][0]][state.location["opened"][1]]["recipe"] = recipe_number
             for i in range(7, 19):
                 if keys[state.controls[i]]:
                     state.inventory_number = i - 7

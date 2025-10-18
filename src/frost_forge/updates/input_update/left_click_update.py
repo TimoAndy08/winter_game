@@ -100,15 +100,12 @@ def left_click(
                 if inventory[inventory_key] == 0:
                     del inventory[inventory_key]
                 chunks[grid_position[0]][grid_position[1]]["love"] = 100
-    elif "machine" in ATTRIBUTES.get(machine_ui, ()):
-        chunks, inventory = machine_storage(position, chunks, location, inventory, machine_ui)
-    elif "store" in ATTRIBUTES.get(machine_ui, ()):
-        chunks, machine_inventory = open_storage(
-            position, chunks, location, inventory, machine_ui
-        )
-    elif "craft" in ATTRIBUTES.get(machine_ui, ()):
+    elif machine_ui in RECIPES:
         if recipe_number >= 0:
-            inventory = recipe(machine_ui, recipe_number, inventory)
+            if "machine" in ATTRIBUTES[machine_ui]:
+                chunks, inventory = machine_storage(position, chunks, location, inventory, machine_ui)
+            else:
+                inventory = recipe(machine_ui, recipe_number, inventory)
         else:
             moved_x = position[0] - SCREEN_SIZE[0] // 2
             recipe_number = (moved_x + 112 * UI_SCALE) // (32 * UI_SCALE) + (
@@ -116,4 +113,8 @@ def left_click(
             ) // (32 * UI_SCALE) * 7
             if recipe_number >= len(RECIPES[machine_ui]):
                 recipe_number = -1
+    elif "store" in ATTRIBUTES.get(machine_ui, ()):
+        chunks, machine_inventory = open_storage(
+            position, chunks, location, inventory, machine_ui
+        )
     return machine_ui, chunks, location, machine_inventory, tick, health, max_health, inventory, recipe_number

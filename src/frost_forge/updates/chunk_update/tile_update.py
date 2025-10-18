@@ -21,8 +21,9 @@ def update_tile(
         chunks = left(chunks, chunk, tile)
     elif current_tile["kind"] == "up":
         chunks = up(chunks, chunk, tile)
-    elif "machine" in attributes and tick % PROCESSING_TIME[current_tile["kind"]] == 0:
-        chunks[chunk][tile]["inventory"] = recipe(current_tile["kind"], current_tile.get("recipe", 0), current_tile.get("inventory", {}))
+    elif "machine" in attributes:
+        if tick % PROCESSING_TIME[current_tile["kind"]] == 0 and current_tile["recipe"] >= 0:
+            chunks[chunk][tile]["inventory"] = recipe(current_tile["kind"], current_tile["recipe"], current_tile.get("inventory", {}))
     elif current_tile["kind"] in GROW_TILES:
         chunks[chunk][tile] = grow(current_tile)
         if chunks[chunk][tile] == {}:

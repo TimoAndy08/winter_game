@@ -1,4 +1,4 @@
-from ..info import MULTI_TILES
+from ..info import MULTI_TILES, RECIPES
 
 
 def place_tile(kind, grid_position, chunks):
@@ -32,4 +32,6 @@ def place_tile(kind, grid_position, chunks):
         }
     else:
         chunks[grid_position[0]][grid_position[1]] = {"kind": kind}
+    if kind in RECIPES:
+        chunks[grid_position[0]][grid_position[1]]["recipe"] = -1
     return chunks
