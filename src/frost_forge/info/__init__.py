@@ -4,6 +4,8 @@ from .specific_tile_info.recipes_info import RECIPES
 from .render_info import (
     SCREEN_SIZE,
     SLOT_SIZE,
+    BIG_SLOT_SIZE,
+    BIG_SLOT_PLACEMENT,
     UI_SCALE,
     HALF_SCREEN_SIZE,
     HALF_SIZE,
