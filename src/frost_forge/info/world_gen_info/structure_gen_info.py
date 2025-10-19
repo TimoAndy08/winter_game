@@ -52,7 +52,7 @@ STRUCTURE_HALLWAYS = {
     "mushroom hut": {"floor": "mushroom floor"},
 }
 LOOT_TABLES = {
-    "mushroom chest": ({
+    "mushroom chest": ((
         (0.7, "mushroom", 2, 7),
         (0.5, "mushroom block", 3, 5),
         (0.35, "spore", 1, 5),
@@ -63,8 +63,8 @@ LOOT_TABLES = {
         (0.05, "mushroom door", 1, 2),
         (0.03, "bonsai pot", 1, 2),
         (0.01, "composter", 1, 1),
-    }, 2, 5),
-    "mine chest": ({
+    ), 2, 5),
+    "mine chest": ((
         (0.7, "rock", 2, 4),
         (0.5, "flint", 3, 5),
         (0.35, "coal", 1, 3),
@@ -75,17 +75,17 @@ LOOT_TABLES = {
         (0.03, "rock pickaxe", 1, 1),
         (0.02, "rock axe", 1, 1),
         (0.01, "rock sword", 1, 1),
-    }, 2, 6),
-    "copper furnace": ({
+    ), 2, 6),
+    "copper furnace": ((
         (0.8, "fuel", 4, 16),
         (0.4, "raw copper", 2, 4),
         (0.1, "copper ingot", 1, 3),
-    }, 1, 2),
-    "banquet table": ({
+    ), 1, 2),
+    "banquet table": ((
         (0.4, "roasted mushroom", 1, 2),
         (0.3, "roasted rabbit meat", 1, 3),
         (0.2, "mushroom stew", 1, 1),
         (0.1, "life crystal", 1, 1),
-    }, 0, 1),
+    ), 0, 1),
 }
 ADJACENT_ROOMS = ((0, -1), (0, 1), (-1, 0), (1, 0))

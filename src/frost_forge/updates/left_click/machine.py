@@ -3,7 +3,7 @@ from ...info import (
     UI_SCALE,
     INVENTORY_SIZE,
     RECIPES,
-    STORAGE,
+    LOOT_TABLES,
     MACHINES,
     VALUES,
 )
@@ -39,18 +39,20 @@ def machine_storage(position, chunks, location, inventory, machine_ui):
                 if machine_recipe[1][i][0] == item[0]:
                     may_put_in = True
             if may_put_in:
-                machine_storage = STORAGE.get(machine_ui, (14, 16))
                 chunks = put_in(
                     chunks,
                     location,
                     inventory,
-                    machine_storage,
+                    (14, 64),
                     inventory_number,
                     machine["inventory"],
                 )
     slot_row = (position[1] - SCREEN_SIZE[1] + 144 * UI_SCALE) // (32 * UI_SCALE)
-    if slot_row == 2 and (moved_x + 112 * UI_SCALE) // (32 * UI_SCALE) == 0:
-        item = (machine_recipe[0][0], machine["inventory"].get(machine_recipe[0][0], 0))
+    slot_column = (moved_x + 112 * UI_SCALE) // (32 * UI_SCALE)
+    item = [machine_recipe[0][0], machine["inventory"].get(machine_recipe[0][0], 0)]
+    if slot_row == 2 and (slot_column == 0 or (item[0] in LOOT_TABLES and slot_column < len(LOOT_TABLES[item[0]]))):
+        if item[0] in LOOT_TABLES:
+            item[0] = LOOT_TABLES[item[0]][0][slot_column][1]
         if item[0] in machine["inventory"]:
             checking_inventory = list(machine["inventory"])
             for i in range(len(checking_inventory)):
