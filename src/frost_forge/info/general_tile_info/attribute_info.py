@@ -13,6 +13,7 @@ ATTRIBUTES = {
     "rabbit adult": {"animal"},
     "rabbit child": {"animal"},
     "sawbench": {"open", "craft"},
+    "sewbench": {"open", "craft"},
     "skeleton": {"enemy"},
     "slime": {"enemy"},
     "slime table": {"store", "table"},

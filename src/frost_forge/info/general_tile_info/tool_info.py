@@ -46,6 +46,7 @@ TOOL_REQUIRED = {
     "sand": "shovel",
     "sapling": "shovel",
     "sawbench": "axe",
+    "sewbench": "axe",
     "skeleton": "sword",
     "slime": "sword",
     "slime ball": "hammer",
@@ -61,6 +62,7 @@ TOOL_REQUIRED = {
     "stone brick": "pickaxe",
     "stone brick floor": "pickaxe",
     "stone floor": "pickaxe",
+    "thread": "needle",
     "torch": "axe",
     "tree": "axe",
     "treeling": "axe",
@@ -74,10 +76,11 @@ TOOL_REQUIRED = {
     "wooden table": "axe",
     "workbench": "axe",
 }
-TOOL_EFFICIENCY = {"flint": 1, "rock": 2, "water": 2}
+TOOL_EFFICIENCY = {"flint": 1, "rock": 2, "water": 2, "copper": 3}
 TOOLS = {
     "axe",
     "hammer",
+    "needle",
     "pickaxe",
     "shovel",
     "sword",

@@ -23,7 +23,7 @@ def save_creating(state, chunks):
         chunks[0, 0][0, 0] = {"kind": "obelisk"}
         chunks[0, 0][0, 1] = {"kind": "up"}
     else:
-        chunks[0, 0][0, 0] = {"kind": "void crate", "inventory": {"flint axe": 1, "sapling": 1, "dirt": 1, "composter": 1}}
+        chunks[0, 0][0, 0] = {"kind": "void crate", "inventory": {"flint axe": 1, "sapling": 1, "dirt": 1, "composter": 1, "copper needle": 1}}
         chunks[0, 0][0, 1] = {"kind": "void convertor"}
     chunks[0, 0][0, 2] = {"kind": "player", "floor": "void", "recipe": -1}
     state.tick = 0

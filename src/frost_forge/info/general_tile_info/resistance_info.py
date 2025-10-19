@@ -34,6 +34,7 @@ RESISTANCE = {
     "raw copper": 2,
     "rock": 1,
     "sawbench": 1,
+    "sewbench": 1,
     "skeleton": 1,
     "slime block": 1,
     "slime door": 1,
@@ -44,5 +45,6 @@ RESISTANCE = {
     "stone brick": 1,
     "stone brick floor": 1,
     "stone floor": 1,
+    "thread": 2,
     "tree": 1,
 }

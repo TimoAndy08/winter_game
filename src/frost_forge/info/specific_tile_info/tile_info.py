@@ -70,6 +70,7 @@ MULTI_TILES = {
     "masonry bench": (2, 1),
     "obelisk": (1, 2),
     "sawbench": (2, 1),
+    "sewbench": (2, 1),
     "wooden bed": (1, 2),
 }
 PROCESSING_TIME = {

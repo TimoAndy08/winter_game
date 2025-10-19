@@ -1,6 +1,7 @@
 RECIPES = {
     "campfire": (
         (("brick", 2), (("clay", 1),)),
+        (("copper needle", 1), (("copper ingot", 2),)),
         (("glass", 1), (("sand", 3),)),
         (("mushroom stew", 2), (("carrot", 1), ("mushroom", 3), ("water", 2))),
         (("roasted mushroom", 1), (("mushroom", 1), ("stick", 1))),
@@ -84,6 +85,9 @@ RECIPES = {
         (("wooden bed", 1), (("blue dye", 3), ("rabbit fur", 2), ("wood", 10))),
         (("wooden table", 1), (("wood floor", 4), ("stick", 4))),
     ),
+    "sewbench": (
+        (("thread", 1), (("rabbit fur", 2), ("stick", 1))),
+    ),
     "void convertor": (
         (("sapling", 1), (("log", 1), ("wood", 1))),
         (("rabbit child", 1), (("blue dye", 1), ("carrot", 4))),
@@ -103,6 +107,7 @@ RECIPES = {
         (("manual press", 1), (("flint hammer", 1), ("workbench", 1))),
         (("masonry bench", 1), (("flint pickaxe", 2), ("rock", 1), ("workbench", 1))),
         (("sawbench", 1), (("flint axe", 2), ("rock", 1), ("workbench", 1))),
+        (("sewbench", 1), (("copper needle", 1), ("rabbit fur", 2), ("workbench", 1))),
         (("wood pulp", 2), (("water", 2), ("wood", 3))),
     ),
 }
