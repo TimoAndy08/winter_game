@@ -1,4 +1,5 @@
-from ...info import RECIPES, INVENTORY_SIZE
+from ...info import RECIPES, INVENTORY_SIZE, LOOT_TABLES
+from ...world_generation.loot_calculation import calculate_loot
 
 
 def recipe(
@@ -20,5 +21,10 @@ def recipe(
         inventory[input[i][0]] -= input[i][1]
         if inventory[input[i][0]] <= 0:
             del inventory[input[i][0]]
-    inventory[output_item] = inventory.get(output_item, 0) + output_amount
+    if output_item not in LOOT_TABLES:
+        inventory[output_item] = inventory.get(output_item, 0) + output_amount
+    else:
+        loot = calculate_loot({"loot": inventory[output_item]})
+        for item in loot:
+            inventory[item] = loot[item] + inventory.get(item, 0)
     return inventory

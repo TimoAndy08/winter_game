@@ -27,7 +27,7 @@ def generate_structure(world_type, noise_offset, chunk_x, chunk_y, chunks, check
         if structure:
             dungeon, hallways, entrance = structure_rooms(structure_type, (chunk_x, chunk_y))
             for dungeon_room in dungeon:
-                if min(abs(dungeon_room[0]), abs(dungeon_room[1])) >= 2:
+                if max(abs(dungeon_room[0]), abs(dungeon_room[1])) >= 2:
                     chunks[dungeon_room] = generate_room(
                         structure_type,
                         dungeon[dungeon_room],
@@ -38,7 +38,7 @@ def generate_structure(world_type, noise_offset, chunk_x, chunk_y, chunks, check
                 checked.add(dungeon_room)
             for room in hallways:
                 for adjacent_room in hallways[room]:
-                    if min(abs(room[0]), abs(room[1]), abs(adjacent_room[0]), abs(adjacent_room[1])) >= 2:
+                    if max(abs(room[0]), abs(room[1]), abs(adjacent_room[0]), abs(adjacent_room[1])) >= 2:
                         if room[0] != adjacent_room[0]:
                             if room[0] > adjacent_room[0]:
                                 added_locations = ((0, 7), (0, 8))
@@ -53,6 +53,6 @@ def generate_structure(world_type, noise_offset, chunk_x, chunk_y, chunks, check
                             chunks[room][location] = {}
                             for info in STRUCTURE_HALLWAYS[structure_type]:
                                 chunks[room][location][info] = STRUCTURE_HALLWAYS[structure_type][info]
-            if min(abs(entrance[0]), abs(entrance[1])) >= 2:
+            if max(abs(entrance[0]), abs(entrance[1])) >= 2:
                 chunks[entrance][7, 0] = STRUCTURE_ENTRANCE[structure_type]
     return chunks, checked, save_chunks

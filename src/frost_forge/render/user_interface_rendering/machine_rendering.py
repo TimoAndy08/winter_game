@@ -9,7 +9,7 @@ from ...info import (
     UI_FONT,
     FLOOR_SIZE,
     HALF_SCREEN_SIZE,
-    RECIPES,
+    LOOT_TABLES,
 )
 from .store_rendering import render_store
 
@@ -52,13 +52,23 @@ def render_machine(window, current_recipes, images, machine_inventory, recipe_nu
             )
         position = (HALF_SCREEN_SIZE - 104 * UI_SCALE, SCREEN_SIZE[1] - 76 * UI_SCALE)
         item = machine_recipe[0][0]
-        if item not in FLOOR:
-            window.blit(pg.transform.scale(images[item], TILE_UI_SIZE), position)
+        if item not in LOOT_TABLES:
+            if item not in FLOOR:
+                window.blit(pg.transform.scale(images[item], TILE_UI_SIZE), position)
+            else:
+                window.blit(
+                    pg.transform.scale(images[item], FLOOR_SIZE),
+                    (position[0], position[1] + 8 * UI_SCALE),
+                )
         else:
-            window.blit(
-                pg.transform.scale(images[item], FLOOR_SIZE),
-                (position[0], position[1] + 8 * UI_SCALE),
-            )
+            for i in LOOT_TABLES[item]:
+                if i[1] not in FLOOR:
+                    window.blit(pg.transform.scale(images[i[1]], TILE_UI_SIZE), position)
+                else:
+                    window.blit(
+                        pg.transform.scale(images[i[1]], FLOOR_SIZE),
+                        (position[0], position[1] + 8 * UI_SCALE),
+                    )
         window.blit(
             UI_FONT.render(
                 f"{machine_inventory.get(item, 0)}/{machine_recipe[0][1]}",

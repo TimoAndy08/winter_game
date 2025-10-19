@@ -10,19 +10,18 @@ def structure_structure(dungeon_type, offset, dungeon=None, tile=None, distanse=
     if tile == None:
         tile = offset
     dungeon.add(tile)
-    if distanse < 10:
-        for pos in ADJACENT_ROOMS:
-            if (
-                pnoise2(offset[0] + distanse ** 2, offset[1] + distanse ** 2, 3, 0.5, 2) + 0.5 < STRUCTURE_SIZE[dungeon_type] ** distanse
-                and (tile[0] + pos[0], tile[1] + pos[1]) not in dungeon
-            ):
-                structure_structure(
-                    dungeon_type,
-                    offset,
-                    dungeon,
-                    (tile[0] + pos[0], tile[1] + pos[1]),
-                    distanse + 1,
-                )
+    for pos in ADJACENT_ROOMS:
+        if (
+            pnoise2(offset[0] + distanse ** 2, offset[1] + distanse ** 2, 3, 0.5, 2) + 0.5 < STRUCTURE_SIZE[dungeon_type] ** distanse
+            and (tile[0] + pos[0], tile[1] + pos[1]) not in dungeon
+        ):
+            dungeon = structure_structure(
+                dungeon_type,
+                offset,
+                dungeon,
+                (tile[0] + pos[0], tile[1] + pos[1]),
+                distanse + 1,
+            )
     return dungeon
 
 
