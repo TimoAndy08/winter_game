@@ -1,5 +1,4 @@
 HEALTH = {
-    "big rock": 45,
     "bluebell jar": 24,
     "blue dye": 6,
     "bluebell": 10,

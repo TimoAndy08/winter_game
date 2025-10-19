@@ -65,7 +65,6 @@ GROW_REQUIREMENT = {
     "bluebell": 1.25
 }
 MULTI_TILES = {
-    "big rock": (2, 2),
     "furnace": (2, 2),
     "manual press": (2, 1),
     "masonry bench": (2, 1),

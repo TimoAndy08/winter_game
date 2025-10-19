@@ -1,5 +1,4 @@
 RESISTANCE = {
-    "big rock": 2,
     "bluebell jar": 2,
     "bluebell grown": 1,
     "brick": 1,

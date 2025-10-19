@@ -20,7 +20,6 @@ FOOD = {
 }
 HEALTH_INCREASE = {"life crystal": (20, 40, 4)}
 UNOBTAINABLE = {
-    "big rock",
     "bluebell grown",
     "carrot grown",
     "copper pit grown",

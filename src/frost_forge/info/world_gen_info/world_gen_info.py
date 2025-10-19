@@ -3,7 +3,6 @@ NOISE_TILES = {
     "plains": (
         ((-0.5, -0.25), (0, 0.5), {"floor": "ice"}),
         ((-0.5, -0.2), (-0.15, 0), {"kind": "flint"}),
-        ((-0.1, 0.1), (-0.5, -0.4), {"kind": "big rock", "inventory": {"rock": 6}}),
         ((-0.2, 0.1), (-0.5, -0.35), {"kind": "rock"}),
         ((-0.1, 0.1), (0.45, 0.5), {"kind": "mushroom", "inventory": {"spore": 2}, "floor": "dirt"},),
         ((-0.15, 0.15), (0.4, 0.5), {"kind": "spore", "floor": "dirt"}),

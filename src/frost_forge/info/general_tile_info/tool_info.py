@@ -1,5 +1,4 @@
 TOOL_REQUIRED = {
-    "big rock": "pickaxe",
     "bluebell": "shovel",
     "bluebell grown": "shovel",
     "bluebell jar": "axe",
