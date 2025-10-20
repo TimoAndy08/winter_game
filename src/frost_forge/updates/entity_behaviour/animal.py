@@ -24,7 +24,6 @@ def animal(
                 for info in BREEDABLE[current_tile["kind"]]:
                     chunks[empty[0]][empty[1]][info] = BREEDABLE[current_tile["kind"]][info]
                 chunks[chunk][tile]["love"] = 0
-                del chunks[love_chunk][love_tile]["love"]
         else:
             found_love, love_chunk, love_tile = search_love(chunks, chunk, tile, ((x, y) for x in range(-4, 5) for y in range(-4, 5)))
             if found_love:

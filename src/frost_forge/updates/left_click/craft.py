@@ -25,6 +25,7 @@ def recipe(
         inventory[output_item] = inventory.get(output_item, 0) + output_amount
     else:
         loot = calculate_loot({"loot": output_item})
-        for item in loot["inventory"]:
-            inventory[item] = loot["inventory"][item] * output_amount + inventory.get(item, 0)
+        if "inventory" in loot:
+            for item in loot["inventory"]:
+                inventory[item] = loot["inventory"][item] * output_amount + inventory.get(item, 0)
     return inventory

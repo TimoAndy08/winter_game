@@ -9,7 +9,7 @@ NOISE_TILES = {
         ((0.3, 0.5), (0.2, 0.3), {"kind": "tree", "inventory": {"log": 2, "sapling": 2}, "floor": "dirt"},),
         ((0.25, 0.5), (0.15, 0.35), {"kind": "treeling", "inventory": {"log": 1, "sapling": 1}, "floor": "dirt",},),
         ((0.15, 0.5), (0.1, 0.4), {"kind": "sapling", "floor": "dirt"}),
-        ((-0.01, 0), (0.27, 0.28), {"kind": "rabbit adult", "floor": "dirt", "inventory": {"rabbit meat": 2, "rabbit fur": 1},},),
+        ((-0.01, 0), (0.27, 0.28), {"kind": "rabbit adult", "floor": "dirt", "inventory": {"rabbit meat": 1, "rabbit fur": 1},},),
         ((-0.05, 0), (0.25, 0.3), {"kind": "carrot", "floor": "dirt"}),
         ((-0.25, -0.15), (0.2, 0.3), {"kind": "clay"}),
         ((0.05, 0.1), (0.35, 0.4), {"kind": "bluebell", "floor": "dirt"}),

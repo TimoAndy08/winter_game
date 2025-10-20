@@ -50,12 +50,12 @@ GROW_TIME = {
 GROW_TILES = {
     "bluebell": {"kind": "bluebell grown", "inventory": {"bluebell": 2}},
     "carrot": {"kind": "carrot grown", "inventory": {"carrot": 2}},
-    "copper pit": {"kind": "copper pit grown", "inventory": {"copper ingot": 1, "flint": 1}},
+    "copper pit": {"kind": "copper pit grown", "inventory": {"copper ingot": 1}},
     "water": {"floor": "ice"},
     "potato": {"kind": "potato grown", "inventory": {"potato": 2}},
     "rabbit child": {
         "kind": "rabbit adult",
-        "inventory": {"rabbit fur": 1, "rabbit meat": 2},
+        "inventory": {"rabbit fur": 1, "rabbit meat": 1},
     },
     "sapling": {"kind": "treeling", "inventory": {"sapling": 1, "log": 1}},
     "spore": {"kind": "mushroom", "inventory": {"spore": 2}},

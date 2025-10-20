@@ -26,7 +26,7 @@ RECIPES = {
     "manual press": (
         (("blue dye", 2), (("bluebell", 2), ("bowl", 1), ("water", 1))),
         (("blueprint", 1), (("blue dye", 2), ("paper", 3))),
-        (("copper pit", 1), (("raw copper", 2), ("flint shovel", 1), ("coal", 1))),
+        (("copper pit", 1), (("raw copper", 1), ("flint shovel", 1), ("coal", 1))),
         (("paper", 2), (("wood pulp", 3),)),
         (("rock", 1), (("pebble", 3),)),
         (("sand", 1), (("pebble", 2),)),
@@ -89,7 +89,7 @@ RECIPES = {
         (("wooden table", 1), (("wood floor", 4), ("stick", 4))),
     ),
     "sewbench": (
-        (("thread", 1), (("rabbit fur", 2), ("stick", 1))),
+        (("thread", 1), (("rabbit fur", 1), ("stick", 1))),
     ),
     "void convertor": (
         (("sapling", 1), (("log", 1), ("wood", 1))),
