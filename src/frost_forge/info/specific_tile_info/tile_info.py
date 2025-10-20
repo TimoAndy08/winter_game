@@ -78,6 +78,7 @@ PROCESSING_TIME = {
     "furnace": 10 * FPS,
     "void convertor": 20 * FPS,
     "wood crucible": 300 * FPS,
+    "wooden sieve": 15 * FPS,
 }
 STORAGE = {
     "small barrel": (1, 512),

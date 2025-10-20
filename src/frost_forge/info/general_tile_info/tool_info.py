@@ -73,6 +73,7 @@ TOOL_REQUIRED = {
     "wood floor": "axe",
     "wood pulp": "shovel",
     "wooden bed": "axe",
+    "wooden sieve": "axe",
     "wooden table": "axe",
     "workbench": "axe",
 }

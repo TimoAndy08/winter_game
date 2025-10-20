@@ -47,4 +47,5 @@ RESISTANCE = {
     "stone floor": 1,
     "thread": 2,
     "tree": 1,
+    "wooden sieve": 1,
 }

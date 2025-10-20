@@ -24,6 +24,7 @@ ATTRIBUTES = {
     "void crate": {"open", "store"},
     "wood crucible": {"open", "machine"},
     "wooden bed": {"sleep"},
+    "wooden sieve": {"open", "machine"},
     "wooden table": {"store", "table"},
     "workbench": {"open", "craft"},
 }

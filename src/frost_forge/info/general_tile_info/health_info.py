@@ -106,6 +106,7 @@ HEALTH = {
     "wood pulp": 6,
     "wood": 4,
     "wooden bed": 12,
+    "wooden sieve": 12,
     "wooden table": 8,
     "workbench": 5,
 }

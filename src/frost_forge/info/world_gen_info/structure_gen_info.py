@@ -87,5 +87,11 @@ LOOT_TABLES = {
         (0.2, "mushroom stew", 1, 1),
         (0.1, "life crystal", 1, 1),
     ), 0, 1),
+    "basic sift": ((
+        (0.5, "rock", 1, 1),
+        (0.3, "clay", 1, 1),
+        (0.2, "coal", 1, 1),
+        (0.05, "raw copper", 1, 1),
+    ), 0, 2),
 }
 ADJACENT_ROOMS = ((0, -1), (0, 1), (-1, 0), (1, 0))
