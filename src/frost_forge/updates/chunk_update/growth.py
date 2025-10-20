@@ -11,7 +11,7 @@ def grow(tile, guarantee=False):
         old_kind = tile["floor"]
         grow_floor = True
     if random() < SOIL_STRENGTH.get(tile.get("floor"), 1) / (GROW_TIME[old_kind] * 6) or guarantee:
-        if GROW_REQUIREMENT.get(old_kind, 1) <= SOIL_STRENGTH.get(tile["floor"], 1):
+        if GROW_REQUIREMENT.get(old_kind, 1) <= SOIL_STRENGTH.get(tile.get("floor"), 1):
             for info in GROW_TILES[old_kind]:
                 tile[info] = GROW_TILES[old_kind][info]
             if "inventory" in GROW_TILES[old_kind]:

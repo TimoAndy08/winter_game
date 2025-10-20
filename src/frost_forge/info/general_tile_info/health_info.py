@@ -102,6 +102,8 @@ HEALTH = {
     "wood crucible": 10,
     "wood door": 8,
     "wood door open": 8,
+    "wood fence": 8,
+    "wood fence pole": 6,
     "wood floor": 6,
     "wood pulp": 6,
     "wood": 4,

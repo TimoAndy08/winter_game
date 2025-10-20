@@ -50,7 +50,7 @@ def move_entity(
                 del chunks[chunk][tile]
         else:
             obscured_path = True
-    elif len(current_tile["path"]) == 0 or obscured_path:
+    if len(current_tile["path"]) == 0 or obscured_path:
         del current_tile["path"]
         del current_tile["goal"]
     return chunks

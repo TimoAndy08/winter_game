@@ -70,6 +70,8 @@ TOOL_REQUIRED = {
     "wood crucible": "axe",
     "wood door": "axe",
     "wood door open": "axe",
+    "wood fence": "axe",
+    "wood fence pole": "axe",
     "wood floor": "axe",
     "wood pulp": "shovel",
     "wooden bed": "axe",

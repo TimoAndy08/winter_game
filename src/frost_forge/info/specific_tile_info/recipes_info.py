@@ -82,8 +82,10 @@ RECIPES = {
         (("small crate", 1), (("stick", 4), ("wood", 6))),
         (("stick", 2), (("wood", 1),)),
         (("wood crucible", 1), (("small barrel", 1), ("log", 2))),
+        (("wood fence", 1), (("wood fence pole", 1), ("stick", 2))),
+        (("wood fence pole", 1), (("wood", 1), ("stick", 2))),
         (("wooden bed", 1), (("blue dye", 3), ("rabbit fur", 2), ("wood", 10))),
-        (("wooden sieve", 1), (("thread", 3), ("wooden barrel", 1))),
+        (("wooden sieve", 1), (("thread", 3), ("small barrel", 1))),
         (("wooden table", 1), (("wood floor", 4), ("stick", 4))),
     ),
     "sewbench": (
