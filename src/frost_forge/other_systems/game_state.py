@@ -23,3 +23,4 @@ class GameState:
         self.checked = set()
         self.world_type = 0
         self.seed = ""
+        self.update_chunks = {}

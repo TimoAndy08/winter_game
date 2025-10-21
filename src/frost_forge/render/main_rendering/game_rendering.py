@@ -14,7 +14,6 @@ def render_game(
     chunks,
     location,
     zoom,
-    target_zoom,
     inventory,
     inventory_number,
     tick,
@@ -28,15 +27,11 @@ def render_game(
         location["real"][2] * TILE_SIZE + location["real"][0] * CHUNK_SIZE + HALF_SIZE,
         location["real"][3] * TILE_SIZE + location["real"][1] * CHUNK_SIZE + HALF_SIZE,
     )
-    interpolation = max(min(abs(1 - target_zoom / zoom) * 0.5 + 0.2, 1.0), 0.0)
     camera = (
-        (SCREEN_SIZE[0] * 5 / 8 - player_pixel_position[0] * zoom - position[0] / 4)
-        * interpolation
-        + camera[0] * (1 - interpolation),
-        (SCREEN_SIZE[1] * 5 / 8 - player_pixel_position[1] * zoom - position[1] / 4)
-        * interpolation
-        + camera[1] * (1 - interpolation),
+        (player_pixel_position[0] + position[0] / 4 / zoom) * 0.2 + camera[0] * 0.8,
+        (player_pixel_position[1] + position[1] / 4 / zoom) * 0.2 + camera[1] * 0.8,
     )
+    zoom_camera = (SCREEN_SIZE[0] * 5 / 8 - camera[0] * zoom, SCREEN_SIZE[1] * 5 / 8 - camera[1] * zoom)
     scaled_image = {}
     for image in images:
         if image in FLOOR:
@@ -52,13 +47,13 @@ def render_game(
                     ((size[1] + 1 / 2) * TILE_SIZE + 2) * zoom,
                 ),
             )
-    window = render_map(location, chunks, camera, zoom, scaled_image, window, images)
+    window = render_map(location, chunks, zoom_camera, zoom, scaled_image, window, images)
     window = render_hand(
-        inventory, inventory_number, camera, location, zoom, window, images
+        inventory, inventory_number, zoom_camera, location, zoom, window, images
     )
     window = render_ghost(
         position,
-        camera,
+        zoom_camera,
         zoom,
         chunks,
         location,
@@ -67,6 +62,6 @@ def render_game(
         scaled_image,
         window,
     )
-    window = render_lights(tick, chunks, location, zoom, camera, window)
-    window = render_mined(location["mined"], chunks, camera, zoom, window, images)
+    window = render_lights(tick, chunks, location, zoom, zoom_camera, window)
+    window = render_mined(location["mined"], chunks, zoom_camera, zoom, window, images)
     return camera, window

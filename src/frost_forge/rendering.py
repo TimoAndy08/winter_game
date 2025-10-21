@@ -26,7 +26,6 @@ def render(state: GameState, chunks, window, images) -> tuple:
             chunks,
             state.location,
             state.zoom,
-            state.target_zoom,
             state.inventory,
             state.inventory_number,
             state.tick,
