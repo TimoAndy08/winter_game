@@ -104,6 +104,7 @@ HEALTH = {
     "wood door open": 8,
     "wood fence": 8,
     "wood fence pole": 6,
+    "wood fence vertical": 8,
     "wood floor": 6,
     "wood pulp": 6,
     "wood": 4,
