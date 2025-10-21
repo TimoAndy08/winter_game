@@ -1,4 +1,4 @@
-from ...info import TILE_SIZE, ATTRIBUTES, RECIPES, INVENTORY_SIZE
+from ...info import TILE_SIZE, ATTRIBUTES, RECIPES, INVENTORY_SIZE, SCREEN_SIZE
 from .right_click_updates import right_click
 from .left_click_update import left_click
 
@@ -19,8 +19,8 @@ def button_press(
     recipe_number,
     camera,
 ):
-    world_x = int((position[0] - camera[0]) // (TILE_SIZE * zoom))
-    world_y = int((position[1] - camera[1]) // (TILE_SIZE * zoom))
+    world_x = (position[0] - SCREEN_SIZE[0] * 5 / 8 + camera[0] * zoom) // (TILE_SIZE * zoom)
+    world_y = (position[1] - SCREEN_SIZE[1] * 5 / 8 + camera[1] * zoom) // (TILE_SIZE * zoom)
     if (world_x - location["tile"][0] * 16 - location["tile"][2]) ** 2 + (
         world_y - location["tile"][1] * 16 - location["tile"][3]
     ) ** 2 <= 10 or "open" in ATTRIBUTES.get(machine_ui, ()):

@@ -33,7 +33,7 @@ RECIPES = {
     "manual press": (
         (("blue dye", 2), (("bluebell", 2), ("bowl", 1), ("water", 1))),
         (("blueprint", 1), (("blue dye", 2), ("paper", 3))),
-        (("copper pit", 1), (("raw copper", 1), ("flint shovel", 1), ("coal", 1))),
+        (("copper pit", 1), (("raw copper", 1), ("flint shovel", 1), ("coal", 1), ("clay", 1))),
         (("paper", 2), (("wood pulp", 3),)),
         (("rock", 1), (("pebble", 3),)),
         (("sand", 1), (("pebble", 2),)),
