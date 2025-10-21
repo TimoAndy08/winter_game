@@ -3,7 +3,7 @@ from ..entity_behaviour.animal import animal
 from ..entity_behaviour.enemy import enemy
 from .growth import grow
 from ..left_click import recipe
-from ...info import ATTRIBUTES, GROW_TILES, FPS, PROCESSING_TIME
+from ...info import ATTRIBUTES, GROW_TILES, PROCESSING_TIME
 
 
 def update_tile(
@@ -15,6 +15,7 @@ def update_tile(
     location,
     inventory_key,
     health,
+    create_tile,
 ):
     attributes = ATTRIBUTES.get(current_tile["kind"], ())
     if current_tile["kind"] == "left":
@@ -33,7 +34,7 @@ def update_tile(
         player_distance_y = abs(chunk[1] * 16 + tile[1] - location[1] * 16 - location[3])
         player_distance = player_distance_x ** 2 + player_distance_y ** 2
         if "animal" in attributes:
-            chunks = animal(
+            chunks, create_tile = animal(
                 chunks,
                 chunk,
                 tile,
@@ -41,9 +42,10 @@ def update_tile(
                 location,
                 inventory_key,
                 player_distance,
+                create_tile,
             )
         else:
-            chunks, health = enemy(
+            chunks, health, create_tile = enemy(
                 chunks,
                 chunk,
                 tile,
@@ -51,5 +53,6 @@ def update_tile(
                 location,
                 health,
                 player_distance,
+                create_tile,
             )
-    return chunks, health
+    return chunks, health, create_tile

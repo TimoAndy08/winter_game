@@ -12,6 +12,7 @@ def animal(
     location,
     inventory_key,
     player_distance,
+    create_tile,
 ):
     move = True
     if "love" in current_tile:
@@ -27,14 +28,14 @@ def animal(
         else:
             found_love, love_chunk, love_tile = search_love(chunks, chunk, tile, ((x, y) for x in range(-4, 5) for y in range(-4, 5)))
             if found_love:
-                chunks = move_entity(chunks, chunk, tile, current_tile, 1, (*love_chunk, *love_tile))
+                chunks, create_tile = move_entity(chunks, chunk, tile, current_tile, 1, (*love_chunk, *love_tile), create_tile)
                 move = False
         chunks[chunk][tile]["love"] -= 1
         if chunks[chunk][tile]["love"] <= 0:
             del chunks[chunk][tile]["love"]
     if move:
         if player_distance < 73 and inventory_key == ATTRACTION[current_tile["kind"]]:
-            chunks = move_entity(chunks, chunk, tile, current_tile, 1, location)
+            chunks, create_tile = move_entity(chunks, chunk, tile, current_tile, 1, location, create_tile)
         else:
-            chunks = move_entity(chunks, chunk, tile, current_tile, 0, location)
-    return chunks
+            chunks, create_tile = move_entity(chunks, chunk, tile, current_tile, 0, location, create_tile)
+    return chunks, create_tile

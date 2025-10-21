@@ -7,7 +7,7 @@ def update(state: GameState, chunks):
     if state.menu_placement != "main_game":
         chunks = update_menu(state, chunks)
     else:
-        chunks = update_game(state, chunks)
         if state.tick % (FPS // 6) == 0:
             chunks = update_tiles(state, chunks)
+        chunks = update_game(state, chunks)
     return chunks

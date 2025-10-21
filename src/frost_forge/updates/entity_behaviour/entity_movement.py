@@ -5,7 +5,7 @@ from ...other_systems.walk import walkable
 
 
 def move_entity(
-    chunks, chunk, tile, current_tile, type, location
+    chunks, chunk, tile, current_tile, type, location, create_tile,
 ):
     obscured_path = False
     if "goal" not in current_tile:
@@ -48,9 +48,10 @@ def move_entity(
                 chunks[chunk][tile] = {"floor": current_tile["floor"]}
             else:
                 del chunks[chunk][tile]
+            create_tile.add((path_chunk, path_tile))
         else:
             obscured_path = True
     if len(current_tile["path"]) == 0 or obscured_path:
         del current_tile["path"]
         del current_tile["goal"]
-    return chunks
+    return chunks, create_tile
