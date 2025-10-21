@@ -17,6 +17,13 @@ RECIPES = {
         (("flint", 1), (("compost", 10), ("pebble", 1))),
         (("moist dirt", 2), (("fertilizer", 1), ("dirt", 2), ("water", 1))),
     ),
+    "copper anvil": (
+        (("copper axe", 1), (("handle", 1), ("slime crystal", 2), ("copper ingot", 3))),
+        (("copper hammer", 1), (("handle", 2), ("slime crystal", 2), ("copper ingot", 5))),
+        (("copper pickaxe", 1), (("handle", 1), ("slime crystal", 2), ("copper ingot", 3))),
+        (("copper shovel", 1), (("handle", 1), ("slime crystal", 1), ("copper ingot", 2))),
+        (("copper sword", 1), (("handle", 1), ("slime crystal", 1), ("ice", 1), ("copper ingot", 3))),
+    ),
     "furnace": (
         (("coal", 1), (("log", 1), ("fuel", 2))),
         (("copper ingot", 1), (("raw copper", 1), ("fuel", 6))),
@@ -38,6 +45,7 @@ RECIPES = {
     ),
     "masonry bench": (
         (("brick floor", 2), (("brick", 1),)),
+        (("copper anvil", 1), (("copper block", 1), ("copper ingot", 2))),
         (("copper block", 1), (("copper ingot", 8),)),
         (("copper brick", 2), (("copper ingot", 1), ("stone brick", 2))),
         (("copper brick floor", 2), (("copper brick", 1),)),

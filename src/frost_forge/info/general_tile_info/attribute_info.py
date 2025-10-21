@@ -1,6 +1,7 @@
 ATTRIBUTES = {
     "campfire": {"open", "craft"},
     "composter": {"open", "machine"},
+    "copper anvil": {"open", "craft"},
     "furnace": {"open", "machine"},
     "glass key": {"key"},
     "glass lock": {"lock"},
