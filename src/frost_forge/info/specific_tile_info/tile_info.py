@@ -45,6 +45,7 @@ GROW_TIME = {
     "rabbit child": 200,
     "sapling": 80,
     "spore": 120,
+    "slime summon": 40,
     "treeling": 100,
 }
 GROW_TILES = {
@@ -58,6 +59,7 @@ GROW_TILES = {
         "inventory": {"rabbit fur": 1, "rabbit meat": 1},
     },
     "sapling": {"kind": "treeling", "inventory": {"sapling": 1, "log": 1}},
+    "slime summon": {"kind": "slime prince", "inventory": {"slife crystal": 1, "slime shaper": 1}},
     "spore": {"kind": "mushroom", "inventory": {"spore": 2}},
     "treeling": {"kind": "tree", "inventory": {"sapling": 2, "log": 2}},
 }
@@ -71,6 +73,7 @@ MULTI_TILES = {
     "obelisk": (1, 2),
     "sawbench": (2, 1),
     "sewbench": (2, 1),
+    "slime summon": (2, 2),
     "wooden bed": (1, 2),
 }
 PROCESSING_TIME = {
@@ -91,6 +94,7 @@ UNBREAK = {
     "left",
     "obelisk",
     "player",
+    "slime summon",
     "up",
     "void",
     "void convertor",

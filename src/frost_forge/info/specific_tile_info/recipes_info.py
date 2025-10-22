@@ -23,6 +23,8 @@ RECIPES = {
         (("copper pickaxe", 1), (("handle", 1), ("slime crystal", 2), ("copper ingot", 3))),
         (("copper shovel", 1), (("handle", 1), ("slime crystal", 1), ("copper ingot", 2))),
         (("copper sword", 1), (("handle", 1), ("slime crystal", 1), ("ice", 1), ("copper ingot", 3))),
+        (("life crystal", 1), (("slime crystal", 2), ("copper ingot", 3), ("ice", 1))),
+        (("slime summon", 1), (("slime crystal", 3), ("life crystal", 1))),
     ),
     "furnace": (
         (("coal", 1), (("log", 1), ("fuel", 2))),
@@ -70,10 +72,6 @@ RECIPES = {
         (("mushroom floor", 2), (("mushroom block", 1),)),
         (("mushroom table", 1), (("mushroom floor", 4), ("stick", 4))),
         (("plant bouquet", 1), (("bluebell", 1), ("carrot", 1), ("sapling", 1), ("spore", 1))),
-        (("slime block", 2), (("slime ball", 1), ("wood", 2))),
-        (("slime door", 1), (("slime floor", 1), ("slime block", 1))),
-        (("slime floor", 2), (("slime block", 1),)),
-        (("slime table", 1), (("slime floor", 4), ("stick", 4))),
     ),
     "player": (
         (("stick", 4), (("wood", 2),)),
@@ -99,6 +97,12 @@ RECIPES = {
     ),
     "sewbench": (
         (("thread", 1), (("rabbit fur", 1), ("stick", 1))),
+    ),
+    "slime shaper": (
+        (("slime block", 2), (("slime crystal", 1), ("wood", 2))),
+        (("slime door", 1), (("slime floor", 1), ("slime block", 1))),
+        (("slime floor", 2), (("slime block", 1),)),
+        (("slime table", 1), (("slime floor", 4), ("stick", 4))),
     ),
     "void convertor": (
         (("sapling", 1), (("log", 1), ("wood", 1))),

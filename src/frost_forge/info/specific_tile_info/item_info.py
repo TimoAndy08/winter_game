@@ -18,7 +18,7 @@ FOOD = {
     "roasted mushroom": 3,
     "roasted rabbit meat": 4,
 }
-HEALTH_INCREASE = {"life crystal": (20, 40, 4)}
+HEALTH_INCREASE = {"life crystal": (20, 40, 4), "slife crystal": (40, 50, 10)}
 UNOBTAINABLE = {
     "bluebell grown",
     "carrot grown",
@@ -32,6 +32,7 @@ UNOBTAINABLE = {
     "rabbit child",
     "skeleton",
     "slime",
+    "slime prince",
     "tree",
     "treeling",
 }

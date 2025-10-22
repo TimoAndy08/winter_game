@@ -17,6 +17,7 @@ ATTRIBUTES = {
     "sewbench": {"open", "craft"},
     "skeleton": {"enemy"},
     "slime": {"enemy"},
+    "slime shaper": {"open", "craft"},
     "slime table": {"store", "table"},
     "small barrel": {"open", "store"},
     "small crate": {"open", "store"},
