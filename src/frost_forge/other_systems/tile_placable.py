@@ -1,4 +1,4 @@
-from ..info import MULTI_TILES, FLOOR_TYPE, GROW_TILES
+from ..info import MULTI_TILES, FLOOR_TYPE, GROW_TILES, GROW_DIRT_IGNORE
 
 
 def is_placable(kind, grid_position, chunks):
@@ -21,8 +21,8 @@ def is_placable(kind, grid_position, chunks):
                     tile_floor_type = FLOOR_TYPE.get(current_tile["floor"])
                     if tile_floor_type == "block" or tile_floor_type == "fluid":
                         return False
-                    elif kind in GROW_TILES and current_tile["floor"].split()[-1] != "dirt":
+                    elif kind in GROW_TILES and kind not in GROW_DIRT_IGNORE and current_tile["floor"].split()[-1] != "dirt":
                         return False
-            elif kind in GROW_TILES:
+            elif kind in GROW_TILES and kind not in GROW_DIRT_IGNORE:
                 return False
     return True

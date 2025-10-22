@@ -33,6 +33,7 @@ from .specific_tile_info.tile_info import (
     UNBREAK,
     GROW_TIME,
     GROW_TILES,
+    GROW_DIRT_IGNORE,
     GROW_REQUIREMENT,
     PROCESSING_TIME,
     SOIL_STRENGTH,

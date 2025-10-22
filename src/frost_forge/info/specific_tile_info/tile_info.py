@@ -66,6 +66,10 @@ GROW_TILES = {
 GROW_REQUIREMENT = {
     "bluebell": 1.25
 }
+GROW_DIRT_IGNORE = {
+    "rabbit child",
+    "slime summon",
+}
 MULTI_TILES = {
     "furnace": (2, 2),
     "manual press": (2, 1),
@@ -73,6 +77,7 @@ MULTI_TILES = {
     "obelisk": (1, 2),
     "sawbench": (2, 1),
     "sewbench": (2, 1),
+    "slime prince": (2, 2),
     "slime summon": (2, 2),
     "wooden bed": (1, 2),
 }
