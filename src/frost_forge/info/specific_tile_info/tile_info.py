@@ -70,6 +70,10 @@ GROW_DIRT_IGNORE = {
     "rabbit child",
     "slime summon",
 }
+LIGHTS = {
+    "campfire": 8,
+    "torch": 12,
+}
 MULTI_TILES = {
     "furnace": (2, 2),
     "manual press": (2, 1),

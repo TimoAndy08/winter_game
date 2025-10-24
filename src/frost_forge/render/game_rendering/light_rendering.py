@@ -2,56 +2,25 @@ from math import cos, pi
 
 import pygame as pg
 
-from ...info import TILE_SIZE, HALF_SIZE, CHUNK_SIZE, SCREEN_SIZE, DAY_LENGTH
+from ...info import TILE_SIZE, HALF_SIZE, CHUNK_SIZE, SCREEN_SIZE, DAY_LENGTH, FLOOR_SIZE
 
 
-def create_light_surface(intensity: int, color: tuple[int, int, int]):
-    light_surface = pg.Surface((TILE_SIZE, TILE_SIZE), pg.SRCALPHA)
-    for i in range(16, 0, -1):
-        alpha = intensity - int((i / 16) * intensity)
-        pg.draw.circle(light_surface, (*color, alpha), (HALF_SIZE, HALF_SIZE), i)
-    return light_surface
-
-
-LIGHTS = {
-    "campfire": (create_light_surface(170, (181, 102, 60)), 832),
-    "torch": (create_light_surface(85, (181, 102, 60)), 832),
-}
-
-
-def render_lights(tick, chunks, location, zoom, camera, window):
+def render_lights(tick, lighting, location, zoom, camera, window):
     dark_overlay = pg.Surface(SCREEN_SIZE)
     dark_overlay.fill((19, 17, 18))
     dark_overlay.set_alpha(int((1 - cos(((tick / DAY_LENGTH * 2) - 1 / 2) * pi)) * 95))
     window.blit(dark_overlay, (0, 0))
 
-    for x in range(-3, 4):
-        for y in range(-3, 4):
+    for x in range(-2, 3):
+        for y in range(-2, 3):
             chunk = (x + location["tile"][0], y + location["tile"][1])
-            if chunk in chunks:
-                for tile in chunks[chunk]:
-                    current_tile = chunks[chunk][tile]
-                    if "kind" in current_tile and current_tile["kind"] in LIGHTS:
-                        scaled_glow = pg.transform.scale(
-                            LIGHTS[current_tile["kind"]][0],
-                            (
-                                int(LIGHTS[current_tile["kind"]][1] * zoom),
-                                int(LIGHTS[current_tile["kind"]][1] * zoom),
-                            ),
-                        )
-                        night_factor = 1 - cos(((tick / DAY_LENGTH * 2) - 1 / 2) * pi)
-                        scaled_glow.set_alpha(int(night_factor * 180))
-                        placement_x = (
-                            camera[0]
-                            + (tile[0] * TILE_SIZE + chunk[0] * CHUNK_SIZE + HALF_SIZE)
-                            * zoom
-                            - int(LIGHTS[current_tile["kind"]][1] * zoom / 2)
-                        )
-                        placement_y = (
-                            camera[1]
-                            + (tile[1] * TILE_SIZE + chunk[1] * CHUNK_SIZE + HALF_SIZE)
-                            * zoom
-                            - int(LIGHTS[current_tile["kind"]][1] * zoom / 2)
-                        )
-                        window.blit(scaled_glow, (placement_x, placement_y))
+            if chunk in lighting:
+                for tile in lighting[chunk]:
+                    current_tile = lighting[chunk][tile]
+                    placement_x = (camera[0] + (tile[0] * TILE_SIZE + chunk[0] * CHUNK_SIZE + HALF_SIZE) * zoom)
+                    placement_y = (camera[1] + (tile[1] * TILE_SIZE + chunk[1] * CHUNK_SIZE + HALF_SIZE) * zoom)
+                    night_factor = 1 - cos(((tick / DAY_LENGTH * 2) - 1 / 2) * pi)
+                    glow = pg.Surface((FLOOR_SIZE[0] * zoom, FLOOR_SIZE[1] * zoom), pg.SRCALPHA)
+                    glow = pg.draw.rect(glow, (228, 148, 106, int(6 * night_factor * current_tile)), glow.get_rect())
+                    window.blit(glow, (placement_x, placement_y))
     return window

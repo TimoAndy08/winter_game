@@ -1,6 +1,7 @@
 from ..chunk_update import update_tile
-from ...info import GROW_TILES, ATTRIBUTES, FPS
+from ...info import GROW_TILES, ATTRIBUTES, FPS, LIGHTS
 from ..chunk_update.growth import grow
+from ..chunk_update import lights
 
 
 def update_tiles(state, chunks):
@@ -11,6 +12,7 @@ def update_tiles(state, chunks):
         inventory_key = None
     if state.tick % (FPS * 5) == 0:
         state.update_chunks = {}
+        state.lighting = {}
         for chunk_dx in range(-3, 4):
             for chunk_dy in range(-3, 4):
                 chunk = (chunk_dx + tile_location[0], chunk_dy + tile_location[1])
@@ -21,6 +23,8 @@ def update_tiles(state, chunks):
                     if "kind" in current_tile:
                         if current_tile["kind"] in ATTRIBUTES or current_tile["kind"] in GROW_TILES:
                             updatable = True
+                        if current_tile["kind"] in LIGHTS:
+                            state.lighting = lights(state.lighting, chunks, chunk, tile)
                     elif current_tile["floor"] in GROW_TILES:
                         updatable = True
                     if updatable:

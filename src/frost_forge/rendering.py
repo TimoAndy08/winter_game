@@ -33,6 +33,7 @@ def render(state: GameState, chunks, window, images) -> tuple:
             state.position,
             window,
             images,
+            state.lighting,
         )
         window = render_ui(
             state.inventory_number,

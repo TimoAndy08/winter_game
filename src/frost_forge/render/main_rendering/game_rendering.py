@@ -21,6 +21,7 @@ def render_game(
     position,
     window,
     images,
+    lighting,
 ):
     window.fill((206, 229, 242))
     player_pixel_position = (
@@ -62,6 +63,6 @@ def render_game(
         scaled_image,
         window,
     )
-    window = render_lights(tick, chunks, location, zoom, zoom_camera, window)
+    window = render_lights(tick, lighting, location, zoom, zoom_camera, window)
     window = render_mined(location["mined"], chunks, zoom_camera, zoom, window, images)
     return camera, window

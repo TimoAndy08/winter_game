@@ -35,6 +35,7 @@ from .specific_tile_info.tile_info import (
     GROW_TILES,
     GROW_DIRT_IGNORE,
     GROW_REQUIREMENT,
+    LIGHTS,
     PROCESSING_TIME,
     SOIL_STRENGTH,
 )
