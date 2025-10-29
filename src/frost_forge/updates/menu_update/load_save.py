@@ -29,6 +29,7 @@ def save_loading(state, chunks):
             state.world_type = int(file_content[6])
             state.checked = literal_eval(file_content[7])
             state.save_chunks = literal_eval(file_content[8])
+            state.achievements = literal_eval(file_content[9])
             for x in range(-4, 5):
                 for y in range(-4, 5):
                     generate_chunk(

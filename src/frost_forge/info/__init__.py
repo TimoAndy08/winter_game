@@ -1,6 +1,7 @@
 from .general_tile_info.attribute_info import ATTRIBUTES
 from .general_tile_info.health_info import HEALTH
 from .specific_tile_info.recipes_info import RECIPES
+from .achievement_info import ACHIEVEMENTS
 from .render_info import (
     SCREEN_SIZE,
     SLOT_SIZE,

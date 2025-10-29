@@ -7,6 +7,7 @@ def save_creating(state, chunks):
     chunks = {}
     state.save_chunks = {(0, 0)}
     state.checked = set()
+    state.achievements = set()
     state.location["tile"] = [0, 0, 0, 2]
     state.location["real"] = [0, 0, 0, 2]
     state.noise_offset = generate_chunk(state.world_type, 0, 0, chunks, seed=state.seed)

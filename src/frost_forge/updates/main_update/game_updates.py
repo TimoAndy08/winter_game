@@ -6,7 +6,7 @@ from ...world_generation.structure_generation import generate_structure
 from ...other_systems.game_saving import save_game
 from ...other_systems.walk import walkable
 from ..input_update.mouse_update import button_press
-from ...info import DAY_LENGTH, INVENTORY_SIZE, RECIPES
+from ...info import DAY_LENGTH, INVENTORY_SIZE, RECIPES, ACHIEVEMENTS, FPS
 
 
 def update_game(state, chunks):
@@ -157,7 +157,13 @@ def update_game(state, chunks):
                 if keys[state.controls[i]]:
                     state.inventory_number = i - 7
 
+    for achievement in ACHIEVEMENTS:
+        if achievement in state.inventory and achievement not in state.achievements:
+            state.achievements.add(achievement)
+            state.achievement_popup = [10 * FPS, achievement]
+
     state.tick += 1
+    state.achievement_popup[0] = max(state.achievement_popup[0] - 1, 0)
     state.save_chunks.add((state.location["tile"][0], state.location["tile"][1]))
     if state.tick % (DAY_LENGTH // 4) == 0:
         save_game(chunks, state, f"autosave_{(state.tick // (DAY_LENGTH // 4)) % 4}")

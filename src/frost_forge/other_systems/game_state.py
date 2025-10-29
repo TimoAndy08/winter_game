@@ -20,8 +20,8 @@ class GameState:
         self.scroll = 0
         self.machine_inventory = {}
         self.camera = (0, 0)
-        self.checked = set()
         self.world_type = 0
         self.seed = ""
         self.update_chunks = {}
         self.lighting = {}
+        self.achievement_popup = [0, ""]
