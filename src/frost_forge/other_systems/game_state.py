@@ -23,5 +23,4 @@ class GameState:
         self.world_type = 0
         self.seed = ""
         self.update_chunks = {}
-        self.lighting = {}
         self.achievement_popup = [0, ""]

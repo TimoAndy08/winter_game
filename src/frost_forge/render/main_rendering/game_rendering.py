@@ -1,11 +1,12 @@
+from math import pi, cos
+
 import pygame as pg
 
-from ...info import TILE_SIZE, HALF_SIZE, CHUNK_SIZE, SCREEN_SIZE, MULTI_TILES, FLOOR
+from ...info import TILE_SIZE, HALF_SIZE, CHUNK_SIZE, SCREEN_SIZE, MULTI_TILES, FLOOR, DAY_LENGTH
 from ..game_rendering import (
     render_ghost,
     render_mined,
     render_hand,
-    render_lights,
     render_map,
 )
 
@@ -21,7 +22,6 @@ def render_game(
     position,
     window,
     images,
-    lighting,
 ):
     window.fill((206, 229, 242))
     player_pixel_position = (
@@ -63,6 +63,9 @@ def render_game(
         scaled_image,
         window,
     )
-    window = render_lights(tick, lighting, location, zoom, zoom_camera, window)
+    dark_overlay = pg.Surface(SCREEN_SIZE)
+    dark_overlay.fill((19, 17, 18))
+    dark_overlay.set_alpha(int((1 - cos(((tick / DAY_LENGTH * 2) - 1 / 2) * pi)) * 95))
+    window.blit(dark_overlay, (0, 0))
     window = render_mined(location["mined"], chunks, zoom_camera, zoom, window, images)
     return camera, window
