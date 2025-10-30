@@ -1,7 +1,8 @@
 MACHINES = {
-    "composter": "compost",
-    "furnace": "fuel",
-    "wood crucible": "fuel",
+    "composter": ("compost",),
+    "furnace": ("fuel",),
+    "wood crucible": ("fuel", "water fluid"),
+    "wooden sieve": ("water fluid",),
 }
 VALUES = {
     "compost": {
@@ -16,4 +17,8 @@ VALUES = {
         "coal": 8,
         "wood": 1,
     },
+    "water fluid": {
+        "water": 3,
+        "ice": 2,
+    }
 }

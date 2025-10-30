@@ -30,11 +30,16 @@ def machine_storage(position, chunks, location, inventory, machine_ui):
         if inventory_number < len(inventory):
             item = list(inventory.items())[inventory_number]
             may_put_in = False
-            if machine["kind"] in MACHINES and item[0] in VALUES[MACHINES[machine["kind"]]]:
-                may_put_in = True
-                convertion_inventory = list(inventory.items())
-                convertion_inventory[inventory_number] = (MACHINES[machine["kind"]], item[1] * VALUES[MACHINES[machine["kind"]]][item[0]])
-                inventory = dict(convertion_inventory)
+            if machine["kind"] in MACHINES:
+                i = 0
+                for value_item in MACHINES[machine["kind"]]:
+                    if item[0] in VALUES[value_item]:
+                        may_put_in = True
+                        convertion_inventory = list(inventory.items())
+                        convertion_inventory[inventory_number] = (MACHINES[machine["kind"]][i], item[1] * VALUES[value_item][item[0]])
+                        inventory = dict(convertion_inventory)
+                        break
+                    i += 1
             for i in range(0, len(machine_recipe[1])):
                 if machine_recipe[1][i][0] == item[0]:
                     may_put_in = True

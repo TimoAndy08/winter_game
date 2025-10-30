@@ -110,10 +110,10 @@ RECIPES = {
     ),
     "wood crucible": (
         (("water", 1), (("fuel", 4),)),
-        (("slime ball", 1), (("fuel", 10), ("water", 2))),
+        (("slime ball", 1), (("fuel", 10), ("water fluid", 4))),
     ),
     "wooden sieve": (
-        (("basic sift", 1), (("rock", 1), ("water", 1))),
+        (("basic sift", 1), (("rock", 1), ("water fluid", 2))),
     ),
     "workbench": (
         (("bowl", 1), (("stick", 1), ("wood", 1))),
