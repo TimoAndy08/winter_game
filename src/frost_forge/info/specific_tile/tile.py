@@ -1,4 +1,4 @@
-from ..render_info import FPS
+from ..render import FPS
 
 
 FLOOR = {
