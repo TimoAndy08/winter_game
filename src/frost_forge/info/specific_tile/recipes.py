@@ -1,4 +1,8 @@
 RECIPES = {
+    "burner drill": (
+        (("raw copper", 1), (("fuel", 2), ("copper mineable", 1))),
+        (("raw copper", 2), (("fuel", 8), ("copper mineable", 1))),
+    ),
     "campfire": (
         (("brick", 2), (("clay", 1),)),
         (("copper needle", 1), (("copper ingot", 2),)),
@@ -18,7 +22,9 @@ RECIPES = {
         (("moist dirt", 2), (("fertilizer", 1), ("dirt", 2), ("water", 1))),
     ),
     "copper anvil": (
+        (("burner drill", 1), (("copper ingot", 2), ("copper gear", 1), ("rock pickaxe", 1))),
         (("copper axe", 1), (("handle", 1), ("slime crystal", 2), ("copper ingot", 3))),
+        (("copper gear", 1), (("copper ingot", 2),)),
         (("copper hammer", 1), (("handle", 2), ("slime crystal", 2), ("copper ingot", 5))),
         (("copper pickaxe", 1), (("handle", 1), ("slime crystal", 2), ("copper ingot", 3))),
         (("copper shovel", 1), (("handle", 1), ("slime crystal", 1), ("copper ingot", 2))),

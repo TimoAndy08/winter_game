@@ -6,6 +6,7 @@ FLOOR = {
     "copper brick floor",
     "copper door",
     "copper door open",
+    "copper mineable",
     "copper pit",
     "dirt",
     "ice",
@@ -82,6 +83,7 @@ MULTI_TILES = {
     "wooden bed": (1, 2),
 }
 PROCESSING_TIME = {
+    "burner drill": 30 * FPS,
     "composter": 2 * FPS,
     "furnace": 10 * FPS,
     "void convertor": 20 * FPS,
@@ -94,6 +96,7 @@ STORAGE = {
     "void crate": (8, 64),
 }
 UNBREAK = {
+    "copper mineable",
     "copper pit",
     "glass lock",
     "left",

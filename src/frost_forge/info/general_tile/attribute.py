@@ -1,4 +1,5 @@
 ATTRIBUTES = {
+    "burner drill": {"open", "machine", "drill"},
     "campfire": {"open", "craft"},
     "composter": {"open", "machine"},
     "copper anvil": {"open", "craft"},

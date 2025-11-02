@@ -1,4 +1,5 @@
 MACHINES = {
+    "burner drill": ("fuel",),
     "composter": ("compost",),
     "furnace": ("fuel",),
     "wood crucible": ("fuel", "water fluid"),
