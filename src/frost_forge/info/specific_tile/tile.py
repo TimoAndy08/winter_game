@@ -3,6 +3,7 @@ from ..render import FPS
 
 FLOOR = {
     "brick floor",
+    "coal mineable",
     "copper brick floor",
     "copper door",
     "copper door open",
@@ -96,6 +97,7 @@ STORAGE = {
     "void crate": (8, 64),
 }
 UNBREAK = {
+    "coal mineable",
     "copper mineable",
     "copper pit",
     "glass lock",
