@@ -1,9 +1,9 @@
 RECIPES = {
     "burner drill": (
-        (("coal", 1), (("fuel", 1), ("coal mineable", 1))),
-        (("coal", 2), (("fuel", 4), ("coal mineable", 1))),
-        (("raw copper", 1), (("fuel", 2), ("copper mineable", 1))),
-        (("raw copper", 2), (("fuel", 8), ("copper mineable", 1))),
+        (("coal", 1), (("fuel", 2), ("coal mineable", 1))),
+        (("coal", 2), (("fuel", 8), ("coal mineable", 1))),
+        (("raw copper", 1), (("fuel", 4), ("copper mineable", 1))),
+        (("raw copper", 2), (("fuel", 16), ("copper mineable", 1))),
     ),
     "campfire": (
         (("brick", 2), (("clay", 1),)),
