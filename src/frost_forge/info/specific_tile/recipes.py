@@ -26,17 +26,32 @@ RECIPES = {
     "copper anvil": (
         (("burner drill", 1), (("copper ingot", 2), ("copper gear", 1), ("rock pickaxe", 1))),
         (("copper axe", 1), (("handle", 1), ("slime crystal", 2), ("copper ingot", 3))),
+        (("copper constructor", 1), (("copper sheet", 1), ("copper shaft", 1), ("copper gear", 1), ("stone brick", 4))),
         (("copper gear", 1), (("copper ingot", 2),)),
         (("copper hammer", 1), (("handle", 2), ("slime crystal", 2), ("copper ingot", 5))),
         (("copper pickaxe", 1), (("handle", 1), ("slime crystal", 2), ("copper ingot", 3))),
+        (("copper press", 1), (("copper block", 1), ("copper shaft", 1), ("stone brick", 4))),
         (("copper shovel", 1), (("handle", 1), ("slime crystal", 1), ("copper ingot", 2))),
         (("copper sword", 1), (("handle", 1), ("slime crystal", 1), ("ice", 1), ("copper ingot", 3))),
         (("life crystal", 1), (("slime crystal", 2), ("copper ingot", 3), ("ice", 1))),
         (("slime summon", 1), (("slime crystal", 3), ("life crystal", 1))),
     ),
+    "copper boiler": (
+        (("steam fluid", 5), (("water fluid", 5), ("fuel", 16))),
+    ),
+    "copper constructor": (
+        (("copper boiler", 1), (("copper tank", 3), ("copper pipe", 5), ("copper gear", 4), ("fuel", 32))),
+        (("copper pipe", 2), (("copper sheet", 2), ("copper ingot", 1), ("fuel", 12))),
+        (("copper pump", 1), (("copper pipe", 3), ("copper gear", 2), ("fuel", 24))),
+        (("copper tank", 1), (("copper sheet", 4), ("copper gear", 2), ("copper shaft", 1), ("fuel", 16))),
+    ),
+    "copper press": (
+        (("copper sheet", 1), (("copper ingot", 2), ("fuel", 8))),
+    ),
     "furnace": (
         (("coal", 1), (("log", 1), ("fuel", 2))),
         (("copper ingot", 1), (("raw copper", 1), ("fuel", 6))),
+        (("copper shaft", 1), (("copper ingot", 3), ("fuel", 8))),
         (("glass", 1), (("sand", 2), ("fuel", 4))),
         (("slime crystal", 1), (("slime ball", 1), ("fuel", 8))),
     ),
@@ -55,6 +70,8 @@ RECIPES = {
     ),
     "masonry bench": (
         (("brick floor", 2), (("brick", 1),)),
+        (("coal", 8), (("coal block", 1))),
+        (("coal block", 1), (("coal", 8),)),
         (("copper anvil", 1), (("copper block", 1), ("copper ingot", 2))),
         (("copper block", 1), (("copper ingot", 8),)),
         (("copper brick", 2), (("copper ingot", 1), ("stone brick", 2))),

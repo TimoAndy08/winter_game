@@ -73,6 +73,8 @@ GROW_DIRT_IGNORE = {
     "slime summon",
 }
 MULTI_TILES = {
+    "copper boiler": (3, 2),
+    "copper constructor": (2, 2),
     "furnace": (2, 2),
     "manual press": (2, 1),
     "masonry bench": (2, 1),
