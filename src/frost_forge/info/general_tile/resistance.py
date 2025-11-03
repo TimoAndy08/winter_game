@@ -44,6 +44,7 @@ RESISTANCE = {
     "potato grown": 1,
     "rabbit adult": 1,
     "raw copper": 2,
+    "raw tin": 2,
     "rock": 1,
     "sawbench": 1,
     "sewbench": 1,
@@ -62,6 +63,8 @@ RESISTANCE = {
     "stone brick floor": 1,
     "stone floor": 1,
     "thread": 2,
+    "tin ingot": 2,
+    "tin ore": 3,
     "tree": 1,
     "wooden sieve": 1,
 }

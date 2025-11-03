@@ -33,6 +33,7 @@ UNOBTAINABLE = {
     "skeleton",
     "slime",
     "slime prince",
+    "tin ore",
     "tree",
     "treeling",
 }

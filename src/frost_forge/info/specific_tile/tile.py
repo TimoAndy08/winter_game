@@ -88,6 +88,9 @@ MULTI_TILES = {
 PROCESSING_TIME = {
     "burner drill": 30 * FPS,
     "composter": 2 * FPS,
+    "copper boiler": 5 * FPS,
+    "copper constructor": 15 * FPS,
+    "copper press": 20 * FPS,
     "furnace": 10 * FPS,
     "void convertor": 20 * FPS,
     "wood crucible": 300 * FPS,

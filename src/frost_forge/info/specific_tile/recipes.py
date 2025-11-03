@@ -26,11 +26,11 @@ RECIPES = {
     "copper anvil": (
         (("burner drill", 1), (("copper ingot", 2), ("copper gear", 1), ("rock pickaxe", 1))),
         (("copper axe", 1), (("handle", 1), ("slime crystal", 2), ("copper ingot", 3))),
-        (("copper constructor", 1), (("copper sheet", 1), ("copper shaft", 1), ("copper gear", 1), ("stone brick", 4))),
+        (("copper constructor", 1), (("copper sheet", 1), ("copper shaft", 1), ("copper gear", 1), ("tin ingot", 1))),
         (("copper gear", 1), (("copper ingot", 2),)),
         (("copper hammer", 1), (("handle", 2), ("slime crystal", 2), ("copper ingot", 5))),
         (("copper pickaxe", 1), (("handle", 1), ("slime crystal", 2), ("copper ingot", 3))),
-        (("copper press", 1), (("copper block", 1), ("copper shaft", 1), ("stone brick", 4))),
+        (("copper press", 1), (("copper block", 1), ("copper shaft", 1), ("tin ingot", 4))),
         (("copper shovel", 1), (("handle", 1), ("slime crystal", 1), ("copper ingot", 2))),
         (("copper sword", 1), (("handle", 1), ("slime crystal", 1), ("ice", 1), ("copper ingot", 3))),
         (("life crystal", 1), (("slime crystal", 2), ("copper ingot", 3), ("ice", 1))),
@@ -40,7 +40,7 @@ RECIPES = {
         (("steam fluid", 5), (("water fluid", 5), ("fuel", 16))),
     ),
     "copper constructor": (
-        (("copper boiler", 1), (("copper tank", 3), ("copper pipe", 5), ("copper gear", 4), ("fuel", 32))),
+        (("copper boiler", 1), (("copper tank", 3), ("copper pipe", 5), ("tin ingot", 2), ("fuel", 32))),
         (("copper pipe", 2), (("copper sheet", 2), ("copper ingot", 1), ("fuel", 12))),
         (("copper pump", 1), (("copper pipe", 3), ("copper gear", 2), ("fuel", 24))),
         (("copper tank", 1), (("copper sheet", 4), ("copper gear", 2), ("copper shaft", 1), ("fuel", 16))),
@@ -54,6 +54,7 @@ RECIPES = {
         (("copper shaft", 1), (("copper ingot", 3), ("fuel", 8))),
         (("glass", 1), (("sand", 2), ("fuel", 4))),
         (("slime crystal", 1), (("slime ball", 1), ("fuel", 8))),
+        (("tin ingot", 1), (("raw tin", 1), ("fuel", 12))),
     ),
     "manual press": (
         (("blue dye", 2), (("bluebell", 2), ("bowl", 1), ("water", 1))),
