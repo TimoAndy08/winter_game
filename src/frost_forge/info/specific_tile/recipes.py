@@ -26,11 +26,12 @@ RECIPES = {
     "copper anvil": (
         (("burner drill", 1), (("copper ingot", 2), ("copper gear", 1), ("rock pickaxe", 1))),
         (("copper axe", 1), (("handle", 1), ("slime crystal", 2), ("copper ingot", 3))),
-        (("copper constructor", 1), (("copper sheet", 1), ("copper shaft", 1), ("copper gear", 1), ("tin ingot", 1))),
-        (("copper gear", 1), (("copper ingot", 2),)),
+        (("copper constructor", 1), (("copper sheet", 1), ("copper shaft", 1), ("copper gear", 2), ("tin ingot", 4))),
+        (("copper gear", 1), (("copper ingot", 4),)),
         (("copper hammer", 1), (("handle", 2), ("slime crystal", 2), ("copper ingot", 5))),
         (("copper pickaxe", 1), (("handle", 1), ("slime crystal", 2), ("copper ingot", 3))),
-        (("copper press", 1), (("copper block", 1), ("copper shaft", 1), ("tin ingot", 4))),
+        (("copper press", 1), (("copper block", 1), ("copper shaft", 1), ("tin ingot", 1))),
+        (("copper shaft", 2), (("copper ingot", 3),)),
         (("copper shovel", 1), (("handle", 1), ("slime crystal", 1), ("copper ingot", 2))),
         (("copper sword", 1), (("handle", 1), ("slime crystal", 1), ("ice", 1), ("copper ingot", 3))),
         (("life crystal", 1), (("slime crystal", 2), ("copper ingot", 3), ("ice", 1))),
@@ -41,12 +42,14 @@ RECIPES = {
     ),
     "copper constructor": (
         (("copper boiler", 1), (("copper tank", 3), ("copper pipe", 5), ("tin ingot", 2), ("fuel", 32))),
+        (("copper gear", 1), (("copper ingot", 3), ("fuel", 8))),
         (("copper pipe", 2), (("copper sheet", 2), ("copper ingot", 1), ("fuel", 12))),
-        (("copper pump", 1), (("copper pipe", 3), ("copper gear", 2), ("fuel", 24))),
-        (("copper tank", 1), (("copper sheet", 4), ("copper gear", 2), ("copper shaft", 1), ("fuel", 16))),
+        (("copper pump", 1), (("copper pipe", 1), ("copper gear", 1), ("fuel", 24))),
+        (("copper shaft", 1), (("copper ingot", 1), ("fuel", 8))),
+        (("copper tank", 1), (("copper sheet", 4), ("copper shaft", 1), ("fuel", 16))),
     ),
     "copper press": (
-        (("copper sheet", 1), (("copper ingot", 2), ("fuel", 8))),
+        (("copper sheet", 1), (("copper ingot", 1), ("fuel", 8))),
     ),
     "furnace": (
         (("coal", 1), (("log", 1), ("fuel", 2))),
