@@ -15,8 +15,8 @@ ROOM_COLORS = {
         (83, 107, 120): {"kind": "left", "floor": "stone floor"},
         (104, 130, 140): {"kind": "up", "floor": "stone floor"},
         (123, 104, 150): {"kind": "wooden table", "floor": "wood floor", "loot": "banquet table"},
-        (73, 58, 37): {"kind": "wood", "floor": "wood floor"},
-        (92, 74, 49): {"kind": "wooden table", "floor": "wood floor", "loot": "bookshelf"},
+        (73, 58, 37): {"kind": "small crate", "floor": "wood floor", "loot": "library shelf"},
+        (92, 74, 49): {"kind": "bookshelf", "floor": "wood floor"},
         (60, 181, 71): {"kind": "small crate", "floor": "wood floor", "loot": "copper treasure"},
     },
     "mineshaft": {

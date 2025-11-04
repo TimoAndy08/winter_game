@@ -109,6 +109,7 @@ RECIPES = {
         (("workbench", 1), (("flint", 1), ("wood", 4))),
     ),
     "sawbench": (
+        (("bookshelf", 1), (("paper", 3), ("wood", 2))),
         (("handle", 1), (("blue dye", 1), ("stick", 4))),
         (("log floor", 2), (("log", 1),)),
         (("mushroom shaper", 1), (("composter", 1), ("mushroom", 12))),

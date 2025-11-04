@@ -3,6 +3,7 @@ HEALTH = {
     "blue dye": 6,
     "bluebell": 10,
     "bluebell grown": 14,
+    "bookshelf": 8,
     "bowl": 6,
     "brick": 12,
     "brick floor": 8,

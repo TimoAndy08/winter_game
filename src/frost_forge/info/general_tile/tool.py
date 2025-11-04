@@ -2,6 +2,7 @@ TOOL_REQUIRED = {
     "bluebell": "shovel",
     "bluebell grown": "shovel",
     "bluebell jar": "axe",
+    "bookshelf": "axe",
     "brick": "pickaxe",
     "brick floor": "pickaxe",
     "burner drill": "pickaxe",

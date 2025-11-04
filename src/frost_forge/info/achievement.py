@@ -4,6 +4,6 @@ ACHIEVEMENTS = {
     "rabbit fur": ("You monster", "Was that really necessary?"),
     "wooden bed": ("Go get some sleep", "zzzzZzzZzZzzzZzzzzz"),
     "life crystal": ("Increasing love", "That's what lv stands for"),
-    "slime crystal": ("Slime slayer", "Not a ninja in sight"),
+    "slife crystal": ("Slime slayer", "Not a ninja in sight"),
     "copper ingot": ("Shiny things", "Need a lot of them you will"),
 }
