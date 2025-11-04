@@ -1,6 +1,7 @@
 from collections import deque
 
 from ...other_systems.walk import walkable
+from ...info import DIRECTION, MOVEMENT_TYPE
 
 
 def bfs(start, goal, chunks, current_tile):
@@ -16,7 +17,7 @@ def bfs(start, goal, chunks, current_tile):
 
     queue = deque([start])
     visited = {start: None}
-    directions = ((1, 0), (-1, 0), (0, 1), (0, -1))
+    directions = DIRECTION[MOVEMENT_TYPE.get(current_tile["kind"], 0)]
 
     while queue:
         current = queue.popleft()

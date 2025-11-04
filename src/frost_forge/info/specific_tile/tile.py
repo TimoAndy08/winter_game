@@ -81,8 +81,6 @@ MULTI_TILES = {
     "obelisk": (1, 2),
     "sawbench": (2, 1),
     "sewbench": (2, 1),
-    "slime prince": (2, 2),
-    "slime summon": (2, 2),
     "wooden bed": (1, 2),
 }
 PROCESSING_TIME = {

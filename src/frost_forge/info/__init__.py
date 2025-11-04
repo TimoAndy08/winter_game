@@ -59,4 +59,4 @@ from .world_gen.structure_gen import (
 )
 from .world_gen.loot_table import LOOT_TABLES
 from .specific_tile.value import VALUES, MACHINES
-from .specific_tile.entity import ATTRACTION, BREEDABLE
+from .specific_tile.entity import ATTRACTION, BREEDABLE, DAMAGE, DIRECTION, MOVEMENT_TYPE, RANGE
