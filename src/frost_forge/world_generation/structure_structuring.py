@@ -1,5 +1,6 @@
 from noise import pnoise2
 from math import tan
+from random import choice
 
 from ..info import STRUCTURE_SIZE, ADJACENT_ROOMS, STRUCTURE_ROOMS
 
@@ -89,6 +90,5 @@ def structure_rooms(dungeon_type, offset):
     entrance = (offset[0], y + 1 + offset[1])
     dungeon = {}
     for room in structure:
-        room_value = int((pnoise2(tan(room[0]), tan(room[1]), 3, 0.5, 2) + 0.5) * len(STRUCTURE_ROOMS[dungeon_type]))
-        dungeon[room] = STRUCTURE_ROOMS[dungeon_type][room_value]
+        dungeon[room] = choice(STRUCTURE_ROOMS[dungeon_type])
     return dungeon, hallways, entrance

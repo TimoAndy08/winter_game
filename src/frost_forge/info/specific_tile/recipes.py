@@ -61,9 +61,8 @@ RECIPES = {
     ),
     "manual press": (
         (("blue dye", 2), (("bluebell", 2), ("bowl", 1), ("water", 1))),
-        (("blueprint", 1), (("blue dye", 2), ("paper", 3))),
         (("copper pit", 1), (("raw copper", 1), ("flint shovel", 1), ("coal", 1), ("clay", 1))),
-        (("paper", 2), (("wood pulp", 3),)),
+        (("paper", 1), (("wood", 2),)),
         (("rock", 1), (("pebble", 3),)),
         (("sand", 1), (("pebble", 2),)),
         (("water axe", 1), (("stick", 4), ("water", 3), ("rabbit fur", 1))),
@@ -74,7 +73,7 @@ RECIPES = {
     ),
     "masonry bench": (
         (("brick floor", 2), (("brick", 1),)),
-        (("coal", 8), (("coal block", 1))),
+        (("coal", 8), (("coal block", 1),)),
         (("coal block", 1), (("coal", 8),)),
         (("copper anvil", 1), (("copper block", 1), ("copper ingot", 2))),
         (("copper block", 1), (("copper ingot", 8),)),
@@ -156,6 +155,5 @@ RECIPES = {
         (("masonry bench", 1), (("flint pickaxe", 2), ("rock", 1), ("workbench", 1))),
         (("sawbench", 1), (("flint axe", 2), ("rock", 1), ("workbench", 1))),
         (("sewbench", 1), (("copper needle", 1), ("rabbit fur", 2), ("workbench", 1))),
-        (("wood pulp", 2), (("water", 2), ("wood", 3))),
     ),
 }

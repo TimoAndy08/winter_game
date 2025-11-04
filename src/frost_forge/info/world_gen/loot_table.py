@@ -35,9 +35,8 @@ LOOT_TABLES = {
         (0.1, "life crystal", 1, 1),
     ), 0, 1),
     "bookshelf": ((
-        (0.4, "paper", 1, 2),
-        (0.3, "blueprint", 1, 1),
-        (0.2, "thread", 1, 2),
+        (0.4, "paper", 1, 1),
+        (0.2, "thread", 1, 1),
         (0.1, "copper needle", 1, 1),
     ), 0, 1),
     "copper treasure": ((

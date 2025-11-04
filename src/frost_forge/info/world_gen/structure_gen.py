@@ -11,7 +11,7 @@ ROOM_COLORS = {
         (138, 138, 140): {"kind": "skeleton", "floor": "copper brick floor"},
         (207, 206, 215): {"kind": "stone brick", "floor": "stone brick floor"},
         (247, 247, 255): {"floor": "stone brick floor"},
-        (53, 53, 54): {"kind": "furnace", "loot": "copper furnace", "floor": "stone floor", "recipe": 2},
+        (53, 53, 54): {"kind": "furnace", "loot": "copper furnace", "floor": "stone floor", "recipe": 1},
         (83, 107, 120): {"kind": "left", "floor": "stone floor"},
         (104, 130, 140): {"kind": "up", "floor": "stone floor"},
         (123, 104, 150): {"kind": "wooden table", "floor": "wood floor", "loot": "banquet table"},
