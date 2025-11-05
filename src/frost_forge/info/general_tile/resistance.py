@@ -46,6 +46,7 @@ RESISTANCE = {
     "raw copper": 2,
     "raw tin": 2,
     "rock": 1,
+    "sand": 1,
     "sawbench": 1,
     "sewbench": 1,
     "skeleton": 1,

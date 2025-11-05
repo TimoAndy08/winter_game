@@ -15,10 +15,11 @@ NOISE_TILES = {
         ((0.05, 0.1), (0.35, 0.4), {"kind": "bluebell", "floor": "dirt"}),
     ),
     "lake": (
-        ((-0.1, -0.05), (0.2, 0.3), {"kind": "tin ore", "inventory": {"raw tin": 1}, "floor": "pebble"}),
+        ((-0.1, -0.05), (0.2, 0.3), {"kind": "tin ore", "inventory": {"raw tin": 1}, "floor": "sand"}),
         ((0, 0.1), (0.3, 0.5), {"kind": "clay"}),
         ((-0.5, 0), (-0.1, 0.5), {"floor": "ice"}),
         ((-0.5, -0.1), (-0.25, -0.1), {"kind": "flint"}),
+        ((0, 0.2), (0.2, 0.5), {"floor": "sand"}),
     ),
     "forest": (
         ((0, 0.1), (0.3, 0.35), {"kind": "bluebell", "floor": "dirt"}),

@@ -60,7 +60,7 @@ RECIPES = {
         (("tin ingot", 1), (("raw tin", 1), ("fuel", 12))),
     ),
     "manual press": (
-        (("blue dye", 2), (("bluebell", 2), ("bowl", 1), ("water", 1))),
+        (("blue dye", 2), (("bluebell", 2), ("bowl", 1))),
         (("copper pit", 1), (("raw copper", 1), ("flint shovel", 1), ("coal", 1), ("clay", 1))),
         (("paper", 1), (("wood", 2),)),
         (("rock", 1), (("pebble", 3),)),
@@ -69,7 +69,7 @@ RECIPES = {
         (("water hammer", 1), (("stick", 6), ("water", 5), ("rabbit fur", 2))),
         (("water pickaxe", 1), (("stick", 4), ("water", 3), ("rabbit fur", 1))),
         (("water shovel", 1), (("stick", 3), ("water", 2), ("rabbit fur", 1))),
-        (("water sword", 1), (("stick", 4), ("water", 3), ("sand", 2), ("rabbit fur", 1))),
+        (("water sword", 1), (("stick", 4), ("water", 3), ("slime", 2), ("rabbit fur", 1))),
     ),
     "masonry bench": (
         (("brick floor", 2), (("brick", 1),)),
@@ -82,7 +82,7 @@ RECIPES = {
         (("copper door", 1), (("copper brick", 1), ("copper brick floor", 1))),
         (("copper ingot", 8), (("copper block", 1),)),
         (("furnace", 1), (("copper ingot", 6), ("stone brick", 8))),
-        (("glass key", 1), (("glass", 3), ("handle", 1))),
+        (("glass key", 1), (("glass", 3), ("coal", 1), ("handle", 1))),
         (("rock axe", 1), (("handle", 1), ("rock", 4))),
         (("rock hammer", 1), (("handle", 2), ("rock", 6))),
         (("rock pickaxe", 1), (("handle", 1), ("rock", 4))),

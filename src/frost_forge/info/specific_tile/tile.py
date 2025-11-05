@@ -17,6 +17,7 @@ FLOOR = {
     "mushroom door open",
     "mushroom floor",
     "pebble",
+    "sand",
     "slime door",
     "slime door open",
     "slime floor",
