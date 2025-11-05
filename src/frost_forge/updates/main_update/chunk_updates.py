@@ -1,5 +1,5 @@
 from ..chunk_update.tile_update import update_tile
-from ...info import GROW_TILES, ATTRIBUTES, FPS
+from ...info import GROW_TILES, ATTRIBUTES, FPS, ADJACENT_ROOMS
 from ..chunk_update.growth import grow
 
 
@@ -43,7 +43,15 @@ def update_tiles(state, chunks):
                         create_tile,
                     )
                 elif current_tile["floor"] in GROW_TILES:
-                    chunks[chunk][tile] = grow(current_tile)
+                    adjacent_grow_tiles = 0
+                    for i in ADJACENT_ROOMS:
+                        adjacent_tile = ((tile[0] + i[0]) % 16, (tile[1] + i[1]) % 16)
+                        adjacent_chunk = (chunk[0] + (tile[0] + i[0]) // 16, chunk[1] + (tile[1] + i[1]) // 16)
+                        if adjacent_tile in chunks[adjacent_chunk]:
+                            if chunks[adjacent_chunk][adjacent_tile].get("floor", None) in GROW_TILES:
+                                adjacent_grow_tiles += 1
+                    if (chunks[chunk][tile]["floor"] == "water" and adjacent_grow_tiles >= 2) or chunks[chunk][tile]["floor"] != "water":
+                        chunks[chunk][tile] = grow(current_tile)
                     if chunks[chunk][tile] == {}:
                         del chunks[chunk][tile]
     for location in create_tile:
