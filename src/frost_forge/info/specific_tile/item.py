@@ -19,6 +19,7 @@ FOOD = {
     "roasted rabbit meat": 4,
 }
 HEALTH_INCREASE = {"life crystal": (20, 40, 4), "slife crystal": (40, 50, 10)}
+INVENTORY_INCREASE = {"small backpack": (12, 6)}
 UNOBTAINABLE = {
     "bluebell grown",
     "carrot grown",

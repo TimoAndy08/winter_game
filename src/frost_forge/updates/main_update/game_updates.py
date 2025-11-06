@@ -6,7 +6,7 @@ from ...world_generation.structure_generation import generate_structure
 from ...other_systems.game_saving import save_game
 from ...other_systems.walk import walkable
 from ..input_update.mouse_update import button_press
-from ...info import DAY_LENGTH, INVENTORY_SIZE, RECIPES, ACHIEVEMENTS, FPS
+from ...info import DAY_LENGTH, RECIPES, ACHIEVEMENTS, FPS
 
 
 def update_game(state, chunks):
@@ -121,6 +121,7 @@ def update_game(state, chunks):
                 state.inventory_number,
                 chunks[state.location["opened"][0]][state.location["opened"][1]].get("recipe", -1),
                 state.camera,
+                state.inventory_size,
             )
             if "recipe" in chunks[state.location["opened"][0]][state.location["opened"][1]]:
                 chunks[state.location["opened"][0]][state.location["opened"][1]]["recipe"] = recipe_number
@@ -148,7 +149,7 @@ def update_game(state, chunks):
                     chunks[state.location["opened"][0]][state.location["opened"][1]]["recipe"] = -1
             elif keys[state.controls[19]] or keys[state.controls[20]]:
                 if state.machine_ui not in RECIPES:
-                    state.inventory_number = (state.inventory_number + keys[state.controls[19]] - keys[state.controls[20]]) % INVENTORY_SIZE[0]
+                    state.inventory_number = (state.inventory_number + keys[state.controls[19]] - keys[state.controls[20]]) % state.inventory_size[0]
                 else:
                     recipe_number = chunks[state.location["opened"][0]][state.location["opened"][1]]["recipe"]
                     recipe_number = (recipe_number + keys[state.controls[19]] - keys[state.controls[20]]) % len(RECIPES[state.machine_ui])

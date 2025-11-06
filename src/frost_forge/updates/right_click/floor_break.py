@@ -1,8 +1,8 @@
-from ...info import INVENTORY_SIZE, HEALTH
+from ...info import HEALTH
 from .damage_calculation import calculate_damage
 
 
-def break_floor(mining_tile, inventory, inventory_number):
+def break_floor(mining_tile, inventory, inventory_number, inventory_size):
     delete_mining_tile = False
     if "health" not in mining_tile:
         mining_tile["health"] = HEALTH[mining_tile["floor"]]
@@ -12,9 +12,9 @@ def break_floor(mining_tile, inventory, inventory_number):
     broke = False
     if mining_tile["health"] <= 0:
         if mining_tile["floor"] in inventory:
-            if inventory[mining_tile["floor"]] < INVENTORY_SIZE[1]:
+            if inventory[mining_tile["floor"]] < inventory_size[1]:
                 broke = True
-        elif len(inventory) < INVENTORY_SIZE[0]:
+        elif len(inventory) < inventory_size[0]:
             broke = True
     if broke:
         if mining_tile["floor"].split()[-1] == "open":

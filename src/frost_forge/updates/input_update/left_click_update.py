@@ -34,6 +34,7 @@ def left_click(
     inventory: dict[str, int],
     machine_inventory: dict[str, int],
     tick: int,
+    inventory_size: list[int, int],
 ):
     if machine_ui == "game":
         if inventory_number < len(inventory):
@@ -58,7 +59,7 @@ def left_click(
         ):
             chunks = fertilize_spawn(chunks, inventory, inventory_key, grid_position)
         elif is_not_tile or not is_kind:
-            chunks, health, max_health = place(
+            chunks, health, max_health, inventory_size = place(
                 inventory,
                 inventory_key,
                 is_not_tile,
@@ -67,6 +68,7 @@ def left_click(
                 max_health,
                 grid_position,
                 chunks,
+                inventory_size,
             )
         else:
             attributes = ATTRIBUTES.get(
@@ -92,7 +94,7 @@ def left_click(
                 )
             elif "store" in attributes:
                 chunks = closed_storage(
-                    chunks, grid_position, inventory, location, inventory_number
+                    chunks, grid_position, inventory, location, inventory_number, inventory_size
                 )
             elif kind in BREEDABLE and inventory_key == ATTRACTION[kind]:
                 inventory[inventory_key] -= 1
@@ -102,9 +104,9 @@ def left_click(
     elif machine_ui in RECIPES:
         if recipe_number >= 0:
             if "machine" in ATTRIBUTES[machine_ui]:
-                chunks, inventory = machine_storage(position, chunks, location, inventory, machine_ui)
+                chunks, inventory = machine_storage(position, chunks, location, inventory, machine_ui, inventory_size)
             else:
-                inventory = recipe(machine_ui, recipe_number, inventory)
+                inventory = recipe(machine_ui, recipe_number, inventory, inventory_size)
         else:
             moved_x = position[0] - SCREEN_SIZE[0] // 2
             recipe_number = (moved_x + 112 * UI_SCALE) // (32 * UI_SCALE) + (
@@ -114,6 +116,6 @@ def left_click(
                 recipe_number = -1
     elif "store" in ATTRIBUTES.get(machine_ui, ()):
         chunks, machine_inventory = open_storage(
-            position, chunks, location, inventory, machine_ui
+            position, chunks, location, inventory, machine_ui, inventory_size
         )
     return machine_ui, chunks, location, machine_inventory, tick, health, max_health, inventory, recipe_number

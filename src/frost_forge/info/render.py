@@ -21,7 +21,6 @@ FLOOR_SIZE = (16 * UI_SCALE, 16 * UI_SCALE)
 HALF_SCREEN_SIZE = SCREEN_SIZE[0] // 2
 BIG_SLOT_SIZE = (96 * UI_SCALE, 96 * UI_SCALE)
 BIG_SLOT_PLACEMENT = (HALF_SCREEN_SIZE - 128 * UI_SCALE, SCREEN_SIZE[1] - 144 * UI_SCALE)
-INVENTORY_SIZE = (12, 64)
 TEXT_DISTANCE = 75
 SETTINGS_FILE = os.path.normpath(os.path.join(__file__, "../../..", "settings.txt"))
 SAVES_FOLDER = os.path.normpath(os.path.join(__file__, "../../..", "saves"))

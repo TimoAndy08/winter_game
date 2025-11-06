@@ -1,4 +1,4 @@
-from ...info import TILE_SIZE, ATTRIBUTES, RECIPES, INVENTORY_SIZE, SCREEN_SIZE
+from ...info import TILE_SIZE, ATTRIBUTES, RECIPES, SCREEN_SIZE
 from .right_click_updates import right_click
 from .left_click_update import left_click
 
@@ -18,6 +18,7 @@ def button_press(
     inventory_number,
     recipe_number,
     camera,
+    inventory_size,
 ):
     world_x = (position[0] - SCREEN_SIZE[0] * 5 / 8 + camera[0] * zoom) // (TILE_SIZE * zoom)
     world_y = (position[1] - SCREEN_SIZE[1] * 5 / 8 + camera[1] * zoom) // (TILE_SIZE * zoom)
@@ -73,9 +74,10 @@ def button_press(
                 inventory,
                 machine_inventory,
                 tick,
+                inventory_size,
             )
         elif button == 3:
-            chunks, location, machine_ui, machine_inventory, health = right_click(
+            chunks, location, machine_ui, machine_inventory, health, inventory = right_click(
                 chunks,
                 grid_position,
                 inventory,
@@ -85,6 +87,7 @@ def button_press(
                 position,
                 machine_inventory,
                 health,
+                inventory_size,
             )
 
     if button == 4 or button == 5:
@@ -95,7 +98,7 @@ def button_press(
         else:
             inventory_number = (
                 inventory_number + (button == 5) - (button == 4)
-            ) % INVENTORY_SIZE[0]
+            ) % inventory_size[0]
     return (
         chunks,
         location,

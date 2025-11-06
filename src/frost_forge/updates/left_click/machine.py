@@ -1,7 +1,6 @@
 from ...info import (
     SCREEN_SIZE,
     UI_SCALE,
-    INVENTORY_SIZE,
     RECIPES,
     LOOT_TABLES,
     MACHINES,
@@ -11,7 +10,7 @@ from .put_in import put_in
 from .take_out import take_out
 
 
-def machine_storage(position, chunks, location, inventory, machine_ui):
+def machine_storage(position, chunks, location, inventory, machine_ui, inventory_size, singular=False):
     if "inventory" not in chunks[location["opened"][0]][location["opened"][1]]:
         chunks[location["opened"][0]][location["opened"][1]]["inventory"] = {}
     moved_x = position[0] - SCREEN_SIZE[0] // 2
@@ -19,13 +18,13 @@ def machine_storage(position, chunks, location, inventory, machine_ui):
     machine_recipe = RECIPES[machine_ui][machine.get("recipe", 0)]
     holding_over_inventory = (
         position[1] >= SCREEN_SIZE[1] - 32 * UI_SCALE
-        and abs(moved_x) <= 16 * INVENTORY_SIZE[0] * UI_SCALE
+        and abs(moved_x) <= 16 * inventory_size[0] * UI_SCALE
     )
     if holding_over_inventory:
         inventory_number = (
-            (moved_x - 16 * UI_SCALE * (INVENTORY_SIZE[0] % 2)) // (32 * UI_SCALE)
-            + INVENTORY_SIZE[0] // 2
-            + INVENTORY_SIZE[0] % 2
+            (moved_x - 16 * UI_SCALE * (inventory_size[0] % 2)) // (32 * UI_SCALE)
+            + inventory_size[0] // 2
+            + inventory_size[0] % 2
         )
         if inventory_number < len(inventory):
             item = list(inventory.items())[inventory_number]
@@ -51,6 +50,7 @@ def machine_storage(position, chunks, location, inventory, machine_ui):
                     (14, 64),
                     inventory_number,
                     machine["inventory"],
+                    singular,
                 )
     slot_row = (position[1] - SCREEN_SIZE[1] + 144 * UI_SCALE) // (32 * UI_SCALE)
     slot_column = (moved_x + 112 * UI_SCALE) // (32 * UI_SCALE)
@@ -63,5 +63,5 @@ def machine_storage(position, chunks, location, inventory, machine_ui):
             for i in range(len(checking_inventory)):
                 if checking_inventory[i] == item[0]:
                     slot_number = i
-            chunks = take_out(chunks, location, inventory, slot_number, machine["inventory"])
+            chunks = take_out(chunks, location, inventory, slot_number, machine["inventory"], inventory_size, singular)
     return chunks, inventory

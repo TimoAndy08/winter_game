@@ -14,7 +14,6 @@ from .render import (
     CHUNK_SIZE,
     FLOOR_SIZE,
     TILE_UI_SIZE,
-    INVENTORY_SIZE,
     FPS,
     UI_FONT,
     BIG_UI_FONT,
@@ -45,6 +44,7 @@ from .specific_tile.item import (
     FERTILIZER_SPAWN,
     FOOD,
     UNOBTAINABLE,
+    INVENTORY_INCREASE,
 )
 from .general_tile.tool import TOOL_EFFICIENCY, TOOL_REQUIRED, TOOLS
 from .world_gen.world_gen import NOISE_TILES, BIOMES, WORLD_TYPES

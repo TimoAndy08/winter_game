@@ -46,7 +46,8 @@ def render(state: GameState, chunks, window, images) -> tuple:
             state.machine_inventory,
             window,
             images,
-            state.achievement_popup
+            state.achievement_popup,
+            state.inventory_size,
         )
         cursor_size = (int(32 * state.zoom), int(32 * state.zoom))
         cursor_place = (

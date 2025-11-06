@@ -1,8 +1,8 @@
-from ...info import INVENTORY_SIZE, HEALTH, UNOBTAINABLE
+from ...info import HEALTH, UNOBTAINABLE
 from .damage_calculation import calculate_damage
 
 
-def break_tile(inventory, chunks, mining_tile, inventory_number):
+def break_tile(inventory, chunks, mining_tile, inventory_number, inventory_size):
     delete_mining_tile = False
     if "health" not in mining_tile:
         mining_tile["health"] = HEALTH[mining_tile["kind"]]
@@ -23,11 +23,11 @@ def break_tile(inventory, chunks, mining_tile, inventory_number):
         for item, amount in mining_tile["inventory"].items():
             if item in inventory:
                 inventory[item] += amount
-                if inventory[item] > INVENTORY_SIZE[1]:
-                    junk_inventory[item] = inventory[item] - INVENTORY_SIZE[1]
-                    inventory[item] = INVENTORY_SIZE[1]
+                if inventory[item] > inventory_size[1]:
+                    junk_inventory[item] = inventory[item] - inventory_size[1]
+                    inventory[item] = inventory_size[1]
             else:
-                if len(inventory) < INVENTORY_SIZE[0]:
+                if len(inventory) < inventory_size[0]:
                     inventory[item] = amount
                 else:
                     junk_inventory[item] = amount

@@ -12,9 +12,10 @@ def render_ui(
     window,
     images,
     achievement_popup,
+    inventory_size,
 ):
     window = render_health(window, images, health, max_health)
-    window = render_inventory(inventory_number, window, images, inventory)
+    window = render_inventory(inventory_number, window, images, inventory, inventory_size)
     window = render_open(machine_ui, window, images, recipe_number, machine_inventory)
     if achievement_popup[0] > 0:
         window = render_achievement(achievement_popup[1], window, images)

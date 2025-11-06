@@ -126,6 +126,7 @@ RECIPES = {
     ),
     "sewbench": (
         (("thread", 1), (("rabbit fur", 1), ("stick", 1))),
+        (("small backpack", 1), (("thread", 4), ("slime crystal", 1))),
     ),
     "slime shaper": (
         (("slime block", 2), (("slime crystal", 1), ("wood", 2))),

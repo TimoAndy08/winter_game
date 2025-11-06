@@ -103,6 +103,7 @@ HEALTH = {
     "slime prince": 100,
     "slime shaper": 20,
     "slime table": 10,
+    "small backpack": 16,
     "small barrel": 10,
     "small crate": 10,
     "spore": 4,

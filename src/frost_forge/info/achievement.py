@@ -6,4 +6,6 @@ ACHIEVEMENTS = {
     "life crystal": ("Increasing love", "That's what lv stands for"),
     "slife crystal": ("Slime slayer", "Not a ninja in sight"),
     "copper ingot": ("Shiny things", "Need a lot of them you will"),
+    "small backpack": ("Inventory upgrade", "Don't craft multiple tho"),
+    "copper boiler": ("Steam age", "Automation time?"),
 }

@@ -29,7 +29,7 @@ def update_tile(
             if "drill" in attributes and "floor" in current_tile:
                 if current_tile["floor"].split(" ")[-1] == "mineable":
                     current_tile["inventory"][current_tile["floor"]] = 1
-            chunks[chunk][tile]["inventory"] = recipe(current_tile["kind"], current_tile["recipe"], current_tile["inventory"])
+            chunks[chunk][tile]["inventory"] = recipe(current_tile["kind"], current_tile["recipe"], current_tile["inventory"], (20, 64))
     elif current_tile["kind"] in GROW_TILES:
         chunks[chunk][tile] = grow(current_tile)
         if chunks[chunk][tile] == {}:
