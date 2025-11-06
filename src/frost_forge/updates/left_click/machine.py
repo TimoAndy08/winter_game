@@ -35,7 +35,14 @@ def machine_storage(position, chunks, location, inventory, machine_ui, inventory
                     if item[0] in VALUES[value_item]:
                         may_put_in = True
                         convertion_inventory = list(inventory.items())
-                        convertion_inventory[inventory_number] = (MACHINES[machine["kind"]][i], item[1] * VALUES[value_item][item[0]])
+                        if singular:
+                            convertion_inventory.append((convertion_inventory[inventory_number][0], convertion_inventory[inventory_number][1] - 1))
+                            convertion_inventory[inventory_number] = (MACHINES[machine["kind"]][i], VALUES[value_item][item[0]])
+                            singular = False
+                            if convertion_inventory[-1] == 0:
+                                convertion_inventory.pop(-1)
+                        else:
+                            convertion_inventory[inventory_number] = (MACHINES[machine["kind"]][i], item[1] * VALUES[value_item][item[0]])
                         inventory = dict(convertion_inventory)
                         break
                     i += 1

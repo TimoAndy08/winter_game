@@ -15,7 +15,7 @@ def place(
     inventory_size,
 ):
     if inventory_key not in inventory:
-        return chunks, health, max_health
+        return chunks, health, max_health, inventory_size
     if inventory_key not in FLOOR:
         if is_not_tile or not is_kind:
             if inventory_key in FOOD and health < max_health:
