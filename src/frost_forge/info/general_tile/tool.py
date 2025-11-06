@@ -55,6 +55,8 @@ TOOL_REQUIRED = {
     "rabbit adult": "sword",
     "rabbit child": "sword",
     "rabbit fur": "needle",
+    "rail": "pickaxe",
+    "rail vertical": "pickaxe",
     "raw copper": "pickaxe",
     "raw tin": "pickaxe",
     "rock": "pickaxe",

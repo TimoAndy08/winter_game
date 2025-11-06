@@ -77,6 +77,8 @@ HEALTH = {
     "rabbit child": 6,
     "rabbit fur": 8,
     "rabbit meat": 6,
+    "rail": 8,
+    "rail vertical": 8,
     "raw copper": 12,
     "raw tin": 16,
     "roasted mushroom": 8,

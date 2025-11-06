@@ -43,6 +43,8 @@ RESISTANCE = {
     "potato": 1,
     "potato grown": 1,
     "rabbit adult": 1,
+    "rail": 2,
+    "rail vertical": 2,
     "raw copper": 2,
     "raw tin": 2,
     "rock": 1,
