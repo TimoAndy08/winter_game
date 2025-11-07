@@ -49,6 +49,8 @@ GROW_TIME = {
     "bluebell": 400,
     "carrot": 160,
     "copper pit": 600,
+    "copper sapling": 300,
+    "copper treeling": 500,
     "water": 60,
     "potato": 240,
     "rabbit child": 200,
@@ -61,6 +63,8 @@ GROW_TILES = {
     "bluebell": {"kind": "bluebell grown", "inventory": {"bluebell": 2}},
     "carrot": {"kind": "carrot grown", "inventory": {"carrot": 2}},
     "copper pit": {"kind": "copper pit grown", "inventory": {"copper ingot": 1}},
+    "copper sapling": {"kind": "copper treeling", "inventory": {"raw copper": 1, "copper sapling": 1}},
+    "copper treeling": {"kind": "copper tree", "inventory": {"raw copper": 2, "copper ingot": 1, "copper sapling": 1}},
     "water": {"floor": "ice"},
     "potato": {"kind": "potato grown", "inventory": {"potato": 2}},
     "rabbit child": {
@@ -73,7 +77,8 @@ GROW_TILES = {
     "treeling": {"kind": "tree", "inventory": {"sapling": 2, "log": 2}},
 }
 GROW_REQUIREMENT = {
-    "bluebell": 1.25
+    "bluebell": 1.25,
+    "copper treeling": 1.25,
 }
 GROW_DIRT_IGNORE = {
     "rabbit child",

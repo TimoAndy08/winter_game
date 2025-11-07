@@ -7,7 +7,7 @@ RECIPES = {
     ),
     "campfire": (
         (("brick", 2), (("clay", 1),)),
-        (("copper needle", 1), (("copper ingot", 2),)),
+        (("copper needle", 1), (("raw copper", 2),)),
         (("glass", 1), (("sand", 3),)),
         (("mushroom stew", 2), (("carrot", 1), ("mushroom", 3), ("water", 2))),
         (("roasted mushroom", 1), (("mushroom", 1), ("stick", 1))),
@@ -135,9 +135,13 @@ RECIPES = {
         (("slime floor", 2), (("slime block", 1),)),
         (("slime table", 1), (("slime floor", 4), ("stick", 4))),
     ),
+    "tree constructor": (
+        (("copper sapling", 1), (("slime ball", 2), ("rock", 6))),
+    ),
     "void convertor": (
         (("sapling", 1), (("log", 1), ("wood", 1))),
         (("rabbit child", 1), (("blue dye", 1), ("carrot", 4))),
+        (("tree constructor", 1), (("sapling", 4), ("small crate", 1))),
     ),
     "wood crucible": (
         (("water", 1), (("fuel", 4),)),
