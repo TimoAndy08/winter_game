@@ -63,7 +63,6 @@ def left_click(
                 inventory,
                 inventory_key,
                 is_not_tile,
-                is_kind,
                 health,
                 max_health,
                 grid_position,

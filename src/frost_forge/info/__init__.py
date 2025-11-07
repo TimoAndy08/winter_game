@@ -37,6 +37,7 @@ from .specific_tile.tile import (
     GROW_REQUIREMENT,
     PROCESSING_TIME,
     SOIL_STRENGTH,
+    MODIFICATIONS,
 )
 from .specific_tile.item import (
     HEALTH_INCREASE,

@@ -35,7 +35,7 @@ RECIPES = {
         (("copper shovel", 1), (("handle", 1), ("slime crystal", 1), ("copper ingot", 2))),
         (("copper sword", 1), (("handle", 1), ("slime crystal", 1), ("ice", 1), ("copper ingot", 3))),
         (("life crystal", 1), (("slime crystal", 2), ("copper ingot", 3), ("ice", 1))),
-        (("rail 1", 4), (("copper shaft", 1), ("pebble", 1), ("wood fence", 1))),
+        (("rail 0", 4), (("copper shaft", 1), ("pebble", 1), ("wood fence", 1))),
         (("slime summon", 1), (("slime crystal", 3), ("life crystal", 1))),
     ),
     "copper boiler": (

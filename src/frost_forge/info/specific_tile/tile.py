@@ -17,12 +17,12 @@ FLOOR = {
     "mushroom door open",
     "mushroom floor",
     "pebble",
+    "rail 0",
     "rail 1",
     "rail 2",
     "rail 3",
     "rail 4",
     "rail 5",
-    "rail 6",
     "sand",
     "slime door",
     "slime door open",
@@ -120,3 +120,4 @@ UNBREAK = {
     "void convertor",
     "void crate",
 }
+MODIFICATIONS = {"rail": 6}
