@@ -140,6 +140,7 @@ RECIPES = {
         (("tin sapling", 1), (("copper sapling", 1), ("burner drill", 1), ("slime block", 2))),
     ),
     "void convertor": (
+        (("coal", 1), (("rock pickaxe", 1), ("mushroom stew", 1))),
         (("sapling", 1), (("log", 1), ("wood", 1))),
         (("rabbit child", 1), (("blue dye", 1), ("carrot", 4))),
         (("tree constructor", 1), (("sapling", 4), ("small crate", 1))),

@@ -40,7 +40,7 @@ def place(
         else:
             inventory[inventory_key] += 1
         inventory[inventory_key] -= 1
-    else:
+    elif is_not_tile:
         inventory[inventory_key] -= 1
         chunks[grid_position[0]][grid_position[1]] = {"floor": inventory_key}
     if inventory[inventory_key] == 0:

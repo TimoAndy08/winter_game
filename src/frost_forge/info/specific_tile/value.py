@@ -21,7 +21,6 @@ VALUES = {
         "bowl": 1,
         "coal": 8,
         "coal block": 80,
-        "log": 2,
         "rabbit fur": 2,
         "small barrel": 4,
         "small crate": 4,

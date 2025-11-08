@@ -65,8 +65,8 @@ GROW_TILES = {
     "bluebell": {"kind": "bluebell grown", "inventory": {"bluebell": 2}},
     "carrot": {"kind": "carrot grown", "inventory": {"carrot": 2}},
     "copper pit": {"kind": "copper pit grown", "inventory": {"copper ingot": 1}},
-    "copper sapling": {"kind": "copper treeling", "inventory": {"raw copper": 1, "copper sapling": 1}},
-    "copper treeling": {"kind": "copper tree", "inventory": {"raw copper": 2, "copper ingot": 1, "copper sapling": 1}},
+    "copper sapling": {"kind": "copper treeling", "inventory": {"raw copper": 1, "copper sapling": 1, "log": 1}},
+    "copper treeling": {"kind": "copper tree", "inventory": {"raw copper": 2, "copper ingot": 1, "copper sapling": 1, "log": 2}},
     "water": {"floor": "ice"},
     "potato": {"kind": "potato grown", "inventory": {"potato": 2}},
     "rabbit child": {
@@ -76,8 +76,8 @@ GROW_TILES = {
     "sapling": {"kind": "treeling", "inventory": {"sapling": 1, "log": 1}},
     "slime summon": {"kind": "slime prince", "inventory": {"slife crystal": 1, "slime shaper": 1}},
     "spore": {"kind": "mushroom", "inventory": {"spore": 2}},
-    "tin sapling": {"kind": "tin treeling", "inventory": {"raw tin": 1, "tin sapling": 1}},
-    "tin treeling": {"kind": "tin tree", "inventory": {"raw tin": 2, "tin ingot": 1, "tin sapling": 1}},
+    "tin sapling": {"kind": "tin treeling", "inventory": {"raw tin": 1, "tin sapling": 1, "log": 1}},
+    "tin treeling": {"kind": "tin tree", "inventory": {"raw tin": 2, "tin ingot": 1, "tin sapling": 1, "log": 2}},
     "treeling": {"kind": "tree", "inventory": {"sapling": 2, "log": 2}},
 }
 GROW_REQUIREMENT = {
