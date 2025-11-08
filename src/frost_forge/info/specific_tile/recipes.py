@@ -55,7 +55,6 @@ RECIPES = {
     "furnace": (
         (("coal", 1), (("log", 1), ("fuel", 2))),
         (("copper ingot", 1), (("raw copper", 1), ("fuel", 6))),
-        (("copper shaft", 2), (("copper ingot", 3), ("fuel", 8))),
         (("glass", 1), (("sand", 2), ("fuel", 4))),
         (("slime crystal", 1), (("slime ball", 1), ("fuel", 8))),
         (("tin ingot", 1), (("raw tin", 1), ("fuel", 12))),

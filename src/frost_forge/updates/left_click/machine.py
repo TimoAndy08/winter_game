@@ -39,11 +39,11 @@ def machine_storage(position, chunks, location, inventory, machine_ui, inventory
                             convertion_inventory.append((convertion_inventory[inventory_number][0], convertion_inventory[inventory_number][1] - 1))
                             convertion_inventory[inventory_number] = (MACHINES[machine["kind"]][i], VALUES[value_item][item[0]])
                             singular = False
-                            if convertion_inventory[-1] == 0:
-                                convertion_inventory.pop(-1)
                         else:
                             convertion_inventory[inventory_number] = (MACHINES[machine["kind"]][i], item[1] * VALUES[value_item][item[0]])
                         inventory = dict(convertion_inventory)
+                        if inventory.get(item[0], -1) == 0:
+                            del inventory[item[0]]
                         break
                     i += 1
             for i in range(0, len(machine_recipe[1])):

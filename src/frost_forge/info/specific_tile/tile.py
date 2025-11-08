@@ -109,7 +109,7 @@ PROCESSING_TIME = {
     "copper press": 20 * FPS,
     "furnace": 10 * FPS,
     "void convertor": 20 * FPS,
-    "wood crucible": 300 * FPS,
+    "wood crucible": 60 * FPS,
     "wooden sieve": 15 * FPS,
 }
 STORAGE = {
