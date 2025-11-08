@@ -82,7 +82,7 @@ def left_click(
             elif "sleep" in attributes:
                 if 9 / 16 <= (tick / DAY_LENGTH) % 1 < 15 / 16:
                     tick = (tick // DAY_LENGTH + 9 / 16) * DAY_LENGTH
-            elif "lock" in attributes:
+            elif kind.split(" ")[-1] == "lock":
                 chunks = unlock(inventory, inventory_number, chunks, grid_position)
             elif (
                 kind in GROW_TILES

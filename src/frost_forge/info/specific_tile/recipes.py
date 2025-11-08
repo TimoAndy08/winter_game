@@ -55,7 +55,7 @@ RECIPES = {
     "furnace": (
         (("coal", 1), (("log", 1), ("fuel", 2))),
         (("copper ingot", 1), (("raw copper", 1), ("fuel", 6))),
-        (("copper shaft", 1), (("copper ingot", 3), ("fuel", 8))),
+        (("copper shaft", 2), (("copper ingot", 3), ("fuel", 8))),
         (("glass", 1), (("sand", 2), ("fuel", 4))),
         (("slime crystal", 1), (("slime ball", 1), ("fuel", 8))),
         (("tin ingot", 1), (("raw tin", 1), ("fuel", 12))),
@@ -136,7 +136,8 @@ RECIPES = {
         (("slime table", 1), (("slime floor", 4), ("stick", 4))),
     ),
     "tree constructor": (
-        (("copper sapling", 1), (("slime ball", 2), ("rock", 6))),
+        (("copper sapling", 1), (("glass key", 1), ("slime ball", 2))),
+        (("tin sapling", 1), (("copper sapling", 1), ("burner drill", 1), ("slime block", 2))),
     ),
     "void convertor": (
         (("sapling", 1), (("log", 1), ("wood", 1))),

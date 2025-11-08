@@ -57,6 +57,8 @@ GROW_TIME = {
     "sapling": 80,
     "spore": 120,
     "slime summon": 40,
+    "tin sapling": 400,
+    "tin treeling": 600,
     "treeling": 100,
 }
 GROW_TILES = {
@@ -74,11 +76,15 @@ GROW_TILES = {
     "sapling": {"kind": "treeling", "inventory": {"sapling": 1, "log": 1}},
     "slime summon": {"kind": "slime prince", "inventory": {"slife crystal": 1, "slime shaper": 1}},
     "spore": {"kind": "mushroom", "inventory": {"spore": 2}},
+    "tin sapling": {"kind": "tin treeling", "inventory": {"raw tin": 1, "tin sapling": 1}},
+    "tin treeling": {"kind": "tin tree", "inventory": {"raw tin": 2, "tin ingot": 1, "tin sapling": 1}},
     "treeling": {"kind": "tree", "inventory": {"sapling": 2, "log": 2}},
 }
 GROW_REQUIREMENT = {
     "bluebell": 1.25,
     "copper treeling": 1.25,
+    "tin sapling": 1.25,
+    "tin treeling": 1.4,
 }
 GROW_DIRT_IGNORE = {
     "rabbit child",

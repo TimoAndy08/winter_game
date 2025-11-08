@@ -125,6 +125,8 @@ HEALTH = {
     "thread": 12,
     "tin ingot": 20,
     "tin ore": 40,
+    "tin treeling": 16,
+    "tin tree": 20,
     "torch": 12,
     "tree": 10,
     "treeling": 9,

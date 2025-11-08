@@ -95,6 +95,8 @@ TOOL_REQUIRED = {
     "thread": "needle",
     "tin ingot": "pickaxe",
     "tin ore": "pickaxe",
+    "tin treeling": "pickaxe",
+    "tin tree": "pickaxe",
     "torch": "axe",
     "tree": "axe",
     "treeling": "axe",

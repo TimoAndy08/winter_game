@@ -7,8 +7,6 @@ ATTRIBUTES = {
     "copper constructor": {"open", "machine"},
     "copper press": {"open", "machine"},
     "furnace": {"open", "machine"},
-    "glass key": {"key"},
-    "glass lock": {"lock"},
     "left": {"point"},
     "manual press": {"open", "craft"},
     "masonry bench": {"open", "craft"},

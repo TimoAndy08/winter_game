@@ -75,6 +75,8 @@ RESISTANCE = {
     "thread": 2,
     "tin ingot": 2,
     "tin ore": 3,
+    "tin treeling": 3,
+    "tin tree": 4,
     "tree": 1,
     "wooden sieve": 1,
 }
