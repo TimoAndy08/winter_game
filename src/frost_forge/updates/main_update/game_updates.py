@@ -6,7 +6,7 @@ from ...world_generation.structure_generation import generate_structure
 from ...other_systems.game_saving import save_game
 from ...other_systems.walk import walkable
 from ..input_update.mouse_update import button_press
-from ...info import DAY_LENGTH, RECIPES, ACHIEVEMENTS, FPS
+from ...info import DAY_LENGTH, RECIPES, ACHIEVEMENTS, FPS, FLOOR_TYPE
 
 
 def update_game(state, chunks):
@@ -67,6 +67,9 @@ def update_game(state, chunks):
             chunk[tile_coords] = {"kind": "player", "recipe": old_tile["recipe"]}
         elif walkable(chunks, tile_chunk_coords, tile_coords):
             chunk[tile_coords]["kind"] = "player"
+            chunk[tile_coords]["recipe"] = old_tile["recipe"]
+        elif FLOOR_TYPE.get(chunk[tile_coords].get("floor", None), None) == "fluid":
+            chunk[tile_coords]["kind"] = "player submerged"
             chunk[tile_coords]["recipe"] = old_tile["recipe"]
         elif chunk[tile_coords].get("kind") != "player":
             state.location["real"] = list(state.location["old"])

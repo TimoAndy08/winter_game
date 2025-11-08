@@ -19,7 +19,7 @@ def is_placable(kind, grid_position, chunks):
                     return False
                 elif "floor" in current_tile:
                     tile_floor_type = FLOOR_TYPE.get(current_tile["floor"])
-                    if tile_floor_type == "block" or tile_floor_type == "fluid":
+                    if tile_floor_type in {"block", "fluid", "tile"}:
                         return False
                     elif kind in GROW_TILES and kind not in GROW_DIRT_IGNORE and current_tile["floor"].split()[-1] != "dirt":
                         return False

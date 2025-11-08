@@ -29,12 +29,12 @@ def right_click(
         delete_mining_tile = False
         location["mined"] = (grid_position[0], grid_position[1])
         if "kind" in mining_tile:
-            if mining_tile["kind"] not in UNBREAK:
+            if mining_tile["kind"].split(" ")[0] == "player":
+                health -= 1
+            elif mining_tile["kind"] not in UNBREAK:
                 chunks, delete_mining_tile, mining_tile = break_tile(
                     inventory, chunks, mining_tile, inventory_number, inventory_size,
                 )
-            elif mining_tile["kind"] == "player":
-                health -= 1
         elif "floor" in mining_tile and mining_tile["floor"] not in UNBREAK:
             delete_mining_tile, inventory, mining_tile = break_floor(
                 mining_tile, inventory, inventory_number, inventory_size,

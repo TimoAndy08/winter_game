@@ -36,7 +36,7 @@ FLOOR = {
     "wood floor",
 }
 FLOOR_TYPE = {
-    "copper pit": "fluid",
+    "copper pit": "tile",
     "ice": "block",
     "void": "block",
     "water": "fluid",
@@ -124,7 +124,6 @@ UNBREAK = {
     "glass lock",
     "left",
     "obelisk",
-    "player",
     "slime summon",
     "up",
     "void",
