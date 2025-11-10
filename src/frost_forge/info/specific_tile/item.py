@@ -23,6 +23,8 @@ INVENTORY_INCREASE = {"small backpack": (12, 6)}
 UNOBTAINABLE = {
     "bluebell grown",
     "carrot grown",
+    "coal treeling",
+    "coal tree",
     "copper pit grown",
     "copper treeling",
     "copper tree",

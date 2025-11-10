@@ -48,9 +48,11 @@ SOIL_STRENGTH = {
 GROW_TIME = {
     "bluebell": 400,
     "carrot": 160,
+    "coal sapling": 200,
+    "coal treeling": 250,
     "copper pit": 600,
     "copper sapling": 300,
-    "copper treeling": 500,
+    "copper treeling": 375,
     "water": 60,
     "potato": 240,
     "rabbit child": 200,
@@ -58,12 +60,14 @@ GROW_TIME = {
     "spore": 120,
     "slime summon": 40,
     "tin sapling": 400,
-    "tin treeling": 600,
+    "tin treeling": 500,
     "treeling": 100,
 }
 GROW_TILES = {
     "bluebell": {"kind": "bluebell grown", "inventory": {"bluebell": 2}},
     "carrot": {"kind": "carrot grown", "inventory": {"carrot": 2}},
+    "coal sapling": {"kind": "coal treeling", "inventory": {"coal": 1, "coal sapling": 1, "log": 1}},
+    "coal treeling": {"kind": "coal tree", "inventory": {"coal": 3, "coal sapling": 1, "log": 1}},
     "copper pit": {"kind": "copper pit grown", "inventory": {"copper ingot": 1}},
     "copper sapling": {"kind": "copper treeling", "inventory": {"raw copper": 1, "copper sapling": 1, "log": 1}},
     "copper treeling": {"kind": "copper tree", "inventory": {"raw copper": 2, "copper ingot": 1, "copper sapling": 1, "log": 2}},

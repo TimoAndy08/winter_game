@@ -13,7 +13,7 @@ RECIPES = {
         (("roasted mushroom", 1), (("mushroom", 1), ("stick", 1))),
         (("roasted rabbit meat", 1), (("rabbit meat", 1),)),
         (("stone", 1), (("rock", 1),)),
-        (("torch", 3), (("stick", 2), ("coal", 1))),
+        (("torch", 1), (("stick", 1), ("coal", 1))),
         (("water", 1), (("bowl", 1), ("ice", 1))),
     ),
     "composter": (
@@ -136,14 +136,14 @@ RECIPES = {
     ),
     "tree constructor": (
         (("sapling", 1), (("wood", 1), ("stick", 2))),
-        (("copper sapling", 1), (("sapling", 1), ("glass key", 1), ("slime ball", 2))),
+        (("coal sapling", 1), (("sapling", 1), ("handle", 1), ("slime ball", 2))),
+        (("copper sapling", 1), (("coal sapling", 1), ("glass key", 1), ("torch", 2))),
         (("tin sapling", 1), (("copper sapling", 1), ("burner drill", 1), ("slime block", 2))),
     ),
     "void convertor": (
         (("sapling", 1), (("log", 1), ("wood", 1))),
         (("rabbit child", 1), (("blue dye", 1), ("carrot", 4))),
         (("tree constructor", 1), (("sapling", 4), ("small crate", 1))),
-        (("coal", 1), (("rock pickaxe", 1), ("mushroom stew", 1))),
     ),
     "wood crucible": (
         (("water", 1), (("fuel", 4),)),
