@@ -42,12 +42,12 @@ RECIPES = {
         (("steam fluid", 5), (("water fluid", 5), ("fuel", 16))),
     ),
     "copper constructor": (
-        (("copper boiler", 1), (("copper tank", 3), ("copper pipe", 5), ("tin ingot", 2), ("fuel", 32))),
-        (("copper gear", 1), (("copper ingot", 3), ("fuel", 8))),
-        (("copper pipe", 2), (("copper sheet", 2), ("copper ingot", 1), ("fuel", 12))),
-        (("copper pump", 1), (("copper pipe", 1), ("copper gear", 1), ("fuel", 24))),
-        (("copper shaft", 1), (("copper ingot", 1), ("fuel", 8))),
-        (("copper tank", 1), (("copper sheet", 4), ("copper shaft", 1), ("fuel", 16))),
+        (("copper boiler", 1), (("copper tank", 3), ("copper pipe", 5), ("tin ingot", 2))),
+        (("copper gear", 1), (("copper ingot", 3),)),
+        (("copper pipe", 2), (("copper sheet", 2), ("copper ingot", 1))),
+        (("copper pump", 1), (("copper pipe", 1), ("copper gear", 1))),
+        (("copper shaft", 1), (("copper ingot", 1),)),
+        (("copper tank", 1), (("copper sheet", 4), ("copper shaft", 1))),
     ),
     "copper press": (
         (("copper sheet", 1), (("copper ingot", 1), ("fuel", 8))),
@@ -135,14 +135,15 @@ RECIPES = {
         (("slime table", 1), (("slime floor", 4), ("stick", 4))),
     ),
     "tree constructor": (
-        (("copper sapling", 1), (("glass key", 1), ("slime ball", 2))),
+        (("sapling", 1), (("wood", 1), ("stick", 2))),
+        (("copper sapling", 1), (("sapling", 1), ("glass key", 1), ("slime ball", 2))),
         (("tin sapling", 1), (("copper sapling", 1), ("burner drill", 1), ("slime block", 2))),
     ),
     "void convertor": (
-        (("coal", 1), (("rock pickaxe", 1), ("mushroom stew", 1))),
         (("sapling", 1), (("log", 1), ("wood", 1))),
         (("rabbit child", 1), (("blue dye", 1), ("carrot", 4))),
         (("tree constructor", 1), (("sapling", 4), ("small crate", 1))),
+        (("coal", 1), (("rock pickaxe", 1), ("mushroom stew", 1))),
     ),
     "wood crucible": (
         (("water", 1), (("fuel", 4),)),

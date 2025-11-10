@@ -20,7 +20,7 @@ def save_creating(state, chunks):
                 chunks,
                 state.noise_offset,
             )
-    if state.world_type != 1:
+    if state.world_type not in {1, 4}:
         chunks[0, 0][0, 0] = {"kind": "obelisk"}
         chunks[0, 0][0, 1] = {"kind": "up"}
     else:

@@ -22,7 +22,7 @@ def generate_chunk(
     if (chunk_x, chunk_y) not in chunks:
         chunks[chunk_x, chunk_y] = {}
         tile = chunks[chunk_x, chunk_y]
-        if world_type != 1:
+        if world_type not in {1, 4}:
             for tile_x in range(0, 16):
                 for tile_y in range(0, 16):
                     tile_pos = (tile_x, tile_y)

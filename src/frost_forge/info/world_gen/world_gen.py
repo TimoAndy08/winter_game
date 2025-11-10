@@ -1,4 +1,4 @@
-WORLD_TYPES = ("default", "skyblock", "large biomes", "no structures")
+WORLD_TYPES = ("default", "skyblock", "large biomes", "no structures", "no sapling skyblock")
 NOISE_TILES = {
     "plains": (
         ((-0.5, -0.25), (0, 0.5), {"floor": "ice"}),

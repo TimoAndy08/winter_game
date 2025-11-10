@@ -16,6 +16,7 @@ def update_tile(
     inventory_key,
     health,
     create_tile,
+    world_type,
 ):
     attributes = ATTRIBUTES.get(current_tile["kind"], ())
     if current_tile["kind"] == "left":
@@ -31,7 +32,7 @@ def update_tile(
                     current_tile["inventory"][current_tile["floor"]] = 1
             chunks[chunk][tile]["inventory"] = recipe(current_tile["kind"], current_tile["recipe"], current_tile["inventory"], (20, 64))
     elif current_tile["kind"] in GROW_TILES:
-        chunks[chunk][tile] = grow(current_tile)
+        chunks[chunk][tile] = grow(current_tile, world_type)
         if chunks[chunk][tile] == {}:
             del chunks[chunk][tile]
     if "animal" in attributes or "enemy" in attributes:

@@ -41,6 +41,7 @@ def update_tiles(state, chunks):
                         inventory_key,
                         state.health,
                         create_tile,
+                        state.world_type,
                     )
                 elif current_tile["floor"] in GROW_TILES:
                     adjacent_grow_tiles = 0
@@ -51,7 +52,7 @@ def update_tiles(state, chunks):
                             if chunks[adjacent_chunk][adjacent_tile].get("floor", None) in GROW_TILES:
                                 adjacent_grow_tiles += 1
                     if (chunks[chunk][tile]["floor"] == "water" and adjacent_grow_tiles < 2) or chunks[chunk][tile]["floor"] != "water":
-                        chunks[chunk][tile] = grow(current_tile)
+                        chunks[chunk][tile] = grow(current_tile, state.world_type)
                     if chunks[chunk][tile] == {}:
                         del chunks[chunk][tile]
     for location in create_tile:

@@ -3,7 +3,7 @@ from random import random
 from ...info import GROW_TIME, GROW_TILES, GROW_REQUIREMENT, SOIL_STRENGTH
 
 
-def grow(tile, guarantee=False):
+def grow(tile, world_type, guarantee=False):
     if "kind" in tile:
         old_kind = tile["kind"]
         grow_floor = False
@@ -17,7 +17,8 @@ def grow(tile, guarantee=False):
             if "inventory" in GROW_TILES[old_kind]:
                 tile["inventory"] = {}
                 for item in GROW_TILES[old_kind]["inventory"]:
-                    tile["inventory"][item] = GROW_TILES[old_kind]["inventory"][item]
+                    if world_type != 4 or item.split(" ")[-1] != "sapling":
+                        tile["inventory"][item] = GROW_TILES[old_kind]["inventory"][item]
     if grow_floor and "kind" in tile:
         del tile["floor"]
     return tile

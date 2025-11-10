@@ -35,6 +35,7 @@ def left_click(
     machine_inventory: dict[str, int],
     tick: int,
     inventory_size: list[int, int],
+    world_type: int,
 ):
     if machine_ui == "game":
         if inventory_number < len(inventory):
@@ -89,7 +90,7 @@ def left_click(
                 and inventory_key in FERTILIZER_EFFICIENCY
             ):
                 chunks = fertilize_grow(
-                    chunks, inventory, inventory_key, grid_position
+                    chunks, inventory, inventory_key, grid_position, world_type
                 )
             elif "store" in attributes:
                 chunks = closed_storage(

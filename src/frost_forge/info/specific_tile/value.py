@@ -2,7 +2,6 @@ MACHINES = {
     "burner drill": ("fuel",),
     "composter": ("compost",),
     "copper boiler": ("fuel", "water fluid"),
-    "copper constructor": ("fuel",),
     "copper press": ("fuel",),
     "furnace": ("fuel",),
     "wood crucible": ("fuel", "water fluid"),

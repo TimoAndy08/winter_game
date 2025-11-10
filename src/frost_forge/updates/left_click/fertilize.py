@@ -20,13 +20,13 @@ def fertilize_spawn(chunks, inventory, inventory_key, grid_position):
     return chunks
 
 
-def fertilize_grow(chunks, inventory, inventory_key, grid_position):
+def fertilize_grow(chunks, inventory, inventory_key, grid_position, world_type):
     current_tile = chunks[grid_position[0]][grid_position[1]]
     if (
         random()
         < FERTILIZER_EFFICIENCY[inventory_key] / GROW_TIME[current_tile["kind"]]
     ):
-        chunks[grid_position[0]][grid_position[1]] = grow(current_tile, True)
+        chunks[grid_position[0]][grid_position[1]] = grow(current_tile, world_type, True)
     inventory[inventory_key] -= 1
     if inventory[inventory_key] == 0:
         del inventory[inventory_key]

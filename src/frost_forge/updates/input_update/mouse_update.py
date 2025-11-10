@@ -19,6 +19,7 @@ def button_press(
     recipe_number,
     camera,
     inventory_size,
+    world_type,
 ):
     world_x = (position[0] - SCREEN_SIZE[0] * 5 / 8 + camera[0] * zoom) // (TILE_SIZE * zoom)
     world_y = (position[1] - SCREEN_SIZE[1] * 5 / 8 + camera[1] * zoom) // (TILE_SIZE * zoom)
@@ -75,6 +76,7 @@ def button_press(
                 machine_inventory,
                 tick,
                 inventory_size,
+                world_type,
             )
         elif button == 3:
             chunks, location, machine_ui, machine_inventory, health, inventory = right_click(

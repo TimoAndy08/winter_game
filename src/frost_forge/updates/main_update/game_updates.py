@@ -25,7 +25,7 @@ def update_game(state, chunks):
                 chunks,
                 state.noise_offset,
             )
-    if 3 != state.world_type != 1:
+    if state.world_type not in {1, 3, 4}:
         for x in range(-10, 11):
             for y in range(-10, 11):
                 chunks, state.checked, state.save_chunks = generate_structure(
@@ -125,6 +125,7 @@ def update_game(state, chunks):
                 chunks[state.location["opened"][0]][state.location["opened"][1]].get("recipe", -1),
                 state.camera,
                 state.inventory_size,
+                state.world_type,
             )
             if "recipe" in chunks[state.location["opened"][0]][state.location["opened"][1]]:
                 chunks[state.location["opened"][0]][state.location["opened"][1]]["recipe"] = recipe_number
