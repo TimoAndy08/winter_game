@@ -6,7 +6,7 @@ from ...other_systems.tile_placable import is_placable
 def place(
     inventory,
     inventory_key,
-    is_not_tile,
+    is_tile,
     health,
     max_health,
     grid_position,
@@ -28,7 +28,7 @@ def place(
             health += HEALTH_INCREASE[inventory_key][2]
         elif inventory_key in INVENTORY_INCREASE and INVENTORY_INCREASE[inventory_key][0] == inventory_size[0]:
             inventory_size[0] += INVENTORY_INCREASE[inventory_key][1]
-        elif not is_not_tile and inventory_key.split(" ")[-1] == "wrench" and chunks[grid_position[0]][grid_position[1]]["floor"].split(" ")[-1].isdigit():
+        elif is_tile and inventory_key.split(" ")[-1] == "wrench" and chunks[grid_position[0]][grid_position[1]]["floor"].split(" ")[-1].isdigit():
             floor = chunks[grid_position[0]][grid_position[1]]["floor"]
             new_floor = ""
             for word in floor.split(" ")[:-1]:
@@ -40,7 +40,7 @@ def place(
         else:
             inventory[inventory_key] += 1
         inventory[inventory_key] -= 1
-    elif is_not_tile:
+    elif not is_tile:
         inventory[inventory_key] -= 1
         chunks[grid_position[0]][grid_position[1]] = {"floor": inventory_key}
     if inventory[inventory_key] == 0:

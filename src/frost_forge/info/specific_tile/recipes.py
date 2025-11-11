@@ -151,6 +151,7 @@ RECIPES = {
     ),
     "wooden sieve": (
         (("basic sift", 1), (("rock", 1), ("water fluid", 2))),
+        (("leaf sift", 1), (("leaf", 1), ("water fluid", 1))),
     ),
     "workbench": (
         (("bowl", 1), (("stick", 1), ("wood", 1))),

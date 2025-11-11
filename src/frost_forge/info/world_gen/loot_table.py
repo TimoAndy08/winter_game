@@ -68,4 +68,9 @@ LOOT_TABLES = {
         (0.3, "clay", 1, 1),
         (0.05, "raw copper", 1, 1),
     ), 0, 2),
+    "leaf sift": ((
+        (0.8, "sapling", 1, 2),
+        (0.3, "stick", 1, 3),
+        (0.1, "acorn", 1, 1),
+    ), 0, 2),
 }

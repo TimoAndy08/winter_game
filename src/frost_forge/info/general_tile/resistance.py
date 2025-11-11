@@ -33,6 +33,8 @@ RESISTANCE = {
     "copper tank": 2,
     "copper treeling": 2,
     "copper tree": 3,
+    "dead tree": 1,
+    "furless rabbit": 1,
     "furnace": 3,
     "ice": 1,
     "life crystal": 1,

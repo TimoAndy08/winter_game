@@ -1,4 +1,5 @@
 ATTRACTION = {
+    "furless rabbit": "carrot",
     "rabbit adult": "carrot",
     "rabbit child": "carrot",
 }

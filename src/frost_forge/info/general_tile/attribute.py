@@ -6,6 +6,7 @@ ATTRIBUTES = {
     "copper boiler": {"open", "machine"},
     "copper constructor": {"open", "craft"},
     "copper press": {"open", "machine"},
+    "furless rabbit": {"animal"},
     "furnace": {"open", "machine"},
     "left": {"point"},
     "manual press": {"open", "craft"},

@@ -53,15 +53,16 @@ GROW_TIME = {
     "copper pit": 600,
     "copper sapling": 300,
     "copper treeling": 375,
-    "water": 60,
+    "furless rabbit": 120,
     "potato": 240,
     "rabbit child": 200,
     "sapling": 80,
-    "spore": 120,
     "slime summon": 40,
+    "spore": 120,
     "tin sapling": 400,
     "tin treeling": 500,
     "treeling": 100,
+    "water": 60,
 }
 GROW_TILES = {
     "bluebell": {"kind": "bluebell grown", "inventory": {"bluebell": 2}},
@@ -71,18 +72,16 @@ GROW_TILES = {
     "copper pit": {"kind": "copper pit grown", "inventory": {"copper ingot": 1}},
     "copper sapling": {"kind": "copper treeling", "inventory": {"raw copper": 1, "copper sapling": 1, "log": 1}},
     "copper treeling": {"kind": "copper tree", "inventory": {"raw copper": 2, "copper ingot": 1, "copper sapling": 1, "log": 2}},
-    "water": {"floor": "ice"},
+    "furless rabbit": {"kind": "rabbit adult", "inventory": {"rabbit fur": 1, "rabbit meat": 1}},
     "potato": {"kind": "potato grown", "inventory": {"potato": 2}},
-    "rabbit child": {
-        "kind": "rabbit adult",
-        "inventory": {"rabbit fur": 1, "rabbit meat": 1},
-    },
+    "rabbit child": {"kind": "rabbit adult", "inventory": {"rabbit fur": 1, "rabbit meat": 1}},
     "sapling": {"kind": "treeling", "inventory": {"sapling": 1, "log": 1}},
     "slime summon": {"kind": "slime prince", "inventory": {"slife crystal": 1, "slime shaper": 1}},
     "spore": {"kind": "mushroom", "inventory": {"spore": 2}},
     "tin sapling": {"kind": "tin treeling", "inventory": {"raw tin": 1, "tin sapling": 1, "log": 1}},
     "tin treeling": {"kind": "tin tree", "inventory": {"raw tin": 2, "tin ingot": 1, "tin sapling": 1, "log": 2}},
     "treeling": {"kind": "tree", "inventory": {"sapling": 2, "log": 2}},
+    "water": {"floor": "ice"},
 }
 GROW_REQUIREMENT = {
     "bluebell": 1.25,
@@ -91,6 +90,7 @@ GROW_REQUIREMENT = {
     "tin treeling": 1.4,
 }
 GROW_DIRT_IGNORE = {
+    "furless rabbit",
     "rabbit child",
     "slime summon",
 }
@@ -133,3 +133,7 @@ UNBREAK = {
     "void crate",
 }
 MODIFICATIONS = {"rail": 6}
+SHEARABLE = {
+    "rabbit adult": ("rabbit fur", 1, {"kind": "furless rabbit", "inventory": {"rabbit meat": 1}}),
+    "tree": {"leaf", 1, {"kind": "dead tree", "inventory": {"log": 2}}},
+}

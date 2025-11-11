@@ -38,6 +38,7 @@ from .specific_tile.tile import (
     PROCESSING_TIME,
     SOIL_STRENGTH,
     MODIFICATIONS,
+    SHEARABLE,
 )
 from .specific_tile.item import (
     HEALTH_INCREASE,

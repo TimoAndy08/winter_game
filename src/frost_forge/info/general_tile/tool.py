@@ -1,4 +1,5 @@
 TOOL_REQUIRED = {
+    "acorn": "shovel",
     "bluebell": "shovel",
     "bluebell grown": "shovel",
     "bluebell jar": "axe",
@@ -38,8 +39,10 @@ TOOL_REQUIRED = {
     "copper tank": "pickaxe",
     "copper treeling": "axe",
     "copper tree": "axe",
+    "dead tree": "axe",
     "dirt": "shovel",
     "flint": "pickaxe",
+    "furless rabbit": "sword",
     "furnace": "pickaxe",
     "ice": "pickaxe",
     "life crystal": "pickaxe",
