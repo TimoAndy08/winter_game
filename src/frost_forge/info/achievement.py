@@ -8,4 +8,5 @@ ACHIEVEMENTS = {
     "copper ingot": ("Shiny things", "Need a lot of them you will"),
     "small backpack": ("Inventory upgrade", "Don't craft multiple tho"),
     "copper boiler": ("Steam age", "Automation time?"),
+    "tree constructor": ("Welcome to skyblock", "Hope you brought extra saplings"),
 }

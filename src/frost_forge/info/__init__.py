@@ -48,7 +48,7 @@ from .specific_tile.item import (
     INVENTORY_INCREASE,
 )
 from .general_tile.tool import TOOL_EFFICIENCY, TOOL_REQUIRED, TOOLS
-from .world_gen.world_gen import NOISE_TILES, BIOMES, WORLD_TYPES
+from .world_gen.world_gen import NOISE_TILES, BIOMES, WORLD_TYPES, WORLD_ABILITIES
 from .world_gen.structure_gen import (
     NOISE_STRUCTURES,
     STRUCTURE_SIZE,

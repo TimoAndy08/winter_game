@@ -6,7 +6,7 @@ from ...world_generation.structure_generation import generate_structure
 from ...other_systems.game_saving import save_game
 from ...other_systems.walk import walkable
 from ..input_update.mouse_update import button_press
-from ...info import DAY_LENGTH, RECIPES, ACHIEVEMENTS, FPS, FLOOR_TYPE
+from ...info import DAY_LENGTH, RECIPES, ACHIEVEMENTS, FPS, FLOOR_TYPE, WORLD_ABILITIES
 
 
 def update_game(state, chunks):
@@ -25,7 +25,7 @@ def update_game(state, chunks):
                 chunks,
                 state.noise_offset,
             )
-    if state.world_type not in {1, 3, 4}:
+    if state.world_type in WORLD_ABILITIES["structures"]:
         for x in range(-10, 11):
             for y in range(-10, 11):
                 chunks, state.checked, state.save_chunks = generate_structure(

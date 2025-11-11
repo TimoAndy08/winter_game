@@ -1,4 +1,10 @@
-WORLD_TYPES = ("default", "skyblock", "large biomes", "no structures", "no sapling skyblock")
+WORLD_TYPES = ("default (Easy)", "large biomes (Easy)", "no structures (Medium)", "skyblock (Hard)", "Saplingless skyblock (Improbable)")
+WORLD_ABILITIES = {
+    "large biomes": {1},
+    "saplingless": {4},
+    "skyblock": {3, 4},
+    "structures": {0, 1},
+}
 NOISE_TILES = {
     "plains": (
         ((-0.5, -0.25), (0, 0.5), {"floor": "ice"}),

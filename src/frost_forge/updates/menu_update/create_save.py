@@ -1,4 +1,5 @@
 from ...world_generation.world_generation import generate_chunk
+from ...info import WORLD_ABILITIES
 
 
 def save_creating(state, chunks):
@@ -20,12 +21,12 @@ def save_creating(state, chunks):
                 chunks,
                 state.noise_offset,
             )
-    if state.world_type not in {1, 4}:
-        chunks[0, 0][0, 0] = {"kind": "obelisk"}
-        chunks[0, 0][0, 1] = {"kind": "up"}
-    else:
+    if state.world_type in WORLD_ABILITIES["skyblock"]:
         chunks[0, 0][0, 0] = {"kind": "void crate", "inventory": {"flint axe": 1, "sapling": 1, "dirt": 1, "composter": 1}}
         chunks[0, 0][0, 1] = {"kind": "void convertor"}
+    else:
+        chunks[0, 0][0, 0] = {"kind": "obelisk"}
+        chunks[0, 0][0, 1] = {"kind": "up"}
     chunks[0, 0][0, 2] = {"kind": "player", "floor": "void", "recipe": -1}
     state.tick = 0
     state.inventory = {}

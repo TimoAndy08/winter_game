@@ -1,7 +1,7 @@
 from noise import pnoise2
 import random
 
-from ..info import MULTI_TILES, NOISE_TILES, ATTRIBUTES
+from ..info import MULTI_TILES, NOISE_TILES, ATTRIBUTES, WORLD_ABILITIES
 from .biome_determination import determine_biome
 
 
@@ -22,7 +22,7 @@ def generate_chunk(
     if (chunk_x, chunk_y) not in chunks:
         chunks[chunk_x, chunk_y] = {}
         tile = chunks[chunk_x, chunk_y]
-        if world_type not in {1, 4}:
+        if world_type not in WORLD_ABILITIES["skyblock"]:
             for tile_x in range(0, 16):
                 for tile_y in range(0, 16):
                     tile_pos = (tile_x, tile_y)

@@ -1,10 +1,10 @@
 from noise import pnoise2
 
-from ..info import BIOMES
+from ..info import BIOMES, WORLD_ABILITIES
 
 
 def determine_biome(world_type, world_x, world_y, noise_offset):
-    if world_type == 2:
+    if world_type in WORLD_ABILITIES["large biomes"]:
         biome_value = pnoise2(
             world_x / 600 + noise_offset[0], world_y / 600 + noise_offset[1], 3, 0.5, 2
         )
