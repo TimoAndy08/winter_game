@@ -45,6 +45,7 @@ NOISE_TILES = {
         ((0, 0.5), (-0.2, 0.2), {"kind": "rock", "floor": "pebble"}),
         ((-0.1, 0.3), (-0.25, 0.25), {"floor": "pebble"}),
         ((-0.2, -0.19), (-0.3, -0.28), {"kind": "slime", "inventory": {"slime ball": 1}},),
+        ((-0.19, -0.18), (-0.3, -0.28), {"kind": "quartz altar"}),
     ),
 }
 BIOMES = (

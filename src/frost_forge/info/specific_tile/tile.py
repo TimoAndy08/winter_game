@@ -55,6 +55,7 @@ GROW_TIME = {
     "copper treeling": 375,
     "furless rabbit": 120,
     "potato": 240,
+    "quartz child": 300,
     "rabbit child": 200,
     "sapling": 80,
     "slime summon": 40,
@@ -74,6 +75,7 @@ GROW_TILES = {
     "copper treeling": {"kind": "copper tree", "inventory": {"raw copper": 2, "copper ingot": 1, "copper sapling": 1, "log": 2}},
     "furless rabbit": {"kind": "rabbit adult", "inventory": {"rabbit fur": 1, "rabbit meat": 1}},
     "potato": {"kind": "potato grown", "inventory": {"potato": 2}},
+    "quartz child": {"kind": "quartz adult"},
     "rabbit child": {"kind": "rabbit adult", "inventory": {"rabbit fur": 1, "rabbit meat": 1}},
     "sapling": {"kind": "treeling", "inventory": {"sapling": 1, "log": 1}},
     "slime summon": {"kind": "slime prince", "inventory": {"slife crystal": 1, "slime shaper": 1}},
@@ -91,6 +93,7 @@ GROW_REQUIREMENT = {
 }
 GROW_DIRT_IGNORE = {
     "furless rabbit",
+    "quartz child",
     "rabbit child",
     "slime summon",
 }
@@ -134,6 +137,7 @@ UNBREAK = {
 }
 MODIFICATIONS = {"rail": 6}
 SHEARABLE = {
+    "quartz adult": ("quartz", 1, {"kind": "quartz child"}),
     "rabbit adult": ("rabbit fur", 1, {"kind": "furless rabbit", "inventory": {"rabbit meat": 1}}),
     "tree": ("leaf", 1, {"kind": "log", "inventory": {"log": 1}}),
 }

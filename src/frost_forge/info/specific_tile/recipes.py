@@ -108,6 +108,9 @@ RECIPES = {
         (("wood floor", 2), (("wood", 1),)),
         (("workbench", 1), (("flint", 1), ("wood", 4))),
     ),
+    "quartz altar": (
+        (("quartz child", 1), (("glass", 5), ("life crystal", 1))),
+    ),
     "sawbench": (
         (("bookshelf", 1), (("paper", 3), ("wood", 2))),
         (("handle", 1), (("blue dye", 1), ("stick", 4))),

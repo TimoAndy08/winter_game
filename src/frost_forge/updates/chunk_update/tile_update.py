@@ -1,6 +1,7 @@
 from .point import left, up
 from ..entity_behaviour.animal import animal
 from ..entity_behaviour.enemy import enemy
+from ..entity_behaviour.loyal import loyal
 from .growth import grow
 from ..left_click import recipe
 from ...info import ATTRIBUTES, GROW_TILES, PROCESSING_TIME
@@ -35,7 +36,7 @@ def update_tile(
         chunks[chunk][tile] = grow(current_tile, world_type)
         if chunks[chunk][tile] == {}:
             del chunks[chunk][tile]
-    if "animal" in attributes or "enemy" in attributes:
+    if "creature" in attributes:
         player_distance_x = abs(chunk[0] * 16 + tile[0] - location[0] * 16 - location[2])
         player_distance_y = abs(chunk[1] * 16 + tile[1] - location[1] * 16 - location[3])
         player_distance = player_distance_x ** 2 + player_distance_y ** 2
@@ -50,7 +51,7 @@ def update_tile(
                 player_distance,
                 create_tile,
             )
-        else:
+        elif "enemy" in attributes:
             chunks, health, create_tile = enemy(
                 chunks,
                 chunk,
@@ -58,6 +59,16 @@ def update_tile(
                 current_tile,
                 location,
                 health,
+                player_distance,
+                create_tile,
+            )
+        elif "loyal" in attributes:
+            chunks, create_tile = loyal(
+                chunks,
+                chunk,
+                tile,
+                current_tile,
+                location,
                 player_distance,
                 create_tile,
             )
