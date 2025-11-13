@@ -49,7 +49,6 @@ HEALTH = {
     "copper treeling": 12,
     "copper wrench": 12,
     "corpse": 1,
-    "dead tree": 8,
     "dirt": 5,
     "fertilizer": 5,
     "flint axe": 8,

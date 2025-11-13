@@ -39,7 +39,6 @@ TOOL_REQUIRED = {
     "copper tank": "pickaxe",
     "copper treeling": "axe",
     "copper tree": "axe",
-    "dead tree": "axe",
     "dirt": "shovel",
     "flint": "pickaxe",
     "furless rabbit": "sword",

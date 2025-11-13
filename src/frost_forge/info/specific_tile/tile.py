@@ -135,5 +135,5 @@ UNBREAK = {
 MODIFICATIONS = {"rail": 6}
 SHEARABLE = {
     "rabbit adult": ("rabbit fur", 1, {"kind": "furless rabbit", "inventory": {"rabbit meat": 1}}),
-    "tree": {"leaf", 1, {"kind": "dead tree", "inventory": {"log": 2}}},
+    "tree": ("leaf", 1, {"kind": "log", "inventory": {"log": 1}}),
 }
