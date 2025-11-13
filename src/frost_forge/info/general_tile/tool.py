@@ -1,5 +1,6 @@
 TOOL_REQUIRED = {
     "acorn": "shovel",
+    "amethyst": "pickaxe",
     "bluebell": "shovel",
     "bluebell grown": "shovel",
     "bluebell jar": "axe",
@@ -47,6 +48,7 @@ TOOL_REQUIRED = {
     "life crystal": "pickaxe",
     "log": "axe",
     "log floor": "axe",
+    "mana convertor": "axe",
     "manual press": "axe",
     "masonry bench": "pickaxe",
     "moist dirt": "shovel",
@@ -60,6 +62,7 @@ TOOL_REQUIRED = {
     "pebble": "pickaxe",
     "potato": "shovel",
     "potato grown": "shovel",
+    "pure quartz": "pickaxe",
     "quartz": "pickaxe",
     "quartz adult": "pickaxe",
     "quartz altar": "pickaxe",
@@ -123,7 +126,7 @@ TOOL_REQUIRED = {
     "wooden table": "axe",
     "workbench": "axe",
 }
-TOOL_EFFICIENCY = {"flint": 1, "water": 1.7, "rock": 2, "copper": 3}
+TOOL_EFFICIENCY = {"flint": 1, "rock": 2, "water": 2, "amethyst": 3, "copper": 3}
 TOOLS = {
     "axe",
     "hammer",

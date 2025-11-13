@@ -114,6 +114,7 @@ PROCESSING_TIME = {
     "copper boiler": 5 * FPS,
     "copper press": 20 * FPS,
     "furnace": 10 * FPS,
+    "mana convertor": 60 * FPS,
     "wood crucible": 60 * FPS,
     "wooden sieve": 15 * FPS,
 }

@@ -35,7 +35,6 @@ UNOBTAINABLE = {
     "junk",
     "potato grown",
     "quartz adult",
-    "quartz altar",
     "quartz child",
     "rabbit adult",
     "rabbit child",

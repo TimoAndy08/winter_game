@@ -56,8 +56,12 @@ RECIPES = {
         (("coal", 1), (("log", 1), ("fuel", 2))),
         (("copper ingot", 1), (("raw copper", 1), ("fuel", 6))),
         (("glass", 1), (("sand", 2), ("fuel", 4))),
+        (("pure quartz", 1), (("quartz", 1), ("fuel", 8))),
         (("slime crystal", 1), (("slime ball", 1), ("fuel", 8))),
         (("tin ingot", 1), (("raw tin", 1), ("fuel", 12))),
+    ),
+    "mana convertor": (
+        (("mana", 1), ()),
     ),
     "manual press": (
         (("blue dye", 2), (("bluebell", 2), ("bowl", 1))),
@@ -65,11 +69,11 @@ RECIPES = {
         (("paper", 1), (("wood", 2),)),
         (("rock", 1), (("pebble", 3),)),
         (("sand", 1), (("pebble", 2),)),
-        (("water axe", 1), (("stick", 4), ("water", 3), ("rabbit fur", 1))),
-        (("water hammer", 1), (("stick", 6), ("water", 5), ("rabbit fur", 2))),
-        (("water pickaxe", 1), (("stick", 4), ("water", 3), ("rabbit fur", 1))),
-        (("water shovel", 1), (("stick", 3), ("water", 2), ("rabbit fur", 1))),
-        (("water sword", 1), (("stick", 4), ("water", 3), ("slime", 2), ("rabbit fur", 1))),
+        (("water axe", 1), (("handle", 1), ("water", 3), ("rabbit fur", 1))),
+        (("water hammer", 1), (("handle", 2), ("water", 5), ("rabbit fur", 2))),
+        (("water pickaxe", 1), (("handle", 1), ("water", 3), ("rabbit fur", 1))),
+        (("water shovel", 1), (("handle", 1), ("water", 2), ("rabbit fur", 1))),
+        (("water sword", 1), (("handle", 1), ("water", 3), ("slime ball", 2), ("rabbit fur", 1))),
     ),
     "masonry bench": (
         (("brick floor", 2), (("brick", 1),)),
@@ -109,6 +113,15 @@ RECIPES = {
         (("workbench", 1), (("flint", 1), ("wood", 4))),
     ),
     "quartz altar": (
+        (("amethyst", 1), (("quartz", 2), ("mana", 1))),
+        (("amethyst axe", 1), (("handle", 1), ("amethyst", 3), ("pure quartz", 1))),
+        (("amethyst hammer", 1), (("handle", 2), ("amethyst", 5), ("pure quartz", 2))),
+        (("amethyst pickaxe", 1), (("handle", 1), ("amethyst", 3), ("pure quartz", 1))),
+        (("amethyst shovel", 1), (("handle", 1), ("amethyst", 2), ("pure quartz", 1))),
+        (("amethyst sword", 1), (("handle", 1), ("amethyst", 3), ("slime ball", 2), ("pure quartz", 1))),
+        (("life crystal", 1), (("pure crystal", 2), ("amethyst", 3), ("slime ball", 1))),
+        (("slime summon", 1), (("pure crystal", 3), ("life crystal", 1))),
+        (("mana converter", 1), (("quartz", 3), ("small crate", 1))),
         (("quartz child", 1), (("glass", 5), ("life crystal", 1))),
     ),
     "sawbench": (
@@ -140,13 +153,14 @@ RECIPES = {
     "tree constructor": (
         (("sapling", 1), (("wood", 1), ("stick", 2))),
         (("coal sapling", 1), (("sapling", 1), ("handle", 1), ("slime ball", 2))),
-        (("copper sapling", 1), (("coal sapling", 1), ("glass key", 1), ("torch", 2))),
+        (("copper sapling", 1), (("coal sapling", 1), ("glass key", 1), ("amethyst", 2))),
         (("tin sapling", 1), (("copper sapling", 1), ("burner drill", 1), ("slime block", 2))),
     ),
     "void convertor": (
         (("sapling", 1), (("log", 1), ("wood", 1))),
         (("rabbit child", 1), (("blue dye", 1), ("carrot", 4))),
         (("tree constructor", 1), (("sapling", 4), ("small crate", 1))),
+        (("quartz altar", 1), (("glass key", 1), ("stone", 4))),
     ),
     "wood crucible": (
         (("water", 1), (("fuel", 4),)),

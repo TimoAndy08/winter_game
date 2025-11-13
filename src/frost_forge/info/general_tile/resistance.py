@@ -1,4 +1,5 @@
 RESISTANCE = {
+    "amethyst": 2,
     "bluebell jar": 2,
     "bluebell grown": 1,
     "brick": 1,
@@ -37,6 +38,7 @@ RESISTANCE = {
     "furnace": 3,
     "ice": 1,
     "life crystal": 1,
+    "mana convertor": 2,
     "manual press": 1,
     "masonry bench": 1,
     "moist dirt": 1,
@@ -49,6 +51,7 @@ RESISTANCE = {
     "pebble": 1,
     "potato": 1,
     "potato grown": 1,
+    "pure quartz": 2,
     "quartz": 2,
     "quartz adult": 2,
     "quartz altar": 2,

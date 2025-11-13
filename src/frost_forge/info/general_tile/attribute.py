@@ -9,6 +9,7 @@ ATTRIBUTES = {
     "furless rabbit": {"animal", "creature"},
     "furnace": {"open", "machine"},
     "left": {"point"},
+    "mana convertor": {"open", "machine"},
     "manual press": {"open", "craft"},
     "masonry bench": {"open", "craft"},
     "mushroom shaper": {"open", "craft"},
