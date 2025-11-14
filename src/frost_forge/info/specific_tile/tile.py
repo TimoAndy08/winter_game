@@ -152,6 +152,7 @@ SHEARABLE = {
 }
 RUNES = {
     "amethyst rune": (0, 1),
+    "citrine rune": (0, 2),
 }
 RUNES_USER = {
     "mana converter": 1,

@@ -62,6 +62,7 @@ RECIPES = {
     ),
     "mana converter": (
         (("amethyst", 1), (("quartz", 2), ("mana", 1)), 1),
+        (("citrine", 1), (("amethyst", 2), ("mana", 1)), 3),
         (("mana", 1), (), 1),
     ),
     "manual press": (
@@ -104,6 +105,12 @@ RECIPES = {
         (("plant bouquet", 1), (("bluebell", 1), ("carrot", 1), ("sapling", 1), ("spore", 1))),
     ),
     "packager bench": (
+        (("amethyst", 8), (("amethyst block", 1),)),
+        (("amethyst block", 1), (("amethyst", 8),)),
+        (("amethyst rune", 1), (("quartz block", 1), ("amethyst", 4), ("stone brick floor", 2))),
+        (("citrine", 8), (("citrine block", 1),)),
+        (("citrine block", 1), (("citrine", 8),)),
+        (("citrine rune", 1), (("amethyst block", 1), ("citrine", 4), ("amethyst rune", 2))),
         (("coal", 8), (("coal block", 1),)),
         (("coal block", 1), (("coal", 8),)),
         (("copper block", 1), (("copper ingot", 8),)),
@@ -111,7 +118,6 @@ RECIPES = {
         (("gift", 1), (("package", 1), ("coal", 1))),
         (("quartz block", 1), (("quartz", 8),)),
         (("quartz", 8), (("quartz block", 1),)),
-        (("amethyst rune", 1), (("quartz block", 1), ("amethyst", 2), ("pure crystal", 2))),
     ),
     "player": (
         (("stick", 4), (("wood", 2),)),

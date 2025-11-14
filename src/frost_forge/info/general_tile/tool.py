@@ -1,6 +1,7 @@
 TOOL_REQUIRED = {
     "acorn": "shovel",
     "amethyst": "pickaxe",
+    "amethyst block": "pickaxe",
     "amethyst rune": "pickaxe",
     "bluebell": "shovel",
     "bluebell grown": "shovel",
@@ -12,6 +13,9 @@ TOOL_REQUIRED = {
     "campfire": "axe",
     "carrot": "shovel",
     "carrot grown": "shovel",
+    "citrine": "pickaxe",
+    "citrine block": "pickaxe",
+    "citrine rune": "pickaxe",
     "clay": "shovel",
     "coal": "pickaxe",
     "coal block": "pickaxe",

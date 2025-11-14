@@ -8,6 +8,7 @@ ACHIEVEMENTS = {
     "slife crystal": ("Slime slayer", "Not a ninja in sight"),
     "mana converter": ("What hast thou done?", "Unleashed the Ancient one"),
     "quartz child": ("Cuteness overload", "DO NOT KILL. Relax don't do it"),
+    "citrine": ("Final quartz variant", "Automation soon now"),
     "copper ingot": ("Shiny things", "Need a lot of them you will"),
     "small backpack": ("Inventory upgrade", "Don't craft multiple tho"),
     "copper boiler": ("Steam age", "Automation time?"),
