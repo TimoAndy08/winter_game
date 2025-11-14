@@ -60,12 +60,13 @@ RECIPES = {
         (("slime crystal", 1), (("slime ball", 1), ("fuel", 8))),
         (("tin ingot", 1), (("raw tin", 1), ("fuel", 12))),
     ),
-    "mana convertor": (
+    "mana converter": (
         (("mana", 1), ()),
     ),
     "manual press": (
         (("blue dye", 2), (("bluebell", 2), ("bowl", 1))),
         (("copper pit", 1), (("raw copper", 1), ("flint shovel", 1), ("coal", 1), ("clay", 1))),
+        (("package", 1), (("paper", 4), ("water", 1))),
         (("paper", 1), (("wood", 2),)),
         (("rock", 1), (("pebble", 3),)),
         (("sand", 1), (("pebble", 2),)),
@@ -77,14 +78,10 @@ RECIPES = {
     ),
     "masonry bench": (
         (("brick floor", 2), (("brick", 1),)),
-        (("coal", 8), (("coal block", 1),)),
-        (("coal block", 1), (("coal", 8),)),
         (("copper anvil", 1), (("copper block", 1), ("copper ingot", 2))),
-        (("copper block", 1), (("copper ingot", 8),)),
         (("copper brick", 2), (("copper ingot", 1), ("stone brick", 2))),
         (("copper brick floor", 2), (("copper brick", 1),)),
         (("copper door", 1), (("copper brick", 1), ("copper brick floor", 1))),
-        (("copper ingot", 8), (("copper block", 1),)),
         (("furnace", 1), (("copper ingot", 6), ("stone brick", 8))),
         (("glass key", 1), (("glass", 3), ("coal", 1), ("handle", 1))),
         (("rock axe", 1), (("handle", 1), ("rock", 4))),
@@ -105,6 +102,16 @@ RECIPES = {
         (("mushroom table", 1), (("mushroom floor", 4), ("stick", 4))),
         (("plant bouquet", 1), (("bluebell", 1), ("carrot", 1), ("sapling", 1), ("spore", 1))),
     ),
+    "packager bench": (
+        (("coal", 8), (("coal block", 1),)),
+        (("coal block", 1), (("coal", 8),)),
+        (("copper block", 1), (("copper ingot", 8),)),
+        (("copper ingot", 8), (("copper block", 1),)),
+        (("gift", 1), (("package", 1), ("coal", 1))),
+        (("quartz block", 1), (("quartz", 8),)),
+        (("quartz", 8), (("quartz block", 1),)),
+        (("amethyst rune", 1), (("quartz block", 1), ("amethyst", 2), ("pure crystal", 2))),
+    ),
     "player": (
         (("stick", 4), (("wood", 2),)),
         (("wood", 2), (("log", 1),)),
@@ -121,7 +128,6 @@ RECIPES = {
         (("amethyst sword", 1), (("handle", 1), ("amethyst", 3), ("slime ball", 2), ("pure quartz", 1))),
         (("life crystal", 1), (("pure crystal", 2), ("amethyst", 3), ("slime ball", 1))),
         (("slime summon", 1), (("pure crystal", 3), ("life crystal", 1))),
-        (("mana converter", 1), (("quartz", 3), ("small crate", 1))),
         (("quartz child", 1), (("glass", 5), ("life crystal", 1))),
     ),
     "sawbench": (
@@ -156,7 +162,7 @@ RECIPES = {
         (("copper sapling", 1), (("coal sapling", 1), ("glass key", 1), ("amethyst", 2))),
         (("tin sapling", 1), (("copper sapling", 1), ("burner drill", 1), ("slime block", 2))),
     ),
-    "void convertor": (
+    "void converter": (
         (("sapling", 1), (("log", 1), ("wood", 1))),
         (("rabbit child", 1), (("blue dye", 1), ("carrot", 4))),
         (("tree constructor", 1), (("sapling", 4), ("small crate", 1))),
@@ -180,6 +186,7 @@ RECIPES = {
         (("flint sword", 1), (("flint", 1), ("ice", 1), ("stick", 2))),
         (("manual press", 1), (("flint hammer", 1), ("workbench", 1))),
         (("masonry bench", 1), (("flint pickaxe", 2), ("rock", 1), ("workbench", 1))),
+        (("packager bench", 1), (("package", 1), ("masonry bench", 1))),
         (("sawbench", 1), (("flint axe", 2), ("rock", 1), ("workbench", 1))),
         (("sewbench", 1), (("copper needle", 1), ("rabbit fur", 2), ("workbench", 1))),
     ),

@@ -42,7 +42,7 @@ def left_click(
         if inventory_number < len(inventory):
             inventory_key = list(inventory.keys())[inventory_number]
         else:
-            inventory_key = None
+            inventory_key = ""
         is_tile = grid_position[1] in chunks[grid_position[0]]
         if not is_tile:
             is_kind = True
@@ -76,7 +76,24 @@ def left_click(
                 chunks[grid_position[0]][grid_position[1]]["kind"], ()
             )
             kind = chunks[grid_position[0]][grid_position[1]]["kind"]
-            if "open" in attributes:
+            if inventory_key.split(" ")[-1] == "needle" and kind in SHEARABLE:
+                shear = SHEARABLE[kind]
+                sheared = False
+                if shear[0] in inventory:
+                    if inventory[shear[0]] + shear[1] <= inventory_size[1]:
+                        inventory[shear[0]] += shear[1]
+                        sheared = True
+                elif len(inventory) < inventory_size[0]:
+                    inventory[shear[0]] = shear[1]
+                    sheared = True
+                if sheared:
+                    for item in shear[2]:
+                        chunks[grid_position[0]][grid_position[1]][item] = shear[2][item]
+                    if "inventory" in shear[2]:
+                        chunks[grid_position[0]][grid_position[1]]["inventory"] = {}
+                        for item in shear[2]["inventory"]:
+                            chunks[grid_position[0]][grid_position[1]]["inventory"][item] = shear[2]["inventory"][item]
+            elif "open" in attributes:
                 machine_ui = kind
                 location["opened"] = (grid_position[0], grid_position[1])
                 machine_inventory = chunks[grid_position[0]][grid_position[1]].get("inventory", {})
@@ -102,23 +119,6 @@ def left_click(
                 if inventory[inventory_key] == 0:
                     del inventory[inventory_key]
                 chunks[grid_position[0]][grid_position[1]]["love"] = 100
-            elif inventory_key.split(" ")[-1] == "needle" and kind in SHEARABLE:
-                shear = SHEARABLE[kind]
-                sheared = False
-                if shear[0] in inventory:
-                    if inventory[shear[0]] + shear[1] <= inventory_size[1]:
-                        inventory[shear[0]] += shear[1]
-                        sheared = True
-                elif len(inventory) < inventory_size[0]:
-                    inventory[shear[0]] = shear[1]
-                    sheared = True
-                if sheared:
-                    for item in shear[2]:
-                        chunks[grid_position[0]][grid_position[1]][item] = shear[2][item]
-                    if "inventory" in shear[2]:
-                        chunks[grid_position[0]][grid_position[1]]["inventory"] = {}
-                        for item in shear[2]["inventory"]:
-                            chunks[grid_position[0]][grid_position[1]]["inventory"][item] = shear[2]["inventory"][item]
     elif machine_ui in RECIPES:
         if recipe_number >= 0:
             if "machine" in ATTRIBUTES[machine_ui]:

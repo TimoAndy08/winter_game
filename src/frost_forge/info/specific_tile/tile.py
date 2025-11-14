@@ -100,10 +100,12 @@ GROW_DIRT_IGNORE = {
 MULTI_TILES = {
     "copper boiler": (3, 2),
     "copper constructor": (2, 2),
+    "destroyed obelisk": (1, 2),
     "furnace": (2, 2),
     "manual press": (2, 1),
     "masonry bench": (2, 1),
     "obelisk": (1, 2),
+    "packager bench": (2, 1),
     "sawbench": (2, 1),
     "sewbench": (2, 1),
     "wooden bed": (1, 2),
@@ -114,11 +116,12 @@ PROCESSING_TIME = {
     "copper boiler": 5 * FPS,
     "copper press": 20 * FPS,
     "furnace": 10 * FPS,
-    "mana convertor": 60 * FPS,
+    "mana converter": 60 * FPS,
     "wood crucible": 60 * FPS,
     "wooden sieve": 15 * FPS,
 }
 STORAGE = {
+    "destroyed void crate": (6, 64),
     "small barrel": (1, 512),
     "small crate": (8, 64),
     "void crate": (8, 64),
@@ -127,18 +130,22 @@ UNBREAK = {
     "coal mineable",
     "copper mineable",
     "copper pit",
+    "destroyed obelisk",
+    "destroyed void crate",
     "glass lock",
     "left",
     "obelisk",
     "slime summon",
     "up",
     "void",
-    "void convertor",
+    "void converter",
     "void crate",
 }
 MODIFICATIONS = {"rail": 6}
 SHEARABLE = {
+    "obelisk": ("mana converter", 1, {"kind": "destroyed obelisk"}),
     "quartz adult": ("quartz", 1, {"kind": "quartz child"}),
     "rabbit adult": ("rabbit fur", 1, {"kind": "furless rabbit", "inventory": {"rabbit meat": 1}}),
     "tree": ("leaf", 1, {"kind": "log", "inventory": {"log": 1}}),
+    "void crate": ("mana converter", 1, {"kind": "destroyed void crate"}),
 }
