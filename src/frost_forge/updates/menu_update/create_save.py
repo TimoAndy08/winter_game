@@ -23,7 +23,7 @@ def save_creating(state, chunks):
             )
     if state.world_type in WORLD_ABILITIES["skyblock"]:
         chunks[0, 0][0, 0] = {"kind": "void crate", "inventory": {"flint axe": 1, "sapling": 1, "dirt": 1, "composter": 1}}
-        chunks[0, 0][0, 1] = {"kind": "void convertor"}
+        chunks[0, 0][0, 1] = {"kind": "void converter"}
     else:
         chunks[0, 0][0, 0] = {"kind": "obelisk"}
         chunks[0, 0][0, 1] = {"kind": "up"}

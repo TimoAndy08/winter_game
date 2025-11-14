@@ -7,6 +7,8 @@ BREEDABLE = {
     "rabbit adult": {"kind": "rabbit child"}
 }
 DAMAGE = {
+    "quartz adult": 0,
+    "quartz child": 0,
     "slime prince": 2,
 }
 MOVEMENT_TYPE = {

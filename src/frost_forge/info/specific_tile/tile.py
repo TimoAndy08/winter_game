@@ -2,6 +2,7 @@ from ..render import FPS
 
 
 FLOOR = {
+    "amethyst rune",
     "brick floor",
     "coal mineable",
     "copper brick floor",
@@ -116,7 +117,7 @@ PROCESSING_TIME = {
     "copper boiler": 5 * FPS,
     "copper press": 20 * FPS,
     "furnace": 10 * FPS,
-    "mana converter": 60 * FPS,
+    "mana converter": 10 * FPS,
     "wood crucible": 60 * FPS,
     "wooden sieve": 15 * FPS,
 }
@@ -148,4 +149,10 @@ SHEARABLE = {
     "rabbit adult": ("rabbit fur", 1, {"kind": "furless rabbit", "inventory": {"rabbit meat": 1}}),
     "tree": ("leaf", 1, {"kind": "log", "inventory": {"log": 1}}),
     "void crate": ("mana converter", 1, {"kind": "destroyed void crate"}),
+}
+RUNES = {
+    "amethyst rune": (0, 1),
+}
+RUNES_USER = {
+    "mana converter": 1,
 }

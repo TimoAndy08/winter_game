@@ -61,7 +61,8 @@ RECIPES = {
         (("tin ingot", 1), (("raw tin", 1), ("fuel", 12))),
     ),
     "mana converter": (
-        (("mana", 1), ()),
+        (("amethyst", 1), (("quartz", 2), ("mana", 1)), 1),
+        (("mana", 1), (), 1),
     ),
     "manual press": (
         (("blue dye", 2), (("bluebell", 2), ("bowl", 1))),
@@ -120,7 +121,6 @@ RECIPES = {
         (("workbench", 1), (("flint", 1), ("wood", 4))),
     ),
     "quartz altar": (
-        (("amethyst", 1), (("quartz", 2), ("mana", 1))),
         (("amethyst axe", 1), (("handle", 1), ("amethyst", 3), ("pure quartz", 1))),
         (("amethyst hammer", 1), (("handle", 2), ("amethyst", 5), ("pure quartz", 2))),
         (("amethyst pickaxe", 1), (("handle", 1), ("amethyst", 3), ("pure quartz", 1))),

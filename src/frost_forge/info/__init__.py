@@ -39,6 +39,8 @@ from .specific_tile.tile import (
     SOIL_STRENGTH,
     MODIFICATIONS,
     SHEARABLE,
+    RUNES,
+    RUNES_USER,
 )
 from .specific_tile.item import (
     HEALTH_INCREASE,

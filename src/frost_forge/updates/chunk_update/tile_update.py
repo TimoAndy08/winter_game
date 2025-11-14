@@ -1,10 +1,11 @@
+from math import log2, sqrt
+
 from .point import left, up
 from ..entity_behaviour.animal import animal
 from ..entity_behaviour.enemy import enemy
-from ..entity_behaviour.loyal import loyal
 from .growth import grow
-from ..left_click import recipe
-from ...info import ATTRIBUTES, GROW_TILES, PROCESSING_TIME
+from .machine import machine
+from ...info import ATTRIBUTES, GROW_TILES
 
 
 def update_tile(
@@ -19,20 +20,15 @@ def update_tile(
     create_tile,
     world_type,
 ):
-    attributes = ATTRIBUTES.get(current_tile["kind"], ())
-    if current_tile["kind"] == "left":
+    kind = current_tile["kind"]
+    attributes = ATTRIBUTES.get(kind, ())
+    if kind == "left":
         chunks = left(chunks, chunk, tile)
-    elif current_tile["kind"] == "up":
+    elif kind == "up":
         chunks = up(chunks, chunk, tile)
     elif "machine" in attributes:
-        if tick % PROCESSING_TIME[current_tile["kind"]] == 0 and current_tile.get("recipe", -1) >= 0:
-            if "inventory" not in current_tile:
-                current_tile["inventory"] = {}
-            if "drill" in attributes and "floor" in current_tile:
-                if current_tile["floor"].split(" ")[-1] == "mineable":
-                    current_tile["inventory"][current_tile["floor"]] = 1
-            chunks[chunk][tile]["inventory"] = recipe(current_tile["kind"], current_tile["recipe"], current_tile["inventory"], (20, 64))
-    elif current_tile["kind"] in GROW_TILES:
+        chunks[chunk][tile]["inventory"] = machine(tick, current_tile, kind, attributes, tile, chunk, chunks)
+    elif kind in GROW_TILES:
         chunks[chunk][tile] = grow(current_tile, world_type)
         if chunks[chunk][tile] == {}:
             del chunks[chunk][tile]
@@ -59,16 +55,6 @@ def update_tile(
                 current_tile,
                 location,
                 health,
-                player_distance,
-                create_tile,
-            )
-        elif "loyal" in attributes:
-            chunks, create_tile = loyal(
-                chunks,
-                chunk,
-                tile,
-                current_tile,
-                location,
                 player_distance,
                 create_tile,
             )
