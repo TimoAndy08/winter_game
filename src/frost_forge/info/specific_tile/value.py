@@ -1,4 +1,5 @@
 MACHINES = {
+    "amethyst boiler": ("water fluid",),
     "burner drill": ("fuel",),
     "composter": ("compost",),
     "copper boiler": ("fuel", "water fluid"),

@@ -1,7 +1,10 @@
 RESISTANCE = {
     "amethyst": 2,
     "amethyst block": 2,
+    "amethyst boiler": 2,
     "amethyst dirt": 2,
+    "amethyst pipe": 2,
+    "amethyst pump": 2,
     "amethyst rune": 2,
     "bluebell jar": 2,
     "bluebell grown": 1,

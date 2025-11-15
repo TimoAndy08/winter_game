@@ -1,4 +1,5 @@
 ATTRIBUTES = {
+    "amethyst boiler": {"open", "machine"},
     "burner drill": {"open", "machine", "drill"},
     "campfire": {"open", "craft"},
     "composter": {"open", "machine"},

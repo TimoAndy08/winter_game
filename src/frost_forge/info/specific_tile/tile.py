@@ -102,6 +102,7 @@ GROW_DIRT_IGNORE = {
     "slime summon",
 }
 MULTI_TILES = {
+    "amethyst": (3, 2),
     "copper boiler": (3, 2),
     "copper constructor": (2, 2),
     "destroyed obelisk": (1, 2),
@@ -115,6 +116,7 @@ MULTI_TILES = {
     "wooden bed": (1, 2),
 }
 PROCESSING_TIME = {
+    "amethyst boiler": 5 * FPS,
     "burner drill": 30 * FPS,
     "composter": 2 * FPS,
     "copper boiler": 5 * FPS,

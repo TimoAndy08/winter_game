@@ -1,4 +1,7 @@
 RECIPES = {
+    "amethyst boiler": (
+        (("steam fluid", 10), (("water fluid", 10), ("purple mana", 1))),
+    ),
     "burner drill": (
         (("coal", 1), (("fuel", 2), ("coal mineable", 1))),
         (("coal", 2), (("fuel", 8), ("coal mineable", 1))),
@@ -62,11 +65,15 @@ RECIPES = {
     ),
     "mana converter": (
         (("amethyst", 1), (("quartz", 1), ("mana", 1)), 1),
+        (("amethyst boiler", 1), (("citrine rune", 2), ("amethyst pipe", 5), ("tin ingot", 2)), 5),
         (("amethyst dirt", 2), (("fertilizer", 1), ("moist dirt", 2), ("amethyst", 1)), 4),
+        (("amethyst pipe", 2), (("citrine", 1), ("amethyst", 1)), 3),
+        (("amethyst pump", 1), (("amethyst pipe", 1), ("amethyst rune", 1)), 3),
         (("citrine", 1), (("amethyst", 1), ("mana", 1)), 2),
         (("mana", 2), (), 1),
         (("mana converter", 1), (("purple mana", 1), ("quartz", 1), ("amethyst", 1), ("citrine", 1)), 5),
         (("purple mana", 2), (("mana", 7), ("purple dye", 2)), 3),
+        (("slime summon", 1), (("slime crystal", 3), ("life crystal", 1)), 1),
     ),
     "manual press": (
         (("blue dye", 1), (("bluebell", 1), ("bowl", 1))),
@@ -114,6 +121,7 @@ RECIPES = {
         (("citrine", 1), (("amethyst", 2), ("mana", 1)), 2),
         (("mana", 1), (), 1),
         (("purple mana", 1), (("mana", 5), ("purple dye", 1)), 3),
+        (("slime summon", 1), (("slime crystal", 3), ("life crystal", 1)), 1),
     ),
     "packager bench": (
         (("amethyst", 8), (("amethyst block", 1),)),
@@ -145,7 +153,6 @@ RECIPES = {
         (("amethyst sword", 1), (("handle", 1), ("amethyst", 3), ("slime ball", 2), ("pure crystal", 1))),
         (("life crystal", 1), (("pure crystal", 2), ("amethyst", 3), ("slime ball", 1))),
         (("mana converter", 1), (("obelisk piece", 1), ("purple mana", 1))),
-        (("slime summon", 1), (("pure crystal", 3), ("life crystal", 1))),
         (("quartz child", 1), (("glass", 5), ("life crystal", 1))),
     ),
     "sawbench": (
