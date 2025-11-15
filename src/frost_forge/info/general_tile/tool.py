@@ -50,6 +50,7 @@ TOOL_REQUIRED = {
     "copper treeling": "axe",
     "copper tree": "axe",
     "dirt": "shovel",
+    "dye mixer": "axe",
     "flint": "pickaxe",
     "furless rabbit": "sword",
     "furnace": "pickaxe",

@@ -8,6 +8,7 @@ ATTRIBUTES = {
     "copper constructor": {"open", "craft"},
     "copper press": {"open", "machine"},
     "destroyed void crate": {"open", "store"},
+    "dye bench": {"open", "craft"},
     "furless rabbit": {"animal", "creature"},
     "furnace": {"open", "machine"},
     "left": {"point"},

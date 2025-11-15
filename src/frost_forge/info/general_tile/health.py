@@ -65,6 +65,7 @@ HEALTH = {
     "copper wrench": 12,
     "corpse": 1,
     "dirt": 5,
+    "dye bench": 12,
     "fertilizer": 5,
     "flint axe": 8,
     "flint hammer": 8,

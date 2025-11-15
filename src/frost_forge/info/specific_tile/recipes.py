@@ -55,6 +55,11 @@ RECIPES = {
     "copper press": (
         (("copper sheet", 1), (("copper ingot", 1), ("fuel", 8))),
     ),
+    "dye bench": (
+        (("blue dye", 1), (("bluebell", 1),)),
+        (("purple dye", 1), (("bluebell", 1), ("amethyst", 1))),
+        (("white dye", 1), (("quartz", 1),)),
+    ),
     "furnace": (
         (("coal", 1), (("log", 1), ("fuel", 2))),
         (("copper ingot", 1), (("raw copper", 1), ("fuel", 6))),
@@ -204,6 +209,7 @@ RECIPES = {
     "workbench": (
         (("bowl", 1), (("stick", 1), ("wood", 1))),
         (("campfire", 1), (("flint", 2), ("stick", 6), ("wood", 4))),
+        (("dye bench", 1), (("manual press", 1), ("purple dye", 1))),
         (("flint axe", 1), (("flint", 2), ("stick", 3))),
         (("flint hammer", 1), (("flint", 4), ("stick", 4))),
         (("flint pickaxe", 1), (("flint", 2), ("stick", 3))),
