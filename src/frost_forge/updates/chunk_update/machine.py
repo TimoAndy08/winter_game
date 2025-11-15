@@ -30,7 +30,7 @@ def machine(tick, current_tile, kind, attributes, tile, chunk, chunks):
                                     mana *= RUNES[rune][1]
                                 elif RUNES[rune][0] == 2:
                                     mana **= RUNES[rune][1]
-            if int(log2(mana ** 1.2 + 2)) < RECIPES[kind][current_tile["recipe"]][2]:
+            if int(log2(mana ** 1.2 + 2)) != RECIPES[kind][current_tile["recipe"]][2]:
                 craftable = False
         if craftable:
             chunks[chunk][tile]["inventory"] = recipe(kind, current_tile["recipe"], machine_inventory, (20, 64))

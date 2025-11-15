@@ -2,8 +2,10 @@ from ..render import FPS
 
 
 FLOOR = {
+    "amethyst dirt",
     "amethyst rune",
     "brick floor",
+    "citrine rune",
     "coal mineable",
     "copper brick floor",
     "copper door",
@@ -45,6 +47,7 @@ FLOOR_TYPE = {
 SOIL_STRENGTH = {
     "dirt": 1,
     "moist dirt": 1.25,
+    "amethyst dirt": 1.4,
 }
 GROW_TIME = {
     "bluebell": 400,
@@ -56,7 +59,7 @@ GROW_TIME = {
     "copper treeling": 375,
     "furless rabbit": 120,
     "potato": 240,
-    "quartz child": 300,
+    "quartz child": 40,
     "rabbit child": 200,
     "sapling": 80,
     "slime summon": 40,

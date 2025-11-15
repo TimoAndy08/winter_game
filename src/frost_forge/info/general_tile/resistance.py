@@ -1,6 +1,7 @@
 RESISTANCE = {
     "amethyst": 2,
     "amethyst block": 2,
+    "amethyst dirt": 2,
     "amethyst rune": 2,
     "bluebell jar": 2,
     "bluebell grown": 1,
@@ -58,7 +59,7 @@ RESISTANCE = {
     "pebble": 1,
     "potato": 1,
     "potato grown": 1,
-    "pure quartz": 2,
+    "pure crystal": 2,
     "quartz": 2,
     "quartz adult": 2,
     "quartz altar": 2,
