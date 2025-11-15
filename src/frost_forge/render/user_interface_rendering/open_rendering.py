@@ -36,7 +36,7 @@ def render_open(machine_ui, window, images, recipe_number, machine_inventory):
             window = render_craft(window, RECIPES[machine_ui], images, recipe_number)
         elif "machine" in attributes:
             window = render_machine(
-                window, RECIPES[machine_ui], images, machine_inventory, recipe_number
+                window, RECIPES[machine_ui], images, machine_inventory, recipe_number, machine_ui,
             )
         elif "store" in attributes:
             window = render_store(window, STORAGE[machine_ui][0], images, machine_inventory)

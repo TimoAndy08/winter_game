@@ -10,11 +10,12 @@ from ...info import (
     FLOOR_SIZE,
     HALF_SCREEN_SIZE,
     LOOT_TABLES,
+    RUNES_USER,
 )
 from .store_rendering import render_store
 
 
-def render_machine(window, current_recipes, images, machine_inventory, recipe_number):
+def render_machine(window, current_recipes, images, machine_inventory, recipe_number, machine_ui):
     if recipe_number >= 0:
         machine_recipe = current_recipes[recipe_number]
         for item in range(0, len(machine_recipe[1])):
@@ -91,6 +92,20 @@ def render_machine(window, current_recipes, images, machine_inventory, recipe_nu
                     (position[0] + (32 * n - 4) * UI_SCALE, position[1]),
                 )
                 n += 1
+        if machine_ui in RUNES_USER:
+            window.blit(
+                pg.transform.scale(images["inventory_slot_4"], SLOT_SIZE),
+                (HALF_SCREEN_SIZE + 56 * UI_SCALE, SCREEN_SIZE[1] - 80 * UI_SCALE),
+            )
+            window.blit(pg.transform.scale(images["mana"], TILE_UI_SIZE), (HALF_SCREEN_SIZE + 64 * UI_SCALE, position[1]))
+            window.blit(
+                UI_FONT.render(
+                    f"{machine_inventory.get("mana_level", 0)}/{machine_recipe[2]}",
+                    False,
+                    (19, 17, 18),
+                ),
+                (HALF_SCREEN_SIZE + 60 * UI_SCALE, position[1]),
+            )
     else:
         machine_inventory = {}
         for recipe in current_recipes:
