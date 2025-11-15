@@ -117,7 +117,8 @@ PROCESSING_TIME = {
     "copper boiler": 5 * FPS,
     "copper press": 20 * FPS,
     "furnace": 10 * FPS,
-    "mana converter": 10 * FPS,
+    "mana converter": 15 * FPS,
+    "obelisk piece": 10 * FPS,
     "wood crucible": 60 * FPS,
     "wooden sieve": 15 * FPS,
 }
@@ -144,16 +145,17 @@ UNBREAK = {
 }
 MODIFICATIONS = {"rail": 6}
 SHEARABLE = {
-    "obelisk": ("mana converter", 1, {"kind": "destroyed obelisk"}),
+    "obelisk": ("obelisk piece", 1, {"kind": "destroyed obelisk"}),
     "quartz adult": ("quartz", 1, {"kind": "quartz child"}),
     "rabbit adult": ("rabbit fur", 1, {"kind": "furless rabbit", "inventory": {"rabbit meat": 1}}),
     "tree": ("leaf", 1, {"kind": "log", "inventory": {"log": 1}}),
-    "void crate": ("mana converter", 1, {"kind": "destroyed void crate"}),
+    "void crate": ("obelisk piece", 1, {"kind": "destroyed void crate"}),
 }
 RUNES = {
     "amethyst rune": (0, 1),
     "citrine rune": (0, 2),
 }
 RUNES_USER = {
-    "mana converter": 1,
+    "mana converter": 2,
+    "obelisk piece": 1,
 }

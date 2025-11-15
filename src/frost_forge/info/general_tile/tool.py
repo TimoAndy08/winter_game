@@ -64,6 +64,7 @@ TOOL_REQUIRED = {
     "mushroom floor": "hammer",
     "mushroom shaper": "hammer",
     "mushroom table": "hammer",
+    "obelisk piece": "pickaxe",
     "packager bench": "axe",
     "pebble": "pickaxe",
     "potato": "shovel",

@@ -15,6 +15,7 @@ ATTRIBUTES = {
     "masonry bench": {"open", "craft"},
     "mushroom shaper": {"open", "craft"},
     "mushroom table": {"store", "table"},
+    "obelisk piece": {"open", "machine"},
     "packager bench": {"open", "craft"},
     "player": {"open", "craft"},
     "quartz adult": {"enemy", "creature"},
