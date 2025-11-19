@@ -6,7 +6,7 @@ from ...world_generation.structure_generation import generate_structure
 from ...other_systems.game_saving import save_game
 from ...other_systems.walk import walkable
 from ..input_update.mouse_update import button_press
-from ...info import DAY_LENGTH, RECIPES, ACHIEVEMENTS, FPS, FLOOR_TYPE, WORLD_ABILITIES
+from ...info import DAY_LENGTH, RECIPES, ACHIEVEMENTS, FPS, FLOOR_TYPE, WORLD_ABILITIES, FLOOR_DAMAGE
 
 
 def update_game(state, chunks):
@@ -93,6 +93,9 @@ def update_game(state, chunks):
             (state.location["tile"][0], state.location["tile"][1]),
             (state.location["tile"][2], state.location["tile"][3]),
         )
+    
+    if chunks[state.location["tile"][0], state.location["tile"][1]][state.location["tile"][2], state.location["tile"][3]].get("floor", None) in FLOOR_DAMAGE and state.tick % FPS == 0:
+        state.health -= FLOOR_DAMAGE[chunks[state.location["tile"][0], state.location["tile"][1]][state.location["tile"][2], state.location["tile"][3]]["floor"]]
 
     for event in pg.event.get():
         if event.type == pg.QUIT:

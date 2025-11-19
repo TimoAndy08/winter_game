@@ -30,6 +30,7 @@ from .specific_tile.tile import (
     STORAGE,
     FLOOR,
     FLOOR_TYPE,
+    FLOOR_DAMAGE,
     UNBREAK,
     GROW_TIME,
     GROW_TILES,

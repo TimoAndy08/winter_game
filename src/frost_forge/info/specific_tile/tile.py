@@ -14,6 +14,9 @@ FLOOR = {
     "copper pit",
     "dirt",
     "ice",
+    "lava",
+    "lavastone brick floor",
+    "lavastone floor",
     "log floor",
     "moist dirt",
     "mushroom door",
@@ -41,8 +44,13 @@ FLOOR = {
 FLOOR_TYPE = {
     "copper pit": "tile",
     "ice": "block",
+    "lava": "fluid",
     "void": "block",
     "water": "fluid",
+}
+FLOOR_DAMAGE = {
+    "lava": 3,
+    "water": 1,
 }
 SOIL_STRENGTH = {
     "dirt": 1,
@@ -58,6 +66,7 @@ GROW_TIME = {
     "copper sapling": 300,
     "copper treeling": 375,
     "furless rabbit": 120,
+    "lava": 150,
     "potato": 240,
     "quartz child": 40,
     "rabbit child": 200,
@@ -78,6 +87,7 @@ GROW_TILES = {
     "copper sapling": {"kind": "copper treeling", "inventory": {"raw copper": 1, "copper sapling": 1, "log": 1}},
     "copper treeling": {"kind": "copper tree", "inventory": {"raw copper": 2, "copper ingot": 1, "copper sapling": 1, "log": 2}},
     "furless rabbit": {"kind": "rabbit adult", "inventory": {"rabbit fur": 1, "rabbit meat": 1}},
+    "lava": {"floor": "lavastone floor"},
     "potato": {"kind": "potato grown", "inventory": {"potato": 2}},
     "quartz child": {"kind": "quartz adult"},
     "rabbit child": {"kind": "rabbit adult", "inventory": {"rabbit fur": 1, "rabbit meat": 1}},

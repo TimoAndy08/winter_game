@@ -1,5 +1,5 @@
 from ..chunk_update.tile_update import update_tile
-from ...info import GROW_TILES, ATTRIBUTES, FPS, ADJACENT_ROOMS
+from ...info import GROW_TILES, ATTRIBUTES, FPS, ADJACENT_ROOMS, FLOOR_TYPE
 from ..chunk_update.growth import grow
 
 
@@ -51,7 +51,7 @@ def update_tiles(state, chunks):
                         if adjacent_tile in chunks[adjacent_chunk]:
                             if chunks[adjacent_chunk][adjacent_tile].get("floor", None) in GROW_TILES:
                                 adjacent_grow_tiles += 1
-                    if (chunks[chunk][tile]["floor"] == "water" and adjacent_grow_tiles < 2) or chunks[chunk][tile]["floor"] != "water":
+                    if (FLOOR_TYPE[chunks[chunk][tile]["floor"]] == "fluid" and adjacent_grow_tiles < 2) or FLOOR_TYPE[chunks[chunk][tile]["floor"]] != "fluid":
                         chunks[chunk][tile] = grow(current_tile, state.world_type)
                     if chunks[chunk][tile] == {}:
                         del chunks[chunk][tile]
