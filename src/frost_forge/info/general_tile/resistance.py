@@ -1,5 +1,7 @@
 RESISTANCE = {
     "amethyst": 2,
+    "amethyst brick": 3,
+    "amethyst brick floor": 3,
     "amethyst block": 2,
     "amethyst boiler": 2,
     "amethyst dirt": 2,
@@ -47,6 +49,7 @@ RESISTANCE = {
     "furless rabbit": 1,
     "furnace": 3,
     "ice": 1,
+    "judge": 2,
     "lavastone": 3,
     "lavastone brick": 3,
     "lavastone brick floor": 3,

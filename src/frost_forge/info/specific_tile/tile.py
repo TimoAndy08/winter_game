@@ -2,7 +2,9 @@ from ..render import FPS
 
 
 FLOOR = {
+    "amethyst brick floor",
     "amethyst dirt",
+    "amethyst mineable",
     "amethyst rune",
     "brick floor",
     "citrine rune",
@@ -42,6 +44,7 @@ FLOOR = {
     "wood floor",
 }
 FLOOR_TYPE = {
+    "amethyst mineable": "block",
     "copper pit": "tile",
     "ice": "block",
     "lava": "fluid",
@@ -58,6 +61,7 @@ SOIL_STRENGTH = {
     "amethyst dirt": 1.4,
 }
 GROW_TIME = {
+    "amethyst mineable": 120,
     "bluebell": 400,
     "carrot": 160,
     "coal sapling": 200,
@@ -79,6 +83,7 @@ GROW_TIME = {
     "water": 60,
 }
 GROW_TILES = {
+    "amethyst mineable": {"kind": "amethyst"},
     "bluebell": {"kind": "bluebell grown", "inventory": {"bluebell": 2}},
     "carrot": {"kind": "carrot grown", "inventory": {"carrot": 2}},
     "coal sapling": {"kind": "coal treeling", "inventory": {"coal": 1, "coal sapling": 1, "log": 1}},
@@ -111,6 +116,7 @@ GROW_DIRT_IGNORE = {
     "rabbit child",
     "slime summon",
 }
+GROW_FLOOR_DELETE = {"copper pit"}
 MULTI_TILES = {
     "amethyst": (3, 2),
     "copper boiler": (3, 2),
@@ -144,6 +150,7 @@ STORAGE = {
     "void crate": (8, 64),
 }
 UNBREAK = {
+    "amethyst mineable",
     "coal mineable",
     "copper mineable",
     "copper pit",

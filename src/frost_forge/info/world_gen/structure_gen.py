@@ -1,9 +1,15 @@
 NOISE_STRUCTURES = {
     "forest": (((0, 0.01), "mushroom hut"),),
-    "mountain": (((0, 0.01), "mineshaft"),),
+    "mountain": (((0, 0.01), "mineshaft"), ((0.11, 0.12), "amethyst geode")),
     "plains": (((0, 0.005), "copper dungeon"),),
 }
 ROOM_COLORS = {
+    "amethyst geode": {
+        (95, 81, 114): {"kind": "amethyst brick", "floor": "amethyst brick floor"},
+        (123, 104, 150): {"floor": "amethyst brick floor"},
+        (160, 138, 193): {"floor": "amethyst mineable"},
+        (136, 68, 31): {"kind": "judge", "floor": "amethyst brick floor"},
+    },
     "copper dungeon": {
         (136, 68, 31): {"kind": "copper brick", "floor": "copper brick floor"},
         (181, 102, 60): {"floor": "copper brick floor"},
@@ -39,12 +45,14 @@ ROOM_COLORS = {
     },
 }
 STRUCTURE_ENTRANCE = {
+    "amethyst geode": {"kind": "amethyst", "floor": "amethyst mineable"},
     "copper dungeon": {"kind": "glass lock", "floor": "copper door"},
     "mineshaft": {"floor": "stone floor"},
     "mushroom hut": {"floor": "mushroom door"},
 }
-STRUCTURE_SIZE = {"copper dungeon": 0.6, "mushroom hut": 0.1, "mineshaft": 0.4}
+STRUCTURE_SIZE = {"amethyst geode": 0, "copper dungeon": 0.6, "mushroom hut": 0.1, "mineshaft": 0.4}
 STRUCTURE_ROOMS = {
+    "amethyst geode": ("amethyst geode",),
     "copper dungeon": ("treasury", "hallway", "library", "banquet", "forge"),
     "mineshaft": ("hallway", "coal mine"),
     "mushroom hut": ("mushroom hut",),

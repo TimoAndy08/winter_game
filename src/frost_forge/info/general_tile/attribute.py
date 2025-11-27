@@ -11,6 +11,7 @@ ATTRIBUTES = {
     "dye bench": {"open", "craft"},
     "furless rabbit": {"animal", "creature"},
     "furnace": {"open", "machine"},
+    "judge": {"enemy", "creature"},
     "left": {"point"},
     "mana converter": {"open", "machine"},
     "manual press": {"open", "craft"},

@@ -3,6 +3,8 @@ RECIPES = {
         (("steam fluid", 10), (("water fluid", 10), ("purple mana", 1))),
     ),
     "burner drill": (
+        (("amethyst", 1), (("fuel", 4), ("quartz", 1), ("amethyst mineable", 1))),
+        (("amethyst", 2), (("fuel", 16), ("quartz", 2), ("amethyst mineable", 1))),
         (("coal", 1), (("fuel", 2), ("coal mineable", 1))),
         (("coal", 2), (("fuel", 8), ("coal mineable", 1))),
         (("raw copper", 1), (("fuel", 4), ("copper mineable", 1))),
@@ -96,6 +98,8 @@ RECIPES = {
         (("white dye", 1), (("quartz", 1), ("bowl", 1))),
     ),
     "masonry bench": (
+        (("amethyst brick", 2), (("amethyst", 1), ("stone brick", 2))),
+        (("amethyst brick floor", 2), (("amethyst brick", 1))),
         (("brick floor", 2), (("brick", 1),)),
         (("copper anvil", 1), (("copper block", 1), ("copper ingot", 2))),
         (("copper brick", 2), (("copper ingot", 1), ("stone brick", 2))),

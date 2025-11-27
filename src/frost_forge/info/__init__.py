@@ -36,6 +36,7 @@ from .specific_tile.tile import (
     GROW_TILES,
     GROW_DIRT_IGNORE,
     GROW_REQUIREMENT,
+    GROW_FLOOR_DELETE,
     PROCESSING_TIME,
     SOIL_STRENGTH,
     MODIFICATIONS,

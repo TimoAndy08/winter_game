@@ -1,6 +1,8 @@
 TOOL_REQUIRED = {
     "acorn": "shovel",
     "amethyst": "pickaxe",
+    "amethyst brick": "pickaxe",
+    "amethyst brick floor": "pickaxe",
     "amethyst block": "pickaxe",
     "amethyst boiler": "pickaxe",
     "amethyst dirt": "shovel",
@@ -55,6 +57,7 @@ TOOL_REQUIRED = {
     "furless rabbit": "sword",
     "furnace": "pickaxe",
     "ice": "pickaxe",
+    "judge": "sword",
     "lavastone": "pickaxe",
     "lavastone brick": "pickaxe",
     "lavastone brick floor": "pickaxe",
