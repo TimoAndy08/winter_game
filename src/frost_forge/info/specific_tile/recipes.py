@@ -59,6 +59,7 @@ RECIPES = {
     ),
     "dye bench": (
         (("blue dye", 1), (("bluebell", 1),)),
+        (("brown dye", 1), (("mushroom", 2),)),
         (("purple dye", 1), (("bluebell", 1), ("amethyst", 1))),
         (("white dye", 1), (("quartz", 1),)),
     ),
@@ -87,7 +88,6 @@ RECIPES = {
         (("copper pit", 1), (("raw copper", 1), ("flint shovel", 1), ("coal", 1), ("clay", 1))),
         (("package", 1), (("paper", 4), ("water", 1))),
         (("paper", 1), (("wood", 2),)),
-        (("purple dye", 1), (("blue dye", 1), ("amethyst", 1), ("bowl", 1))),
         (("rock", 1), (("pebble", 3),)),
         (("sand", 1), (("pebble", 2),)),
         (("water axe", 1), (("handle", 1), ("water", 3), ("rabbit fur", 1))),
@@ -95,7 +95,6 @@ RECIPES = {
         (("water pickaxe", 1), (("handle", 1), ("water", 3), ("rabbit fur", 1))),
         (("water shovel", 1), (("handle", 1), ("water", 2), ("rabbit fur", 1))),
         (("water sword", 1), (("handle", 1), ("water", 3), ("slime ball", 2), ("rabbit fur", 1))),
-        (("white dye", 1), (("quartz", 1), ("bowl", 1))),
     ),
     "masonry bench": (
         (("amethyst brick", 2), (("amethyst", 1), ("stone brick", 2))),
@@ -184,8 +183,9 @@ RECIPES = {
         (("wooden table", 1), (("wood floor", 4), ("stick", 4))),
     ),
     "sewbench": (
+        (("boots", 1), (("thread", 4), ("brown dye", 1))),
+        (("small backpack", 1), (("thread", 4), ("white dye", 1))),
         (("thread", 1), (("rabbit fur", 1), ("stick", 1))),
-        (("small backpack", 1), (("thread", 4), ("rabbit fur", 1))),
     ),
     "slime shaper": (
         (("slime block", 2), (("slime crystal", 1), ("wood", 2))),
@@ -216,7 +216,7 @@ RECIPES = {
     "workbench": (
         (("bowl", 1), (("stick", 1), ("wood", 1))),
         (("campfire", 1), (("flint", 2), ("stick", 6), ("wood", 4))),
-        (("dye bench", 1), (("manual press", 1), ("purple dye", 1))),
+        (("dye bench", 1), (("manual press", 1), ("blue dye", 1))),
         (("flint axe", 1), (("flint", 2), ("stick", 3))),
         (("flint hammer", 1), (("flint", 4), ("stick", 4))),
         (("flint pickaxe", 1), (("flint", 2), ("stick", 3))),

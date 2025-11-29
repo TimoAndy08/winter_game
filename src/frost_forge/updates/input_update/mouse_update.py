@@ -1,6 +1,7 @@
 from ...info import TILE_SIZE, ATTRIBUTES, RECIPES, SCREEN_SIZE
 from .right_click_updates import right_click
 from .left_click_update import left_click
+from .middle_click_update import middle_click
 
 
 def button_press(
@@ -20,6 +21,7 @@ def button_press(
     camera,
     inventory_size,
     world_type,
+    accessory,
 ):
     world_x = (position[0] - SCREEN_SIZE[0] * 5 / 8 + camera[0] * zoom) // (TILE_SIZE * zoom)
     world_y = (position[1] - SCREEN_SIZE[1] * 5 / 8 + camera[1] * zoom) // (TILE_SIZE * zoom)
@@ -92,7 +94,9 @@ def button_press(
                 inventory_size,
             )
 
-    if button == 4 or button == 5:
+    if button == 2:
+        inventory, accessory = middle_click(position, inventory_size, inventory, accessory)
+    elif button == 4 or button == 5:
         if "craft" in ATTRIBUTES.get(machine_ui, ()) or "machine" in ATTRIBUTES.get(
             machine_ui, ()
         ):
@@ -112,4 +116,5 @@ def button_press(
         max_health,
         inventory,
         recipe_number,
+        accessory,
     )

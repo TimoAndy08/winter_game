@@ -33,4 +33,5 @@ def save_creating(state, chunks):
     state.max_health = 20
     state.health = 20
     state.inventory_size = [12, 64]
+    state.accessory = []
     return chunks

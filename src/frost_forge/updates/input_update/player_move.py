@@ -1,8 +1,13 @@
-def move_player(key, controls, velocity, location):
+from ...info import SPEED
+
+
+def move_player(key, controls, velocity, location, accessory):
+    speed = 0.1
     if key[controls[24]]:
-        speed = 0.07
-    else:
-        speed = 0.1
+        speed *= 0.7
+    for item in accessory:
+        if item in SPEED:
+            speed *= 1 + SPEED[item]
     if key[controls[0]]:
         velocity[1] -= speed / (1 + abs(velocity[1]))
     if key[controls[1]]:
@@ -27,4 +32,4 @@ def move_player(key, controls, velocity, location):
         int(location["real"][2]),
         int(location["real"][3]),
     ]
-    return (location, velocity)
+    return location, velocity

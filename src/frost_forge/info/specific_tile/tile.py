@@ -118,7 +118,7 @@ GROW_DIRT_IGNORE = {
 }
 GROW_FLOOR_DELETE = {"copper pit"}
 MULTI_TILES = {
-    "amethyst": (3, 2),
+    "amethyst boiler": (3, 2),
     "copper boiler": (3, 2),
     "copper constructor": (2, 2),
     "destroyed obelisk": (1, 2),

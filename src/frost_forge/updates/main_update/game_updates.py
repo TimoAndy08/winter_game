@@ -13,7 +13,7 @@ def update_game(state, chunks):
     state.location["old"] = list(state.location["tile"])
     key = pg.key.get_pressed()
     state.location, state.velocity = move_player(
-        key, state.controls, state.velocity, state.location
+        key, state.controls, state.velocity, state.location, state.accessory
     )
 
     for x in range(-4, 5):
@@ -111,7 +111,8 @@ def update_game(state, chunks):
                 state.health,
                 state.max_health,
                 state.inventory,
-                recipe_number
+                recipe_number,
+                state.accessory,
             ) = button_press(
                 event.button,
                 state.position,
@@ -129,6 +130,7 @@ def update_game(state, chunks):
                 state.camera,
                 state.inventory_size,
                 state.world_type,
+                state.accessory,
             )
             if "recipe" in chunks[state.location["opened"][0]][state.location["opened"][1]]:
                 chunks[state.location["opened"][0]][state.location["opened"][1]]["recipe"] = recipe_number
