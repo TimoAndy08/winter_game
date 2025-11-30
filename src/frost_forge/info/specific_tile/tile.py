@@ -17,6 +17,7 @@ FLOOR = {
     "dirt",
     "ice",
     "lava",
+    "lava rune",
     "lavastone brick floor",
     "lavastone floor",
     "log floor",
@@ -92,7 +93,7 @@ GROW_TILES = {
     "copper sapling": {"kind": "copper treeling", "inventory": {"raw copper": 1, "copper sapling": 1, "log": 1}},
     "copper treeling": {"kind": "copper tree", "inventory": {"raw copper": 2, "copper ingot": 1, "copper sapling": 1, "log": 2}},
     "furless rabbit": {"kind": "rabbit adult", "inventory": {"rabbit fur": 1, "rabbit meat": 1}},
-    "lava": {"floor": "lavastone floor"},
+    "lava": {"floor": "lavastone floor", "kind": "lavastone"},
     "potato": {"kind": "potato grown", "inventory": {"potato": 2}},
     "quartz child": {"kind": "quartz adult"},
     "rabbit child": {"kind": "rabbit adult", "inventory": {"rabbit fur": 1, "rabbit meat": 1}},
@@ -177,6 +178,7 @@ SHEARABLE = {
 RUNES = {
     "amethyst rune": (0, 1),
     "citrine rune": (0, 2),
+    "lava rune": (1, 0.8, 5)
 }
 RUNES_USER = {
     "mana converter": 2,

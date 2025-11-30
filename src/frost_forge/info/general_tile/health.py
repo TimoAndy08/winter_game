@@ -86,6 +86,7 @@ HEALTH = {
     "judge": 12,
     "junk": 1,
     "lava": 12,
+    "lava rune": 24,
     "lavastone brick": 16,
     "lavastone brick floor": 12,
     "lavastone": 16,

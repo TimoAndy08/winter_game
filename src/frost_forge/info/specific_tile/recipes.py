@@ -146,6 +146,7 @@ RECIPES = {
         (("copper block", 1), (("copper ingot", 8),)),
         (("copper ingot", 8), (("copper block", 1),)),
         (("gift", 1), (("package", 1), ("coal", 1))),
+        (("lava rune", 1), (("lava", 2), ("purple mana", 4), ("citrine rune", 2))),
         (("quartz block", 1), (("quartz", 8),)),
         (("quartz", 8), (("quartz block", 1),)),
     ),

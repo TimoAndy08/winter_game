@@ -59,6 +59,7 @@ TOOL_REQUIRED = {
     "furnace": "pickaxe",
     "ice": "pickaxe",
     "judge": "sword",
+    "lava rune": "pickaxe",
     "lavastone": "pickaxe",
     "lavastone brick": "pickaxe",
     "lavastone brick floor": "pickaxe",
