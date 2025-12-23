@@ -36,6 +36,7 @@ FLOOR = {
     "slime door",
     "slime door open",
     "slime floor",
+    "snow",
     "stone brick floor",
     "stone floor",
     "void",
@@ -57,6 +58,7 @@ FLOOR_DAMAGE = {
     "water": 1,
 }
 SOIL_STRENGTH = {
+    "snow": 0.85,
     "dirt": 1,
     "moist dirt": 1.25,
     "amethyst dirt": 1.4,

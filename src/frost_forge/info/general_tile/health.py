@@ -164,6 +164,8 @@ HEALTH = {
     "small backpack": 16,
     "small barrel": 10,
     "small crate": 10,
+    "snow": 8,
+    "snowball": 4,
     "spore": 4,
     "stick": 4,
     "stone brick": 16,

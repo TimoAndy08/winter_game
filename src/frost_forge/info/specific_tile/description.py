@@ -10,7 +10,7 @@ DESCRIPTION = {
     "citrine rune": "+2 to mana",
     "copper axe": "+3 damage to wooden materials",
     "copper hammer": "+3 damage to sticky materials",
-    "copper needle": "+3 damage to furlike materials and may shear certain things",
+    "copper needle": "+3 damage to threads and shearing",
     "copper pickaxe": "+3 damage to rocky materials",
     "copper shovel": "+3 damage to soft materials",
     "copper sword": "+3 damage to enemies",

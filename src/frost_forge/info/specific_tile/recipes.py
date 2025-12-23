@@ -151,6 +151,7 @@ RECIPES = {
         (("quartz", 8), (("quartz block", 1),)),
     ),
     "player": (
+        (("snowball", 4), (("snow", 1),)),
         (("stick", 4), (("wood", 2),)),
         (("wood", 2), (("log", 1),)),
         (("wood door", 1), (("wood floor", 1), ("wood", 1))),
@@ -184,7 +185,7 @@ RECIPES = {
         (("wooden table", 1), (("wood floor", 4), ("stick", 4))),
     ),
     "sewbench": (
-        (("anklet of the tree", 1), (("acorn", 4), ("thread", 2), ("log", 1), ("brown dye", 1))),
+        (("anklet of the tree", 1), (("acorn", 1), ("thread", 2), ("log", 1), ("brown dye", 1))),
         (("boots", 1), (("thread", 4), ("brown dye", 1))),
         (("small backpack", 1), (("thread", 4), ("white dye", 1))),
         (("thread", 1), (("rabbit fur", 1), ("stick", 1))),

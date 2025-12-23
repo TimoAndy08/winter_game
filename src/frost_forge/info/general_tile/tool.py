@@ -121,6 +121,8 @@ TOOL_REQUIRED = {
     "small backpack": "needle",
     "small barrel": "axe",
     "small crate": "axe",
+    "snow": "shovel",
+    "snowball": "shovel",
     "spore": "shovel",
     "stick": "axe",
     "stone": "pickaxe",

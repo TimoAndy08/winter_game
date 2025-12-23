@@ -38,6 +38,9 @@ NOISE_TILES = {
         ((0, 0.05), (0.2, 0.25), {"kind": "potato", "floor": "dirt"}),
         ((0, 0.5), (0, 0.5), {"floor": "dirt"}),
     ),
+    "frozen": (
+        ((-0.5, 0.5), (-0, 0.5), {"floor": "snow"}),
+    ),
     "mountain": (
         ((0.3, 0.4), (0.1, 0.2), {"kind": "coal ore", "inventory": {"coal": 1}, "floor": "coal mineable"},),
         ((0.4, 0.5), (0, 0.1), {"kind": "copper ore", "inventory": {"raw copper": 1}, "floor": "copper mineable"},),
@@ -54,7 +57,8 @@ NOISE_TILES = {
 }
 BIOMES = (
     (-0.05, 0.05, "lake"),
-    (-0.25, -0.1, "forest"),
+    (-0.35, -0.2, "forest"),
+    (-0.15, -0.1, "frozen"),
     (0.1, 0.35, "mountain"),
     (0.35, 0.5, "volcano"),
 )
