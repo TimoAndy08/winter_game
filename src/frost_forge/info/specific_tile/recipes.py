@@ -184,6 +184,7 @@ RECIPES = {
         (("wooden table", 1), (("wood floor", 4), ("stick", 4))),
     ),
     "sewbench": (
+        (("anklet of the tree", 1), (("acorn", 4), ("thread", 2), ("log", 1), ("brown dye", 1))),
         (("boots", 1), (("thread", 4), ("brown dye", 1))),
         (("small backpack", 1), (("thread", 4), ("white dye", 1))),
         (("thread", 1), (("rabbit fur", 1), ("stick", 1))),

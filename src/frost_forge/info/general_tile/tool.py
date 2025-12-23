@@ -9,6 +9,7 @@ TOOL_REQUIRED = {
     "amethyst pipe": "pickaxe",
     "amethyst pump": "pickaxe",
     "amethyst rune": "pickaxe",
+    "anklet of the tree": "axe",
     "bluebell": "shovel",
     "bluebell grown": "shovel",
     "bluebell jar": "axe",

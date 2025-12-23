@@ -14,6 +14,7 @@ HEALTH = {
     "amethyst rune": 16,
     "amethyst shovel": 12,
     "amethyst sword": 12,
+    "anklet of the tree": 12,
     "bluebell jar": 24,
     "blue dye": 6,
     "bluebell": 10,

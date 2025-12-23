@@ -8,6 +8,7 @@ RESISTANCE = {
     "amethyst pipe": 2,
     "amethyst pump": 2,
     "amethyst rune": 2,
+    "anklet of the tree": 1,
     "bluebell jar": 2,
     "bluebell grown": 1,
     "boots": 1,
