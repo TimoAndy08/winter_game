@@ -141,6 +141,7 @@ TOOL_REQUIRED = {
     "tin acorn": "shovel",
     "tin ingot": "pickaxe",
     "tin ore": "pickaxe",
+    "tin sapling": "shovel",
     "tin treeling": "axe",
     "tin tree": "axe",
     "torch": "axe",
