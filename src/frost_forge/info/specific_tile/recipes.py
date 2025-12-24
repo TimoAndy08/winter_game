@@ -219,8 +219,7 @@ RECIPES = {
         (("rabbit child", 1), (("blue dye", 1), ("carrot", 4))),
         (("tree constructor", 1), (("sapling", 4), ("small crate", 1))),
         (("quartz altar", 1), (("glass key", 1), ("stone", 4))),
-        (("raw caelium", 2), (("caelium acorn", 3),)),
-        (("caelium sieve", 1), (("caelium ingot", 2), ("wooden sieve", 1))),
+        (("caelium sieve", 1), (("caelium leaf", 1), ("wooden sieve", 1))),
     ),
     "wood crucible": (
         (("water", 1), (("fuel", 4),)),
