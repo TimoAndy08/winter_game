@@ -10,6 +10,16 @@ RECIPES = {
         (("raw copper", 1), (("fuel", 4), ("copper mineable", 1))),
         (("raw copper", 2), (("fuel", 16), ("copper mineable", 1))),
     ),
+    "caelium sieve": (
+        (("caelium leaf sift", 1), (("caelium leaf", 1), ("water fluid", 1))),
+        (("coal leaf sift", 1), (("coal leaf", 1), ("water fluid", 1))),
+        (("copper leaf sift", 1), (("copper leaf", 1), ("water fluid", 1))),
+        (("tin leaf sift", 1), (("tin leaf", 1), ("water fluid", 1))),
+        (("raw caelium", 1), (("caelium acorn", 1), ("water fluid", 1))),
+        (("coal", 4), (("coal acorn", 1), ("water fluid", 1))),
+        (("raw copper", 4), (("copper acorn", 1), ("water fluid", 1))),
+        (("raw tin", 4), (("tin acorn", 1), ("water fluid", 1))),
+    ),
     "campfire": (
         (("brick", 2), (("clay", 1),)),
         (("copper needle", 1), (("raw copper", 2),)),
@@ -64,6 +74,7 @@ RECIPES = {
         (("white dye", 1), (("quartz", 1),)),
     ),
     "furnace": (
+        (("caelium ingot", 1), (("raw caelium", 1), ("fuel", 16))),
         (("coal", 1), (("log", 1), ("fuel", 2))),
         (("copper ingot", 1), (("raw copper", 1), ("fuel", 6))),
         (("glass", 1), (("sand", 2), ("fuel", 4))),
@@ -201,12 +212,15 @@ RECIPES = {
         (("coal sapling", 1), (("sapling", 1), ("handle", 1), ("slime ball", 2))),
         (("copper sapling", 1), (("coal sapling", 1), ("glass key", 1), ("amethyst", 2))),
         (("tin sapling", 1), (("copper sapling", 1), ("burner drill", 1), ("slime block", 2))),
+        (("caelium sapling", 1), (("sapling", 1), ("coal sapling", 1), ("copper sapling", 1), ("tin sapling", 1))),
     ),
     "void converter": (
         (("sapling", 1), (("log", 1), ("wood", 1))),
         (("rabbit child", 1), (("blue dye", 1), ("carrot", 4))),
         (("tree constructor", 1), (("sapling", 4), ("small crate", 1))),
         (("quartz altar", 1), (("glass key", 1), ("stone", 4))),
+        (("raw caelium", 2), (("caelium acorn", 3),)),
+        (("caelium sieve", 1), (("caelium ingot", 2), ("wooden sieve", 1))),
     ),
     "wood crucible": (
         (("water", 1), (("fuel", 4),)),

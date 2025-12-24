@@ -71,6 +71,26 @@ LOOT_TABLES = {
     "leaf sift": ((
         (0.8, "sapling", 1, 2),
         (0.3, "stick", 1, 3),
-        (0.1, "acorn", 1, 1),
+        (0.2, "acorn", 1, 1),
     ), 0, 2),
+    "coal leaf sift": ((
+        (0.8, "coal sapling", 1, 2),
+        (0.3, "stick", 1, 3),
+        (0.2, "coal acorn", 1, 1),
+    ), 0, 2),
+    "copper leaf sift": ((
+        (0.8, "copper sapling", 1, 2),
+        (0.3, "stick", 1, 3),
+        (0.2, "copper acorn", 1, 1),
+    ), 0, 2),
+    "tin leaf sift": ((
+        (0.8, "tin sapling", 1, 2),
+        (0.3, "stick", 1, 3),
+        (0.2, "tin acorn", 1, 1),
+    ), 0, 2),
+    "caelium leaf sift": ((
+        (0.8, "caelium sapling", 1, 2),
+        (0.3, "stick", 1, 3),
+        (0.2, "caelium acorn", 1, 1),
+    ))
 }

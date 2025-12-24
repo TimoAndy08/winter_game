@@ -22,6 +22,8 @@ HEALTH_INCREASE = {"life crystal": (20, 40, 4), "slife crystal": (40, 50, 10)}
 INVENTORY_INCREASE = {"small backpack": (12, 6)}
 UNOBTAINABLE = {
     "bluebell grown",
+    "caelium treeling",
+    "caelium tree",
     "carrot grown",
     "coal treeling",
     "coal tree",

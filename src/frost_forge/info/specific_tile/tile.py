@@ -66,6 +66,8 @@ SOIL_STRENGTH = {
 GROW_TIME = {
     "amethyst mineable": 120,
     "bluebell": 400,
+    "caelium sapling": 500,
+    "caelium treeling": 625,
     "carrot": 160,
     "coal sapling": 200,
     "coal treeling": 250,
@@ -88,6 +90,8 @@ GROW_TIME = {
 GROW_TILES = {
     "amethyst mineable": {"kind": "amethyst"},
     "bluebell": {"kind": "bluebell grown", "inventory": {"bluebell": 2}},
+    "caelium sapling": {"kind": "caelium treeling", "inventory": {"caelium sapling": 1, "log": 1}},
+    "caelium treeling": {"kind": "caelium tree", "inventory": {"caelium sapling": 1, "log": 2}},
     "carrot": {"kind": "carrot grown", "inventory": {"carrot": 2}},
     "coal sapling": {"kind": "coal treeling", "inventory": {"coal": 1, "coal sapling": 1, "log": 1}},
     "coal treeling": {"kind": "coal tree", "inventory": {"coal": 3, "coal sapling": 1, "log": 1}},
@@ -109,6 +113,8 @@ GROW_TILES = {
 }
 GROW_REQUIREMENT = {
     "bluebell": 1.25,
+    "caelium sapling": 1.4,
+    "caelium treeling": 1.5,
     "copper treeling": 1.25,
     "tin sapling": 1.25,
     "tin treeling": 1.4,
@@ -138,6 +144,7 @@ MULTI_TILES = {
 PROCESSING_TIME = {
     "amethyst boiler": 5 * FPS,
     "burner drill": 30 * FPS,
+    "caelium sieve": 15 * FPS,
     "composter": 2 * FPS,
     "copper boiler": 5 * FPS,
     "copper press": 20 * FPS,
@@ -171,10 +178,19 @@ UNBREAK = {
 }
 MODIFICATIONS = {"rail": 6}
 SHEARABLE = {
+    "caelium tree": ("caelium leaf", 2, {"kind": "log", "inventory": {"log": 1}}),
+    "caelium treeling": ("caelium leaf", 1, {"kind": "log"}),
+    "coal tree": ("coal leaf", 2, {"kind": "log", "inventory": {"log": 1}}),
+    "coal treeling": ("coal leaf", 1, {"kind": "log"}),
+    "copper tree": ("copper leaf", 2, {"kind": "log", "inventory": {"log": 1}}),
+    "copper treeling": ("copper leaf", 1, {"kind": "log"}),
     "obelisk": ("obelisk piece", 1, {"kind": "destroyed obelisk"}),
     "quartz adult": ("quartz", 1, {"kind": "quartz child"}),
     "rabbit adult": ("rabbit fur", 1, {"kind": "furless rabbit", "inventory": {"rabbit meat": 1}}),
-    "tree": ("leaf", 1, {"kind": "log", "inventory": {"log": 1}}),
+    "tin tree": ("tin leaf", 2, {"kind": "log", "inventory": {"log": 1}}),
+    "tin treeling": ("tin leaf", 1, {"kind": "log"}),
+    "tree": ("leaf", 2, {"kind": "log", "inventory": {"log": 1}}),
+    "treeling": ("leaf", 1, {"kind": "log"}),
     "void crate": ("obelisk piece", 1, {"kind": "destroyed void crate"}),
 }
 RUNES = {
