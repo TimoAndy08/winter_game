@@ -151,6 +151,7 @@ PROCESSING_TIME = {
     "furnace": 10 * FPS,
     "mana converter": 15 * FPS,
     "obelisk piece": 10 * FPS,
+    "steam furnace": 10 * FPS,
     "wood crucible": 60 * FPS,
     "wooden sieve": 15 * FPS,
 }
