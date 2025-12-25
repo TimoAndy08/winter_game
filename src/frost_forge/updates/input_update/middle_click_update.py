@@ -13,7 +13,6 @@ def middle_click(position, inventory_size, inventory, accessory):
             if slot_number < len(inventory):
                 item = list(inventory.items())[slot_number]
                 if item[0] in ACCESSORIES and item[0] not in accessory:
-                    print("5")
                     accessory.append(item[0])
                     inventory[item[0]] -= 1
                     if inventory[item[0]] == 0:
