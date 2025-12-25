@@ -6,6 +6,7 @@ DESCRIPTION = {
     "amethyst shovel": "+3 damage to soft materials",
     "amethyst sword": "+3 damage to enemies",
     "amethyst rune": "+1 to mana",
+    "amethyst wrench": "May rotate certain things",
     "anklet of the tree": "+5% to base movement speed",
     "boots": "+12% to base movement speed",
     "citrine rune": "+2 to mana",

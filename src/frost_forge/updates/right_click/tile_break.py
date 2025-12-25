@@ -17,6 +17,9 @@ def break_tile(inventory, chunks, mining_tile, inventory_number, inventory_size)
         if "inventory" not in mining_tile:
             mining_tile["inventory"] = {}
         if mining_tile["kind"] not in UNOBTAINABLE:
+            if mining_tile["kind"].split()[-1].isdigit():
+                mining_tile["kind"] = mining_tile["kind"][:-1]
+                mining_tile["kind"] += "0"
             mining_tile["inventory"][mining_tile["kind"]] = (
                 mining_tile["inventory"].get(mining_tile["kind"], 0) + 1
             )

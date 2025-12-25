@@ -176,7 +176,14 @@ UNBREAK = {
     "void converter",
     "void crate",
 }
-MODIFICATIONS = {"rail": 6}
+MODIFICATIONS = {
+    "amethyst pipe": 2,
+    "amethyst pump": 2,
+    "copper pipe": 2, 
+    "copper pump": 2,
+    "rail": 6,
+    "wood fence": 3,
+}
 SHEARABLE = {
     "caelium tree": ("caelium leaf", 2, {"kind": "log", "inventory": {"log": 1}}),
     "caelium treeling": ("caelium leaf", 1, {"kind": "log", "inventory": {}}),

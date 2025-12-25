@@ -9,6 +9,7 @@ from ...info import (
     SCREEN_SIZE,
     RECIPES,
     SHEARABLE,
+    MODIFICATIONS,
 )
 from ..left_click import (
     recipe,
@@ -119,6 +120,12 @@ def left_click(
                 if inventory[inventory_key] == 0:
                     del inventory[inventory_key]
                 chunks[grid_position[0]][grid_position[1]]["love"] = 100
+            elif inventory_key.split(" ")[-1] == "wrench" and chunks[grid_position[0]][grid_position[1]]["kind"].split(" ")[-1].isdigit():
+                kind = chunks[grid_position[0]][grid_position[1]]["kind"]
+                new_kind = ""
+                for word in kind.split(" ")[:-1]:
+                    new_kind += f"{word} "
+                chunks[grid_position[0]][grid_position[1]]["kind"] = f"{new_kind}{(int(kind.split(" ")[-1]) + 1) % MODIFICATIONS[new_kind[:-1]]}"
     elif machine_ui in RECIPES:
         if recipe_number >= 0:
             if "machine" in ATTRIBUTES[machine_ui]:
