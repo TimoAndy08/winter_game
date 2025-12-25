@@ -30,6 +30,7 @@ DESCRIPTION = {
     "rock pickaxe": "+2 damage to rocky materials",
     "rock shovel": "+2 damage to soft materials",
     "rock sword": "+2 damage to enemies",
+    "sapphire rune": "*1.26 and then -3 to mana",
     "snow": "Soil of strength 0.85",
     "water axe": "+2 damage to wooden materials",
     "water hammer": "+2 damage to sticky materials",

@@ -33,6 +33,7 @@ FLOOR = {
     "rail 4",
     "rail 5",
     "sand",
+    "sapphire rune",
     "slime door",
     "slime door open",
     "slime floor",
@@ -76,6 +77,7 @@ GROW_TIME = {
     "copper treeling": 250,
     "furless rabbit": 120,
     "lava": 150,
+    "nigredo child": 40,
     "potato": 240,
     "quartz child": 40,
     "rabbit child": 200,
@@ -100,6 +102,7 @@ GROW_TILES = {
     "copper treeling": {"kind": "copper tree", "inventory": {"raw copper": 2, "copper ingot": 1, "copper sapling": 1, "log": 2}},
     "furless rabbit": {"kind": "rabbit adult", "inventory": {"rabbit fur": 1, "rabbit meat": 1}},
     "lava": {"floor": "lavastone floor", "kind": "lavastone"},
+    "nigredo child": {"kind": "nigredo adult"},
     "potato": {"kind": "potato grown", "inventory": {"potato": 2}},
     "quartz child": {"kind": "quartz adult"},
     "rabbit child": {"kind": "rabbit adult", "inventory": {"rabbit fur": 1, "rabbit meat": 1}},
@@ -121,6 +124,7 @@ GROW_REQUIREMENT = {
 }
 GROW_DIRT_IGNORE = {
     "furless rabbit",
+    "nigredo child",
     "quartz child",
     "rabbit child",
     "slime summon",
@@ -193,6 +197,7 @@ SHEARABLE = {
     "coal treeling": ("coal leaf", 1, {"kind": "log", "inventory": {}}),
     "copper tree": ("copper leaf", 2, {"kind": "log", "inventory": {"log": 1}}),
     "copper treeling": ("copper leaf", 1, {"kind": "log", "inventory": {}}),
+    "nigredo adult": ("nigredo", 1, {"kind": "nigredo child"}),
     "obelisk": ("obelisk piece", 1, {"kind": "destroyed obelisk"}),
     "quartz adult": ("quartz", 1, {"kind": "quartz child"}),
     "rabbit adult": ("rabbit fur", 1, {"kind": "furless rabbit", "inventory": {"rabbit meat": 1}}),
@@ -205,7 +210,8 @@ SHEARABLE = {
 RUNES = {
     "amethyst rune": (0, 1),
     "citrine rune": (0, 2),
-    "lava rune": (1, 0.8, 5)
+    "lava rune": (1, 0.8, 5),
+    "sapphire rune": (1, 1.26, -3),
 }
 RUNES_USER = {
     "mana converter": 2,

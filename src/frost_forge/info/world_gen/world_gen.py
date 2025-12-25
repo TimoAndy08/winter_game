@@ -44,6 +44,7 @@ NOISE_TILES = {
     "mountain": (
         ((0.3, 0.4), (0.1, 0.2), {"kind": "coal ore", "inventory": {"coal": 1}, "floor": "coal mineable"},),
         ((0.4, 0.5), (0, 0.1), {"kind": "copper ore", "inventory": {"raw copper": 1}, "floor": "copper mineable"},),
+        ((0.3, 0.4), (-0.05, 0), {"kind": "sapphire ore", "inventory": {"sapphire": 1}, "floor": "pebble"},),
         ((0.1, 0.4), (-0.15, 0.15), {"kind": "stone", "floor": "pebble"}),
         ((0, 0.5), (-0.2, 0.2), {"kind": "rock", "floor": "pebble"}),
         ((-0.1, 0.3), (-0.25, 0.25), {"floor": "pebble"}),
