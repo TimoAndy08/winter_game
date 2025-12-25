@@ -14,10 +14,12 @@ RECIPES = {
         (("caelium leaf sift", 1), (("caelium leaf", 1), ("water fluid", 1))),
         (("coal leaf sift", 1), (("coal leaf", 1), ("water fluid", 1))),
         (("copper leaf sift", 1), (("copper leaf", 1), ("water fluid", 1))),
+        (("sapphire leaf sift", 1), (("caelium leaf", 1), ("water fluid", 1))),
         (("tin leaf sift", 1), (("tin leaf", 1), ("water fluid", 1))),
         (("raw caelium", 1), (("caelium acorn", 1), ("water fluid", 1))),
         (("coal", 4), (("coal acorn", 1), ("water fluid", 1))),
         (("raw copper", 4), (("copper acorn", 1), ("water fluid", 1))),
+        (("sapphire", 1), (("sapphire acorn", 1), ("water fluid", 1))),
         (("raw tin", 4), (("tin acorn", 1), ("water fluid", 1))),
     ),
     "campfire": (
@@ -76,7 +78,6 @@ RECIPES = {
         (("white dye", 1), (("quartz", 1),)),
     ),
     "furnace": (
-        (("caelium ingot", 1), (("raw caelium", 1), ("fuel", 16))),
         (("coal", 1), (("log", 1), ("fuel", 2))),
         (("copper ingot", 1), (("raw copper", 1), ("fuel", 6))),
         (("glass", 1), (("sand", 2), ("fuel", 4))),
@@ -235,6 +236,7 @@ RECIPES = {
         (("copper sapling", 1), (("coal sapling", 1), ("glass key", 1), ("amethyst", 2))),
         (("tin sapling", 1), (("copper sapling", 1), ("burner drill", 1), ("slime block", 2))),
         (("caelium sapling", 1), (("sapling", 1), ("coal sapling", 1), ("copper sapling", 1), ("tin sapling", 1))),
+        (("sapphire sapling", 1), (("caelium sapling", 1), ("lava rune", 1), ("caelium ingot", 2)))
     ),
     "void converter": (
         (("sapling", 1), (("log", 1), ("wood", 1))),
@@ -242,6 +244,7 @@ RECIPES = {
         (("tree constructor", 1), (("sapling", 4), ("small crate", 1))),
         (("quartz altar", 1), (("glass key", 1), ("stone", 4))),
         (("caelium sieve", 1), (("caelium leaf", 1), ("wooden sieve", 1))),
+        (("lava", 1), (("lavastone brick", 1), ("bronze ingot", 1))),
     ),
     "wood crucible": (
         (("water", 1), (("fuel", 4),)),

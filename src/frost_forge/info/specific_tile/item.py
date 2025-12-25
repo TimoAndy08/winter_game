@@ -43,6 +43,8 @@ UNOBTAINABLE = {
     "rabbit adult",
     "rabbit child",
     "sapphire ore",
+    "sapphire treeling",
+    "sapphire tree",
     "skeleton",
     "slime",
     "slime prince",

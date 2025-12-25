@@ -93,4 +93,9 @@ LOOT_TABLES = {
         (0.3, "stick", 1, 3),
         (0.2, "caelium acorn", 1, 1),
     ), 1, 2),
+    "sapphire leaf sift": ((
+        (0.4, "sapphire sapling", 1, 2),
+        (0.3, "stick", 1, 3),
+        (0.2, "sapphire acorn", 1, 1),
+    ), 1, 2),
 }
