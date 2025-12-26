@@ -25,6 +25,7 @@ FLOOR = {
     "mushroom door",
     "mushroom door open",
     "mushroom floor",
+    "nigredo rune",
     "pebble",
     "rail 0",
     "rail 1",
@@ -153,9 +154,10 @@ MULTI_TILES = {
     "wooden bed": (1, 2),
 }
 PROCESSING_TIME = {
-    "amethyst boiler": 5 * FPS,
+    "amethyst boiler": 10 * FPS,
     "burner drill": 30 * FPS,
     "caelium sieve": 15 * FPS,
+    "citrinic bronze boiler": FPS,
     "composter": 2 * FPS,
     "copper boiler": 5 * FPS,
     "copper press": 20 * FPS,
@@ -217,6 +219,7 @@ RUNES = {
     "amethyst rune": (0, 1),
     "citrine rune": (0, 2),
     "lava rune": (1, 0.8, 5),
+    "nigredo rune": (0, 5),
     "sapphire rune": (1, 1.26, -3),
 }
 RUNES_USER = {

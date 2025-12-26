@@ -3,6 +3,7 @@ ATTRIBUTES = {
     "burner drill": {"open", "machine", "drill"},
     "caelium sieve": {"open", "machine"},
     "campfire": {"open", "craft"},
+    "citrinic bronze boiler": {"open", "machine"},
     "coal pedestal": {"store", "table"},
     "composter": {"open", "machine"},
     "copper anvil": {"open", "craft"},

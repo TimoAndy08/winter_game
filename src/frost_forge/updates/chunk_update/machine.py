@@ -29,7 +29,7 @@ def machine(tick, current_tile, kind, attributes, tile, chunk, chunks):
                                 elif RUNES[rune][0] == 1:
                                     mana *= RUNES[rune][1]
                                     mana += RUNES[rune][2]
-            if int(log2(mana ** 1.2 + 2)) != RECIPES[kind][current_tile["recipe"]][2]:
+            if int(log2(max(mana, 0) ** 1.2 + 2)) != RECIPES[kind][current_tile["recipe"]][2]:
                 craftable = False
             machine_inventory["mana_level"] = int(log2(mana ** 1.2 + 2))
         if craftable:

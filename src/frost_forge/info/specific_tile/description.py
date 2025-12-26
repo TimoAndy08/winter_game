@@ -25,6 +25,7 @@ DESCRIPTION = {
     "flint sword": "+1 damage to enemies",
     "lava rune": "*0.8 and then +5 to mana",
     "moist dirt": "Soil of strength 1.25",
+    "nigredo rune": "+5 to mana",
     "rock axe": "+2 damage to wooden materials",
     "rock hammer": "+2 damage to sticky materials",
     "rock pickaxe": "+2 damage to rocky materials",
