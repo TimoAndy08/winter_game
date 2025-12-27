@@ -48,6 +48,7 @@ TOOL_REQUIRED = {
     "coal treeling": "axe",
     "coal tree": "axe",
     "composter": "axe",
+    "connector": "pickaxe",
     "copper acorn": "shovel",
     "copper anvil": "pickaxe",
     "copper block": "pickaxe",

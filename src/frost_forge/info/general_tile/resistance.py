@@ -40,6 +40,7 @@ RESISTANCE = {
     "coal treeling": 1,
     "coal tree": 2,
     "composter": 1,
+    "connector": 1,
     "copper anvil": 2,
     "copper block": 2,
     "copper boiler": 2,

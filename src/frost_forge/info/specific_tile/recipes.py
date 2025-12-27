@@ -166,8 +166,8 @@ RECIPES = {
         (("amethyst", 8), (("amethyst block", 1),)),
         (("amethyst block", 1), (("amethyst", 8),)),
         (("amethyst rune", 1), (("amethyst", 2), ("stone brick floor", 1))),
-        (("bronze", 8), (("bronze block", 1),)),
-        (("bronze block", 1), (("bronze", 8),)),
+        (("bronze ingot", 8), (("bronze block", 1),)),
+        (("bronze block", 1), (("bronze ingot", 8),)),
         (("citrine", 8), (("citrine block", 1),)),
         (("citrine block", 1), (("citrine", 8),)),
         (("citrine rune", 1), (("citrine", 2), ("stone brick floor", 1))),
@@ -266,6 +266,7 @@ RECIPES = {
     "workbench": (
         (("bowl", 1), (("stick", 1), ("wood", 1))),
         (("campfire", 1), (("flint", 2), ("stick", 6), ("wood", 4))),
+        (("connector", 1), (("stone brick", 1),)),
         (("dye bench", 1), (("manual press", 1), ("blue dye", 1))),
         (("flint axe", 1), (("flint", 2), ("stick", 3))),
         (("flint hammer", 1), (("flint", 4), ("stick", 4))),

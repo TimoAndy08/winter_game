@@ -59,6 +59,7 @@ HEALTH = {
     "coal treeling": 9,
     "coal tree": 12,
     "composter": 8,
+    "connector": 16,
     "copper acorn": 16,
     "copper anvil": 16,
     "copper axe": 12,
