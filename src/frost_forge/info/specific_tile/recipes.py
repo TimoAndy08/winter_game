@@ -175,7 +175,7 @@ RECIPES = {
         (("lava rune", 1), (("lava", 2), ("stone brick floor", 1))),
         (("nigredo", 8), (("nigredo block", 1),)),
         (("nigredo block", 1), (("nigredo", 8),)),
-        (("nigredo rune", 2), (("nigredo", 2), ("stone brick floor", 1))),
+        (("nigredo rune", 1), (("nigredo", 2), ("stone brick floor", 1))),
         (("quartz block", 1), (("quartz", 8),)),
         (("quartz", 8), (("quartz block", 1),)),
         (("sapphire rune", 1), (("sapphire", 2), ("stone brick floor", 1))),
