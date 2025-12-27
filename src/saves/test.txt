@@ -1,0 +1,1 @@
+{(0, 0): {(0, 0): {'kind': 'void crate'}, (0, 1): {'kind': 'void converter'}, (0, 2): {'kind': 'player', 'floor': 'void', 'recipe': -1}}};[0, 0, 0, 2];{'bronze harvester': 4};20;1202;(0, 0);3;set();{(0, 0)};set();[6, 64];[]

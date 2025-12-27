@@ -9,6 +9,7 @@ DESCRIPTION = {
     "amethyst wrench": "May rotate certain things",
     "anklet of the tree": "+5% to base movement speed",
     "boots": "+12% to base movement speed",
+    "bronze harvester": "Place in four corners with wood on the sides to harvest plants",
     "citrine rune": "+2 to mana",
     "copper axe": "+3 damage to wooden materials",
     "copper hammer": "+3 damage to sticky materials",

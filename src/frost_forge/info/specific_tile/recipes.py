@@ -63,6 +63,8 @@ RECIPES = {
         (("steam fluid", 5), (("water fluid", 5), ("fuel", 16))),
     ),
     "copper constructor": (
+        (("bronze harvester", 4), (("bronze machine casing", 2), ("leaf", 4))),
+        (("bronze machine casing", 2), (("bronze block", 1),)),
         (("copper boiler", 1), (("copper tank", 3), ("copper pipe 0", 5), ("tin ingot", 2))),
         (("copper gear", 1), (("copper ingot", 3),)),
         (("copper pipe 0", 2), (("copper sheet", 2), ("copper ingot", 1))),
@@ -164,6 +166,8 @@ RECIPES = {
         (("amethyst", 8), (("amethyst block", 1),)),
         (("amethyst block", 1), (("amethyst", 8),)),
         (("amethyst rune", 1), (("amethyst", 2), ("stone brick floor", 1))),
+        (("bronze", 8), (("bronze block", 1),)),
+        (("bronze block", 1), (("bronze", 8),)),
         (("citrine", 8), (("citrine block", 1),)),
         (("citrine block", 1), (("citrine", 8),)),
         (("citrine rune", 1), (("citrine", 2), ("stone brick floor", 1))),
