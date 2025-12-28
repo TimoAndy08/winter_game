@@ -10,6 +10,7 @@ from ...info import (
     RECIPES,
     SHEARABLE,
     MODIFICATIONS,
+    HALF_SCREEN_SIZE,
 )
 from ..left_click import (
     recipe,
@@ -133,12 +134,45 @@ def left_click(
             else:
                 inventory = recipe(machine_ui, recipe_number, inventory, inventory_size)
         else:
-            moved_x = position[0] - SCREEN_SIZE[0] // 2
-            recipe_number = (moved_x + 112 * UI_SCALE) // (32 * UI_SCALE) + (
-                position[1] - SCREEN_SIZE[1] + 144 * UI_SCALE
-            ) // (32 * UI_SCALE) * 7
-            if recipe_number >= len(RECIPES[machine_ui]):
-                recipe_number = -1
+            moved_x = position[0] - HALF_SCREEN_SIZE
+            x_slot = (moved_x + 112 * UI_SCALE) // (32 * UI_SCALE)
+            if x_slot < 7:
+                y_slot = (position[1] - SCREEN_SIZE[1] + 144 * UI_SCALE) // (32 * UI_SCALE)
+                recipe_number = x_slot + y_slot * 7
+                if recipe_number >= len(RECIPES[machine_ui]):
+                    recipe_number = -1
+        if "machine" in ATTRIBUTES[machine_ui]:
+            moved_x = position[0] - HALF_SCREEN_SIZE
+            opened_tile = chunks[location["opened"][0]][location["opened"][1]]
+            print((SCREEN_SIZE[1] - position[1]) // UI_SCALE)
+            if 208 * UI_SCALE <= moved_x <= 240 * UI_SCALE and 48 * UI_SCALE <= SCREEN_SIZE[1] - position[1] <= 80 * UI_SCALE:
+                if (0, -1) not in opened_tile:
+                    chunks[location["opened"][0]][location["opened"][1]][0, -1] = 0
+                elif opened_tile[0, -1] == 0:
+                    chunks[location["opened"][0]][location["opened"][1]][0, -1] = 1
+                else:
+                    del chunks[location["opened"][0]][location["opened"][1]][(0, -1)]
+            elif 208 * UI_SCALE <= moved_x <= 240 * UI_SCALE and 112 * UI_SCALE <= SCREEN_SIZE[1] - position[1] <= 144 * UI_SCALE:
+                if (0, 1) not in opened_tile:
+                    chunks[location["opened"][0]][location["opened"][1]][0, 1] = 0
+                elif opened_tile[0, 1] == 0:
+                    chunks[location["opened"][0]][location["opened"][1]][0, 1] = 1
+                else:
+                    del chunks[location["opened"][0]][location["opened"][1]][(0, 1)]
+            elif 176 * UI_SCALE <= moved_x <= 208 * UI_SCALE and 80 * UI_SCALE <= SCREEN_SIZE[1] - position[1] <= 112 * UI_SCALE:
+                if (-1, 0) not in opened_tile:
+                    chunks[location["opened"][0]][location["opened"][1]][-1, 0] = 0
+                elif opened_tile[-1, 0] == 0:
+                    chunks[location["opened"][0]][location["opened"][1]][-1, 0] = 1
+                else:
+                    del chunks[location["opened"][0]][location["opened"][1]][-1, 0]
+            elif 240 * UI_SCALE <= moved_x <= 272 * UI_SCALE and 80 * UI_SCALE <= SCREEN_SIZE[1] - position[1] <= 112 * UI_SCALE:
+                if (1, 0) not in opened_tile:
+                    chunks[location["opened"][0]][location["opened"][1]][1, 0] = 0
+                elif opened_tile[1, 0] == 0:
+                    chunks[location["opened"][0]][location["opened"][1]][1, 0] = 1
+                else:
+                    del chunks[location["opened"][0]][location["opened"][1]][1, 0]
     elif "store" in ATTRIBUTES.get(machine_ui, ()):
         chunks, machine_inventory = open_storage(
             position, chunks, location, inventory, machine_ui, inventory_size

@@ -11,11 +11,13 @@ from ...info import (
     HALF_SCREEN_SIZE,
     LOOT_TABLES,
     RUNES_USER,
+    ADJACENT_ROOMS,
 )
 from .store_rendering import render_store
 
 
-def render_machine(window, current_recipes, images, machine_inventory, recipe_number, machine_ui):
+def render_machine(window, current_recipes, images, machine_inventory, recipe_tile, machine_ui):
+    recipe_number = recipe_tile.get("recipe", 0)
     if recipe_number >= 0:
         machine_recipe = current_recipes[recipe_number]
         for item in range(0, len(machine_recipe[1])):
@@ -111,4 +113,19 @@ def render_machine(window, current_recipes, images, machine_inventory, recipe_nu
         for recipe in current_recipes:
             machine_inventory[recipe[0][0]] = recipe[0][1]
         window = render_store(window, len(current_recipes), images, machine_inventory)
+    window.blit(
+        pg.transform.scale(
+            images["medium_inventory_slot"], (128 * UI_SCALE, 128 * UI_SCALE)
+        ),
+        (HALF_SCREEN_SIZE + 160 * UI_SCALE, SCREEN_SIZE[1] - 160 * UI_SCALE),
+    )
+    for location in ADJACENT_ROOMS:
+        sprite_location = (HALF_SCREEN_SIZE + (208 + 32 * location[0]) * UI_SCALE, SCREEN_SIZE[1] - (112 + 32 * location[1]) * UI_SCALE)
+        if location not in recipe_tile:
+            slot_image = images["inventory_slot_5"]
+        elif recipe_tile[location] == 0:
+            slot_image = images["inventory_slot"]
+        else:
+            slot_image = images["inventory_slot_2"]
+        window.blit(pg.transform.scale(slot_image, (32 * UI_SCALE, 32 * UI_SCALE)), sprite_location)
     return window

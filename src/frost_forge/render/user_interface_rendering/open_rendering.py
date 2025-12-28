@@ -15,7 +15,7 @@ from .store_rendering import render_store
 from .machine_rendering import render_machine
 
 
-def render_open(machine_ui, window, images, recipe_number, machine_inventory):
+def render_open(machine_ui, window, images, recipe_tile, machine_inventory):
     attributes = ATTRIBUTES.get(machine_ui, ())
     if "open" in attributes:
         window.blit(
@@ -33,10 +33,10 @@ def render_open(machine_ui, window, images, recipe_number, machine_inventory):
             (HALF_SCREEN_SIZE + 96 * UI_SCALE, SCREEN_SIZE[1] - 76 * UI_SCALE),
         )
         if "craft" in attributes:
-            window = render_craft(window, RECIPES[machine_ui], images, recipe_number)
+            window = render_craft(window, RECIPES[machine_ui], images, recipe_tile.get("recipe", 0))
         elif "machine" in attributes:
             window = render_machine(
-                window, RECIPES[machine_ui], images, machine_inventory, recipe_number, machine_ui,
+                window, RECIPES[machine_ui], images, machine_inventory, recipe_tile, machine_ui,
             )
         elif "store" in attributes:
             window = render_store(window, STORAGE[machine_ui][0], images, machine_inventory)
