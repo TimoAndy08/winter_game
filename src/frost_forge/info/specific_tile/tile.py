@@ -137,6 +137,10 @@ GROW_DIRT_IGNORE = {
     "slime summon",
 }
 GROW_FLOOR_DELETE = {"copper pit"}
+GROW_FROM = {
+    "tree": "sapling", 
+    "mushroom": "spore",
+}
 MULTI_TILES = {
     "amethyst boiler": (3, 2),
     "copper boiler": (3, 2),
@@ -225,4 +229,7 @@ RUNES = {
 RUNES_USER = {
     "mana converter": 2,
     "obelisk piece": 1,
+}
+CONNECTIONS = {
+    "bronze harvester": "connector",
 }

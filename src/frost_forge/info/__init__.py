@@ -37,12 +37,14 @@ from .specific_tile.tile import (
     GROW_DIRT_IGNORE,
     GROW_REQUIREMENT,
     GROW_FLOOR_DELETE,
+    GROW_FROM,
     PROCESSING_TIME,
     SOIL_STRENGTH,
     MODIFICATIONS,
     SHEARABLE,
     RUNES,
     RUNES_USER,
+    CONNECTIONS,
 )
 from .specific_tile.item import (
     HEALTH_INCREASE,
