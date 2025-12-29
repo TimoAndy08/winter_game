@@ -2,10 +2,10 @@ from ..render import FPS
 
 
 MULTI_TILES = {
+    "copper boiler": (3, 2),
     "copper constructor": (2, 2),
     "destroyed obelisk": (1, 2),
     "dye bench": (2, 1),
-    "furnace": (2, 2),
     "manual press": (2, 1),
     "masonry bench": (2, 1),
     "obelisk": (1, 2),
@@ -21,7 +21,7 @@ PROCESSING_TIME = {
     "composter": 2 * FPS,
     "copper boiler": 5 * FPS,
     "copper press": 20 * FPS,
-    "furnace": 10 * FPS,
+    "furnace": 30 * FPS,
     "mana constructor": 10 * FPS,
     "mana converter": 10 * FPS,
     "mana deconstructor": 10 * FPS,
@@ -88,6 +88,16 @@ RUNES_USER = {
 }
 CONNECTIONS = {
     "bronze harvester": "connector",
+    "furnace": "connector",
+}
+CONTENTS = {
+    "furnace": {
+        "coal block": (0, 1),
+        "furnace accelerator": (1, -1),
+    }
+}
+REQUIREMENTS = {
+    "furnace accelerator": (("coal block", 2),),
 }
 ITEM_TICK = {
     "basic belt": 1,

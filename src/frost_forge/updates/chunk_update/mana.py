@@ -3,7 +3,7 @@ from math import sqrt, log2
 from ...info import RUNES_USER, RUNES, RECIPES
 
 
-def mana_level(chunks, chunk, tile, kind, current_tile, machine_inventory, craftable):
+def mana_level(chunks, chunk, tile, kind, current_tile, machine_inventory, efficiency):
     mana = 0
     for x in range(-RUNES_USER[kind], RUNES_USER[kind] + 1):
         for y in range(-RUNES_USER[kind], RUNES_USER[kind] + 1):
@@ -19,6 +19,6 @@ def mana_level(chunks, chunk, tile, kind, current_tile, machine_inventory, craft
                             mana *= RUNES[rune][1]
                             mana += RUNES[rune][2]
     if int(log2(max(mana, 0) ** 1.2 + 2)) != RECIPES[kind][current_tile["recipe"]][2]:
-        craftable = False
+        efficiency = 0
     machine_inventory["mana_level"] = int(log2(mana ** 1.2 + 2))
-    return machine_inventory, craftable
+    return machine_inventory, efficiency

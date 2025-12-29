@@ -1,8 +1,8 @@
 from ..right_click.inventory_move import move_inventory
-from ...info import CONNECTIONS, GROW_FROM
+from ...info import CONNECTIONS, GROW_FROM, CONTENTS, REQUIREMENTS, ADJACENT_ROOMS
 
 
-def connect_machine(chunks, chunk, tile, kind, attributes, craftable, connection):
+def connect_machine(chunks, chunk, tile, kind, attributes, connection, efficiency):
     x = 1
     y = 1
     connector_tile = ((tile[0] + x) % 16, tile[1])
@@ -29,7 +29,7 @@ def connect_machine(chunks, chunk, tile, kind, attributes, craftable, connection
                     connection = False
     if connection:
         if "harvester" in attributes:
-            craftable = False
+            efficiency = 0
             for i in range(0, x):
                 for j in range(0, y):
                     harvest_tile = ((tile[0] + i) % 16, (tile[1] + j) % 16)
@@ -42,4 +42,32 @@ def connect_machine(chunks, chunk, tile, kind, attributes, craftable, connection
                             chunks[harvest_chunk][harvest_tile]["kind"] = GROW_FROM[harvestable["kind"]]
                         else:
                             chunks[harvest_chunk][harvest_tile] = {"floor": chunks[harvest_chunk][harvest_tile]["floor"]}
-    return craftable, connection
+        else:
+            heat = 0
+            for i in range(0, x):
+                for j in range(0, y):
+                    content_tile = ((tile[0] + i) % 16, (tile[1] + j) % 16)
+                    content_chunk = (chunk[0] + (tile[0] + i) // 16, chunk[1] + (tile[1] + j) // 16)
+                    if chunks[content_chunk].get(content_tile, {}).get("kind", None) in CONTENTS[kind]:
+                        content = chunks[content_chunk][content_tile]["kind"]
+                        applicable = False
+                        if content not in REQUIREMENTS:
+                            applicable = True
+                        else:
+                            for requirement in REQUIREMENTS[content]:
+                                required = requirement[1]
+                                for location in ADJACENT_ROOMS:
+                                    adjacent_tile = ((content_tile[0] + location[0]) % 16, (content_tile[1] + location[1]) % 16)
+                                    adjacent_chunk = ((content_chunk[0] + (content_tile[0] + location[0]) // 16), content_chunk[1] + (content_tile[1] + location[1]) // 16)
+                                    if chunks[adjacent_chunk].get(adjacent_tile, {}).get("kind", None) == requirement[0]:
+                                        required -= 1
+                                if required:
+                                    break
+                            else:
+                                applicable = True
+                        if applicable:
+                            efficiency += CONTENTS[kind][content][0]
+                            heat += CONTENTS[kind][content][1]
+            if heat != 0:
+                efficiency = 0
+    return connection, efficiency
