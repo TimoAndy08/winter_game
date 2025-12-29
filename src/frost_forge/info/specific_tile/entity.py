@@ -7,8 +7,6 @@ BREEDABLE = {
     "rabbit adult": {"kind": "rabbit child"}
 }
 DAMAGE = {
-    "nigredo adult": 0,
-    "nigredo child": 0,
     "quartz adult": 0,
     "quartz child": 0,
     "slime prince": 2,

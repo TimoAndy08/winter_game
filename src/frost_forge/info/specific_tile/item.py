@@ -35,8 +35,6 @@ UNOBTAINABLE = {
     "furless rabbit",
     "judge",
     "junk",
-    "nigredo adult",
-    "nigredo child",
     "potato grown",
     "quartz adult",
     "quartz child",

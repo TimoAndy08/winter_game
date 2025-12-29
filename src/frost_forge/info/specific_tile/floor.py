@@ -22,7 +22,6 @@ FLOOR = {
     "mushroom door",
     "mushroom door open",
     "mushroom floor",
-    "nigredo rune",
     "pebble",
     "rail 0",
     "rail 1",

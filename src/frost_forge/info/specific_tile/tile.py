@@ -2,8 +2,6 @@ from ..render import FPS
 
 
 MULTI_TILES = {
-    "amethyst boiler": (3, 2),
-    "copper boiler": (3, 2),
     "copper constructor": (2, 2),
     "destroyed obelisk": (1, 2),
     "dye bench": (2, 1),
@@ -18,16 +16,15 @@ MULTI_TILES = {
     "wooden bed": (1, 2),
 }
 PROCESSING_TIME = {
-    "amethyst boiler": 10 * FPS,
     "burner drill": 30 * FPS,
     "caelium sieve": 15 * FPS,
-    "citrinic bronze boiler": FPS,
     "composter": 2 * FPS,
     "copper boiler": 5 * FPS,
     "copper press": 20 * FPS,
     "furnace": 10 * FPS,
+    "mana constructor": 10 * FPS,
     "mana converter": 10 * FPS,
-    "obelisk piece": 10 * FPS,
+    "mana deconstructor": 10 * FPS,
     "steam furnace": 10 * FPS,
     "wood crucible": 60 * FPS,
     "wooden sieve": 15 * FPS,
@@ -69,26 +66,25 @@ SHEARABLE = {
     "coal treeling": ("coal leaf", 1, {"kind": "log", "inventory": {}}),
     "copper tree": ("copper leaf", 2, {"kind": "log", "inventory": {"log": 1}}),
     "copper treeling": ("copper leaf", 1, {"kind": "log", "inventory": {}}),
-    "nigredo adult": ("nigredo", 1, {"kind": "nigredo child"}),
-    "obelisk": ("obelisk piece", 1, {"kind": "destroyed obelisk"}),
+    "obelisk": ("mana converter", 1, {"kind": "destroyed obelisk"}),
     "quartz adult": ("quartz", 1, {"kind": "quartz child"}),
     "rabbit adult": ("rabbit fur", 1, {"kind": "furless rabbit", "inventory": {"rabbit meat": 1}}),
     "tin tree": ("tin leaf", 2, {"kind": "log", "inventory": {"log": 1}}),
     "tin treeling": ("tin leaf", 1, {"kind": "log", "inventory": {}}),
     "tree": ("leaf", 2, {"kind": "log", "inventory": {"log": 1}}),
     "treeling": ("leaf", 1, {"kind": "log", "inventory": {}}),
-    "void crate": ("obelisk piece", 1, {"kind": "destroyed void crate"}),
+    "void crate": ("mana converter", 1, {"kind": "destroyed void crate"}),
 }
 RUNES = {
     "amethyst rune": (0, 1),
     "citrine rune": (0, 2),
     "lava rune": (1, 0.8, 5),
-    "nigredo rune": (0, 5),
     "sapphire rune": (1, 1.26, -3),
 }
 RUNES_USER = {
+    "mana constructor": 2,
     "mana converter": 2,
-    "obelisk piece": 1,
+    "mana deconstructor": 2,
 }
 CONNECTIONS = {
     "bronze harvester": "connector",

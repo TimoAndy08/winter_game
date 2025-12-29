@@ -17,7 +17,6 @@ GROW_TIME = {
     "copper treeling": 250,
     "furless rabbit": 120,
     "lava": 150,
-    "nigredo child": 40,
     "potato": 240,
     "quartz child": 40,
     "rabbit child": 200,
@@ -44,7 +43,6 @@ GROW_TILES = {
     "copper treeling": {"kind": "copper tree", "inventory": {"raw copper": 2, "copper ingot": 1, "copper sapling": 1, "log": 2}},
     "furless rabbit": {"kind": "rabbit adult", "inventory": {"rabbit fur": 1, "rabbit meat": 1}},
     "lava": {"floor": "lavastone floor", "kind": "lavastone"},
-    "nigredo child": {"kind": "nigredo adult"},
     "potato": {"kind": "potato grown", "inventory": {"potato": 2}},
     "quartz child": {"kind": "quartz adult"},
     "rabbit child": {"kind": "rabbit adult", "inventory": {"rabbit fur": 1, "rabbit meat": 1}},
@@ -60,17 +58,16 @@ GROW_TILES = {
 }
 GROW_REQUIREMENT = {
     "bluebell": 1.25,
-    "caelium sapling": 1.4,
-    "caelium treeling": 1.5,
+    "caelium sapling": 1.25,
+    "caelium treeling": 1.4,
     "copper treeling": 1.25,
-    "sapphire treeling": 1.4,
-    "sapphire tree": 1.5,
+    "sapphire sapling": 1.4,
+    "sapphire treeling": 1.5,
     "tin sapling": 1.25,
     "tin treeling": 1.4,
 }
 GROW_DIRT_IGNORE = {
     "furless rabbit",
-    "nigredo child",
     "quartz child",
     "rabbit child",
     "slime summon",

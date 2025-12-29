@@ -6,12 +6,11 @@ ACHIEVEMENTS = {
     "wooden bed": ("Go get some sleep", "zzzzZzzZzZzzzZzzzzz"),
     "life crystal": ("Increasing love", "That's what lv stands for"),
     "slife crystal": ("Slime slayer", "Not a ninja in sight"),
-    "obelisk piece": ("What hast thou done?", "Unleashed the Ancient one"),
+    "mana converter": ("Beginning of the quest", "For the philosopher's stone"),
     "quartz child": ("Cuteness overload", "DO NOT KILL. Relax don't do it"),
     "citrine": ("Final quartz variant", "At least for now"),
     "copper ingot": ("Shiny things", "Need a lot of them you will"),
     "small backpack": ("Inventory upgrade", "Don't craft multiple tho"),
-    "amethyst boiler": ("Magic steam age", "Automation time?"),
     "copper boiler": ("Mechanical steam age", "Automation time?"),
     "tree constructor": ("Welcome to skyblock", "Hope you brought extra saplings"),
 }
