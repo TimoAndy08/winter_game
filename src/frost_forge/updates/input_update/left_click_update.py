@@ -11,6 +11,7 @@ from ...info import (
     SHEARABLE,
     MODIFICATIONS,
     HALF_SCREEN_SIZE,
+    ADJACENT_ROOMS,
 )
 from ..left_click import (
     recipe,
@@ -144,34 +145,14 @@ def left_click(
                         recipe_number = -1
         if "machine" in ATTRIBUTES[machine_ui]:
             opened_tile = chunks[location["opened"][0]][location["opened"][1]]
-            if 208 * UI_SCALE <= moved_x <= 240 * UI_SCALE and 48 * UI_SCALE <= SCREEN_SIZE[1] - position[1] <= 80 * UI_SCALE:
-                if (0, -1) not in opened_tile:
-                    chunks[location["opened"][0]][location["opened"][1]][0, -1] = 0
-                elif opened_tile[0, -1] == 0:
-                    chunks[location["opened"][0]][location["opened"][1]][0, -1] = 1
-                else:
-                    del chunks[location["opened"][0]][location["opened"][1]][(0, -1)]
-            elif 208 * UI_SCALE <= moved_x <= 240 * UI_SCALE and 112 * UI_SCALE <= SCREEN_SIZE[1] - position[1] <= 144 * UI_SCALE:
-                if (0, 1) not in opened_tile:
-                    chunks[location["opened"][0]][location["opened"][1]][0, 1] = 0
-                elif opened_tile[0, 1] == 0:
-                    chunks[location["opened"][0]][location["opened"][1]][0, 1] = 1
-                else:
-                    del chunks[location["opened"][0]][location["opened"][1]][(0, 1)]
-            elif 176 * UI_SCALE <= moved_x <= 208 * UI_SCALE and 80 * UI_SCALE <= SCREEN_SIZE[1] - position[1] <= 112 * UI_SCALE:
-                if (-1, 0) not in opened_tile:
-                    chunks[location["opened"][0]][location["opened"][1]][-1, 0] = 0
-                elif opened_tile[-1, 0] == 0:
-                    chunks[location["opened"][0]][location["opened"][1]][-1, 0] = 1
-                else:
-                    del chunks[location["opened"][0]][location["opened"][1]][-1, 0]
-            elif 240 * UI_SCALE <= moved_x <= 272 * UI_SCALE and 80 * UI_SCALE <= SCREEN_SIZE[1] - position[1] <= 112 * UI_SCALE:
-                if (1, 0) not in opened_tile:
-                    chunks[location["opened"][0]][location["opened"][1]][1, 0] = 0
-                elif opened_tile[1, 0] == 0:
-                    chunks[location["opened"][0]][location["opened"][1]][1, 0] = 1
-                else:
-                    del chunks[location["opened"][0]][location["opened"][1]][1, 0]
+            for adjacent in ADJACENT_ROOMS:
+                if (208 + 32 * adjacent[0]) * UI_SCALE <= moved_x <= (240 + 32 * adjacent[0]) * UI_SCALE and (80 + 32 * adjacent[1]) * UI_SCALE <= SCREEN_SIZE[1] - position[1] <= (112 + 32 * adjacent[1]) * UI_SCALE:
+                    if adjacent not in opened_tile:
+                        chunks[location["opened"][0]][location["opened"][1]][adjacent] = 0
+                    elif opened_tile[adjacent] == 0:
+                        chunks[location["opened"][0]][location["opened"][1]][adjacent] = 1
+                    else:
+                        del chunks[location["opened"][0]][location["opened"][1]][adjacent]
     elif "store" in ATTRIBUTES.get(machine_ui, ()):
         chunks, machine_inventory = open_storage(
             position, chunks, location, inventory, machine_ui, inventory_size

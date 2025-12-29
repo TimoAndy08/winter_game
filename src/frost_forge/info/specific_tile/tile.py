@@ -93,3 +93,6 @@ RUNES_USER = {
 CONNECTIONS = {
     "bronze harvester": "connector",
 }
+ITEM_TICK = {
+    "basic belt": 1,
+}

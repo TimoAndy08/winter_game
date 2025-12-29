@@ -18,6 +18,7 @@ HEALTH = {
     "amethyst sword": 12,
     "amethyst wrench": 12,
     "anklet of the tree": 12,
+    "basic belt": 1,
     "bluebell jar": 24,
     "blue dye": 6,
     "bluebell": 10,

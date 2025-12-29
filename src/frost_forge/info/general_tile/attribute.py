@@ -1,5 +1,6 @@
 ATTRIBUTES = {
     "amethyst boiler": {"open", "machine"},
+    "basic belt": {"transport"},
     "bronze harvester": {"open", "machine", "harvester"},
     "burner drill": {"open", "machine", "drill"},
     "caelium sieve": {"open", "machine"},

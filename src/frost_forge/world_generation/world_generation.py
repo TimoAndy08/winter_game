@@ -18,7 +18,10 @@ def generate_chunk(
             random.seed()
         else:
             random.seed(seed)
-        noise_offset = (random.uniform(-10000, 10000), random.uniform(-10000, 10000))
+        if world_type in WORLD_ABILITIES["skyblock"]:
+            noise_offset = ()
+        else:
+            noise_offset = (random.uniform(-10000, 10000), random.uniform(-10000, 10000))
     if (chunk_x, chunk_y) not in chunks:
         chunks[chunk_x, chunk_y] = {}
         tile = chunks[chunk_x, chunk_y]
