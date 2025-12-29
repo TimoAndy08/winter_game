@@ -41,6 +41,7 @@ def left_click(
     inventory_size: list[int, int],
     world_type: int,
 ):
+    moved_x = position[0] - HALF_SCREEN_SIZE
     if machine_ui == "game":
         if inventory_number < len(inventory):
             inventory_key = list(inventory.keys())[inventory_number]
@@ -129,7 +130,6 @@ def left_click(
                     new_kind += f"{word} "
                 chunks[grid_position[0]][grid_position[1]]["kind"] = f"{new_kind}{(int(kind.split(" ")[-1]) + 1) % MODIFICATIONS[new_kind[:-1]]}"
     elif machine_ui in RECIPES or "machine" in ATTRIBUTES[machine_ui]:
-        moved_x = position[0] - HALF_SCREEN_SIZE
         if "harvester" not in ATTRIBUTES[machine_ui]:
             if recipe_number >= 0:
                 if "machine" in ATTRIBUTES[machine_ui]:
@@ -143,18 +143,18 @@ def left_click(
                     recipe_number = x_slot + y_slot * 7
                     if recipe_number >= len(RECIPES[machine_ui]):
                         recipe_number = -1
-        if "machine" in ATTRIBUTES[machine_ui]:
-            opened_tile = chunks[location["opened"][0]][location["opened"][1]]
-            for adjacent in ADJACENT_ROOMS:
-                if (208 + 32 * adjacent[0]) * UI_SCALE <= moved_x <= (240 + 32 * adjacent[0]) * UI_SCALE and (80 + 32 * adjacent[1]) * UI_SCALE <= SCREEN_SIZE[1] - position[1] <= (112 + 32 * adjacent[1]) * UI_SCALE:
-                    if adjacent not in opened_tile:
-                        chunks[location["opened"][0]][location["opened"][1]][adjacent] = 0
-                    elif opened_tile[adjacent] == 0:
-                        chunks[location["opened"][0]][location["opened"][1]][adjacent] = 1
-                    else:
-                        del chunks[location["opened"][0]][location["opened"][1]][adjacent]
     elif "store" in ATTRIBUTES.get(machine_ui, ()):
         chunks, machine_inventory = open_storage(
             position, chunks, location, inventory, machine_ui, inventory_size
         )
+    if {"machine", "store"} & ATTRIBUTES.get(machine_ui, set()):
+        opened_tile = chunks[location["opened"][0]][location["opened"][1]]
+        for adjacent in ADJACENT_ROOMS:
+            if (208 + 32 * adjacent[0]) * UI_SCALE <= moved_x <= (240 + 32 * adjacent[0]) * UI_SCALE and (80 + 32 * adjacent[1]) * UI_SCALE <= SCREEN_SIZE[1] - position[1] <= (112 + 32 * adjacent[1]) * UI_SCALE:
+                if adjacent not in opened_tile:
+                    chunks[location["opened"][0]][location["opened"][1]][adjacent] = 0
+                elif opened_tile[adjacent] == 0:
+                    chunks[location["opened"][0]][location["opened"][1]][adjacent] = 1
+                else:
+                    del chunks[location["opened"][0]][location["opened"][1]][adjacent]
     return machine_ui, chunks, location, machine_inventory, tick, health, max_health, inventory, recipe_number

@@ -1,10 +1,9 @@
-from math import log2, sqrt
-
 from .point import left, up
 from ..entity_behaviour.animal import animal
 from ..entity_behaviour.enemy import enemy
 from .growth import grow
 from .machine import machine
+from .transport import output_transport
 from ...info import ATTRIBUTES, GROW_TILES
 
 
@@ -28,6 +27,10 @@ def update_tile(
         chunks = up(chunks, chunk, tile)
     elif "machine" in attributes:
         chunks[chunk][tile]["inventory"] = machine(tick, current_tile, kind, attributes, tile, chunk, chunks)
+    elif "store" in attributes:
+        chunks[chunk][tile]["inventory"], chunks = output_transport(chunks, chunk, tile, current_tile, kind, {"transport"})
+    elif "transport" in attributes:
+        chunks[chunk][tile]["inventory"], chunks = output_transport(chunks, chunk, tile, current_tile, kind, {"machine", "store", "transport"})
     elif kind in GROW_TILES:
         chunks[chunk][tile] = grow(current_tile, world_type)
         if chunks[chunk][tile] == {}:
