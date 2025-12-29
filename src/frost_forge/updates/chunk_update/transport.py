@@ -1,4 +1,4 @@
-from ...info import ADJACENT_ROOMS, ATTRIBUTES, ITEM_TICK, RECIPES, LOOT_TABLES, STORAGE
+from ...info import ADJACENT_ROOMS, ATTRIBUTES, ITEM_TICK, RECIPES, LOOT_TABLES, STORAGE, VALUES
 
 
 def transport_item(output_kind, machine_inventory, output_inventory, item_tick, max_store):
@@ -45,13 +45,21 @@ def output_transport(chunks, chunk, tile, current_tile, kind, output):
                         elif machine_inventory:
                             output_kind = list(machine_inventory)[0]
                             transportable = True
+                            value_booster = 1
                             if adjacent["kind"] in RECIPES and "recipe" in adjacent:
                                 for item in RECIPES[adjacent["kind"]][adjacent["recipe"]][1]:
                                     if item[0] == output_kind:
                                         break
+                                    elif item[0] in VALUES and output_kind in VALUES[item[0]]:
+                                        value_booster = VALUES[item[0]][output_kind]
+                                        machine_inventory[item[0]] = value_booster * item_tick
+                                        machine_inventory[output_kind] -= item_tick
+                                        if machine_inventory[output_kind] == 0:
+                                            del machine_inventory[output_kind]
+                                        break
                                 else:
                                     transportable = False
                             if transportable:
-                                machine_inventory, adjacent["inventory"] = transport_item(output_kind, machine_inventory, adjacent["inventory"], item_tick, max_store)
+                                machine_inventory, adjacent["inventory"] = transport_item(output_kind, machine_inventory, adjacent["inventory"], item_tick * value_booster, max_store)
                         chunks[adjacent_chunk][adjacent_tile] = adjacent
     return machine_inventory, chunks
