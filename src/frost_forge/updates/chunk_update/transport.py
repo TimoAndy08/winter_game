@@ -44,6 +44,14 @@ def output_transport(chunks, chunk, tile, current_tile, kind, output):
                                         machine_inventory, adjacent["inventory"] = transport_item(item[1], machine_inventory, adjacent["inventory"], item_tick, max_store)
                         elif machine_inventory:
                             output_kind = list(machine_inventory)[0]
-                            machine_inventory, adjacent["inventory"] = transport_item(output_kind, machine_inventory, adjacent["inventory"], item_tick, max_store)
+                            transportable = True
+                            if adjacent["kind"] in RECIPES and "recipe" in adjacent:
+                                for item in RECIPES[adjacent["kind"]][adjacent["recipe"]][1]:
+                                    if item[0] == output_kind:
+                                        break
+                                else:
+                                    transportable = False
+                            if transportable:
+                                machine_inventory, adjacent["inventory"] = transport_item(output_kind, machine_inventory, adjacent["inventory"], item_tick, max_store)
                         chunks[adjacent_chunk][adjacent_tile] = adjacent
     return machine_inventory, chunks
