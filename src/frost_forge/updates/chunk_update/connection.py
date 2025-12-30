@@ -51,24 +51,17 @@ def connect_machine(chunks, chunk, tile, kind, attributes, connection, efficienc
                     content_chunk = (chunk[0] + (tile[0] + i) // 16, chunk[1] + (tile[1] + j) // 16)
                     if chunks[content_chunk].get(content_tile, {}).get("kind", None) in CONTENTS[kind]:
                         content = chunks[content_chunk][content_tile]["kind"]
-                        applicable = False
-                        if content not in REQUIREMENTS:
-                            applicable = True
-                        else:
-                            for requirement in REQUIREMENTS[content]:
-                                required = requirement[1]
-                                for location in ADJACENT_ROOMS:
-                                    adjacent_tile = ((content_tile[0] + location[0]) % 16, (content_tile[1] + location[1]) % 16)
-                                    adjacent_chunk = ((content_chunk[0] + (content_tile[0] + location[0]) // 16), content_chunk[1] + (content_tile[1] + location[1]) // 16)
-                                    if chunks[adjacent_chunk].get(adjacent_tile, {}).get("kind", None) == requirement[0]:
-                                        required -= 1
-                                if required > 0:
-                                    break
-                            else:
-                                applicable = True
-                        if applicable:
-                            efficiency += CONTENT_VALUES[content][0]
-                            heat += CONTENT_VALUES[content][1]
-            if heat != 0:
+                        for requirement in REQUIREMENTS[content]:
+                            required = requirement[1]
+                            for location in ADJACENT_ROOMS:
+                                adjacent_tile = ((content_tile[0] + location[0]) % 16, (content_tile[1] + location[1]) % 16)
+                                adjacent_chunk = ((content_chunk[0] + (content_tile[0] + location[0]) // 16), content_chunk[1] + (content_tile[1] + location[1]) // 16)
+                                if chunks[adjacent_chunk].get(adjacent_tile, {}).get("kind", None) == requirement[0]:
+                                    required -= 1
+                            if required > 0:
+                                heat = 999
+                        efficiency += CONTENT_VALUES[content][0]
+                        heat += CONTENT_VALUES[content][1]
+            if heat > 0:
                 efficiency = 0
     return connection, efficiency

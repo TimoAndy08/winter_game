@@ -11,7 +11,6 @@ MULTI_TILES = {
     "packager bench": (2, 1),
     "sawbench": (2, 1),
     "sewbench": (2, 1),
-    "steam furnace": (2, 2),
     "wooden bed": (1, 2),
 }
 PROCESSING_TIME = {
@@ -100,11 +99,11 @@ CONTENTS = {
     "steam furnace": {"coal block", "furnace accelerator", "lavastone furnace accelerator"},
 }
 CONTENT_VALUES = {
-    "coal block": (0, 1),
-    "copper tank": (1, -2),
+    "coal block": (0, -1),
+    "copper tank": (1, 2),
     "crushing chamber": (1, 0),
-    "crushing wheel": (0, -1),
-    "furnace accelerator": (1, -1),
+    "crushing wheel": (0, 1),
+    "furnace accelerator": (1, 1),
     "lavastone furnace accelerator": (1, 0)
 }
 REQUIREMENTS = {
