@@ -2,7 +2,6 @@ from ..render import FPS
 
 
 MULTI_TILES = {
-    "copper boiler": (3, 2),
     "copper constructor": (2, 2),
     "destroyed obelisk": (1, 2),
     "dye bench": (2, 1),
@@ -19,13 +18,13 @@ PROCESSING_TIME = {
     "burner drill": 30 * FPS,
     "caelium sieve": 15 * FPS,
     "composter": 2 * FPS,
-    "copper boiler": 5 * FPS,
+    "copper boiler": 10 * FPS,
     "copper press": 20 * FPS,
     "furnace": 30 * FPS,
     "mana constructor": 10 * FPS,
     "mana converter": 10 * FPS,
     "mana deconstructor": 10 * FPS,
-    "steam furnace": 10 * FPS,
+    "steam furnace": 30 * FPS,
     "wood crucible": 60 * FPS,
     "wooden sieve": 15 * FPS,
 }
@@ -88,19 +87,23 @@ RUNES_USER = {
 }
 CONNECTIONS = {
     "bronze harvester": "connector",
+    "copper boiler": "connector",
     "furnace": "connector",
     "steam furnace": "connector",
 }
 CONTENTS = {
+    "copper boiler": {"coal block", "copper tank"},
     "furnace": {"coal block", "furnace accelerator", "lavastone furnace accelerator"},
     "steam furnace": {"coal block", "furnace accelerator", "lavastone furnace accelerator"},
 }
 CONTENT_VALUES = {
     "coal block": (0, 1),
+    "copper tank": (1, -2),
     "furnace accelerator": (1, -1),
     "lavastone furnace accelerator": (1, 0)
 }
 REQUIREMENTS = {
+    "copper tank": ("coal block", 3),
     "furnace accelerator": (("coal block", 2),),
     "lavastone furnace accelerator": (("furnace accelerator", 4),),
 }

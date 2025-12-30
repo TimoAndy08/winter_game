@@ -44,6 +44,7 @@ def connect_machine(chunks, chunk, tile, kind, attributes, connection, efficienc
                             chunks[harvest_chunk][harvest_tile] = {"floor": chunks[harvest_chunk][harvest_tile]["floor"]}
         else:
             heat = 0
+            efficiency -= 1
             for i in range(0, x):
                 for j in range(0, y):
                     content_tile = ((tile[0] + i) % 16, (tile[1] + j) % 16)
@@ -61,7 +62,7 @@ def connect_machine(chunks, chunk, tile, kind, attributes, connection, efficienc
                                     adjacent_chunk = ((content_chunk[0] + (content_tile[0] + location[0]) // 16), content_chunk[1] + (content_tile[1] + location[1]) // 16)
                                     if chunks[adjacent_chunk].get(adjacent_tile, {}).get("kind", None) == requirement[0]:
                                         required -= 1
-                                if required:
+                                if required <= 0:
                                     break
                             else:
                                 applicable = True

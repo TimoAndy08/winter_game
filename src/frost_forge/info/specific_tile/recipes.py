@@ -60,7 +60,7 @@ RECIPES = {
     "copper constructor": (
         (("bronze harvester", 4), (("bronze machine casing", 2), ("leaf", 4))),
         (("bronze machine casing", 2), (("bronze block", 1),)),
-        (("copper boiler", 1), (("copper tank", 3), ("copper pipe 0", 5), ("tin ingot", 2))),
+        (("copper boiler", 4), (("copper pump 0", 2), ("copper pipe 0", 4), ("tin ingot", 2))),
         (("copper gear", 1), (("copper ingot", 3),)),
         (("copper pipe 0", 2), (("copper sheet", 2), ("copper ingot", 1))),
         (("copper pump 0", 1), (("copper pipe 0", 1), ("copper gear", 1))),
