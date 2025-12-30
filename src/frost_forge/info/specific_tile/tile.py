@@ -24,6 +24,7 @@ PROCESSING_TIME = {
     "mana constructor": 10 * FPS,
     "mana converter": 10 * FPS,
     "mana deconstructor": 10 * FPS,
+    "steam crusher": 30 * FPS,
     "steam furnace": 30 * FPS,
     "wood crucible": 60 * FPS,
     "wooden sieve": 15 * FPS,
@@ -89,22 +90,28 @@ CONNECTIONS = {
     "bronze harvester": "connector",
     "copper boiler": "connector",
     "furnace": "connector",
+    "steam crusher": "connector",
     "steam furnace": "connector",
 }
 CONTENTS = {
     "copper boiler": {"coal block", "copper tank"},
     "furnace": {"coal block", "furnace accelerator", "lavastone furnace accelerator"},
+    "steam crusher": {"coal block", "crushing chamber", "crushing wheel"},
     "steam furnace": {"coal block", "furnace accelerator", "lavastone furnace accelerator"},
 }
 CONTENT_VALUES = {
     "coal block": (0, 1),
     "copper tank": (1, -2),
+    "crushing chamber": (1, 0),
+    "crushing wheel": (0, -1),
     "furnace accelerator": (1, -1),
     "lavastone furnace accelerator": (1, 0)
 }
 REQUIREMENTS = {
     "coal block": (("connector", 1),),
     "copper tank": (("coal block", 2),),
+    "crushing chamber": (("crushing wheel", 4),),
+    "crushing wheel": (("coal block", 1),),
     "furnace accelerator": (("coal block", 2),),
     "lavastone furnace accelerator": (("furnace accelerator", 4),),
 }

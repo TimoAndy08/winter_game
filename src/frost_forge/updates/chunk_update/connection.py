@@ -62,7 +62,7 @@ def connect_machine(chunks, chunk, tile, kind, attributes, connection, efficienc
                                     adjacent_chunk = ((content_chunk[0] + (content_tile[0] + location[0]) // 16), content_chunk[1] + (content_tile[1] + location[1]) // 16)
                                     if chunks[adjacent_chunk].get(adjacent_tile, {}).get("kind", None) == requirement[0]:
                                         required -= 1
-                                if required <= 0:
+                                if required > 0:
                                     break
                             else:
                                 applicable = True

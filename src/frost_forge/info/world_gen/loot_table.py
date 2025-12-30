@@ -98,4 +98,19 @@ LOOT_TABLES = {
         (0.3, "stick", 1, 3),
         (0.2, "sapphire acorn", 1, 1),
     ), 1, 2),
+    "crushed copper": ((
+        (1, "copper dust", 1, 2),
+        (0.1, "silver dust", 1, 2),
+        (0.01, "gold dust", 1, 2),
+    ), 1, 3),
+    "crushed iron": ((
+        (1, "iron dust", 1, 2),
+        (0.1, "copper dust", 1, 2),
+        (0.01, "mercury dust", 1, 2),
+    ), 1, 3),
+    "crushed tin": ((
+        (1, "tin dust", 1, 2),
+        (0.1, "iron dust", 1, 2),
+        (0.01, "lead dust", 1, 2),
+    ), 1, 3),
 }
