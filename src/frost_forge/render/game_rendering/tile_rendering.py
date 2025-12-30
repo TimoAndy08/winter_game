@@ -17,7 +17,7 @@ def render_tile(chunk, tile, zoom, camera, scaled_image, chunks, window, images)
             if "point" not in attributes:
                 tile_image = scaled_image[current_tile["kind"]]
                 window.blit(tile_image, placement)
-            if "table" in attributes and "inventory" in current_tile:
+            if "table" in attributes and "inventory" in current_tile and current_tile["inventory"]:
                 content = list(current_tile["inventory"])[0]
                 placement[1] -= (
                     HALF_SIZE * zoom * (images[content].get_size()[1] // 8 - 2)

@@ -49,7 +49,7 @@ def render_open(machine_ui, window, images, recipe_tile, machine_inventory):
                 (HALF_SCREEN_SIZE + 160 * UI_SCALE, SCREEN_SIZE[1] - 160 * UI_SCALE),
             )
             for location in ADJACENT_ROOMS:
-                sprite_location = (HALF_SCREEN_SIZE + (208 + 32 * location[0]) * UI_SCALE, SCREEN_SIZE[1] - (112 + 32 * location[1]) * UI_SCALE)
+                sprite_location = (HALF_SCREEN_SIZE + (208 + 32 * location[0]) * UI_SCALE, SCREEN_SIZE[1] - (112 - 32 * location[1]) * UI_SCALE)
                 if location not in recipe_tile:
                     slot_image = images["inventory_slot_5"]
                 elif recipe_tile[location] == 0:

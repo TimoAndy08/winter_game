@@ -4,7 +4,7 @@ from ..entity_behaviour.enemy import enemy
 from .growth import grow
 from .machine import machine
 from .transport import output_transport
-from ...info import ATTRIBUTES, GROW_TILES
+from ...info import ATTRIBUTES, GROW_TILES, TRANSPORT
 
 
 def update_tile(
@@ -30,6 +30,8 @@ def update_tile(
     elif "store" in attributes:
         chunks[chunk][tile]["inventory"], chunks = output_transport(chunks, chunk, tile, current_tile, kind, {"transport"})
     elif "transport" in attributes:
+        for slot in TRANSPORT[kind]:
+            current_tile[slot] = TRANSPORT[kind][slot]
         chunks[chunk][tile]["inventory"], chunks = output_transport(chunks, chunk, tile, current_tile, kind, {"machine", "store", "transport"})
     elif kind in GROW_TILES:
         chunks[chunk][tile] = grow(current_tile, world_type)

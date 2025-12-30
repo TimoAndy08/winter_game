@@ -150,7 +150,7 @@ def left_click(
     if {"machine", "store"} & ATTRIBUTES.get(machine_ui, set()):
         opened_tile = chunks[location["opened"][0]][location["opened"][1]]
         for adjacent in ADJACENT_ROOMS:
-            if (208 + 32 * adjacent[0]) * UI_SCALE <= moved_x <= (240 + 32 * adjacent[0]) * UI_SCALE and (80 + 32 * adjacent[1]) * UI_SCALE <= SCREEN_SIZE[1] - position[1] <= (112 + 32 * adjacent[1]) * UI_SCALE:
+            if (208 + 32 * adjacent[0]) * UI_SCALE <= moved_x <= (240 + 32 * adjacent[0]) * UI_SCALE and (80 - 32 * adjacent[1]) * UI_SCALE <= SCREEN_SIZE[1] - position[1] <= (112 - 32 * adjacent[1]) * UI_SCALE:
                 if adjacent not in opened_tile:
                     chunks[location["opened"][0]][location["opened"][1]][adjacent] = 0
                 elif opened_tile[adjacent] == 0:

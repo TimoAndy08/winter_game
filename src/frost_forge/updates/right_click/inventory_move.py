@@ -13,7 +13,7 @@ def move_inventory(mining_tile, inventory, inventory_size):
             mining_tile["inventory"].get(mining_tile["kind"], 0) + 1
         )
     for item, amount in mining_tile["inventory"].items():
-        if item != "mana_level" and item not in VALUES and item.split("")[-1] != "mineable":
+        if item != "mana_level" and item not in VALUES and item.split()[-1] != "mineable":
             if item in inventory:
                 inventory[item] += amount
                 if inventory[item] > inventory_size[1]:
