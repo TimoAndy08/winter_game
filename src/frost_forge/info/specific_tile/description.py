@@ -11,6 +11,7 @@ DESCRIPTION = {
     "copper hammer": "+3 damage to sticky materials",
     "copper needle": "+3 damage to threads and shearing",
     "copper pickaxe": "+3 damage to rocky materials",
+    "copper pit": "Put in the ground to eventually get copper",
     "copper shovel": "+3 damage to soft materials",
     "copper sword": "+3 damage to enemies",
     "copper tank": "+2 heat; +1 efficiency; adjacent to min. 2 coal blocks",

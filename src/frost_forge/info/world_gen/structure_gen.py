@@ -8,7 +8,7 @@ ROOM_COLORS = {
         (95, 81, 114): {"kind": "amethyst brick", "floor": "amethyst brick floor"},
         (123, 104, 150): {"floor": "amethyst brick floor"},
         (160, 138, 193): {"floor": "amethyst mineable"},
-        (136, 68, 31): {"kind": "judge", "floor": "amethyst brick floor"},
+        (136, 68, 31): {"kind": "judge", "inventory": {"copper ingot": 1}, "floor": "amethyst brick floor"},
     },
     "copper dungeon": {
         (136, 68, 31): {"kind": "copper brick", "floor": "copper brick floor"},

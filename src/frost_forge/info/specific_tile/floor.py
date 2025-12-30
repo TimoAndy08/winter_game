@@ -10,7 +10,6 @@ FLOOR = {
     "copper door",
     "copper door open",
     "copper mineable",
-    "copper pit",
     "dirt",
     "ice",
     "lava",
@@ -45,7 +44,6 @@ FLOOR = {
 }
 FLOOR_TYPE = {
     "amethyst mineable": "block",
-    "copper pit": "tile",
     "ice": "block",
     "lava": "fluid",
     "void": "block",

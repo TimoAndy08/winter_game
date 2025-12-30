@@ -137,9 +137,8 @@ RECIPES = {
     ),
     "masonry bench": (
         (("amethyst brick", 2), (("amethyst", 1), ("stone brick", 2))),
-        (("amethyst brick floor", 2), (("amethyst brick", 1))),
+        (("amethyst brick floor", 2), (("amethyst brick", 1),)),
         (("brick floor", 2), (("brick", 1),)),
-        (("copper anvil", 1), (("copper block", 1), ("copper ingot", 2))),
         (("copper brick", 2), (("copper ingot", 1), ("stone brick", 2))),
         (("copper brick floor", 2), (("copper brick", 1),)),
         (("copper door", 1), (("copper brick", 1), ("copper brick floor", 1))),
@@ -227,6 +226,9 @@ RECIPES = {
         (("crushed copper", 1), (("raw copper", 1), ("steam fluid", 1))),
         (("crushed iron", 1), (("raw iron", 1), ("steam fluid", 1))),
         (("crushed tin", 1), (("raw tin", 1), ("steam fluid", 1))),
+        (("stick", 16), (("log", 4), ("steam fluid", 1))),
+        (("wood", 8), (("log", 4), ("steam fluid", 1))),
+        (("wood floor", 16), (("log", 4), ("steam fluid", 1))),
     ),
     "steam furnace": (
         (("bronze ingot", 1), (("bronze dust", 1), ("steam fluid", 1))),
@@ -266,6 +268,7 @@ RECIPES = {
         (("bowl", 1), (("stick", 1), ("wood", 1))),
         (("campfire", 1), (("flint", 2), ("stick", 6), ("wood", 4))),
         (("connector", 1), (("stone brick", 1),)),
+        (("copper anvil", 1), (("copper block", 1), ("copper ingot", 2))),
         (("dye bench", 1), (("manual press", 1), ("blue dye", 1))),
         (("flint axe", 1), (("flint", 2), ("stick", 3))),
         (("flint hammer", 1), (("flint", 4), ("stick", 4))),

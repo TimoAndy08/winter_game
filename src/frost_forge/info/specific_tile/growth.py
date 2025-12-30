@@ -60,19 +60,21 @@ GROW_REQUIREMENT = {
     "bluebell": 1.25,
     "caelium sapling": 1.25,
     "caelium treeling": 1.4,
+    "copper sapling": 1,
     "copper treeling": 1.25,
+    "potato": 1,
     "sapphire sapling": 1.4,
     "sapphire treeling": 1.5,
     "tin sapling": 1.25,
     "tin treeling": 1.4,
 }
 GROW_DIRT_IGNORE = {
+    "copper pit",
     "furless rabbit",
     "quartz child",
     "rabbit child",
     "slime summon",
 }
-GROW_FLOOR_DELETE = {"copper pit"}
 GROW_FROM = {
     "bluebell grown": "bluebell",
     "caelium tree": "caelium sapling",
