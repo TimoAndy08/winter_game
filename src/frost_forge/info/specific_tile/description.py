@@ -21,6 +21,7 @@ DESCRIPTION = {
     "flint sword": "+1 damage to enemies",
     "furnace": "Machine for smelting; Bct: 30s",
     "furnace accelerator": "-1 heat; +1 efficiency; adjacent to min. 2 coal blocks",
+    "lavastone furnace accelerator": "+1 efficiency; adjacent to 4 furnace accelerator",
     "lava rune": "*0.8 and then +5 to mana",
     "moist dirt": "Soil of strength 1.25",
     "rock axe": "+2 damage to wooden materials",

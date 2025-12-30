@@ -1,5 +1,5 @@
 from ..right_click.inventory_move import move_inventory
-from ...info import CONNECTIONS, GROW_FROM, CONTENTS, REQUIREMENTS, ADJACENT_ROOMS
+from ...info import CONNECTIONS, GROW_FROM, CONTENTS, CONTENT_VALUES, REQUIREMENTS, ADJACENT_ROOMS
 
 
 def connect_machine(chunks, chunk, tile, kind, attributes, connection, efficiency):
@@ -66,8 +66,8 @@ def connect_machine(chunks, chunk, tile, kind, attributes, connection, efficienc
                             else:
                                 applicable = True
                         if applicable:
-                            efficiency += CONTENTS[kind][content][0]
-                            heat += CONTENTS[kind][content][1]
+                            efficiency += CONTENT_VALUES[content][0]
+                            heat += CONTENT_VALUES[content][1]
             if heat != 0:
                 efficiency = 0
     return connection, efficiency

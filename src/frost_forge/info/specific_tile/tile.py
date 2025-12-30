@@ -89,15 +89,20 @@ RUNES_USER = {
 CONNECTIONS = {
     "bronze harvester": "connector",
     "furnace": "connector",
+    "steam furnace": "connector",
 }
 CONTENTS = {
-    "furnace": {
-        "coal block": (0, 1),
-        "furnace accelerator": (1, -1),
-    }
+    "furnace": {"coal block", "furnace accelerator", "lavastone furnace accelerator"},
+    "steam furnace": {"coal block", "furnace accelerator", "lavastone furnace accelerator"},
+}
+CONTENT_VALUES = {
+    "coal block": (0, 1),
+    "furnace accelerator": (1, -1),
+    "lavastone furnace accelerator": (1, 0)
 }
 REQUIREMENTS = {
     "furnace accelerator": (("coal block", 2),),
+    "lavastone furnace accelerator": (("furnace accelerator", 4),),
 }
 ITEM_TICK = {
     "basic belt": 1,

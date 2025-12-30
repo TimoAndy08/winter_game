@@ -48,10 +48,11 @@ RECIPES = {
         (("copper shaft", 2), (("copper ingot", 3),)),
         (("copper shovel", 1), (("handle", 1), ("slime crystal", 1), ("copper ingot", 2))),
         (("copper sword", 1), (("handle", 1), ("slime crystal", 1), ("ice", 1), ("copper ingot", 3))),
+        (("lavastone furnace accelerator", 1), (("furnace accelerator", 1), ("lavastone brick", 2), ("bronze machine casing", 1))),
         (("life crystal", 1), (("slime crystal", 2), ("copper ingot", 3), ("ice", 1))),
         (("rail 0", 4), (("copper shaft", 1), ("pebble", 1), ("wood fence 0", 1))),
         (("slime summon", 1), (("slime crystal", 3), ("life crystal", 1))),
-        (("steam furnace", 1), (("furnace", 1), ("lavastone brick", 4), ("copper wrench", 1))),
+        (("steam furnace", 4), (("furnace", 4), ("lavastone brick", 4), ("copper wrench", 1))),
     ),
     "copper boiler": (
         (("steam fluid", 5), (("water fluid", 5), ("fuel", 16))),
@@ -79,13 +80,12 @@ RECIPES = {
         (("yellow dye", 1), (("citrine", 1))),
     ),
     "furnace": (
-        (("coal", 1), (("log", 1), ("fuel", 2))),
-        (("copper ingot", 1), (("raw copper", 1), ("fuel", 6))),
-        (("glass", 1), (("sand", 2), ("fuel", 4))),
-        (("lavastone", 1), (("stone", 2), ("fuel", 16))),
+        (("copper ingot", 1), (("raw copper", 1), ("fuel", 8))),
+        (("glass", 1), (("sand", 2), ("fuel", 8))),
+        (("lavastone", 1), (("stone", 2), ("fuel", 8))),
         (("pure crystal", 1), (("quartz", 1), ("fuel", 8))),
         (("slime crystal", 1), (("slime ball", 1), ("fuel", 8))),
-        (("tin ingot", 1), (("raw tin", 1), ("fuel", 12))),
+        (("tin ingot", 1), (("raw tin", 1), ("fuel", 8))),
     ),
     "mana constructor": (
         (("tin ingot", 1), (("lead ingot", 2),), 1),
@@ -223,7 +223,6 @@ RECIPES = {
     "steam furnace": (
         (("bronze ingot", 1), (("bronze dust", 1), ("steam fluid", 2))),
         (("caelium ingot", 1), (("caelium dust", 1), ("steam fluid", 2))),
-        (("coal", 2), (("log", 2), ("steam fluid", 2))),
         (("copper ingot", 1), (("copper dust", 1), ("steam fluid", 2))),
         (("glass", 1), (("sand", 2), ("steam fluid", 2))),
         (("lavastone", 1), (("stone", 2), ("steam fluid", 2))),
