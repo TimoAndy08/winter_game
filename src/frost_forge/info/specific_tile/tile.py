@@ -103,7 +103,8 @@ CONTENT_VALUES = {
     "lavastone furnace accelerator": (1, 0)
 }
 REQUIREMENTS = {
-    "copper tank": ("coal block", 3),
+    "coal block": (("connector", 1),),
+    "copper tank": (("coal block", 2),),
     "furnace accelerator": (("coal block", 2),),
     "lavastone furnace accelerator": (("furnace accelerator", 4),),
 }
