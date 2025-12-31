@@ -91,7 +91,7 @@ TOOL_REQUIRED = {
     "copper treeling": "axe",
     "copper tree": "axe",
     "crushing chamber": "pickaxe",
-    "cruhsing wheel": "pickaxe",
+    "crushing wheel": "pickaxe",
     "dirt": "shovel",
     "dye bench": "axe",
     "flint": "pickaxe",
@@ -99,8 +99,10 @@ TOOL_REQUIRED = {
     "furnace": "pickaxe",
     "furnace accelerator": "pickaxe",
     "gold dust": "shovel",
+    "gold ingot": "pickaxe",
     "ice": "pickaxe",
     "iron dust": "shovel",
+    "iron ingot": "pickaxe",
     "judge": "sword",
     "lava rune": "pickaxe",
     "lavastone": "pickaxe",
@@ -109,6 +111,7 @@ TOOL_REQUIRED = {
     "lavastone floor": "pickaxe",
     "lavastone furnace accelerator": "pickaxe",
     "lead dust": "shovel",
+    "lead ingot": "pickaxe",
     "life crystal": "pickaxe",
     "log": "axe",
     "log floor": "axe",
@@ -118,6 +121,7 @@ TOOL_REQUIRED = {
     "manual press": "axe",
     "masonry bench": "axe",
     "mercury dust": "shovel",
+    "mercury ingot": "pickaxe",
     "moist dirt": "shovel",
     "mushroom": "axe",
     "mushroom block": "hammer",
@@ -166,6 +170,7 @@ TOOL_REQUIRED = {
     "sawbench": "axe",
     "sewbench": "axe",
     "silver dust": "shovel",
+    "silver ingot": "pickaxe",
     "skeleton": "sword",
     "slife crystal": "picakxe",
     "slime": "sword",
@@ -217,7 +222,7 @@ TOOL_REQUIRED = {
     "wooden table": "axe",
     "workbench": "axe",
 }
-TOOL_EFFICIENCY = {"flint": 1, "rock": 2, "water": 2, "copper": 3}
+TOOL_EFFICIENCY = {"flint": 1, "rock": 2, "copper": 3, "iron": 4}
 TOOLS = {
     "axe",
     "hammer",

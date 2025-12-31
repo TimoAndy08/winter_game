@@ -13,4 +13,5 @@ ACHIEVEMENTS = {
     "small backpack": ("Inventory upgrade", "Don't craft multiple tho"),
     "copper boiler": ("Mechanical steam age", "Automation time?"),
     "tree constructor": ("Welcome to skyblock", "Hope you brought extra saplings"),
+    "iron pickaxe": ("Pickaxe made from iron", "Pickaxe to mine iron :)"),
 }
