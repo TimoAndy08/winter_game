@@ -1,11 +1,8 @@
 RECIPES = {
     "burner drill": (
         (("amethyst", 1), (("fuel", 4), ("quartz", 1), ("amethyst mineable", 1))),
-        (("amethyst", 2), (("fuel", 16), ("quartz", 2), ("amethyst mineable", 1))),
         (("coal", 1), (("fuel", 2), ("coal mineable", 1))),
-        (("coal", 2), (("fuel", 8), ("coal mineable", 1))),
         (("raw copper", 1), (("fuel", 4), ("copper mineable", 1))),
-        (("raw copper", 2), (("fuel", 16), ("copper mineable", 1))),
     ),
     "caelium sieve": (
         (("caelium leaf sift", 1), (("caelium leaf", 1), ("water fluid", 1))),
@@ -64,6 +61,7 @@ RECIPES = {
         (("basic belt 0", 2), (("bronze machine casing", 1), ("copper shaft", 1), ("copper sheet", 1))),
         (("basic merger 0", 1), (("basic belt 0", 2), ("tin gear", 1))),
         (("basic splitter 0", 1), (("basic belt 0", 2), ("copper gear", 1))),
+        (("bronze gear", 1), (("bronze ingot", 3),)),
         (("bronze harvester", 4), (("bronze machine casing", 2), ("leaf", 4))),
         (("bronze machine casing", 2), (("bronze block", 1),)),
         (("copper boiler", 4), (("copper pump 0", 2), ("copper pipe 0", 4), ("tin ingot", 2))),
@@ -77,6 +75,7 @@ RECIPES = {
         (("crushing wheel", 1), (("bronze machine casing", 1), ("copper gear", 1), ("copper shaft", 1)),),
         (("lavastone furnace accelerator", 1), (("furnace accelerator", 1), ("lavastone brick", 2), ("bronze machine casing", 1))),
         (("steam crusher", 4), (("bronze machine casing", 2), ("copper gear", 4))),
+        (("steam drill", 1), (("gold ingot", 1), ("bronze gear", 1), ("burner drill", 1))),
         (("steam furnace", 4), (("furnace", 4), ("lavastone brick", 4), ("copper wrench", 1))),
         (("tin gear", 1), (("tin ingot", 3),)),
     ),
@@ -234,6 +233,11 @@ RECIPES = {
         (("stick", 16), (("log", 4), ("steam fluid", 1))),
         (("wood", 8), (("log", 4), ("steam fluid", 1))),
         (("wood floor", 16), (("log", 4), ("steam fluid", 1))),
+    ),
+    "steam drill": (
+        (("amethyst", 1), (("quartz", 4), ("steam fluid", 1), ("amethyst mineable", 1))),
+        (("coal", 1), (("steam fluid", 1), ("coal mineable", 1))),
+        (("raw copper", 1), (("steam fluid", 1), ("copper mineable", 1))),
     ),
     "steam furnace": (
         (("bronze ingot", 1), (("bronze dust", 1), ("steam fluid", 1))),

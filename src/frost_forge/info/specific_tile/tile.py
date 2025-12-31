@@ -14,7 +14,7 @@ MULTI_TILES = {
     "wooden bed": (1, 2),
 }
 PROCESSING_TIME = {
-    "burner drill": 30 * FPS,
+    "burner drill": 20 * FPS,
     "caelium sieve": 15 * FPS,
     "composter": 2 * FPS,
     "copper boiler": 10 * FPS,
@@ -24,6 +24,7 @@ PROCESSING_TIME = {
     "mana converter": 10 * FPS,
     "mana deconstructor": 10 * FPS,
     "steam crusher": 30 * FPS,
+    "steam drill": 10 * FPS,
     "steam furnace": 30 * FPS,
     "wood crucible": 60 * FPS,
     "wooden sieve": 15 * FPS,
