@@ -101,6 +101,7 @@ RESISTANCE = {
     "lavastone floor": 3,
     "lavastone furnace accelerator": 3,
     "lead dust": 3,
+    "lead furnace accelerator": 3,
     "lead ingot": 3,
     "life crystal": 1,
     "mana constructor": 3,

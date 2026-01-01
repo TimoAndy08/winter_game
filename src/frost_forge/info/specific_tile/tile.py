@@ -98,9 +98,9 @@ CONNECTIONS = {
 }
 CONTENTS = {
     "copper boiler": {"coal block", "copper tank"},
-    "furnace": {"coal block", "furnace accelerator", "lavastone furnace accelerator"},
+    "furnace": {"coal block", "furnace accelerator"},
     "steam crusher": {"coal block", "crushing chamber", "crushing wheel"},
-    "steam furnace": {"coal block", "furnace accelerator", "lavastone furnace accelerator"},
+    "steam furnace": {"coal block", "furnace accelerator", "lead furnace accelerator", "lavastone furnace accelerator"},
 }
 CONTENT_VALUES = {
     "coal block": (0, -1),
@@ -108,7 +108,8 @@ CONTENT_VALUES = {
     "crushing chamber": (1, 0),
     "crushing wheel": (0, 1),
     "furnace accelerator": (1, 1),
-    "lavastone furnace accelerator": (1, 0)
+    "lavastone furnace accelerator": (1, 0),
+    "lead furnace accelerator": (2, 2),
 }
 REQUIREMENTS = {
     "coal block": (("connector", 1),),
@@ -117,6 +118,7 @@ REQUIREMENTS = {
     "crushing wheel": (("coal block", 1),),
     "furnace accelerator": (("coal block", 2),),
     "lavastone furnace accelerator": (("furnace accelerator", 4),),
+    "lead furnace accelerator": (("coal block", 1), ("furnace accelerator", 1)),
 }
 ITEM_TICK = {
     "basic belt 0": 1,

@@ -143,6 +143,7 @@ HEALTH = {
     "lavastone floor": 12,
     "lavastone furnace accelerator": 32,
     "lead dust": 12,
+    "lead furnace accelerator": 32,
     "lead ingot": 16,
     "leaf": 10,
     "life crystal": 16,

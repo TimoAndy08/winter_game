@@ -112,6 +112,7 @@ TOOL_REQUIRED = {
     "lavastone floor": "pickaxe",
     "lavastone furnace accelerator": "pickaxe",
     "lead dust": "shovel",
+    "lead furnace accelerator": "pickaxe",
     "lead ingot": "pickaxe",
     "life crystal": "pickaxe",
     "log": "axe",
