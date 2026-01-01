@@ -100,12 +100,17 @@ CONNECTIONS = {
     "steam furnace": "connector",
     "steam pump": "connector",
 }
-CONTENTS = {
-    "copper boiler": {"coal block", "copper tank", "silver tank", "water block"},
+CONTENT_TYPE = {
+    "boiler": {"coal block", "copper tank", "silver tank", "water block"},
+    "crusher": {"coal block", "crushing chamber", "crushing wheel", "water block"},
     "furnace": {"coal block", "furnace accelerator", "lavastone furnace accelerator", "lead furnace accelerator", "water block"},
-    "steam crusher": {"coal block", "crushing chamber", "crushing wheel", "water block"},
-    "steam furnace": {"coal block", "furnace accelerator", "lavastone furnace accelerator", "lead furnace accelerator", "water block"},
-    "steam pump": {"coal block", "copper tank", "silver tank", "water block"},
+}
+CONTENTS = {
+    "copper boiler": CONTENT_TYPE["boiler"],
+    "furnace": CONTENT_TYPE["furnace"],
+    "steam crusher": CONTENT_TYPE["crusher"],
+    "steam furnace": CONTENT_TYPE["furnace"],
+    "steam pump": CONTENT_TYPE["boiler"],
 }
 CONTENT_VALUES = {
     "coal block": (0, -1),
