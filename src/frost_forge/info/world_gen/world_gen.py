@@ -21,7 +21,7 @@ NOISE_TILES = {
         ((0.05, 0.1), (0.35, 0.4), {"kind": "bluebell", "floor": "dirt"}),
     ),
     "lake": (
-        ((-0.08, -0.05), (0.26, 0.3), {"kind": "tin ore", "inventory": {"raw tin": 1}, "floor": "sand"}),
+        ((-0.08, -0.05), (0.26, 0.3), {"kind": "tin ore", "inventory": {"raw tin": 1}, "floor": "tin mineable"}),
         ((0, 0.1), (0.3, 0.5), {"kind": "clay"}),
         ((-0.5, 0), (-0.1, 0.5), {"floor": "ice"}),
         ((-0.5, -0.1), (-0.25, -0.1), {"kind": "flint"}),
@@ -39,7 +39,7 @@ NOISE_TILES = {
         ((0, 0.5), (0, 0.5), {"floor": "dirt"}),
     ),
     "frozen": (
-        ((-0.5, 0.5), (-0, 0.5), {"floor": "snow"}),
+        ((-0.5, 0.5), (0, 0.5), {"floor": "snow"}),
     ),
     "mountain": (
         ((0.3, 0.4), (0.1, 0.2), {"kind": "coal ore", "inventory": {"coal": 1}, "floor": "coal mineable"},),
@@ -52,9 +52,10 @@ NOISE_TILES = {
         ((-0.19, -0.18), (-0.3, -0.28), {"kind": "quartz altar"}),
     ),
     "volcano": (
+        ((0.3, 0.4), (-0.1, 0.1), {"kind": "iron ore", "inventory": {"raw iron": 1}, "floor": "iron mineable"},),
         ((-0.2, 0.2), (-0.2, 0.2), {"floor": "lava"}),
         ((-0.5, 0.5), (-0.5, 0.5), {"kind": "lavastone"}),
-    )
+    ),
 }
 BIOMES = (
     (-0.05, 0.05, "lake"),

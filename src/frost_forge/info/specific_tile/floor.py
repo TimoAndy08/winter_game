@@ -12,6 +12,7 @@ FLOOR = {
     "copper mineable",
     "dirt",
     "ice",
+    "iron mineable",
     "lava",
     "lava rune",
     "lavastone brick floor",
@@ -36,6 +37,7 @@ FLOOR = {
     "snow",
     "stone brick floor",
     "stone floor",
+    "tin mineable",
     "void",
     "water",
     "wood door",
@@ -43,7 +45,6 @@ FLOOR = {
     "wood floor",
 }
 FLOOR_TYPE = {
-    "amethyst mineable": "block",
     "ice": "block",
     "lava": "fluid",
     "void": "block",

@@ -33,6 +33,7 @@ UNOBTAINABLE = {
     "coal ore",
     "copper ore",
     "furless rabbit",
+    "iron ore",
     "junk",
     "potato grown",
     "quartz adult",

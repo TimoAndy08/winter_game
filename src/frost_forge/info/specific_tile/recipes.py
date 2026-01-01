@@ -237,6 +237,8 @@ RECIPES = {
         (("amethyst", 1), (("quartz", 4), ("steam fluid", 1), ("amethyst mineable", 1))),
         (("coal", 1), (("steam fluid", 1), ("coal mineable", 1))),
         (("raw copper", 1), (("steam fluid", 1), ("copper mineable", 1))),
+        (("raw iron", 1), (("steam fluid", 1), ("iron mineable", 1))),
+        (("raw tin", 1), (("steam fluid", 1), ("tin mineable", 1))),
     ),
     "steam furnace": (
         (("bronze ingot", 1), (("bronze dust", 1), ("steam fluid", 1))),

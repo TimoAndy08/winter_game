@@ -24,7 +24,7 @@ def generate_structure(world_type, noise_offset, chunk_x, chunk_y, chunks, save_
                 structure = True
                 break
         if structure:
-            save_chunks.add(chunk_x, chunk_y)
+            save_chunks.add((chunk_x, chunk_y))
             dungeon_room = choice(STRUCTURE_ROOMS[structure_type])
             chunks[chunk_x, chunk_y] = generate_room(
                 structure_type,
