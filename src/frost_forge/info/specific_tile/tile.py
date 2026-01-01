@@ -26,6 +26,7 @@ PROCESSING_TIME = {
     "steam crusher": 30 * FPS,
     "steam drill": 10 * FPS,
     "steam furnace": 30 * FPS,
+    "steam pump": 10 * FPS,
     "wood crucible": 60 * FPS,
     "wooden sieve": 15 * FPS,
 }
@@ -97,12 +98,14 @@ CONNECTIONS = {
     "furnace": "connector",
     "steam crusher": "connector",
     "steam furnace": "connector",
+    "steam pump": "connector",
 }
 CONTENTS = {
-    "copper boiler": {"coal block", "copper tank"},
-    "furnace": {"coal block", "furnace accelerator"},
-    "steam crusher": {"coal block", "crushing chamber", "crushing wheel"},
-    "steam furnace": {"coal block", "furnace accelerator", "lead furnace accelerator", "lavastone furnace accelerator"},
+    "copper boiler": {"coal block", "copper tank", "silver tank", "water block"},
+    "furnace": {"coal block", "furnace accelerator", "lavastone furnace accelerator", "lead furnace accelerator", "water block"},
+    "steam crusher": {"coal block", "crushing chamber", "crushing wheel", "water block"},
+    "steam furnace": {"coal block", "furnace accelerator", "lavastone furnace accelerator", "lead furnace accelerator", "water block"},
+    "steam pump": {"coal block", "copper tank", "silver tank", "water block"},
 }
 CONTENT_VALUES = {
     "coal block": (0, -1),
@@ -112,6 +115,8 @@ CONTENT_VALUES = {
     "furnace accelerator": (1, 1),
     "lavastone furnace accelerator": (1, 0),
     "lead furnace accelerator": (2, 2),
+    "silver tank": (2, 4),
+    "water block": (0, -1),
 }
 REQUIREMENTS = {
     "coal block": (("connector", 1),),
@@ -121,6 +126,8 @@ REQUIREMENTS = {
     "furnace accelerator": (("coal block", 2),),
     "lavastone furnace accelerator": (("furnace accelerator", 4),),
     "lead furnace accelerator": (("coal block", 1), ("furnace accelerator", 1)),
+    "silver tank": (("water block", 3)),
+    "water block": (("water block", 2)),
 }
 ITEM_TICK = {
     "basic belt 0": 1,

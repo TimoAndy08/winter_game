@@ -73,9 +73,11 @@ RECIPES = {
         (("crushing wheel", 1), (("bronze machine casing", 1), ("copper gear", 1), ("copper shaft", 1)),),
         (("lavastone furnace accelerator", 1), (("furnace accelerator", 1), ("lavastone brick", 2), ("bronze machine casing", 1))),
         (("lead furnace accelerator", 1), (("furnace accelerator", 1), ("lead ingot", 2), ("bronze machine casing", 1))),
+        (("silver tank", 1), (("copper tank", 1), ("silver ingot", 2), ("bronze machine casing", 1)))
         (("steam crusher", 4), (("bronze machine casing", 2), ("copper gear", 4))),
         (("steam drill", 1), (("gold ingot", 1), ("bronze gear", 1), ("burner drill", 1))),
         (("steam furnace", 4), (("furnace", 4), ("lavastone brick", 4), ("copper wrench", 1))),
+        (("steam pump", 4), (("bronze machine casing", 2), ("copper tank", 2))),
         (("tin gear", 1), (("tin ingot", 4),)),
     ),
     "copper press": (
@@ -186,6 +188,8 @@ RECIPES = {
         (("quartz block", 1), (("quartz", 8),)),
         (("quartz", 8), (("quartz block", 1),)),
         (("sapphire rune", 1), (("sapphire", 2), ("stone brick floor", 1))),
+        (("water", 4), (("water block", 1))),
+        (("water block", 1), (("water", 4))),
     ),
     "player": (
         (("snowball", 4), (("snow", 1),)),
@@ -254,6 +258,10 @@ RECIPES = {
         (("silver ingot", 1), (("silver dust", 1), ("steam fluid", 1))),
         (("slime crystal", 1), (("slime ball", 1), ("steam fluid", 1))),
         (("tin ingot", 1), (("tin dust", 1), ("steam fluid", 1))),
+    ),
+    "steam pump": (
+        (("water", 5), (("steam fluid", 1))),
+        (("slime ball", 2), (("water", 2), ("steam fluid", 1)))
     ),
     "tree constructor": (
         (("sapling", 1), (("wood", 1), ("stick", 2))),

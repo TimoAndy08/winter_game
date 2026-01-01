@@ -36,7 +36,10 @@ DESCRIPTION = {
     "rock shovel": "+2 damage to soft materials",
     "rock sword": "+2 damage to enemies",
     "sapphire rune": "*1.26 & then -3 to mana",
+    "silver tank": "+4H; +2E; adjacency: min. 3 water blocks",
     "snow": "Soil of strength 0.85",
     "steam crusher": "Machine for crushing; Bct: 30s",
     "steam furnace": "Machine for smelting; Bct: 30s",
+    "steam pump": "Machine for pumping water; Bct: 10s",
+    "water block": "-1H; adjacency: min. 2 water blocks",
 }

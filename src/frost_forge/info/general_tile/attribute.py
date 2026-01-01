@@ -58,6 +58,7 @@ ATTRIBUTES = {
     "small crate": {"open", "store"},
     "steam crusher": {"open", "machine"},
     "steam furnace": {"open", "machine"},
+    "steam pump": {"open", "machine"},
     "tree constructor": {"open", "craft"},
     "up": {"point"},
     "void converter": {"open", "craft"},
