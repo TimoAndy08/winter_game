@@ -133,7 +133,6 @@ HEALTH = {
     "iron pickaxe": 14,
     "iron shovel": 14,
     "iron sword": 14,
-    "judge": 12,
     "junk": 1,
     "lava": 12,
     "lava rune": 24,

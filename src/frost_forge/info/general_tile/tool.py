@@ -104,7 +104,6 @@ TOOL_REQUIRED = {
     "ice": "pickaxe",
     "iron dust": "shovel",
     "iron ingot": "pickaxe",
-    "judge": "sword",
     "lava rune": "pickaxe",
     "lavastone": "pickaxe",
     "lavastone brick": "pickaxe",

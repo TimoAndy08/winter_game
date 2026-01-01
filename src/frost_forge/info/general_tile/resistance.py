@@ -93,7 +93,6 @@ RESISTANCE = {
     "ice": 1,
     "iron dust": 3,
     "iron ingot": 3,
-    "judge": 2,
     "lava rune": 3,
     "lavastone": 3,
     "lavastone brick": 3,
