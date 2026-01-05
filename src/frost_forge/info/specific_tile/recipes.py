@@ -71,7 +71,7 @@ RECIPES = {
         (("crushing wheel", 1), (("bronze machine casing", 1), ("copper gear", 1), ("copper shaft", 1)),),
         (("lavastone furnace accelerator", 1), (("furnace accelerator", 1), ("lavastone brick", 2), ("bronze machine casing", 1))),
         (("lead furnace accelerator", 1), (("furnace accelerator", 1), ("lead ingot", 2), ("bronze machine casing", 1))),
-        (("silver tank", 1), (("copper tank", 1), ("silver ingot", 2), ("bronze machine casing", 1)))
+        (("silver tank", 1), (("copper tank", 1), ("silver ingot", 2), ("bronze machine casing", 1))),
         (("steam crusher", 4), (("bronze machine casing", 2), ("copper gear", 4))),
         (("steam drill", 1), (("gold ingot", 1), ("bronze gear", 1), ("burner drill", 1))),
         (("steam furnace", 4), (("furnace", 4), ("lavastone brick", 4), ("copper wrench", 1))),

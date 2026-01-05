@@ -30,8 +30,8 @@ def connect_machine(chunks, chunk, tile, kind, attributes, connection, efficienc
     if connection:
         if "harvester" in attributes:
             efficiency = 0
-            for i in range(0, x):
-                for j in range(0, y):
+            for i in range(1, x):
+                for j in range(1, y):
                     harvest_tile = ((tile[0] + i) % 16, (tile[1] + j) % 16)
                     harvest_chunk = (chunk[0] + (tile[0] + i) // 16, chunk[1] + (tile[1] + j) // 16)
                     if chunks[harvest_chunk].get(harvest_tile, {}).get("kind", None) in GROW_FROM:
@@ -45,8 +45,8 @@ def connect_machine(chunks, chunk, tile, kind, attributes, connection, efficienc
         else:
             heat = 0
             efficiency -= 1
-            for i in range(0, x):
-                for j in range(0, y):
+            for i in range(1, x):
+                for j in range(1, y):
                     content_tile = ((tile[0] + i) % 16, (tile[1] + j) % 16)
                     content_chunk = (chunk[0] + (tile[0] + i) // 16, chunk[1] + (tile[1] + j) // 16)
                     if chunks[content_chunk].get(content_tile, {}).get("kind", None) in CONTENTS[kind]:
@@ -62,6 +62,8 @@ def connect_machine(chunks, chunk, tile, kind, attributes, connection, efficienc
                                 heat = 999
                         efficiency += CONTENT_VALUES[content][0]
                         heat += CONTENT_VALUES[content][1]
+                    elif chunks[content_chunk].get(content_tile, {}).get("kind", None) == CONNECTIONS[kind]:
+                        heat = 999
             if heat > 0:
                 efficiency = 0
     return connection, efficiency
