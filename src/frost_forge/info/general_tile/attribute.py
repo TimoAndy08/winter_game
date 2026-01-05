@@ -56,6 +56,7 @@ ATTRIBUTES = {
     "slime table": {"store", "table"},
     "small barrel": {"open", "store"},
     "small crate": {"open", "store"},
+    "steam constructor": {"open", "machine"},
     "steam crusher": {"open", "machine"},
     "steam furnace": {"open", "machine"},
     "steam pump": {"open", "machine"},

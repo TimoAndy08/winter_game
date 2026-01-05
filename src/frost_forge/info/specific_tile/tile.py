@@ -23,6 +23,7 @@ PROCESSING_TIME = {
     "mana constructor": 10 * FPS,
     "mana converter": 10 * FPS,
     "mana deconstructor": 10 * FPS,
+    "steam constructor": 30 * FPS,
     "steam crusher": 30 * FPS,
     "steam drill": 10 * FPS,
     "steam furnace": 30 * FPS,
@@ -92,24 +93,29 @@ CONNECTIONS = {
     "bronze harvester": "connector",
     "copper boiler": "connector",
     "furnace": "connector",
+    "steam constructor": "connector",
     "steam crusher": "connector",
     "steam furnace": "connector",
     "steam pump": "connector",
 }
 CONTENT_TYPE = {
     "boiler": {"coal block", "copper tank", "silver tank", "water block"},
+    "constructor": {"coal block", "construction arm", "construction chamber", "water block"},
     "crusher": {"coal block", "crushing chamber", "crushing wheel", "water block"},
     "furnace": {"coal block", "furnace accelerator", "lavastone furnace accelerator", "lead furnace accelerator", "water block"},
 }
 CONTENTS = {
     "copper boiler": CONTENT_TYPE["boiler"],
     "furnace": CONTENT_TYPE["furnace"],
+    "steam constructor": CONTENT_TYPE["constructor"],
     "steam crusher": CONTENT_TYPE["crusher"],
     "steam furnace": CONTENT_TYPE["furnace"],
     "steam pump": CONTENT_TYPE["boiler"],
 }
 CONTENT_VALUES = {
     "coal block": (0, -1),
+    "construction arm": (0, 0),
+    "construction chamber": (1, 1),
     "copper tank": (1, 2),
     "crushing chamber": (1, 0),
     "crushing wheel": (0, 1),
@@ -121,6 +127,8 @@ CONTENT_VALUES = {
 }
 REQUIREMENTS = {
     "coal block": (("connector", 1),),
+    "construction arm": (("coal block", 1),),
+    "construction chamber": (("construction arm", 2),),
     "copper tank": (("coal block", 2),),
     "crushing chamber": (("crushing wheel", 4),),
     "crushing wheel": (("coal block", 1),),
