@@ -55,13 +55,9 @@ UNBREAK = {
     "void crate",
 }
 MODIFICATIONS = {
-    "amethyst pipe": 2,
-    "amethyst pump": 2,
     "basic belt": 12,
     "basic merger": 4,
     "basic splitter": 4,
-    "copper pipe": 2, 
-    "copper pump": 2,
     "rail": 6,
     "wood fence": 3,
 }
