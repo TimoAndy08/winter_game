@@ -82,6 +82,7 @@ RESISTANCE = {
     "copper tree": 3,
     "crushing chamber": 3,
     "crushing wheel": 3,
+    "drill": 2,
     "dye bench": 1,
     "furless rabbit": 1,
     "furnace": 3,

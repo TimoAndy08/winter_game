@@ -92,6 +92,7 @@ TOOL_REQUIRED = {
     "crushing chamber": "pickaxe",
     "crushing wheel": "pickaxe",
     "dirt": "shovel",
+    "drill": "pickaxe",
     "dye bench": "axe",
     "flint": "pickaxe",
     "furless rabbit": "sword",

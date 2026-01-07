@@ -14,7 +14,7 @@ MULTI_TILES = {
     "wooden bed": (1, 2),
 }
 PROCESSING_TIME = {
-    "burner drill": 20 * FPS,
+    "burner drill": 30 * FPS,
     "caelium sieve": 15 * FPS,
     "composter": 2 * FPS,
     "copper boiler": 10 * FPS,
@@ -25,7 +25,7 @@ PROCESSING_TIME = {
     "mana deconstructor": 10 * FPS,
     "steam constructor": 30 * FPS,
     "steam crusher": 30 * FPS,
-    "steam drill": 10 * FPS,
+    "steam drill": 30 * FPS,
     "steam furnace": 30 * FPS,
     "steam pump": 10 * FPS,
     "wood crucible": 60 * FPS,
@@ -91,10 +91,12 @@ RUNES_USER = {
 }
 CONNECTIONS = {
     "bronze harvester": "connector",
+    "burner drill": "connector",
     "copper boiler": "connector",
     "furnace": "connector",
     "steam constructor": "connector",
     "steam crusher": "connector",
+    "steam drill": "connector",
     "steam furnace": "connector",
     "steam pump": "connector",
 }
@@ -102,13 +104,16 @@ CONTENT_TYPE = {
     "boiler": {"coal block", "copper tank", "silver tank", "water block"},
     "constructor": {"coal block", "construction arm", "construction chamber", "water block"},
     "crusher": {"coal block", "crushing chamber", "crushing wheel", "water block"},
+    "drill": {"coal block", "drill", "water block"},
     "furnace": {"coal block", "furnace accelerator", "lavastone furnace accelerator", "lead furnace accelerator", "water block"},
 }
 CONTENTS = {
+    "burner drill": CONTENT_TYPE["drill"],
     "copper boiler": CONTENT_TYPE["boiler"],
     "furnace": CONTENT_TYPE["furnace"],
     "steam constructor": CONTENT_TYPE["constructor"],
     "steam crusher": CONTENT_TYPE["crusher"],
+    "steam drill": CONTENT_TYPE["drill"],
     "steam furnace": CONTENT_TYPE["furnace"],
     "steam pump": CONTENT_TYPE["boiler"],
 }
@@ -119,6 +124,7 @@ CONTENT_VALUES = {
     "copper tank": (1, 2),
     "crushing chamber": (1, 0),
     "crushing wheel": (0, 1),
+    "drill": (1, 1),
     "furnace accelerator": (1, 1),
     "lavastone furnace accelerator": (1, 0),
     "lead furnace accelerator": (2, 2),
@@ -132,6 +138,7 @@ REQUIREMENTS = {
     "copper tank": (("coal block", 2),),
     "crushing chamber": (("crushing wheel", 4),),
     "crushing wheel": (("coal block", 1),),
+    "drill": (("coal block", 1),),
     "furnace accelerator": (("coal block", 2),),
     "lavastone furnace accelerator": (("furnace accelerator", 4),),
     "lead furnace accelerator": (("coal block", 1), ("furnace accelerator", 1)),

@@ -1,5 +1,5 @@
 from ..right_click.inventory_move import move_inventory
-from ...info import CONNECTIONS, GROW_FROM, CONTENTS, CONTENT_VALUES, REQUIREMENTS, ADJACENT_ROOMS
+from ...info import CONNECTIONS, GROW_FROM, CONTENTS, CONTENT_VALUES, REQUIREMENTS, ADJACENT_ROOMS, ATTRIBUTES
 
 
 def connect_machine(chunks, chunk, tile, kind, attributes, connection, efficiency):
@@ -50,8 +50,9 @@ def connect_machine(chunks, chunk, tile, kind, attributes, connection, efficienc
                     content_tile = ((tile[0] + i) % 16, (tile[1] + j) % 16)
                     content_chunk = (chunk[0] + (tile[0] + i) // 16, chunk[1] + (tile[1] + j) // 16)
                     if chunks[content_chunk].get(content_tile, {}).get("kind", None) in CONTENTS[kind]:
-                        content = chunks[content_chunk][content_tile]["kind"]
-                        for requirement in REQUIREMENTS[content]:
+                        content = chunks[content_chunk][content_tile]
+                        content_kind = content["kind"]
+                        for requirement in REQUIREMENTS[content_kind]:
                             required = requirement[1]
                             for location in ADJACENT_ROOMS:
                                 adjacent_tile = ((content_tile[0] + location[0]) % 16, (content_tile[1] + location[1]) % 16)
@@ -60,10 +61,15 @@ def connect_machine(chunks, chunk, tile, kind, attributes, connection, efficienc
                                     required -= 1
                             if required > 0:
                                 heat = 999
-                        efficiency += CONTENT_VALUES[content][0]
-                        heat += CONTENT_VALUES[content][1]
+                        efficiency += CONTENT_VALUES[content_kind][0]
+                        heat += CONTENT_VALUES[content_kind][1]
+                        if "drill" in attributes and "floor" in content and "drill" in ATTRIBUTES.get(content_kind, {}):
+                            if content["floor"].split(" ")[-1] == "mineable":
+                                if content["floor"] not in chunks[chunk][tile]["inventory"]:
+                                    chunks[chunk][tile]["inventory"][content["floor"]] = 0
+                                chunks[chunk][tile]["inventory"][content["floor"]] += CONTENT_VALUES[content_kind][0]
                     elif chunks[content_chunk].get(content_tile, {}).get("kind", None) == CONNECTIONS[kind]:
                         heat = 999
             if heat > 0:
                 efficiency = 0
-    return connection, efficiency
+    return connection, efficiency, chunks
