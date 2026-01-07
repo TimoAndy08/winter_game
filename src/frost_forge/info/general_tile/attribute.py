@@ -24,6 +24,7 @@ ATTRIBUTES = {
     "caelium sieve": {"open", "machine"},
     "campfire": {"open", "craft"},
     "composter": {"open", "machine"},
+    "connector": {"open", "connected"},
     "copper anvil": {"open", "craft"},
     "copper boiler": {"open", "machine"},
     "copper constructor": {"open", "craft"},

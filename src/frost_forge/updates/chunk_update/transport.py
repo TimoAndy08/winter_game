@@ -1,3 +1,5 @@
+from random import shuffle
+
 from ...info import ADJACENT_ROOMS, ATTRIBUTES, ITEM_TICK, RECIPES, LOOT_TABLES, STORAGE, VALUES
 
 
@@ -18,13 +20,15 @@ def output_transport(chunks, chunk, tile, current_tile, kind, output):
         machine_inventory = {}
     else:
         machine_inventory = current_tile["inventory"]
-    for location in ADJACENT_ROOMS:
+    side_order = list(ADJACENT_ROOMS)
+    shuffle(side_order)
+    for location in side_order:
         adjacent_tile = ((tile[0] + location[0]) % 16, (tile[1] + location[1]) % 16)
         adjacent_chunk = (chunk[0] + (tile[0] + location[0]) // 16, chunk[1] + (tile[1] + location[1]) // 16)
         if location in current_tile and current_tile[location] == 1:
             if adjacent_tile in chunks[adjacent_chunk] and "kind" in chunks[adjacent_chunk][adjacent_tile]:
                 adjacent = chunks[adjacent_chunk][adjacent_tile]
-                if output & ATTRIBUTES.get(adjacent["kind"], ()):
+                if output & ATTRIBUTES.get(adjacent["kind"], set()):
                     if (-location[0], -location[1]) in adjacent and adjacent[-location[0], -location[1]] == 0:
                         if "inventory" not in adjacent:
                             adjacent["inventory"] = {}

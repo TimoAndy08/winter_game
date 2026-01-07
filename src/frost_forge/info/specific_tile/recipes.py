@@ -59,10 +59,10 @@ RECIPES = {
         (("tin gear", 1), (("tin ingot", 4),)),
     ),
     "copper boiler": (
-        (("steam fluid", 5), (("water fluid", 5), ("fuel", 16))),
+        (("steam fluid", 5), (("water fluid", 5), ("coal", 2))),
     ),
     "copper constructor": (
-        (("basic belt 0", 2), (("bronze machine casing", 1), ("copper shaft", 1), ("copper sheet", 1))),
+        (("basic belt 0", 4), (("bronze machine casing", 1), ("copper shaft", 1), ("copper sheet", 1))),
         (("basic merger 0", 1), (("basic belt 0", 2), ("tin gear", 1))),
         (("basic splitter 0", 1), (("basic belt 0", 2), ("copper gear", 1))),
         (("bronze harvester", 4), (("bronze machine casing", 2), ("leaf", 4))),

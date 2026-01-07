@@ -2,7 +2,7 @@ MACHINES = {
     "burner drill": ("fuel",),
     "caelium sieve": ("water fluid",),
     "composter": ("compost",),
-    "copper boiler": ("fuel", "water fluid"),
+    "copper boiler": ("water fluid",),
     "copper press": ("fuel",),
     "furnace": ("fuel",),
     "wood crucible": ("fuel", "water fluid"),
@@ -20,7 +20,7 @@ VALUES = {
     "fuel": {
         "bowl": 1,
         "coal": 8,
-        "coal block": 80,
+        "coal block": 64,
         "rabbit fur": 2,
         "small barrel": 4,
         "small crate": 4,

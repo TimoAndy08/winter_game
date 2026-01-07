@@ -32,7 +32,9 @@ def update_tile(
     elif "transport" in attributes:
         for slot in TRANSPORT[kind]:
             current_tile[slot] = TRANSPORT[kind][slot]
-        chunks[chunk][tile]["inventory"], chunks = output_transport(chunks, chunk, tile, current_tile, kind, {"machine", "store", "transport"})
+        chunks[chunk][tile]["inventory"], chunks = output_transport(chunks, chunk, tile, current_tile, kind, {"connected", "machine", "store", "transport"})
+    elif "connected" in attributes:
+        chunks[chunk][tile]["inventory"], chunks = output_transport(chunks, chunk, tile, current_tile, kind, {"machine", "transport"})
     elif kind in GROW_TILES:
         chunks[chunk][tile] = grow(current_tile, world_type)
         if chunks[chunk][tile] == {}:

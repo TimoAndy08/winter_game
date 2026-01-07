@@ -13,6 +13,12 @@ def machine(tick, current_tile, kind, attributes, tile, chunk, chunks):
     if "harvester" in attributes:
         chunks[chunk][tile]["recipe"] = 0
     if tick % PROCESSING_TIME.get(kind, FPS) == 0 and current_tile.get("recipe", -1) >= 0:
+        delete_item = []
+        for item in machine_inventory:
+            if item.split(" ")[-1] == "mineable":
+                delete_item.append(item)
+        for item in delete_item:
+            del machine_inventory[item]
         efficiency = 1
         connection = True
         if kind in RUNES_USER:
@@ -22,5 +28,5 @@ def machine(tick, current_tile, kind, attributes, tile, chunk, chunks):
         if connection:
             for _ in range(0, efficiency):
                 machine_inventory = recipe(kind, current_tile["recipe"], machine_inventory, (20, 64))
-        machine_inventory, chunks = output_transport(chunks, chunk, tile, current_tile, kind, {"transport"})
+    machine_inventory, chunks = output_transport(chunks, chunk, tile, current_tile, kind, {"connected", "transport"})
     return machine_inventory

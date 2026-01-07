@@ -166,6 +166,7 @@ ITEM_TICK = {
     "basic splitter 1": 1,
     "basic splitter 2": 1,
     "basic splitter 3": 1,
+    "connector": 1,
 }
 TRANSPORT = {
     "basic belt 0": {(1, 0): 0, (-1, 0): 1},
