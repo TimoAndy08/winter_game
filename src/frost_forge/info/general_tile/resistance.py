@@ -33,7 +33,7 @@ RESISTANCE = {
     "brick": 1,
     "brick floor": 1,
     "bronze block": 3,
-    "bronze dust": 3,
+    "bronze dust": 2,
     "bronze gear": 3,
     "bronze harvester": 3,
     "bronze ingot": 3,

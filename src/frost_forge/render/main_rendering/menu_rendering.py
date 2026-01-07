@@ -2,11 +2,15 @@ import os
 
 import pygame as pg
 
-from ...info import SCREEN_SIZE, WORLD_TYPES, CONTROL_NAMES, SAVES_FOLDER, TEXT_DISTANCE
+from ...info import SCREEN_SIZE, WORLD_TYPES, CONTROL_NAMES, SAVES_FOLDER, TEXT_DISTANCE, FPS
 from .menu_text import render_text
 
 pg.font.init()
 
+def check_single(str):
+    if len(str) == 1:
+        str = "0" + str
+    return str
 
 def render_menu(
     menu_placement: str,
@@ -26,7 +30,12 @@ def render_menu(
 
         saves = [f[: -len(".txt")] for f in os.listdir(SAVES_FOLDER)]
         for i, save in enumerate(saves):
-            render_text(window, f"[x] [{save.capitalize()}]", 2 + i, images)
+            with open(os.path.join(SAVES_FOLDER, save + ".txt"), "r", encoding="utf-8") as file:
+                time = int(float(file.read().split(";")[4]))
+            hour = check_single(str(time // (FPS * 3600)))
+            minute = check_single(str((time // (FPS * 60)) % 60))
+            second = check_single(str((time // FPS) % 60))
+            render_text(window, f"[x] [{save.capitalize()}] {hour}:{minute}:{second}", 2 + i, images)
 
     elif menu_placement == "save_creation":
         render_text(window, "Name your new save?", 0, images)

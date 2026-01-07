@@ -68,7 +68,7 @@ RECIPES = {
         (("bronze harvester", 4), (("bronze machine casing", 2), ("leaf", 4))),
         (("bronze machine casing", 2), (("bronze block", 1),)),
         (("construction arm", 1), (("bronze machine casing", 1), ("iron ingot", 1), ("gold ingot", 1))),
-        (("construction chamber", 1), ("bronze machine casing", 1), (("copper gear", 1), ("copper shaft", 1))),
+        (("construction chamber", 1), (("bronze machine casing", 1), ("copper gear", 1), ("copper shaft", 1))),
         (("copper boiler", 4), (("copper gear", 1), ("copper sheet", 5), ("copper ingot", 2), ("tin ingot", 2))),
         (("copper tank", 1), (("copper sheet", 4), ("copper shaft", 1))),
         (("crushing chamber", 1), (("bronze machine casing", 1), ("copper tank", 1))),
@@ -190,8 +190,8 @@ RECIPES = {
         (("quartz block", 1), (("quartz", 8),)),
         (("quartz", 8), (("quartz block", 1),)),
         (("sapphire rune", 1), (("sapphire", 2), ("stone brick floor", 1))),
-        (("water", 4), (("water block", 1))),
-        (("water block", 1), (("water", 4))),
+        (("water", 4), (("water block", 1),)),
+        (("water block", 1), (("water", 4),)),
     ),
     "player": (
         (("snowball", 4), (("snow", 1),)),
@@ -274,7 +274,7 @@ RECIPES = {
         (("tin ingot", 1), (("tin dust", 1), ("steam fluid", 1))),
     ),
     "steam pump": (
-        (("water", 5), (("steam fluid", 1))),
+        (("water", 5), (("steam fluid", 1),)),
         (("slime ball", 2), (("water", 2), ("steam fluid", 1)))
     ),
     "tree constructor": (
