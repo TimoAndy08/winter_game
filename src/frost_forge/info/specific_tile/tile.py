@@ -122,7 +122,7 @@ CONTENT_VALUES = {
     "construction arm": (0, 0),
     "construction chamber": (1, 1),
     "copper tank": (1, 2),
-    "crushing chamber": (1, 0),
+    "crushing chamber": (2, 0),
     "crushing wheel": (0, 1),
     "drill": (1, 1),
     "furnace accelerator": (1, 1),

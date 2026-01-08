@@ -232,7 +232,7 @@ RECIPES = {
         (("slime table", 1), (("slime floor", 4), ("stick", 4))),
     ),
     "steam constructor": (
-        (("basic belt 0", 3), (("bronze machine casing", 1), ("copper shaft", 1), ("copper sheet", 1), ("steam fluid", 1))),
+        (("basic belt 0", 4), (("bronze machine casing", 1), ("copper shaft", 1), ("copper sheet", 1), ("steam fluid", 1))),
         (("basic merger 0", 1), (("basic belt 0", 2), ("tin gear", 1), ("steam fluid", 1))),
         (("basic splitter 0", 1), (("basic belt 0", 2), ("copper gear", 1), ("steam fluid", 1))),
         (("bronze gear", 1), (("bronze ingot", 3), ("steam fluid", 1))),
