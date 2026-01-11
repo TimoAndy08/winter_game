@@ -61,6 +61,8 @@ TOOL_REQUIRED = {
     "coal": "pickaxe",
     "coal acorn": "shovel",
     "coal block": "pickaxe",
+    "coal coke": "pickaxe",
+    "coal dust": "shovel",
     "coal ore": "pickaxe",
     "coal sapling": "shovel",
     "coal treeling": "axe",

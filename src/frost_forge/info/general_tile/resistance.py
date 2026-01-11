@@ -52,6 +52,8 @@ RESISTANCE = {
     "clay": 1,
     "coal": 1,
     "coal block": 1,
+    "coal coke": 2,
+    "coal dust": 1,
     "coal ore": 2,
     "coal sapling": 1,
     "coal treeling": 1,

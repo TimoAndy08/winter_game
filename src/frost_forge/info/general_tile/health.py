@@ -65,6 +65,8 @@ HEALTH = {
     "coal": 8,
     "coal acorn": 12,
     "coal block": 32,
+    "coal coke": 8,
+    "coal dust": 12,
     "coal leaf": 15,
     "coal ore": 20,
     "coal sapling": 6,
