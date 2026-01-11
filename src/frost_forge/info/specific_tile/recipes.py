@@ -244,6 +244,7 @@ RECIPES = {
         (("tin gear", 1), (("tin ingot", 3), ("steam fluid", 1))),
     ),
     "steam crusher": (
+        (("crushed caelium", 1), (("raw caelium", 1), ("steam fluid", 1))),
         (("crushed copper", 1), (("raw copper", 1), ("steam fluid", 1))),
         (("crushed iron", 1), (("raw iron", 1), ("steam fluid", 1))),
         (("crushed tin", 1), (("raw tin", 1), ("steam fluid", 1))),

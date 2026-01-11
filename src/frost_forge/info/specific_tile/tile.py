@@ -1,6 +1,3 @@
-from ..render import FPS
-
-
 MULTI_TILES = {
     "copper constructor": (2, 2),
     "destroyed obelisk": (1, 2),
