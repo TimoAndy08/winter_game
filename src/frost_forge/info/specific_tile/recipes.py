@@ -254,10 +254,12 @@ RECIPES = {
         (("steam pump", 4), (("bronze machine casing", 2), ("copper tank", 2), ("steam fluid", 1))),
     ),
     "steam crusher": (
+        (("coal dust", 1), (("coal", 1), ("steam fluid", 1))),
         (("crushed caelium", 1), (("raw caelium", 1), ("steam fluid", 1))),
         (("crushed copper", 1), (("raw copper", 1), ("steam fluid", 1))),
         (("crushed iron", 1), (("raw iron", 1), ("steam fluid", 1))),
         (("crushed tin", 1), (("raw tin", 1), ("steam fluid", 1))),
+        (("steel dust", 1), (("iron ingot", 1), ("coal coke", 1), ("steam fluid", 1))),
         (("stick", 16), (("log", 4), ("steam fluid", 1))),
         (("wood", 8), (("log", 4), ("steam fluid", 1))),
         (("wood floor", 16), (("log", 4), ("steam fluid", 1))),
@@ -272,6 +274,7 @@ RECIPES = {
     "steam furnace": (
         (("bronze ingot", 1), (("bronze dust", 1), ("steam fluid", 1))),
         (("caelium ingot", 1), (("caelium dust", 1), ("steam fluid", 1))),
+        (("coal coke", 1), (("coal dust", 1), ("steam fluid", 1))),
         (("copper ingot", 1), (("copper dust", 1), ("steam fluid", 1))),
         (("glass", 1), (("sand", 2), ("steam fluid", 1))),
         (("gold ingot", 1), (("gold dust", 1), ("steam fluid", 1))),
@@ -282,6 +285,7 @@ RECIPES = {
         (("pure crystal", 1), (("quartz", 1), ("steam fluid", 1))),
         (("silver ingot", 1), (("silver dust", 1), ("steam fluid", 1))),
         (("slime crystal", 1), (("slime ball", 1), ("steam fluid", 1))),
+        (("steel ingot", 1), (("steel dust", 1), ("steam fluid", 1))),
         (("tin ingot", 1), (("tin dust", 1), ("steam fluid", 1))),
     ),
     "steam part assembler": (

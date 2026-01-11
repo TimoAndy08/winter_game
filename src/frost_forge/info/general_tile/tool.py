@@ -192,6 +192,8 @@ TOOL_REQUIRED = {
     "snow": "shovel",
     "snowball": "shovel",
     "spore": "shovel",
+    "steel dust": "shovel",
+    "steel ingot": "pickaxe",
     "steam constructor": "pickaxe",
     "steam crusher": "pickaxe",
     "steam drill": "pickaxe",

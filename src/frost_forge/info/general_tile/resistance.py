@@ -165,6 +165,8 @@ RESISTANCE = {
     "slime prince": 1,
     "slime shaper": 1,
     "slime table": 1,
+    "steel dust": 4,
+    "steel ingot": 4,
     "steam constructor": 3,
     "steam crusher": 3,
     "steam drill": 3,

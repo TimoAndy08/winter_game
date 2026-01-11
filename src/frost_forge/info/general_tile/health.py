@@ -236,6 +236,8 @@ HEALTH = {
     "snow": 8,
     "snowball": 4,
     "spore": 4,
+    "steel dust": 12,
+    "steel ingot": 12,
     "steam constructor": 32,
     "steam crusher": 32,
     "steam drill": 32,
