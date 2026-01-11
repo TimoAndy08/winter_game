@@ -19,6 +19,7 @@ ATTRIBUTES = {
     "basic splitter 1": {"transport"},
     "basic splitter 2": {"transport"},
     "basic splitter 3": {"transport"},
+    "basic toolbench": {"open", "craft"},
     "bronze harvester": {"open", "machine", "harvester"},
     "burner drill": {"open", "machine", "drill"},
     "caelium sieve": {"open", "machine"},
