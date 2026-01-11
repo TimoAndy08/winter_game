@@ -169,6 +169,7 @@ RESISTANCE = {
     "steam crusher": 3,
     "steam drill": 3,
     "steam furnace": 3,
+    "steam part assembler": 3,
     "steam pump": 3,
     "stone": 1,
     "stone brick": 1,

@@ -240,6 +240,7 @@ HEALTH = {
     "steam crusher": 32,
     "steam drill": 32,
     "steam furnace": 32,
+    "steam part assembler": 32,
     "steam pump": 32,
     "stick": 4,
     "stone brick": 16,

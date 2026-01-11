@@ -24,6 +24,7 @@ PROCESSING_TIME = {
     "steam crusher": 180,
     "steam drill": 180,
     "steam furnace": 180,
+    "steam part assembler": 180,
     "steam pump": 60,
     "wood crucible": 360,
     "wooden sieve": 60,
@@ -95,6 +96,7 @@ CONNECTIONS = {
     "steam crusher": "connector",
     "steam drill": "connector",
     "steam furnace": "connector",
+    "steam part assembler": "connector",
     "steam pump": "connector",
 }
 CONTENT_TYPE = {
@@ -112,6 +114,7 @@ CONTENTS = {
     "steam crusher": CONTENT_TYPE["crusher"],
     "steam drill": CONTENT_TYPE["drill"],
     "steam furnace": CONTENT_TYPE["furnace"],
+    "steam part assembler": CONTENT_TYPE["constructor"],
     "steam pump": CONTENT_TYPE["boiler"],
 }
 CONTENT_VALUES = {

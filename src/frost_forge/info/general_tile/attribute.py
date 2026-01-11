@@ -63,6 +63,7 @@ ATTRIBUTES = {
     "steam crusher": {"open", "machine"},
     "steam drill": {"open", "machine", "drill"},
     "steam furnace": {"open", "machine"},
+    "steam part assembler": {"open", "machine"},
     "steam pump": {"open", "machine"},
     "tree constructor": {"open", "craft"},
     "up": {"point"},

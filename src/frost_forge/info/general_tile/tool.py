@@ -196,6 +196,7 @@ TOOL_REQUIRED = {
     "steam crusher": "pickaxe",
     "steam drill": "pickaxe",
     "steam furnace": "pickaxe",
+    "steam part assembler": "pickaxe",
     "steam pump": "pickaxe",
     "stick": "axe",
     "stone": "pickaxe",
