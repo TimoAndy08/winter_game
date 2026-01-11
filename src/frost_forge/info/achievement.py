@@ -1,5 +1,5 @@
 ACHIEVEMENTS = {
-    "log": ("Not real trees", "Did you except to chop down big trees with those hands?"),
+    "log": ("Not fully grown trees", "Did you except to chop down grown trees with those hands?"),
     "flint axe": ("Tree-chopper 3000", "Now, go wreck some trees"),
     "rabbit fur": ("You monster", "Was that really necessary?"),
     "gift": ("Present from Santa", "You naughty rascal"),
@@ -14,4 +14,5 @@ ACHIEVEMENTS = {
     "copper boiler": ("Mechanical steam age", "Automation time?"),
     "tree constructor": ("Welcome to skyblock", "Hope you brought extra saplings"),
     "iron pickaxe": ("Pickaxe made from iron", "Pickaxe to mine iron :)"),
+    "philosopher's stone": ("From rags to riches", "Now, where's the gold?"),
 }

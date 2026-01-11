@@ -19,7 +19,6 @@ from ..left_click import (
     open_storage,
     closed_storage,
     machine_storage,
-    unlock,
     fertilize_grow,
     fertilize_spawn,
 )
@@ -105,8 +104,6 @@ def left_click(
             elif "sleep" in attributes:
                 if 9 / 16 <= (tick / DAY_LENGTH) % 1 < 15 / 16:
                     tick = (tick // DAY_LENGTH + 9 / 16) * DAY_LENGTH
-            elif kind.split(" ")[-1] == "lock":
-                chunks = unlock(inventory, inventory_number, chunks, grid_position)
             elif (
                 kind in GROW_TILES
                 and inventory_key in FERTILIZER_EFFICIENCY

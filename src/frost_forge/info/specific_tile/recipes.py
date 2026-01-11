@@ -18,7 +18,7 @@ RECIPES = {
         (("iron sword", 1), (("silver handle", 1), ("lava", 1), ("iron ingot", 3))),
     ),
     "burner drill": (
-        (("amethyst", 1), (("fuel", 4), ("quartz", 1), ("amethyst mineable", 1))),
+        (("amethyst", 1), (("fuel", 4), ("amethyst mineable", 1))),
         (("coal", 1), (("fuel", 2), ("coal mineable", 1))),
         (("raw copper", 1), (("fuel", 4), ("copper mineable", 1))),
     ),
@@ -159,7 +159,7 @@ RECIPES = {
         (("copper door", 1), (("copper brick", 1), ("copper brick floor", 1))),
         (("furnace", 4), (("copper ingot", 6), ("stone brick", 8))),
         (("furnace accelerator", 1), (("copper ingot", 3), ("stone brick", 4))),
-        (("glass key", 1), (("glass", 3), ("coal", 1), ("handle", 1))),
+        (("glass floor", 2), (("glass", 1),)),
         (("lavastone brick", 1), (("lavastone", 1),)),
         (("lavastone brick floor", 2), (("lavastone brick", 1),)),
         (("lavastone floor", 2), (("lavastone", 1),)),
@@ -263,7 +263,7 @@ RECIPES = {
         (("wood floor", 16), (("log", 4), ("steam fluid", 1))),
     ),
     "steam drill": (
-        (("amethyst", 1), (("quartz", 4), ("steam fluid", 1), ("amethyst mineable", 1))),
+        (("amethyst", 1), (("steam fluid", 1), ("amethyst mineable", 1))),
         (("coal", 1), (("steam fluid", 1), ("coal mineable", 1))),
         (("raw copper", 1), (("steam fluid", 1), ("copper mineable", 1))),
         (("raw iron", 1), (("steam fluid", 1), ("iron mineable", 1))),
@@ -301,7 +301,7 @@ RECIPES = {
     "tree constructor": (
         (("sapling", 1), (("wood", 1), ("stick", 2))),
         (("coal sapling", 1), (("sapling", 1), ("handle", 1), ("slime ball", 2))),
-        (("copper sapling", 1), (("coal sapling", 1), ("glass key", 1), ("amethyst", 2))),
+        (("copper sapling", 1), (("coal sapling", 1), ("glass", 1), ("amethyst", 2))),
         (("tin sapling", 1), (("copper sapling", 1), ("drill", 1), ("slime block", 2))),
         (("caelium sapling", 1), (("sapling", 1), ("coal sapling", 1), ("copper sapling", 1), ("tin sapling", 1))),
         (("sapphire sapling", 1), (("caelium sapling", 1), ("lava rune", 1), ("caelium ingot", 2)))
@@ -310,7 +310,7 @@ RECIPES = {
         (("sapling", 1), (("log", 1), ("wood", 1))),
         (("rabbit child", 1), (("blue dye", 1), ("carrot", 4))),
         (("tree constructor", 1), (("sapling", 4), ("small crate", 1))),
-        (("quartz altar", 1), (("glass key", 1), ("stone", 4))),
+        (("quartz altar", 1), (("glass", 2), ("stone", 4))),
         (("caelium sieve", 1), (("caelium leaf", 1), ("wooden sieve", 1))),
         (("lava", 1), (("lavastone brick", 1), ("bronze ingot", 1))),
     ),

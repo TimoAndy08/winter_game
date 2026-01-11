@@ -42,7 +42,6 @@ UNBREAK = {
     "copper pit",
     "destroyed obelisk",
     "destroyed void crate",
-    "glass lock",
     "iron mineable",
     "left",
     "obelisk",

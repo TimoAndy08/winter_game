@@ -11,6 +11,7 @@ FLOOR = {
     "copper door open",
     "copper mineable",
     "dirt",
+    "glass floor",
     "ice",
     "iron mineable",
     "lava",

@@ -121,7 +121,7 @@ HEALTH = {
     "furnace accelerator": 32,
     "gift": 4,
     "glass": 8,
-    "glass key": 1,
+    "glass floor": 8,
     "gold dust": 12,
     "gold ingot": 16,
     "handle": 4,
